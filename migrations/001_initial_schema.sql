@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS team_members (
   role VARCHAR(255) NOT NULL,
   department VARCHAR(255) NOT NULL,
   category VARCHAR(50) NOT NULL, -- 'leadership', 'lead-trainers', 'assistant-trainers', 'operations'
-  image VARCHAR(500),
+  image TEXT,
   email VARCHAR(255) NOT NULL,
   responsibilities TEXT,
   qualification VARCHAR(100),
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS events (
   institution VARCHAR(255) NOT NULL,
   event_date DATE NOT NULL,
   description TEXT,
-  cover_image VARCHAR(500),
+  cover_image TEXT,
   tags TEXT[],
   created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE TABLE IF NOT EXISTS event_images (
   id SERIAL PRIMARY KEY,
   event_id VARCHAR(100) REFERENCES events(id) ON DELETE CASCADE,
-  image_url VARCHAR(500) NOT NULL,
+  image_url TEXT NOT NULL,
   display_order INT DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );

@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS products (
   in_stock BOOLEAN DEFAULT TRUE,
   stock_quantity INT DEFAULT 0,
   sku VARCHAR(100),
-  image VARCHAR(500),
+  image TEXT,
   description TEXT,
   features TEXT[],
   featured BOOLEAN DEFAULT FALSE,
