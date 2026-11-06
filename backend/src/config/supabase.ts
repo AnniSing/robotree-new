@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import WebSocket from 'ws';
 import { env } from './env.js';
 import { Logger } from '../telemetry/logger.js';
 
@@ -16,6 +17,9 @@ export function getSupabaseClient(): SupabaseClient | null {
         auth: {
           persistSession: false,
           autoRefreshToken: false,
+        },
+        realtime: {
+          transport: WebSocket as any,
         },
       });
       Logger.info('Supabase client initialized successfully.');
@@ -37,6 +41,9 @@ export function getSupabaseAdminClient(): SupabaseClient | null {
         auth: {
           persistSession: false,
           autoRefreshToken: false,
+        },
+        realtime: {
+          transport: WebSocket as any,
         },
       });
     } catch (err: any) {
