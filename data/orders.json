@@ -1,0 +1,83 @@
+[
+  {
+    "id": "ORD-868371-49F5",
+    "customerName": "Test Student",
+    "email": "test.student@example.com",
+    "phone": "+91 99999 88888",
+    "address": "123 Robotics Way, Tech Park",
+    "notes": "",
+    "items": [
+      {
+        "productId": "PROD-RBT-001",
+        "title": "4WD Autonomous Obstacle Avoidance Robot Kit",
+        "image": "assets/store/kit_4wd_robot.jpg",
+        "price": 2499,
+        "quantity": 1,
+        "subtotal": 2499
+      }
+    ],
+    "totalAmount": 2499,
+    "status": "PENDING",
+    "createdAt": "2026-11-03T18:34:28.372Z"
+  },
+  {
+    "id": "ORD-094733-E12D",
+    "customerName": "Vivekanand Singh",
+    "email": "aniketsingh4515@gmail.com",
+    "phone": "+917453067496",
+    "address": "Assam Road New to sbi bank chatro (University & College Innovation Centers)",
+    "notes": "",
+    "items": [
+      {
+        "productId": "PROD-RBT-001",
+        "title": "4WD Autonomous Obstacle Avoidance Robot Kit",
+        "price": 2499,
+        "quantity": 1,
+        "subtotal": 2499
+      }
+    ],
+    "totalAmount": 2499,
+    "status": "PENDING",
+    "createdAt": "2026-10-18T11:31:34.733Z"
+  },
+  {
+    "id": "ORD-014835-27A0",
+    "customerName": "Aniket kumar singh",
+    "email": "aniketsingh4515@gmail.com",
+    "phone": "+919153030053",
+    "address": "Dev Bhoomi Campus, Chakrata Road, Manduwala, Naugaon, Uttarakhand 248007 (NIT & Engineering Colleges)",
+    "notes": "",
+    "items": [
+      {
+        "productId": "PROD-RBT-002",
+        "title": "Smart Line Follower Robot Kit with PID Tuning",
+        "price": 1899,
+        "quantity": 1,
+        "subtotal": 1899
+      }
+    ],
+    "totalAmount": 1899,
+    "status": "PENDING",
+    "createdAt": "2026-10-18T11:30:14.836Z"
+  },
+  {
+    "id": "ORD-722923-753A",
+    "customerName": "Aniket kumar singh",
+    "email": "aniketsingh4515@gmail.com",
+    "phone": "+919153030053",
+    "address": "Dev Bhoomi Campus, Chakrata Road, Manduwala, Naugaon, Uttarakhand 248007 (North Point School, Asansol (West Bengal))",
+    "notes": "",
+    "items": [
+      {
+        "productId": "PROD-RBT-005",
+        "title": "Robotree Uno R3 ATmega328P Development Board",
+        "price": 449,
+        "quantity": 1,
+        "subtotal": 449
+      }
+    ],
+    "totalAmount": 449,
+    "status": "PENDING",
+    "createdAt": "2026-10-18T11:25:22.924Z"
+  }
+]

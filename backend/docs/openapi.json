@@ -1,0 +1,241 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Robotree Robotics LLP Enterprise API",
+    "version": "1.0.0",
+    "description": "Production REST API for Robotree Robotics LLP platform supporting Courses, Enrollments, Certificates Verification & PDF generation, Events Gallery, Team Directory, and Administrative Operations.",
+    "contact": {
+      "name": "Robotree Technology & Academic Directorate",
+      "url": "https://robotree.org",
+      "email": "contact@robotree.org"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Local Development Server (v1)"
+    },
+    {
+      "url": "https://api.robotree.org/api/v1",
+      "description": "Production Cluster (v1)"
+    }
+  ],
+  "paths": {
+    "/csrf-token": {
+      "get": {
+        "summary": "Obtain CSRF Token",
+        "description": "Sets HttpOnly double-submit cookie and returns token for mutating requests.",
+        "responses": {
+          "200": {
+            "description": "CSRF Token issued",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean", "example": true },
+                    "csrfToken": { "type": "string", "example": "7c8e9fa..." }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/live": {
+      "get": {
+        "summary": "Liveness Probe",
+        "description": "Kubernetes and Docker health check probe.",
+        "responses": {
+          "200": { "description": "Server is live" }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "summary": "Readiness Probe",
+        "description": "Verifies persistence and database connectivity.",
+        "responses": {
+          "200": { "description": "Ready to accept traffic" }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Student / User Registration",
+        "description": "Registers a new user account with Argon2id password hash.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email", "password"],
+                "properties": {
+                  "name": { "type": "string", "example": "Aniket Sharma" },
+                  "email": { "type": "string", "format": "email", "example": "aniket@example.com" },
+                  "password": { "type": "string", "format": "password", "minLength": 6, "example": "SuperPass2026!" },
+                  "role": { "type": "string", "enum": ["Student", "Employee"], "default": "Student" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Account created successfully" },
+          "400": { "description": "Validation error" },
+          "409": { "description": "Email already registered" }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "User Authentication",
+        "description": "Authenticates student or employee with rate limiting and password verification.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": { "type": "string", "format": "email", "example": "student@example.com" },
+                  "password": { "type": "string", "format": "password", "example": "SuperPass2026!" },
+                  "role": { "type": "string", "example": "Student" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Session established" },
+          "401": { "description": "Invalid credentials or portal mismatch" },
+          "429": { "description": "Too many failed attempts" }
+        }
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "summary": "Admin Passcode Authentication",
+        "description": "Verifies master administrative passcode with constant-time equality check.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["passcode"],
+                "properties": {
+                  "passcode": { "type": "string", "example": "Aniket4515" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Admin session created" },
+          "401": { "description": "Invalid admin passcode" }
+        }
+      }
+    },
+    "/certificates/verify/{id}": {
+      "get": {
+        "summary": "Verify Certificate Reference",
+        "description": "Public verification endpoint for certificate authenticity by ID/code.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "example": "RRT-2026-0001" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Valid certificate record" },
+          "404": { "description": "Certificate not found" }
+        }
+      }
+    },
+    "/certificates/download/{id}": {
+      "get": {
+        "summary": "Download Official Certificate PDF",
+        "description": "Generates and streams cryptographic PDF certificate.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "example": "RRT-2026-0001" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Official PDF document",
+            "content": {
+              "application/pdf": {
+                "schema": { "type": "string", "format": "binary" }
+              }
+            }
+          },
+          "404": { "description": "Certificate not found" }
+        }
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "List Course Tracks",
+        "description": "Returns full authoritative list of training tracks with pricing in INR.",
+        "responses": {
+          "200": { "description": "Course catalog" }
+        }
+      }
+    },
+    "/team": {
+      "get": {
+        "summary": "List Team Directory",
+        "description": "Returns directory of 17 company team members with public privacy protection.",
+        "responses": {
+          "200": { "description": "Team member directory" }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "summary": "List Gallery Events",
+        "description": "Returns institutional and workshop photo gallery events.",
+        "responses": {
+          "200": { "description": "Event gallery list" }
+        }
+      }
+    },
+    "/contact": {
+      "post": {
+        "summary": "Submit Contact Inquiry",
+        "description": "Submits lead inquiry with anti-XSS tag stripping.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email", "message"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string", "format": "email" },
+                  "phone": { "type": "string" },
+                  "interest": { "type": "string" },
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Inquiry recorded" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+!.env.example
+!backend/config/production.env.example
+backend/config/production.env
+certificate-generator/.env
+
+# Build output
+dist/
+dist-server/
+dist-ssr/
+*.local
+
+# Large media archives & temporary backup zips
+*.zip
+*.tar.gz
+*.rar
+*.7z
+backups/
+scratch/
+
+# Temporary files & logs
+*.log
+.backend*.log
+.vite*.log
+data/*.tmp
+
+# Vercel deployment cache & local artifacts
+.vercel/
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

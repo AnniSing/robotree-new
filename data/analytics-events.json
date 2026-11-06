@@ -1,0 +1,4786 @@
+[
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T19:18:01.422Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T18:55:15.285Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-11-03T18:41:16.554Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T18:41:08.574Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T18:38:23.224Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-11-03T18:22:46.207Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-11-03T18:21:58.541Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T18:18:41.968Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-11-03T18:18:16.114Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-11-03T18:18:04.362Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-11-03T18:17:32.839Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T13:01:47.492Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T12:42:18.865Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T12:22:38.768Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T12:03:31.086Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T12:02:39.610Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-11-03T12:00:12.980Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T11:59:41.029Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-11-03T11:59:29.178Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-11-03T11:59:14.829Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-11-03T11:59:00.631Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-11-03T11:57:59.386Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-20T06:50:45.392Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-20T06:07:54.083Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-20T05:58:45.648Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-20T05:58:38.746Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-20T05:57:53.850Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-20T05:56:15.326Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-19T12:21:39.460Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-19T12:21:24.219Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-19T12:20:38.994Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-19T12:20:12.322Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-19T12:19:47.681Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-19T12:18:25.397Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-18T11:31:39.995Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-18T11:31:15.970Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-18T11:30:21.900Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-18T11:29:58.150Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-18T11:25:52.723Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-18T11:25:39.507Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-18T11:25:32.040Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-18T11:24:44.520Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-18T11:23:37.258Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-18T11:23:28.579Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-18T11:23:19.517Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-18T11:23:11.014Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-18T11:23:09.558Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-18T11:22:57.934Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-18T11:21:47.423Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-13T09:17:30.242Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-13T09:17:18.582Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-13T09:15:43.650Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-13T09:15:25.245Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-13T09:14:53.606Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-13T08:20:18.918Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-13T08:20:17.524Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-13T08:18:38.714Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-13T08:17:24.156Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-13T08:10:01.110Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-13T08:09:51.054Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-13T08:06:07.126Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-13T07:56:15.355Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-13T07:55:52.445Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T13:19:41.078Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-10T13:18:53.873Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T13:18:15.501Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T13:18:03.831Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-10T13:17:54.928Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-10T13:16:10.389Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T13:14:52.609Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-10T13:14:40.988Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-10T12:45:01.793Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-10T12:45:01.358Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-10T12:44:19.004Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "account_created",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T12:44:10.133Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T12:41:54.028Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T12:29:58.306Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T12:29:09.157Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T12:25:33.464Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T12:24:19.751Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T12:24:18.828Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T12:24:16.618Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T12:24:03.858Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T12:23:47.287Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-10T12:23:45.005Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T12:18:00.274Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-10T11:57:20.323Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/store.html",
+    "timestamp": "2026-10-10T11:57:11.053Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-10T11:56:55.819Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T11:55:17.450Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T11:16:30.383Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-10T11:16:27.754Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T11:15:50.729Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T10:54:48.948Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-10T10:54:43.809Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T10:52:51.700Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-10T10:52:43.492Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-10T10:51:51.548Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-10T10:51:47.556Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-10T10:35:49.613Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-10T10:33:15.130Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-10T10:33:05.877Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-05T12:28:10.196Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-05T10:02:17.798Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-05T10:01:59.615Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-05T10:01:51.991Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-05T10:01:46.189Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-05T10:01:20.866Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-05T08:33:07.215Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-05T08:32:58.935Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-05T08:31:44.121Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-05T08:31:39.201Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-05T06:46:41.409Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-04T17:54:25.463Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-04T17:53:50.348Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-04T17:53:05.412Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-04T17:44:04.421Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-04T13:59:08.385Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-04T13:59:03.086Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-04T13:58:56.711Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-04T13:58:46.293Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-04T13:58:39.733Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-04T13:57:01.616Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-04T13:56:54.365Z",
+    "ip": "106.205.172.184"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-04T06:36:13.968Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-04T06:35:38.082Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-04T06:35:23.360Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-04T06:35:10.118Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-04T06:35:03.079Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-04T06:34:56.166Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-04T06:33:58.982Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-04T06:33:00.286Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-04T06:32:56.026Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T07:46:19.762Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T07:37:56.803Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T07:27:43.634Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T07:27:22.971Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-03T07:26:10.556Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-03T07:23:47.861Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T07:23:43.972Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-03T07:23:03.417Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T07:19:18.803Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-03T07:19:16.983Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T07:19:14.275Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T07:17:55.103Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T07:17:01.225Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-03T07:06:48.773Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-03T07:06:19.397Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-03T07:06:10.361Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T07:05:55.928Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T07:05:11.214Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-03T07:04:16.889Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-03T07:04:11.049Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-03T07:04:06.667Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T07:03:55.118Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T07:03:46.477Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T06:54:27.694Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T06:46:51.539Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-03T06:46:47.984Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T06:46:41.224Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T06:46:24.184Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-03T06:46:19.940Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-03T06:46:14.669Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T06:46:07.365Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-03T06:46:00.333Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-03T06:45:56.024Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T06:45:46.945Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T06:45:45.793Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-03T06:45:41.089Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-03T06:45:39.554Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-03T06:35:58.025Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-03T06:30:17.178Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-03T06:29:24.363Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-03T06:28:05.789Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-03T06:25:07.687Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-10-03T06:24:11.648Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-03T06:05:23.020Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-10-03T06:05:01.028Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T10:24:38.459Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T09:09:46.763Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:09:36.992Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:09:18.767Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-02T09:09:10.529Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-02T09:09:08.727Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-02T09:09:02.708Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:08:09.496Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T09:07:08.773Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:06:54.155Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T09:06:45.369Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:06:31.274Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-10-02T09:06:05.809Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T09:02:19.778Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T09:02:08.987Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-02T08:57:33.749Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T08:56:00.651Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-02T08:54:25.048Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T08:53:29.362Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T08:52:36.475Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-02T08:52:34.347Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T08:51:19.731Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-02T08:50:26.849Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-02T08:50:16.777Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T08:50:12.920Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-02T08:50:07.795Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-02T08:50:07.102Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T08:50:02.839Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T08:49:50.198Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-02T08:47:54.055Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-10-02T08:45:28.608Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:35:26.664Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:23:11.381Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:20:04.962Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T07:19:59.651Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T07:19:57.480Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-02T07:19:32.151Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:18:03.459Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:17:53.055Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:17:44.494Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:16:48.721Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T07:16:41.730Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T07:16:35.790Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:16:23.564Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-10-02T07:16:19.189Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:16:13.283Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:16:07.320Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:05:00.512Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:04:17.186Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T07:02:24.143Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:49:56.556Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:45:12.418Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:42:12.603Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:40:28.759Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:40:20.594Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:30:55.338Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:23:47.390Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-02T06:23:03.547Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-02T06:22:27.037Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T06:22:12.992Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-02T06:20:04.871Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-02T06:19:31.046Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-02T06:19:18.644Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-10-02T06:18:47.072Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-02T06:12:58.481Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T14:11:55.472Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-01T14:11:46.570Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T14:11:16.684Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-01T14:11:03.179Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-01T14:10:59.706Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-01T14:10:58.321Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-01T14:10:56.497Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T14:03:18.921Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T13:23:28.325Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T11:56:59.167Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T11:45:47.320Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T11:23:31.349Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T09:34:17.667Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T08:32:04.160Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-01T08:31:29.452Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T08:17:47.242Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-01T08:11:40.887Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-10-01T08:10:04.138Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-01T08:07:21.238Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-10-01T08:06:15.242Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-10-01T08:06:12.744Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T08:01:18.166Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T08:00:08.355Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-10-01T07:59:37.311Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T07:58:06.922Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-10-01T07:57:43.006Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T07:56:53.952Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "lead_submitted",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T07:56:49.165Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T07:56:31.902Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T07:52:15.809Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-10-01T07:51:08.206Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T07:50:17.180Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-10-01T07:46:58.950Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-10-01T07:35:23.007Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-10-01T07:35:01.302Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-30T13:32:35.355Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-30T07:41:35.337Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-30T07:41:28.417Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T15:24:33.636Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T14:37:36.542Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-27T14:37:13.035Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-09-27T14:37:11.448Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-27T14:37:10.825Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-27T14:37:09.721Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-09-27T14:37:08.666Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-27T14:36:46.458Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-27T14:36:11.715Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-27T14:35:56.629Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T14:32:54.861Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-27T14:31:24.798Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-27T14:30:08.335Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-27T14:27:02.594Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-27T14:15:28.406Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-27T14:15:07.533Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-27T13:50:50.478Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T13:45:56.965Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T13:45:48.051Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T13:42:51.879Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-27T13:42:06.152Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-27T13:41:54.208Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-27T13:29:58.346Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-09-27T13:29:28.948Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-27T13:29:21.489Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-09-27T13:29:14.309Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-27T13:28:56.400Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-09-27T13:28:54.022Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-27T13:28:50.281Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-27T13:28:30.948Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-27T13:28:25.723Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-27T13:27:59.844Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-26T14:03:50.445Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-26T14:03:48.872Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-26T13:25:12.987Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-26T13:25:06.342Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-25T15:42:13.515Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-25T15:41:55.405Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-25T15:40:54.414Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-25T15:40:07.875Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-25T15:30:46.972Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-25T14:32:19.568Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T14:31:45.342Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T14:12:15.783Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T14:10:22.991Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T14:09:49.594Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T14:07:31.420Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T13:14:03.106Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-25T13:12:00.309Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-24T14:00:57.134Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-16T13:52:59.803Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-16T13:52:50.895Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-16T13:52:35.821Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-16T13:38:34.000Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-16T13:37:36.034Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-16T13:37:26.990Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-16T13:37:10.113Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-16T13:36:05.510Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T16:41:03.273Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T11:01:55.377Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-15T08:41:46.663Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T06:54:21.169Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T06:52:54.316Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-15T06:52:51.105Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T06:48:26.332Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-15T06:48:22.754Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-15T06:44:16.324Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-15T06:44:06.485Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-15T06:38:03.688Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-15T06:37:12.483Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-15T06:37:02.807Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-15T06:36:40.820Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/certificate.html",
+    "timestamp": "2026-09-15T06:36:34.434Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-15T06:35:54.250Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-15T06:35:50.778Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:18:44.095Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T14:18:39.240Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T14:14:08.656Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T14:14:02.028Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:12:21.883Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/services.html",
+    "timestamp": "2026-09-14T14:12:20.923Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-14T14:12:15.727Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T14:12:13.745Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-14T14:12:12.937Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T14:12:09.006Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:11:56.441Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:11:48.977Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:07:06.407Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:07:04.950Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T14:02:23.382Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T14:02:20.735Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T14:01:35.430Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T14:00:31.261Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T13:59:28.542Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:56:04.739Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T13:56:03.439Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-14T13:55:39.729Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T13:52:10.467Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:51:41.807Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:51:38.964Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:51:37.130Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T13:50:35.463Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-14T13:46:15.855Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-14T13:46:04.567Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:41:06.167Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-14T13:33:23.924Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T13:32:21.082Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T13:29:05.398Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T13:26:47.544Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-14T13:26:08.168Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-14T13:23:39.784Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/about.html",
+    "timestamp": "2026-09-14T13:23:12.900Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "cookie_accept",
+    "path": "/",
+    "timestamp": "2026-09-14T13:22:10.065Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-14T13:21:51.523Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-13T07:42:47.201Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/contact.html",
+    "timestamp": "2026-09-13T07:42:26.385Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/gallery.html",
+    "timestamp": "2026-09-13T07:42:18.174Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/",
+    "timestamp": "2026-09-13T07:41:59.126Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-08T18:30:16.482Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-08T14:40:33.837Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-08T14:35:55.427Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/courses.html",
+    "timestamp": "2026-09-08T14:35:16.851Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-08T13:44:42.600Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/admin.html",
+    "timestamp": "2026-09-08T06:36:51.030Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/index.html",
+    "timestamp": "2026-09-08T06:36:26.558Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-08T06:32:56.193Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "test_event",
+    "timestamp": "2026-09-07T15:55:06.811Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "event": "page_view",
+    "path": "/team.html",
+    "timestamp": "2026-09-07T13:23:32.970Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "EVT-1788435098160-58EF87",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-09-03T11:31:38.160Z"
+  },
+  {
+    "id": "EVT-1788435076211-489FCF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-09-03T11:31:16.211Z"
+  },
+  {
+    "id": "EVT-1788435014012-C8577D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-09-03T11:30:14.012Z"
+  },
+  {
+    "id": "EVT-1788434982285-852E7C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-09-03T11:29:42.285Z"
+  },
+  {
+    "id": "EVT-1788434978399-AF1073",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-09-03T11:29:38.410Z"
+  },
+  {
+    "id": "EVT-1788331507642-1AD7FD",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-09-02T06:45:07.643Z"
+  },
+  {
+    "id": "EVT-1788331505220-C33804",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-09-02T06:45:05.221Z"
+  },
+  {
+    "id": "EVT-1788331175811-18073A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-09-02T06:39:35.812Z"
+  },
+  {
+    "id": "EVT-1788330821147-DE3A5B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-09-02T06:33:41.148Z"
+  },
+  {
+    "id": "EVT-1788330409735-668E0F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-09-02T06:26:49.736Z"
+  },
+  {
+    "id": "EVT-1788330367778-455502",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-09-02T06:26:07.778Z"
+  },
+  {
+    "id": "EVT-1788330332530-311A0D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-09-02T06:25:32.530Z"
+  },
+  {
+    "id": "EVT-1788330330146-344675",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-09-02T06:25:30.147Z"
+  },
+  {
+    "id": "EVT-1788183852948-C94770",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-31T13:44:12.950Z"
+  },
+  {
+    "id": "EVT-1788181066112-AAC8C3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:57:46.112Z"
+  },
+  {
+    "id": "EVT-1788180931578-7AE953",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:55:31.578Z"
+  },
+  {
+    "id": "EVT-1788180835481-F4290E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:53:55.481Z"
+  },
+  {
+    "id": "EVT-1788180769677-9CA956",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:52:49.678Z"
+  },
+  {
+    "id": "EVT-1788180329058-CE1C4D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-31T12:45:29.058Z"
+  },
+  {
+    "id": "EVT-1788180316525-34A225",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-31T12:45:16.525Z"
+  },
+  {
+    "id": "EVT-1788180302699-D3A1C2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-31T12:45:02.699Z"
+  },
+  {
+    "id": "EVT-1788180246224-CE74E4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:44:06.224Z"
+  },
+  {
+    "id": "EVT-1788180205812-24A087",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:43:25.812Z"
+  },
+  {
+    "id": "EVT-1788180133896-F6FEE1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T12:42:13.897Z"
+  },
+  {
+    "id": "EVT-1788180130195-1F2CC1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:42:10.196Z"
+  },
+  {
+    "id": "EVT-1788180126235-651A31",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-31T12:42:06.236Z"
+  },
+  {
+    "id": "EVT-1788180118388-196FA9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:41:58.390Z"
+  },
+  {
+    "id": "EVT-1788179869593-8B970E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T12:37:49.593Z"
+  },
+  {
+    "id": "EVT-1788179866109-CD4340",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:37:46.109Z"
+  },
+  {
+    "id": "EVT-1788179860893-A0607D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-31T12:37:40.894Z"
+  },
+  {
+    "id": "EVT-1788179857934-33B2DB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:37:37.935Z"
+  },
+  {
+    "id": "EVT-1788179850165-A464EC",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-31T12:37:30.165Z"
+  },
+  {
+    "id": "EVT-1788179844783-91E941",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-31T12:37:24.783Z"
+  },
+  {
+    "id": "EVT-1788179838558-B73349",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T12:37:18.559Z"
+  },
+  {
+    "id": "EVT-1788179759150-BDB6BF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:35:59.151Z"
+  },
+  {
+    "id": "EVT-1788179737439-02C2C1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-31T12:35:37.439Z"
+  },
+  {
+    "id": "EVT-1788179711950-F073F3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-31T12:35:11.950Z"
+  },
+  {
+    "id": "EVT-1788179697708-A2C80A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-31T12:34:57.709Z"
+  },
+  {
+    "id": "EVT-1788179653935-275A5F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:34:13.935Z"
+  },
+  {
+    "id": "EVT-1788179646221-4CE650",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-31T12:34:06.223Z"
+  },
+  {
+    "id": "EVT-1788179582573-277471",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T12:33:02.573Z"
+  },
+  {
+    "id": "EVT-1788179531737-81E901",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:32:11.737Z"
+  },
+  {
+    "id": "EVT-1788179526275-FDC370",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:32:06.275Z"
+  },
+  {
+    "id": "EVT-1788179464171-042205",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:31:04.172Z"
+  },
+  {
+    "id": "EVT-1788179135529-3DC09B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:25:35.531Z"
+  },
+  {
+    "id": "EVT-1788178906769-80ECC2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:21:46.770Z"
+  },
+  {
+    "id": "EVT-1788178347283-B14481",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:12:27.284Z"
+  },
+  {
+    "id": "EVT-1788178329167-01096B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T12:12:09.168Z"
+  },
+  {
+    "id": "EVT-1788178266258-51BE8D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T12:11:06.258Z"
+  },
+  {
+    "id": "EVT-1788178257670-08F8FA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-31T12:10:57.671Z"
+  },
+  {
+    "id": "EVT-1788177374439-1D9616",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T11:56:14.444Z"
+  },
+  {
+    "id": "EVT-1788170840871-6C62BD",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T10:07:20.871Z"
+  },
+  {
+    "id": "EVT-1788170834538-2F2DEB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-31T10:07:14.539Z"
+  },
+  {
+    "id": "EVT-1788170826903-076E83",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T10:07:06.903Z"
+  },
+  {
+    "id": "EVT-1788170825387-8EBCBA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T10:07:05.387Z"
+  },
+  {
+    "id": "EVT-1788170776819-65156A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T10:06:16.821Z"
+  },
+  {
+    "id": "EVT-1788168904192-DE5B71",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T09:35:04.192Z"
+  },
+  {
+    "id": "EVT-1788168852660-514E48",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T09:34:12.660Z"
+  },
+  {
+    "id": "EVT-1788168194128-C14EE2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:23:14.128Z"
+  },
+  {
+    "id": "EVT-1788168151808-7C6AB2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:22:31.808Z"
+  },
+  {
+    "id": "EVT-1788168071583-412641",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:21:11.583Z"
+  },
+  {
+    "id": "EVT-1788168066231-911E15",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:21:06.232Z"
+  },
+  {
+    "id": "EVT-1788168047394-DEED3F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:20:47.394Z"
+  },
+  {
+    "id": "EVT-1788167994287-AF45E5",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:19:54.287Z"
+  },
+  {
+    "id": "EVT-1788167910486-80BFE8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:18:30.486Z"
+  },
+  {
+    "id": "EVT-1788167896909-3C806B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-31T09:18:16.910Z"
+  },
+  {
+    "id": "EVT-1788167893688-DD8787",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-31T09:18:13.688Z"
+  },
+  {
+    "id": "EVT-1788167882974-15B70D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T09:18:02.974Z"
+  },
+  {
+    "id": "EVT-1788167878495-F9ED8C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-31T09:17:58.495Z"
+  },
+  {
+    "id": "EVT-1788167869920-DEC396",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-31T09:17:49.921Z"
+  },
+  {
+    "id": "EVT-1788167853413-578917",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-31T09:17:33.413Z"
+  },
+  {
+    "id": "EVT-1788167844929-6B3679",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-31T09:17:24.930Z"
+  },
+  {
+    "id": "EVT-1788167833255-7213BA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:17:13.257Z"
+  },
+  {
+    "id": "EVT-1788167570602-D9E2C3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:12:50.603Z"
+  },
+  {
+    "id": "EVT-1788167329727-583B3C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:08:49.728Z"
+  },
+  {
+    "id": "EVT-1788167269071-3971CF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:07:49.071Z"
+  },
+  {
+    "id": "EVT-1788167222854-C58807",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:07:02.855Z"
+  },
+  {
+    "id": "EVT-1788167214522-3F7539",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:06:54.522Z"
+  },
+  {
+    "id": "EVT-1788167208437-30B5B3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:06:48.437Z"
+  },
+  {
+    "id": "EVT-1788167185707-D77202",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:06:25.707Z"
+  },
+  {
+    "id": "EVT-1788167180134-551B4B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:06:20.135Z"
+  },
+  {
+    "id": "EVT-1788167159962-6D2E22",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T09:05:59.963Z"
+  },
+  {
+    "id": "EVT-1788166974772-D1E7EE",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T09:02:54.773Z"
+  },
+  {
+    "id": "EVT-1788166956535-608586",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T09:02:36.536Z"
+  },
+  {
+    "id": "EVT-1788166470377-F99845",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-31T08:54:30.377Z"
+  },
+  {
+    "id": "EVT-1788166369239-1E8309",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T08:52:49.240Z"
+  },
+  {
+    "id": "EVT-1788166364810-B0F975",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-31T08:52:44.812Z"
+  },
+  {
+    "id": "EVT-1788166187712-23001C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-31T08:49:47.714Z"
+  },
+  {
+    "id": "EVT-1788166168681-C96BDC",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-31T08:49:28.681Z"
+  },
+  {
+    "id": "EVT-1788100075157-891391",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-30T14:27:55.158Z"
+  },
+  {
+    "id": "EVT-1788098498304-A05675",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-30T14:01:38.305Z"
+  },
+  {
+    "id": "EVT-1788098472535-22FD81",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T14:01:12.535Z"
+  },
+  {
+    "id": "EVT-1788098281131-000B37",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-30T13:58:01.131Z"
+  },
+  {
+    "id": "EVT-1788098171746-105FDC",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:56:11.747Z"
+  },
+  {
+    "id": "EVT-1788097538451-A47807",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:45:38.452Z"
+  },
+  {
+    "id": "EVT-1788097369318-49742D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:42:49.319Z"
+  },
+  {
+    "id": "EVT-1788097154686-E185AF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:39:14.687Z"
+  },
+  {
+    "id": "EVT-1788096834751-A3B7E0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:33:54.754Z"
+  },
+  {
+    "id": "EVT-1788096469209-AC5D95",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:27:49.210Z"
+  },
+  {
+    "id": "EVT-1788096219745-F0DA76",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T13:23:39.745Z"
+  },
+  {
+    "id": "EVT-1788096199772-0D1A62",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-30T13:23:19.772Z"
+  },
+  {
+    "id": "EVT-1788096196062-19E590",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-30T13:23:16.062Z"
+  },
+  {
+    "id": "EVT-1788096183150-00F179",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-30T13:23:03.151Z"
+  },
+  {
+    "id": "EVT-1788094429653-96DA13",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-30T12:53:49.654Z"
+  },
+  {
+    "id": "EVT-1788093198507-623F9B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-30T12:33:18.508Z"
+  },
+  {
+    "id": "EVT-1788092361462-E5B77A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-30T12:19:21.462Z"
+  },
+  {
+    "id": "EVT-1788092359689-513415",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-30T12:19:19.691Z"
+  },
+  {
+    "id": "EVT-1788092232827-4459EB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T12:17:12.833Z"
+  },
+  {
+    "id": "EVT-1788092120341-789C53",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-30T12:15:20.344Z"
+  },
+  {
+    "id": "EVT-1788091828838-B8F4BF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-30T12:10:28.838Z"
+  },
+  {
+    "id": "EVT-1788091826643-8E31C6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-30T12:10:26.644Z"
+  },
+  {
+    "id": "EVT-1788091571605-3C54CA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-30T12:06:11.605Z"
+  },
+  {
+    "id": "EVT-1788091570750-208041",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-30T12:06:10.751Z"
+  },
+  {
+    "id": "EVT-1788091475307-A789F8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-30T12:04:35.307Z"
+  },
+  {
+    "id": "EVT-1788091422063-B334B7",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-30T12:03:42.063Z"
+  },
+  {
+    "id": "EVT-1788091420445-CBA122",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-30T12:03:40.469Z"
+  },
+  {
+    "id": "EVT-1788091416896-9A15E6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-30T12:03:37.037Z"
+  },
+  {
+    "id": "EVT-1788015569534-B24AC1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:59:29.534Z"
+  },
+  {
+    "id": "EVT-1788015512973-FC0040",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:58:32.974Z"
+  },
+  {
+    "id": "EVT-1788015266051-3CF6F7",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:54:26.051Z"
+  },
+  {
+    "id": "EVT-1788014895618-A43925",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:48:15.619Z"
+  },
+  {
+    "id": "EVT-1788014890640-287950",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:48:10.640Z"
+  },
+  {
+    "id": "EVT-1788014889575-4ED506",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-29T14:48:09.575Z"
+  },
+  {
+    "id": "EVT-1788014886608-CF3D73",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-29T14:48:06.608Z"
+  },
+  {
+    "id": "EVT-1788014844733-84B215",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:47:24.733Z"
+  },
+  {
+    "id": "EVT-1788014840142-D00F4B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:47:20.142Z"
+  },
+  {
+    "id": "EVT-1788014835216-AAACE6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-29T14:47:15.216Z"
+  },
+  {
+    "id": "EVT-1788014815948-7CDA6D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:46:55.949Z"
+  },
+  {
+    "id": "EVT-1788014778258-87ECDA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-29T14:46:18.259Z"
+  },
+  {
+    "id": "EVT-1788014709645-EFD63C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:45:09.645Z"
+  },
+  {
+    "id": "EVT-1788014700207-3D1C57",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:45:00.208Z"
+  },
+  {
+    "id": "EVT-1788014693935-7D7A1A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:44:53.936Z"
+  },
+  {
+    "id": "EVT-1788014359099-73F175",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:39:19.100Z"
+  },
+  {
+    "id": "EVT-1788012618707-E8C8A2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:10:18.707Z"
+  },
+  {
+    "id": "EVT-1788012610757-A3E152",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:10:10.758Z"
+  },
+  {
+    "id": "EVT-1788012532116-0071A8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:08:52.117Z"
+  },
+  {
+    "id": "EVT-1788012526961-B59F2F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:08:46.961Z"
+  },
+  {
+    "id": "EVT-1788012520848-E5CAC3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-29T14:08:40.848Z"
+  },
+  {
+    "id": "EVT-1788012516023-929898",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:08:36.023Z"
+  },
+  {
+    "id": "EVT-1788012496480-CC3117",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:08:16.480Z"
+  },
+  {
+    "id": "EVT-1788012494234-64DDB8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T14:08:14.234Z"
+  },
+  {
+    "id": "EVT-1788012490362-E00462",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:08:10.362Z"
+  },
+  {
+    "id": "EVT-1788012488948-01DFD2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-29T14:08:08.948Z"
+  },
+  {
+    "id": "EVT-1788012487649-6B0742",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T14:08:07.649Z"
+  },
+  {
+    "id": "EVT-1788012485453-D24A79",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-29T14:08:05.453Z"
+  },
+  {
+    "id": "EVT-1788012484336-16779E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-29T14:08:04.336Z"
+  },
+  {
+    "id": "EVT-1788012483185-14A215",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T14:08:03.185Z"
+  },
+  {
+    "id": "EVT-1788012477707-D94D79",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T14:07:57.707Z"
+  },
+  {
+    "id": "EVT-1788012324126-28625E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:05:24.126Z"
+  },
+  {
+    "id": "EVT-1788012314174-8E4035",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/terms.html",
+    "createdAt": "2026-08-29T14:05:14.174Z"
+  },
+  {
+    "id": "EVT-1788012195171-5A7CCE",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T14:03:15.171Z"
+  },
+  {
+    "id": "EVT-1788012139227-2C9F91",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:02:19.227Z"
+  },
+  {
+    "id": "EVT-1788012132400-3CC9E8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T14:02:12.400Z"
+  },
+  {
+    "id": "EVT-1788012126661-6594B9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-29T14:02:06.661Z"
+  },
+  {
+    "id": "EVT-1788012125220-B9F83A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T14:02:05.220Z"
+  },
+  {
+    "id": "EVT-1788012117839-F6B00E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-29T14:01:57.839Z"
+  },
+  {
+    "id": "EVT-1788012096681-3282F8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T14:01:36.682Z"
+  },
+  {
+    "id": "EVT-1788003085027-836405",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:31:25.027Z"
+  },
+  {
+    "id": "EVT-1788003064007-978433",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:31:04.008Z"
+  },
+  {
+    "id": "EVT-1788002493804-861E4E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:21:33.805Z"
+  },
+  {
+    "id": "EVT-1788002326020-D8C1CB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:18:46.022Z"
+  },
+  {
+    "id": "EVT-1788002114177-C91BCA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:15:14.178Z"
+  },
+  {
+    "id": "EVT-1788001789247-ADD207",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T11:09:49.247Z"
+  },
+  {
+    "id": "EVT-1788001768880-FDAF34",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T11:09:28.881Z"
+  },
+  {
+    "id": "EVT-1788001690518-2831B0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T11:08:10.518Z"
+  },
+  {
+    "id": "EVT-1787992967662-B0A1FB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T08:42:47.663Z"
+  },
+  {
+    "id": "EVT-1787992593636-60D760",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T08:36:33.636Z"
+  },
+  {
+    "id": "EVT-1787992582954-C1CEE9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T08:36:22.954Z"
+  },
+  {
+    "id": "EVT-1787992566031-EA858B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:36:06.033Z"
+  },
+  {
+    "id": "EVT-1787992400421-39C163",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:33:20.422Z"
+  },
+  {
+    "id": "EVT-1787992310307-10AE6E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T08:31:50.307Z"
+  },
+  {
+    "id": "EVT-1787992304500-88519D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:31:44.500Z"
+  },
+  {
+    "id": "EVT-1787992302052-1A6E9A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T08:31:42.052Z"
+  },
+  {
+    "id": "EVT-1787992300686-74DE62",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-29T08:31:40.686Z"
+  },
+  {
+    "id": "EVT-1787992299651-A478F1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T08:31:39.651Z"
+  },
+  {
+    "id": "EVT-1787992297734-3435EF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-29T08:31:37.734Z"
+  },
+  {
+    "id": "EVT-1787992296488-47E028",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-29T08:31:36.489Z"
+  },
+  {
+    "id": "EVT-1787992294293-3D428C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T08:31:34.293Z"
+  },
+  {
+    "id": "EVT-1787992293211-DC34FD",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T08:31:33.212Z"
+  },
+  {
+    "id": "EVT-1787992287084-C51972",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T08:31:27.084Z"
+  },
+  {
+    "id": "EVT-1787992283016-424673",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:31:23.022Z"
+  },
+  {
+    "id": "EVT-1787992125149-CE7155",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-29T08:28:45.149Z"
+  },
+  {
+    "id": "EVT-1787992101978-B784CF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-29T08:28:21.978Z"
+  },
+  {
+    "id": "EVT-1787992038186-FDB333",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:27:18.186Z"
+  },
+  {
+    "id": "EVT-1787991917792-6FCA4B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T08:25:17.794Z"
+  },
+  {
+    "id": "EVT-1787991783084-F174BE",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T08:23:03.084Z"
+  },
+  {
+    "id": "EVT-1787991775883-91EC64",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:22:55.883Z"
+  },
+  {
+    "id": "EVT-1787991745860-CAF35D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T08:22:25.860Z"
+  },
+  {
+    "id": "EVT-1787991738975-287C0A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T08:22:18.975Z"
+  },
+  {
+    "id": "EVT-1787991735498-3B59C7",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T08:22:15.502Z"
+  },
+  {
+    "id": "EVT-1787988108748-4DF94E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-29T07:21:48.748Z"
+  },
+  {
+    "id": "EVT-1787988104364-415905",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-29T07:21:44.365Z"
+  },
+  {
+    "id": "EVT-1787984483883-862909",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-29T06:21:23.884Z"
+  },
+  {
+    "id": "EVT-1787901878473-23DF0D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-28T07:24:38.473Z"
+  },
+  {
+    "id": "EVT-1787901874849-315D74",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:24:34.849Z"
+  },
+  {
+    "id": "EVT-1787901872116-D82752",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:24:32.116Z"
+  },
+  {
+    "id": "EVT-1787901854434-1F9361",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:24:14.434Z"
+  },
+  {
+    "id": "EVT-1787901852438-E07175",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:24:12.438Z"
+  },
+  {
+    "id": "EVT-1787901844017-1FCDA8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:24:04.017Z"
+  },
+  {
+    "id": "EVT-1787901838430-06112F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:23:58.430Z"
+  },
+  {
+    "id": "EVT-1787901825626-C09801",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:23:45.626Z"
+  },
+  {
+    "id": "EVT-1787901823725-13029C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:23:43.726Z"
+  },
+  {
+    "id": "EVT-1787901319422-782B80",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:15:19.422Z"
+  },
+  {
+    "id": "EVT-1787901316736-42999F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:15:16.736Z"
+  },
+  {
+    "id": "EVT-1787901001232-A52FBB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:10:01.232Z"
+  },
+  {
+    "id": "EVT-1787900992789-D47DE6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:09:52.789Z"
+  },
+  {
+    "id": "EVT-1787900972073-965574",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:09:32.074Z"
+  },
+  {
+    "id": "EVT-1787900720640-E10C04",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:05:20.641Z"
+  },
+  {
+    "id": "EVT-1787900715926-5CBE56",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:05:15.926Z"
+  },
+  {
+    "id": "EVT-1787900530965-E31E4D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:02:10.966Z"
+  },
+  {
+    "id": "EVT-1787900525204-7400C9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:02:05.204Z"
+  },
+  {
+    "id": "EVT-1787900519318-4BB999",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-28T07:01:59.318Z"
+  },
+  {
+    "id": "EVT-1787900435908-91FBF4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:00:35.908Z"
+  },
+  {
+    "id": "EVT-1787900430976-9EE00D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T07:00:30.976Z"
+  },
+  {
+    "id": "EVT-1787900426574-0AE279",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-28T07:00:26.574Z"
+  },
+  {
+    "id": "EVT-1787900401472-2FD12D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T07:00:01.473Z"
+  },
+  {
+    "id": "EVT-1787899892464-91E141",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T06:51:32.464Z"
+  },
+  {
+    "id": "EVT-1787899881549-2D6D0E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/gallery.html",
+    "createdAt": "2026-08-28T06:51:21.550Z"
+  },
+  {
+    "id": "EVT-1787899879395-A0EA0A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-28T06:51:19.396Z"
+  },
+  {
+    "id": "EVT-1787899878547-0A2EA2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-28T06:51:18.547Z"
+  },
+  {
+    "id": "EVT-1787899863407-204970",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T06:51:03.409Z"
+  },
+  {
+    "id": "EVT-1787899050380-6D8490",
+    "event": "cookie_accept",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-28T06:37:30.381Z"
+  },
+  {
+    "id": "EVT-1787841864883-316202",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-27T14:44:24.883Z"
+  },
+  {
+    "id": "EVT-1787841830118-CC6C52",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-27T14:43:50.118Z"
+  },
+  {
+    "id": "EVT-1787761507975-222DE3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-26T16:25:07.975Z"
+  },
+  {
+    "id": "EVT-1787761506742-49C826",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-26T16:25:06.742Z"
+  },
+  {
+    "id": "EVT-1787761505558-DF6DA9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T16:25:05.558Z"
+  },
+  {
+    "id": "EVT-1787761503964-399F11",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-26T16:25:03.964Z"
+  },
+  {
+    "id": "EVT-1787761500105-2D3AB2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T16:25:00.105Z"
+  },
+  {
+    "id": "EVT-1787761499033-24C211",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-26T16:24:59.033Z"
+  },
+  {
+    "id": "EVT-1787761497920-7B4D5B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-26T16:24:57.920Z"
+  },
+  {
+    "id": "EVT-1787761494366-C3ABD9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-26T16:24:54.366Z"
+  },
+  {
+    "id": "EVT-1787761493115-CAA314",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-26T16:24:53.115Z"
+  },
+  {
+    "id": "EVT-1787761489870-BF2A5A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-26T16:24:49.871Z"
+  },
+  {
+    "id": "EVT-1787755123713-075987",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T14:38:43.715Z"
+  },
+  {
+    "id": "EVT-1787754410922-F02CC4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T14:26:50.922Z"
+  },
+  {
+    "id": "EVT-1787754396820-D50EBD",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-26T14:26:36.820Z"
+  },
+  {
+    "id": "EVT-1787754389211-21201B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-26T14:26:29.211Z"
+  },
+  {
+    "id": "EVT-1787718269296-0843E6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T04:24:29.296Z"
+  },
+  {
+    "id": "EVT-1787718223183-FF24F0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-26T04:23:43.183Z"
+  },
+  {
+    "id": "EVT-1787718209999-A7032C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T04:23:29.999Z"
+  },
+  {
+    "id": "EVT-1787718206082-F16070",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-26T04:23:26.082Z"
+  },
+  {
+    "id": "EVT-1787718197665-FA2AB9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T04:23:17.665Z"
+  },
+  {
+    "id": "EVT-1787718168969-B7D826",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-26T04:22:48.969Z"
+  },
+  {
+    "id": "EVT-1787718167003-1649A0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T04:22:47.004Z"
+  },
+  {
+    "id": "EVT-1787718165237-8870B5",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-26T04:22:45.237Z"
+  },
+  {
+    "id": "EVT-1787718164408-44A053",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-26T04:22:44.408Z"
+  },
+  {
+    "id": "EVT-1787718163236-31B420",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-26T04:22:43.236Z"
+  },
+  {
+    "id": "EVT-1787718162211-F9C29C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-26T04:22:42.211Z"
+  },
+  {
+    "id": "EVT-1787718160934-CF0412",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-26T04:22:40.935Z"
+  },
+  {
+    "id": "EVT-1787718087738-72745A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-26T04:21:27.738Z"
+  },
+  {
+    "id": "EVT-1787718082739-5EEE46",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-26T04:21:22.739Z"
+  },
+  {
+    "id": "EVT-1787718081370-46B743",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-26T04:21:21.370Z"
+  },
+  {
+    "id": "EVT-1787718028237-7FA0D8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-26T04:20:28.238Z"
+  },
+  {
+    "id": "EVT-1787718023742-3E9AA9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-26T04:20:23.742Z"
+  },
+  {
+    "id": "EVT-1787718017218-268372",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-26T04:20:17.219Z"
+  },
+  {
+    "id": "EVT-1787717999509-D11371",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-26T04:19:59.510Z"
+  },
+  {
+    "id": "EVT-1787637980457-54F2F9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T06:06:20.458Z"
+  },
+  {
+    "id": "EVT-1787637971631-C2BAD1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T06:06:11.631Z"
+  },
+  {
+    "id": "EVT-1787637960552-727550",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T06:06:00.552Z"
+  },
+  {
+    "id": "EVT-1787637958052-031E1E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T06:05:58.052Z"
+  },
+  {
+    "id": "EVT-1787637954096-F3042E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-25T06:05:54.096Z"
+  },
+  {
+    "id": "EVT-1787637856338-1D046C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T06:04:16.339Z"
+  },
+  {
+    "id": "EVT-1787637534874-F0EFD4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T05:58:54.874Z"
+  },
+  {
+    "id": "EVT-1787637523213-87B365",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T05:58:43.213Z"
+  },
+  {
+    "id": "EVT-1787637518564-DA73E8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T05:58:38.564Z"
+  },
+  {
+    "id": "EVT-1787637487646-4BA85B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T05:58:07.647Z"
+  },
+  {
+    "id": "EVT-1787637287793-E13039",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T05:54:47.794Z"
+  },
+  {
+    "id": "EVT-1787632365986-DE5EB6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:32:45.986Z"
+  },
+  {
+    "id": "EVT-1787632361725-B6E335",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:32:41.725Z"
+  },
+  {
+    "id": "EVT-1787632359568-ADE2AC",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:32:39.568Z"
+  },
+  {
+    "id": "EVT-1787632330275-AC1B87",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-25T04:32:10.275Z"
+  },
+  {
+    "id": "EVT-1787632328405-8A0006",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-25T04:32:08.405Z"
+  },
+  {
+    "id": "EVT-1787632317777-56ABC0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-25T04:31:57.777Z"
+  },
+  {
+    "id": "EVT-1787632313421-37FBD5",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T04:31:53.422Z"
+  },
+  {
+    "id": "EVT-1787631945079-85D227",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:25:45.079Z"
+  },
+  {
+    "id": "EVT-1787631942914-5AAFB2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:25:42.914Z"
+  },
+  {
+    "id": "EVT-1787631939219-0A13F4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:25:39.220Z"
+  },
+  {
+    "id": "EVT-1787631936016-6B0F5E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T04:25:36.017Z"
+  },
+  {
+    "id": "EVT-1787631671495-E48DB2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:21:11.495Z"
+  },
+  {
+    "id": "EVT-1787631670219-FC39BE",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-25T04:21:10.219Z"
+  },
+  {
+    "id": "EVT-1787631669291-07D956",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-25T04:21:09.291Z"
+  },
+  {
+    "id": "EVT-1787631668468-5B6014",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-25T04:21:08.468Z"
+  },
+  {
+    "id": "EVT-1787631667619-564C47",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:21:07.620Z"
+  },
+  {
+    "id": "EVT-1787631666509-E8B38A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:21:06.509Z"
+  },
+  {
+    "id": "EVT-1787631662108-2A5B70",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:21:02.108Z"
+  },
+  {
+    "id": "EVT-1787631560444-CD0AF1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:19:20.444Z"
+  },
+  {
+    "id": "EVT-1787631547717-826FAC",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:19:07.717Z"
+  },
+  {
+    "id": "EVT-1787631483803-A168A8",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:18:03.803Z"
+  },
+  {
+    "id": "EVT-1787631479414-DE82C2",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:17:59.414Z"
+  },
+  {
+    "id": "EVT-1787631472987-51A588",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:17:52.987Z"
+  },
+  {
+    "id": "EVT-1787631462585-B94849",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:17:42.585Z"
+  },
+  {
+    "id": "EVT-1787631461458-6FC169",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:17:41.458Z"
+  },
+  {
+    "id": "EVT-1787631460614-7CF3BA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:17:40.614Z"
+  },
+  {
+    "id": "EVT-1787631459364-FB5BA5",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-25T04:17:39.364Z"
+  },
+  {
+    "id": "EVT-1787631457731-8D910E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-25T04:17:37.731Z"
+  },
+  {
+    "id": "EVT-1787631456331-F25E4F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:17:36.332Z"
+  },
+  {
+    "id": "EVT-1787631455147-56D68A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:17:35.147Z"
+  },
+  {
+    "id": "EVT-1787631449359-B36D58",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-25T04:17:29.359Z"
+  },
+  {
+    "id": "EVT-1787631447314-588AA6",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/courses.html",
+    "createdAt": "2026-08-25T04:17:27.315Z"
+  },
+  {
+    "id": "EVT-1787631445840-4C01CA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:17:25.840Z"
+  },
+  {
+    "id": "EVT-1787631440721-34C7AF",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:17:20.722Z"
+  },
+  {
+    "id": "EVT-1787631288395-6A18D5",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:14:48.396Z"
+  },
+  {
+    "id": "EVT-1787631283987-779737",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:14:43.987Z"
+  },
+  {
+    "id": "EVT-1787631282512-EB91EB",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:14:42.512Z"
+  },
+  {
+    "id": "EVT-1787631281380-E66D09",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:14:41.380Z"
+  },
+  {
+    "id": "EVT-1787631274157-825A21",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:14:34.158Z"
+  },
+  {
+    "id": "EVT-1787630915837-F4F1B4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:08:35.837Z"
+  },
+  {
+    "id": "EVT-1787630914090-0FF51D",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:34.090Z"
+  },
+  {
+    "id": "EVT-1787630913663-AB63B4",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:33.663Z"
+  },
+  {
+    "id": "EVT-1787630912814-F4AA08",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:32.814Z"
+  },
+  {
+    "id": "EVT-1787630911636-F5B2A0",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:08:31.636Z"
+  },
+  {
+    "id": "EVT-1787630903643-3454F1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:23.643Z"
+  },
+  {
+    "id": "EVT-1787630903284-CC66EA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:23.285Z"
+  },
+  {
+    "id": "EVT-1787630902698-7F7E8A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:22.698Z"
+  },
+  {
+    "id": "EVT-1787630901767-92047F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:21.767Z"
+  },
+  {
+    "id": "EVT-1787630899940-B819A9",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:19.940Z"
+  },
+  {
+    "id": "EVT-1787630890033-28EF37",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:08:10.033Z"
+  },
+  {
+    "id": "EVT-1787630888845-A1B28E",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:08:08.845Z"
+  },
+  {
+    "id": "EVT-1787630887839-365F1F",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-25T04:08:07.839Z"
+  },
+  {
+    "id": "EVT-1787630886230-BDBBF3",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/services.html",
+    "createdAt": "2026-08-25T04:08:06.230Z"
+  },
+  {
+    "id": "EVT-1787630882368-21FFBE",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:08:02.368Z"
+  },
+  {
+    "id": "EVT-1787630878060-C8A4EA",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:07:58.060Z"
+  },
+  {
+    "id": "EVT-1787630875998-754672",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T04:07:55.998Z"
+  },
+  {
+    "id": "EVT-1787630866907-7CD63A",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T04:07:46.908Z"
+  },
+  {
+    "id": "EVT-1787630646493-C7B91C",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T04:04:06.493Z"
+  },
+  {
+    "id": "EVT-1787630629502-44E174",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/contact.html",
+    "createdAt": "2026-08-25T04:03:49.503Z"
+  },
+  {
+    "id": "EVT-1787630628109-B5D2F1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/certificate.html",
+    "createdAt": "2026-08-25T04:03:48.109Z"
+  },
+  {
+    "id": "EVT-1787630619724-D93216",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/team.html",
+    "createdAt": "2026-08-25T04:03:39.724Z"
+  },
+  {
+    "id": "EVT-1787630616043-03A476",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/about.html",
+    "createdAt": "2026-08-25T04:03:36.043Z"
+  },
+  {
+    "id": "EVT-1787630608108-92694B",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/",
+    "createdAt": "2026-08-25T04:03:28.109Z"
+  },
+  {
+    "id": "EVT-1787630312538-6AA9B1",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/index.html",
+    "createdAt": "2026-08-25T03:58:32.538Z"
+  },
+  {
+    "id": "EVT-1787630308613-150B28",
+    "event": "page_view",
+    "variant": "A",
+    "path": "/admin.html",
+    "createdAt": "2026-08-25T03:58:28.614Z"
+  }
+]

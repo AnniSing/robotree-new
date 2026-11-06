@@ -1,0 +1,14 @@
+[
+  {
+    "id": "robotree",
+    "title": "robotree",
+    "category": "Robotics & AI",
+    "price": 200000,
+    "currency": "INR",
+    "duration": "6 Weeks",
+    "level": "Intermediate",
+    "image": "",
+    "description": "",
+    "modules": []
+  }
+]

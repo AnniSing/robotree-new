@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AddPage - FPDF Reference</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>AddPage</h1>
+<code>AddPage([<b>string</b> orientation [, <b>mixed</b> size [, <b>int</b> rotation]]])</code>
+<h2>Description</h2>
+Adds a new page to the PDF document. If a page already exists, the <code>Footer()</code> method is first called to output the footer, followed by adding the new page and invoking <code>Header()</code>.
+<br><br>
+The origin of coordinates (0, 0) is situated at the top-left corner, and positions increase downwards and to the right.
+
+<h2>Parameters</h2>
+<dl class="param">
+<dt><code>orientation</code></dt>
+<dd>Page orientation:
+<ul>
+<li><code>P</code> or <code>Portrait</code> - Tall / vertical format (210 &times; 297 mm for A4)</li>
+<li><code>L</code> or <code>Landscape</code> - Wide / horizontal format (297 &times; 210 mm for A4; standard for diplomas and certificates)</li>
+</ul>
+Default is the orientation passed to constructor.</dd>
+<dt><code>size</code></dt>
+<dd>Page size format: <code>A3</code>, <code>A4</code>, <code>A5</code>, <code>Letter</code>, <code>Legal</code>, or an array with <code>[width, height]</code> in millimeters.</dd>
+<dt><code>rotation</code></dt>
+<dd>Angle by which to rotate the page. Must be a multiple of 90 degrees (<code>0</code>, <code>90</code>, <code>180</code>, <code>270</code>). Default is 0.</dd>
+</dl>
+
+<h2>Example</h2>
+<div class="doc-source">
+<pre><code>$pdf = new FPDF('L', 'mm', 'A4');
+$pdf-&gt;AddPage('L', 'A4'); // Certificate Landscape
+$pdf-&gt;SetFont('Times', 'B', 30);
+$pdf-&gt;Cell(0, 20, 'Arjun Sharma', 0, 1, 'C');</code></pre>
+</div>
+<h2>See also</h2>
+<a href="fpdf.htm">__construct</a>, <a href="header.htm">Header</a>, <a href="footer.htm">Footer</a>
+<hr>
+<div class="nav"><a href="index.htm">&larr; Back to Manual Index</a></div>
+</body>
+</html>

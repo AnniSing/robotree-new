@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>FPDF Reference Manual & Functions</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>FPDF Reference Manual (v1.86 Enterprise)</h1>
+<p>Official reference documentation for all FPDF core methods, vector extensions, and certificate generation hooks.</p>
+
+<h2>Document Lifecycle & Structure</h2>
+<ul>
+<li><a href="fpdf.htm">FPDF()</a> - Class constructor</li>
+<li><a href="addpage.htm">AddPage()</a> - Add a new page (supports Portrait 'P' and Landscape 'L')</li>
+<li><a href="acceptpagebreak.htm">AcceptPageBreak()</a> - Accept or reject automatic page break</li>
+<li><a href="setautopagebreak.htm">SetAutoPageBreak()</a> - Set automatic page break mode and triggering margin</li>
+<li><a href="header.htm">Header()</a> - Page header handler</li>
+<li><a href="footer.htm">Footer()</a> - Page footer handler</li>
+<li><a href="pageno.htm">PageNo()</a> - Get current page number</li>
+<li><a href="close.htm">Close()</a> - Terminate document</li>
+<li><a href="output.htm">Output()</a> - Send document to browser, file, download, or string</li>
+</ul>
+
+<h2>Typography & Fonts</h2>
+<ul>
+<li><a href="addfont.htm">AddFont()</a> - Load and register a custom TrueType/OpenType font</li>
+<li><a href="setfont.htm">SetFont()</a> - Set active font family, style, and size</li>
+<li><a href="setfontsize.htm">SetFontSize()</a> - Set font size in points</li>
+<li><a href="getstringwidth.htm">GetStringWidth()</a> - Compute the length of a string in current font</li>
+</ul>
+
+<h2>Text Output</h2>
+<ul>
+<li><a href="text.htm">Text()</a> - Print string at absolute coordinates (x, y)</li>
+<li><a href="cell.htm">Cell()</a> - Print a standard rectangular cell with optional border and background</li>
+<li><a href="multicell.htm">MultiCell()</a> - Print text with automatic line breaks</li>
+<li><a href="write.htm">Write()</a> - Print running text with automatic wrapping</li>
+</ul>
+
+<h2>Graphics, Colors & Vector Geometry</h2>
+<ul>
+<li><a href="line.htm">Line()</a> - Draw vector line between (x1, y1) and (x2, y2)</li>
+<li><a href="rect.htm">Rect()</a> - Draw rectangle with outline, fill, or both</li>
+<li><a href="roundedrect.htm">RoundedRect()</a> - Draw smooth rounded corner rectangles with Bézier curves</li>
+<li><a href="setdash.htm">SetDash()</a> - Set vector dashed/dotted stroke pattern</li>
+<li><a href="image.htm">Image()</a> - Output image (JPEG, PNG, GIF) onto page</li>
+<li><a href="setdrawcolor.htm">SetDrawColor()</a> - Set line and border stroke color (RGB or Grayscale)</li>
+<li><a href="setfillcolor.htm">SetFillColor()</a> - Set background fill color</li>
+<li><a href="settextcolor.htm">SetTextColor()</a> - Set text font color</li>
+<li><a href="setlinewidth.htm">SetLineWidth()</a> - Set vector line thickness</li>
+</ul>
+
+<h2>Positioning & Margins</h2>
+<ul>
+<li><a href="getx.htm">GetX()</a> / <a href="gety.htm">GetY()</a> - Get current position</li>
+<li><a href="setx.htm">SetX()</a> / <a href="sety.htm">SetY()</a> / <a href="setxy.htm">SetXY()</a> - Set current position</li>
+<li><a href="setmargins.htm">SetMargins()</a> - Set left, top, and right margins</li>
+<li><a href="setleftmargin.htm">SetLeftMargin()</a> / <a href="settopmargin.htm">SetTopMargin()</a> / <a href="setrightmargin.htm">SetRightMargin()</a></li>
+</ul>
+
+<hr>
+<div class="nav">
+  <span>Robotree Robotics LLP</span> &bull; 
+  <span>Government of India Protocols (GeM &amp; MSME Accredited)</span> &bull; 
+  <a href="../../index.php">Certificate Web UI</a>
+</div>
+</body>
+</html>

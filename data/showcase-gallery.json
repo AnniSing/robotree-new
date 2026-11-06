@@ -1,0 +1,162 @@
+[
+  {
+    "id": "SC-01",
+    "title": "JNV Kolasib (Mizoram) • PM SHRI Science Lab",
+    "caption": "Arduino Uno, Push-Button Circuits & Interactive Smart Board Simulation",
+    "image": "assets/events/jnv_kolasib_smartboard_arduino_lecture.jpg",
+    "alt": "JNV Kolasib Mizoram Smart Board Arduino & Robotics Training",
+    "tileWide": true
+  },
+  {
+    "id": "SC-02",
+    "title": "JNV Kolasib (North Thingdawl) • Circuit Prototyping",
+    "caption": "Push Button & LED Breadboard Logic",
+    "image": "assets/events/jnv_kolasib_push_button_breadboard_lab.jpg",
+    "alt": "Students wiring push button circuits at JNV Kolasib Mizoram",
+    "tileWide": false
+  },
+  {
+    "id": "SC-03",
+    "title": "North Point School, Asansol • Electronics & Logic Lab",
+    "caption": "Breadboard Prototyping, Circuit Analysis & Logic Gates",
+    "image": "assets/events/north_point_school_asansol_stem_workshop_batch.jpg",
+    "alt": "North Point School Asansol STEM & Electronics Lab Cohort",
+    "tileWide": true
+  },
+  {
+    "id": "SC-04",
+    "title": "North Point School, Asansol • Hands-on Circuitry",
+    "caption": "Dual LED & Power Source Breadboarding",
+    "image": "assets/events/north_point_school_asansol_led_breadboard_closeup.jpg",
+    "alt": "Students testing breadboard circuits and LEDs at North Point School Asansol",
+    "tileWide": false
+  },
+  {
+    "id": "SC-05",
+    "title": "JNV Nalbari (Assam) • Smart Car Parking Alarm & LED Blink",
+    "caption": "Classes 6A, 8B, 9B, 10A+B, 7A+B • 187 Students Trained",
+    "image": "assets/events/jnv_nalbari_revision_smart_car_parking.jpg",
+    "alt": "JNV Nalbari Robotics Workshop on Smart Car Parking Alarm",
+    "tileWide": true
+  },
+  {
+    "id": "SC-06",
+    "title": "JNV Nalbari • Class 7A+B Girls in STEM",
+    "caption": "Hands-on Breadboarding & Microcontroller Prototyping",
+    "image": "assets/events/jnv_nalbari_girls_stem_evening_session.jpg",
+    "alt": "Class 7A+B Girls STEM Robotics Session at JNV Nalbari",
+    "tileWide": false
+  },
+  {
+    "id": "SC-07",
+    "title": "GD Goenka Public School (Dhanbad - Jharkhand) • Space & Robotics Lab",
+    "caption": "Hands-on Aerospace & Autonomous Systems Workshop",
+    "image": "assets/events/gd_goenka_space_robotics_lab.png",
+    "alt": "GD Goenka Public School Dhanbad Space & Robotics Lab Students",
+    "tileWide": true
+  },
+  {
+    "id": "SC-08",
+    "title": "GD Goenka Public School (Dhanbad - Jharkhand) • Circuit Lab",
+    "caption": "Breadboard Prototyping & Sensor Interfacing",
+    "image": "assets/events/gd_goenka_breadboard_robotics.jpg",
+    "alt": "Students breadboarding circuit and robotics sensors at GD Goenka Public School",
+    "tileWide": false
+  },
+  {
+    "id": "SC-09",
+    "title": "JNV Purba Medinipur • 15-Day Advanced Robotics Masterclass",
+    "caption": "School Cohort & Hands-on Hardware Assembly",
+    "image": "assets/brochure/gallery_jnv_purba_medinipur_cohort.jpg",
+    "alt": "Jawahar Navodaya Vidyalaya Purba Medinipur Robotics Cohort",
+    "tileWide": true
+  },
+  {
+    "id": "SC-10",
+    "title": "Championship Arena • Speed Trials",
+    "caption": "Autonomous Line Follower Robots",
+    "image": "assets/brochure/championship_line_follower.jpg",
+    "alt": "Students competing in autonomous robotics line follower championship",
+    "tileWide": false
+  },
+  {
+    "id": "SC-11",
+    "title": "Rapid 3D Prototyping • FDM Additive Lab",
+    "caption": "Custom Robot Parts Fabrication",
+    "image": "assets/brochure/gallery_3d_printer_in_action.jpg",
+    "alt": "3D Printer in action fabricating custom robotics parts",
+    "tileWide": false
+  },
+  {
+    "id": "SC-12",
+    "title": "Turnkey Innovation Lab • ATL & STEM Architecture",
+    "caption": "Institutional Workbenches & 3D Modeling Center",
+    "image": "assets/brochure/lab_setup_modern_room.jpg",
+    "alt": "Modern STEM and ATL innovation lab with workbenches and equipment",
+    "tileWide": true
+  },
+  {
+    "id": "SC-13",
+    "title": "Drone Technology • Flight Telemetry",
+    "caption": "Quadcopter Calibration & Testing",
+    "image": "assets/brochure/gallery_quadcopter_flight_rig.jpg",
+    "alt": "Quadcopter drone frame and flight telemetry telemetry station",
+    "tileWide": false
+  },
+  {
+    "id": "SC-14",
+    "title": "Autonomous Multi-Sensor Rover",
+    "caption": "Obstacle Avoidance & Sonar Navigation",
+    "image": "assets/brochure/championship_girl_rover.jpg",
+    "alt": "Student proudly demonstrating multi-sensor obstacle avoidance robot",
+    "tileWide": false
+  },
+  {
+    "id": "SC-15",
+    "title": "Smart Board Programming • Algorithm Design",
+    "caption": "Interactive Python & Microcontroller Coding",
+    "image": "assets/brochure/training_smart_board_lecture.jpg",
+    "alt": "Instructor teaching coding on smart board in computer lab",
+    "tileWide": false
+  },
+  {
+    "id": "SC-16",
+    "title": "Verified Field Sessions • Eastern India",
+    "caption": "GPS-Tagged Hands-on Training Cohorts",
+    "image": "assets/brochure/gallery_gps_camera_verified.jpg",
+    "alt": "GPS verified robotics workshop in West Bengal",
+    "tileWide": false
+  },
+  {
+    "id": "SC-17",
+    "title": "JNV Ravangla, Sikkim • North-East Outreach",
+    "caption": "Empowering Students Across High-Altitude Centers",
+    "image": "assets/brochure/gallery_ravangla_sikkim_class.jpg",
+    "alt": "JNV Ravangla Sikkim smart classroom session",
+    "tileWide": false
+  },
+  {
+    "id": "SC-18",
+    "title": "Circuit Prototyping • Embedded Systems",
+    "caption": "Sensors, Transistors & Motor Drivers",
+    "image": "assets/brochure/gallery_circuit_wiring_winter.jpg",
+    "alt": "Students wiring microcontroller circuit boards",
+    "tileWide": false
+  },
+  {
+    "id": "SC-19",
+    "title": "IoT & Home Automation Bench Testing",
+    "caption": "Relay Switches & Sensor Feedback",
+    "image": "assets/brochure/championship_lamp_testing.jpg",
+    "alt": "Students testing lighting circuit and microcontroller automation",
+    "tileWide": false
+  },
+  {
+    "id": "SC-20",
+    "title": "Junior Robotics • Experiential Learning",
+    "caption": "Fostering Young Engineering Minds",
+    "image": "assets/brochure/cover_kid_robot.jpg",
+    "alt": "Young student assembling robotic chassis with tools",
+    "tileWide": false
+  }
+]

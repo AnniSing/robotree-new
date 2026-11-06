@@ -1,0 +1,15 @@
+[
+  {
+    "id": "RBT-WS-2026-6354",
+    "code": "RBT-WS-2026-6354",
+    "studentName": "Aniket",
+    "enrollmentNo": "ENR-2026-001",
+    "enrollmentNumber": "ENR-2026-001",
+    "course": "Robotics & AI Masterclass",
+    "courseTitle": "Robotics & AI Masterclass",
+    "issueDate": "2026-10-20",
+    "certificateFile": "assets/certificates/sample.pdf",
+    "status": "VALID",
+    "createdAt": "2026-10-20T05:57:47.531Z"
+  }
+]

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Store & STEM Robotics Kits | Robotree Robotics LLP</title>
+  <meta name="description" content="Procure official STEM robotics kits, Arduino microcontrollers, ESP32 boards, sensors, drone components, and 3D printed parts tested in the Robotree Innovation Lab.">
+  <meta name="theme-color" content="#06101a">
+  <link rel="icon" type="image/png" href="assets/robotree_logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="app-status" id="appStatus" role="status" aria-live="polite" hidden></div>
+
+  <!-- Primary Site Header -->
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="Robotree Robotics home">
+        <img src="assets/robotree_logo.png" alt="Robotree Robotics" class="brand-logo-img" width="160" height="50">
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <div class="nav-panel" id="navPanel">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">About Us</a>
+        <a class="nav-link" href="team.html">Our Team</a>
+        <a class="nav-link" href="courses.html">Courses</a>
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="services.html#junior-innovation-lab">Lab Setup</a>
+        <a class="nav-link active" href="store.html">Store</a>
+        <a class="nav-link" href="gallery.html">Gallery</a>
+        <a class="nav-link" href="certificate.html">Verify Certificate</a>
+        <a class="nav-link" href="contact.html">Contact Us</a>
+        <button class="nav-link nav-btn-loc" type="button" id="locationOpen" aria-haspopup="dialog" aria-expanded="false" aria-controls="locationModal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Our Location
+        </button>
+        <button class="nav-link nav-button" type="button" id="accountOpen">Login</button>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Shopping Cart Trigger Button -->
+        <button class="btn btn-secondary cart-trigger-btn" id="openCartDrawerBtn" type="button" aria-label="View Shopping Cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span>Cart</span>
+          <span class="cart-badge-count" id="cartCountBadge">0</span>
+        </button>
+
+        <a class="btn btn-primary nav-cta" href="contact.html">
+          Get In Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Store Hero Banner -->
+    <section class="hero page-hero store-hero">
+      <div class="container">
+        <div class="hero-copy">
+          <p class="eyebrow">Official STEM Hardware Store</p>
+          <h1>Robotics DIY Kits &amp; <span>Electronic Hardware</span></h1>
+          <p class="hero-text">Laboratory-tested robotics platforms, microcontrollers, sensor kits, drone accessories, and 3D printing components for students, collegiate teams, and schools.</p>
+          
+          <div class="store-features-strip">
+            <div class="store-feat-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Lab-Tested Components</span>
+            </div>
+            <div class="store-feat-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Instant WhatsApp &amp; In-App Orders</span>
+            </div>
+            <div class="store-feat-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <span>Free Campus Lab Pickup / Fast Delivery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Catalog Section -->
+    <section class="section store-catalog-section" id="storeCatalog">
+      <div class="container">
+        <!-- Filter Controls Bar -->
+        <div class="store-toolbar">
+          <div class="store-search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="storeSearchInput" placeholder="Search kits, Arduino, ESP32, sensors, SKU..." autocomplete="off">
+          </div>
+
+          <div class="store-sort-box">
+            <label for="storeSortSelect">Sort by:</label>
+            <select id="storeSortSelect" class="form-select">
+              <option value="featured">Featured &amp; Popular</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Alphabetical: A to Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="store-categories-bar" role="tablist" aria-label="Product categories">
+          <button class="store-cat-pill is-active" type="button" data-store-cat="all">All Products</button>
+          <button class="store-cat-pill" type="button" data-store-cat="Robotics Kits">Robotics Kits</button>
+          <button class="store-cat-pill" type="button" data-store-cat="Microcontrollers">Microcontrollers</button>
+          <button class="store-cat-pill" type="button" data-store-cat="Sensors & Actuators">Sensors &amp; Actuators</button>
+          <button class="store-cat-pill" type="button" data-store-cat="Drones & Motors">Drones &amp; Motors</button>
+          <button class="store-cat-pill" type="button" data-store-cat="3D Parts & Components">3D Parts &amp; Components</button>
+        </div>
+
+        <!-- Feedback & Status -->
+        <div id="storeCatalogStatus" class="store-status-banner" hidden></div>
+
+        <!-- Products Grid -->
+        <div class="store-grid" id="storeGrid">
+          <!-- Dynamically populated by JS -->
+          <div class="store-loading-skeleton">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart Drawer" hidden>
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title-row">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <h3>Your Hardware Cart</h3>
+        <span class="cart-items-counter" id="cartDrawerItemCount">(0 items)</span>
+        <button type="button" class="btn-clear-cart" id="clearCartBtn" style="background: none; border: none; font-size: 0.78rem; color: var(--text-muted); cursor: pointer; text-decoration: underline; margin-left: 8px;">Clear</button>
+      </div>
+      <button class="cart-drawer-close" id="closeCartDrawerBtn" type="button" aria-label="Close Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="cart-drawer-body" id="cartDrawerItemsList">
+      <!-- Rendered dynamically -->
+      <div class="cart-empty-view">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <p>Your hardware cart is currently empty.</p>
+        <button class="btn btn-primary btn-sm" id="cartStartShoppingBtn" type="button">Explore Catalog</button>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-summary-row">
+        <span>Estimated Subtotal:</span>
+        <strong id="cartSubtotalAmount">₹0</strong>
+      </div>
+      <p class="cart-note-text">GST &amp; Campus Lab collection included. Shipping calculated on inquiry.</p>
+
+      <div class="cart-checkout-actions">
+        <button class="btn btn-primary btn-block" id="openCheckoutModalBtn" type="button">
+          Proceed to Order / Request Quote
+        </button>
+        <button class="btn btn-secondary btn-block btn-cart-whatsapp" id="btnOrderWhatsApp" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.057-.98-.276-.1-.476-.15-.676.15-.2.301-.776.98-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.676-2.085-.175-.301-.019-.464.132-.614.135-.135.301-.351.451-.527.151-.175.201-.301.301-.501.101-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.492-.507-.676-.516l-.576-.01c-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.14 4.544.718.31 1.279.496 1.716.635.721.229 1.377.197 1.895.12.577-.087 1.782-.728 2.032-1.43.251-.702.251-1.304.175-1.43-.075-.125-.276-.201-.577-.351zM12.04 2C6.51 2 2.02 6.49 2.02 12.02c0 1.94.55 3.75 1.51 5.29L2 22l4.83-1.49a9.98 9.98 0 0 0 5.21 1.46c5.53 0 10.02-4.49 10.02-10.02C22.06 6.49 17.57 2 12.04 2z"/></svg>
+          Instant Order via WhatsApp
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal-backdrop" id="productQuickViewModal" hidden role="dialog" aria-modal="true" aria-label="Product Details Modal">
+    <div class="modal-card modal-lg">
+      <button class="modal-close" id="closeQuickViewModalBtn" type="button" aria-label="Close modal">&times;</button>
+      <div class="quickview-body" id="quickViewModalContent">
+        <div class="qv-grid">
+          <div class="qv-image-col">
+            <img id="qvImage" src="" alt="Product Image" class="qv-image">
+          </div>
+          <div class="qv-info-col">
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+              <span class="store-card-cat" id="qvBadge"></span>
+              <span class="qv-stock-tag" id="qvStockTag"></span>
+            </div>
+            <h2 id="qvTitle" class="qv-title"></h2>
+            <p id="qvSku" class="qv-sku"></p>
+            <div class="store-card-price-row" style="margin-bottom: 12px;">
+              <strong id="qvPrice" class="store-card-price" style="font-size: 1.5rem;"></strong>
+              <span id="qvOrigPrice" class="store-card-orig-price" style="font-size: 1.1rem;"></span>
+            </div>
+            <p id="qvDesc" class="qv-desc"></p>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: var(--text);">Key Specifications:</h4>
+            <ul id="qvFeaturesList" class="store-card-specs" style="margin-bottom: 20px;"></ul>
+            <div class="qv-actions-row" style="display: flex; gap: 12px; align-items: center;">
+              <div class="qv-qty-selector" style="display: flex; align-items: center; border: 1px solid var(--line); border-radius: 6px;">
+                <button type="button" id="qvQtyMinus" class="btn btn-secondary btn-sm" style="padding: 6px 12px;">-</button>
+                <input type="number" id="qvQtyInput" value="1" min="1" max="99" style="width: 44px; text-align: center; border: none; background: transparent; color: var(--text); font-weight: 700;">
+                <button type="button" id="qvQtyPlus" class="btn btn-secondary btn-sm" style="padding: 6px 12px;">+</button>
+              </div>
+              <button class="btn btn-primary" id="qvAddToCartBtn" type="button" style="flex: 1;">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout / Order Request Modal -->
+  <div class="modal-backdrop" id="storeCheckoutModal" hidden role="dialog" aria-modal="true" aria-label="Submit Order Request">
+    <div class="modal-card">
+      <button class="modal-close" id="closeCheckoutModalBtn" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <h3 id="storeCheckoutModalTitle">Complete Hardware Order Request</h3>
+        <p class="modal-subtitle">Confirm student/college details to generate an official procurement quote or dispatch order.</p>
+      </div>
+
+      <div id="checkoutOrderSummaryBox" class="checkout-order-summary" style="margin-bottom: 16px;"></div>
+
+      <form id="storeCheckoutForm" class="modal-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="orderCustName">Student / Contact Person Name *</label>
+          <input type="text" id="orderCustName" name="name" class="form-input" required placeholder="e.g. Priya Mukherjee" autocomplete="name">
+        </div>
+
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label class="form-label" for="orderCustEmail">Email Address *</label>
+            <input type="email" id="orderCustEmail" name="email" class="form-input" required placeholder="e.g. priya@college.edu" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="orderCustPhone">WhatsApp Phone Number *</label>
+            <input type="tel" id="orderCustPhone" name="phone" class="form-input" required placeholder="e.g. +91 98765 43210" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="orderCustInstitution">School / College / Institution *</label>
+          <input type="text" id="orderCustInstitution" name="institution" class="form-input" required placeholder="e.g. BCET Durgapur / BIT Sindri / K.K. Polytechnic">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="orderCustAddress">Delivery Address / Campus Lab Pickup *</label>
+          <textarea id="orderCustAddress" name="address" class="form-textarea" rows="2" required placeholder="Specify your hostel, campus room, or city delivery address (or type 'Campus Lab Pickup')"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="orderCustNotes">Additional Notes / Custom Requirements</label>
+          <input type="text" id="orderCustNotes" name="notes" class="form-input" placeholder="e.g. Need extra jumper wires / prepare for upcoming Robowar">
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="btnCancelCheckout">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitStoreOrder">Submit Official Order</button>
+        </div>
+      </form>
+      <p id="orderCheckoutFeedback" class="form-feedback" aria-live="polite"></p>
+
+      <!-- Success State -->
+      <div id="checkoutSuccessState" class="checkout-success-view" hidden style="text-align: center; padding: 24px 12px;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(0, 168, 89, 0.2); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--green);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 style="color: var(--text); margin-bottom: 8px;">Order Placed Successfully!</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">Your order reference is <strong id="successOrderId" style="color: var(--green);"></strong>. Our team will verify and dispatch shortly.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+          <a id="successWhatsAppLink" href="#" target="_blank" class="btn btn-primary btn-cart-whatsapp" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.057-.98-.276-.1-.476-.15-.676.15-.2.301-.776.98-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.676-2.085-.175-.301-.019-.464.132-.614.135-.135.301-.351.451-.527.151-.175.201-.301.301-.501.101-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.492-.507-.676-.516l-.576-.01c-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.14 4.544.718.31 1.279.496 1.716.635.721.229 1.377.197 1.895.12.577-.087 1.782-.728 2.032-1.43.251-.702.251-1.304.175-1.43-.075-.125-.276-.201-.577-.351zM12.04 2C6.51 2 2.02 6.49 2.02 12.02c0 1.94.55 3.75 1.51 5.29L2 22l4.83-1.49a9.98 9.98 0 0 0 5.21 1.46c5.53 0 10.02-4.49 10.02-10.02C22.06 6.49 17.57 2 12.04 2z"/></svg>
+            Send Details on WhatsApp
+          </a>
+          <button type="button" id="successDoneBtn" class="btn btn-secondary">Done / Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complete 4-Column Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo-link" aria-label="Robotree Robotics Home">
+          <div class="footer-logo-badge">
+            <img src="assets/robotree_logo.png" alt="Robotree Robotics Logo" width="150" height="46">
+          </div>
+        </a>
+        <p class="footer-tagline">Empowering the next generation of engineers, creators, and innovators with practical robotics, AI, and STEM education.</p>
+        <div class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>ISO 9001:2015 Certified Institution</span>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Quick Links</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Robotree</a></li>
+          <li><a href="team.html">Our 20 Team Members</a></li>
+          <li><a href="courses.html">Robotics & AI Courses</a></li>
+          <li><a href="services.html">Services &amp; Lab Setup</a></li>
+          <li><a href="store.html">Hardware Store</a></li>
+          <li><a href="gallery.html">Official Event Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Portals & Tools</h4>
+        <ul class="footer-nav-list">
+          <li><a href="store.html">DIY Kits & Components</a></li>
+          <li><a href="certificate.html">Certificate Verification</a></li>
+          <li><a href="admin.html">Admin Management Portal</a></li>
+          <li><a href="contact.html">Institutional Lab Inquiry</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col footer-contact-col">
+        <h4 class="footer-col-title">Get In Touch</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <a href="tel:+917908932245">+91 79089 32245</a> / <a href="tel:+917979038537">+91 79790 38537</a>
+            </div>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div>
+              <a href="mailto:contact@robotree.in">contact@robotree.in</a> / <a href="mailto:info@robotree.org">info@robotree.org</a>
+            </div>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><strong>Reg. Office:</strong> AJ4, Sector H, South Dhadka Rd, Vivekananda Nagar, Asansol - 713301</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span><strong>Innovation Lab:</strong> Sentrum Mall, 3rd Floor, Shristinagar, Asansol - 713305</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom-bar">
+      <p class="footer-copy"><span class="footer-protocol-text">Robotree Robotics LLP &bull; Operating in accordance with Government of India Protocols (GeM &amp; MSME Accredited Entity)</span></p>
+      <div class="footer-bottom-nav">
+        <a href="index.html">Home</a>
+        <span class="dot">&bull;</span>
+        <a href="about.html">About</a>
+        <span class="dot">&bull;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&bull;</span>
+        <a href="courses.html">Courses</a>
+        <span class="dot">&bull;</span>
+        <a href="services.html">Services</a>
+        <span class="dot">&bull;</span>
+        <a href="store.html">Store</a>
+        <span class="dot">&bull;</span>
+        <a href="gallery.html">Gallery</a>
+        <span class="dot">&bull;</span>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="footer-back-to-top" id="backToTop" type="button" aria-label="Back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

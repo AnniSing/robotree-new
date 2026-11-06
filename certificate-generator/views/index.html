@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Certificate Generator | Robotree Robotics</title>
+  <meta name="description" content="Authorized Administrator Tool: Generate and download official Robotree Robotics Workshop Participation Certificates with instant vector PDF export.">
+  <link rel="icon" type="image/png" href="/certificate.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Great+Vibes&family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .admin-auth-guard {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 16, 28, 0.96);
+      backdrop-filter: blur(10px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .admin-auth-card {
+      background: #0f233a;
+      border: 1px solid rgba(120, 216, 68, 0.35);
+      border-radius: 16px;
+      padding: 36px 30px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+    .admin-auth-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(120, 216, 68, 0.15);
+      border: 2px solid rgba(120, 216, 68, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #78d844;
+      margin-bottom: 20px;
+    }
+    .admin-auth-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      margin: 0 0 10px;
+    }
+    .admin-auth-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+    .admin-auth-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #78d844;
+      color: #07101c;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-auth-btn:hover {
+      background: #8ae259;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Authentication Gate -->
+  <div class="admin-auth-guard" id="adminAuthGuard">
+    <div class="admin-auth-card">
+      <div class="admin-auth-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h2 class="admin-auth-title">Admin Access Required</h2>
+      <p class="admin-auth-desc">Certificate generation is strictly restricted to system administrators. Only authorized personnel may generate, issue, or export certificates.</p>
+      <a href="/admin.html" class="admin-auth-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Sign In via Admin Portal
+      </a>
+      <a href="/certificate.html" style="display: block; margin-top: 14px; font-size: 0.82rem; color: #94a3b8; text-decoration: underline;">
+        Return to Public Certificate Verification
+      </a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="brand">
+        <span>ROBOTREE ROBOTICS</span>
+        <span class="brand-badge" style="background: rgba(120, 216, 68, 0.15); color: #78d844; border: 1px solid rgba(120, 216, 68, 0.3);">Admin Generator</span>
+      </a>
+      <div class="header-meta">
+        <a href="/admin.html" style="font-size: 0.85rem; color: #78d844; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Admin Portal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <!-- Control Form Card -->
+    <section class="card">
+      <h1 class="card-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#78d844" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        Admin Certificate Generator
+      </h1>
+      <p class="card-subtitle">Official Administrator Tool — Only authorized administrators are permitted to generate and issue participation certificates.</p>
+
+      <form id="certForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="studentName">Student Full Name</label>
+          <input type="text" id="studentName" class="form-control" placeholder="e.g. Aarav Sharma" value="Rahul Sharma" autocomplete="name" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="certId">Certificate Verification Code</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="certId" class="form-control" placeholder="e.g. RBT-WS-2026-5594" value="" style="font-family: monospace; letter-spacing: 0.5px;">
+            <button type="button" class="btn btn-secondary" id="btnAutoGenerateCode" style="white-space: nowrap; padding: 0 16px; font-weight: 700; background: rgba(120, 216, 68, 0.15); border: 1px solid rgba(120, 216, 68, 0.4); color: #78d844; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Random Code
+            </button>
+          </div>
+          <small style="color: #94a3b8; font-size: 0.8rem; display: block; margin-top: 6px;">Click <strong>Random Code</strong> to generate a unique code like <code>RBT-WS-2026-5594</code>.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Student Name Typography Style</label>
+          <div class="font-grid">
+            <button type="button" class="font-option active" data-font="Great Vibes" style="font-family: 'Great Vibes', cursive; font-size: 1.15rem;">Calligraphy</button>
+            <button type="button" class="font-option" data-font="Playfair Display" style="font-family: 'Playfair Display', serif;">Classic Serif</button>
+            <button type="button" class="font-option" data-font="Cinzel" style="font-family: 'Cinzel', serif;">Formal Roman</button>
+            <button type="button" class="font-option" data-font="Montserrat" style="font-family: 'Montserrat', sans-serif;">Modern Bold</button>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.25rem;">
+          <label style="color: #94a3b8;">Workshop Event Details</label>
+          <div style="padding: 0.75rem 0.9rem; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: #cbd5e1;">
+            <strong style="color: #78d844;">FREE Robotics Workshop</strong> (Class 2 to 7)<br>
+            📅 26th July, 2026 (Sunday) &bull; ⏰ 11:00 AM – 1:00 PM<br>
+            📍 Robotree Asansol, Sentrum Mall, 3rd Floor
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" id="downloadPdfBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download High-Res PDF
+          </button>
+          <button type="button" class="btn btn-secondary" id="downloadPngBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            Download Image (PNG)
+          </button>
+          <button type="button" class="btn btn-secondary" id="printBtn" style="padding: 0.6rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            Direct Print
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Real-time Certificate Canvas Preview -->
+    <section class="preview-container">
+      <div class="canvas-wrapper">
+        <canvas id="certCanvas"></canvas>
+      </div>
+
+      <div class="meta-status">
+        <span class="meta-badge" id="statusBadge">● Live Preview Active</span>
+        <span>ISO 9001:2015 &bull; Official Digital Credential</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Robotree Robotics LLP &bull; Operating in accordance with Government of India Protocols (GeM &amp; MSME Accredited Entity) &bull; Sentrum Mall, 3rd Floor, Shristinagar, Asansol, WB 713305</p>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

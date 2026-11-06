@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Login | Robotree Robotics LLP</title>
+  <meta name="description" content="Employee portal login for Robotree Robotics LLP staff.">
+  <meta name="theme-color" content="#06101a">
+  <link rel="icon" type="image/png" href="assets/robotree_favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .emp-login-wrap {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 16px;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,120,0.10) 0%, transparent 70%);
+    }
+    .emp-card {
+      background: rgba(10,22,36,0.90);
+      border: 1px solid rgba(0,200,120,0.22);
+      border-radius: 20px;
+      padding: 48px 40px;
+      width: 100%; max-width: 440px;
+      box-shadow: 0 8px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,120,0.08);
+      backdrop-filter: blur(16px);
+      position: relative; overflow: hidden;
+    }
+    .emp-card::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(135deg, rgba(0,200,120,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .emp-icon-wrap {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0,200,120,0.25), rgba(0,200,120,0.05));
+      border: 1px solid rgba(0,200,120,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 24px rgba(0,200,120,0.15);
+    }
+    .emp-icon-wrap svg { color: #00c878; }
+    .emp-eyebrow { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #00c878; text-transform: uppercase; margin-bottom: 8px; }
+    .emp-title { text-align: center; font-size: 1.65rem; font-weight: 800; color: #e8f4ff; margin-bottom: 8px; line-height: 1.2; }
+    .emp-desc { text-align: center; font-size: 0.92rem; color: rgba(200,220,240,0.65); margin-bottom: 32px; line-height: 1.5; }
+    .emp-form-group { margin-bottom: 18px; }
+    .emp-form-label { display: block; font-size: 0.82rem; font-weight: 600; color: rgba(200,220,240,0.80); margin-bottom: 6px; letter-spacing: 0.4px; }
+    .emp-input-wrap { position: relative; }
+    .emp-input-wrap input {
+      width: 100%; padding: 12px 16px 12px 44px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: #e8f4ff; font-size: 0.95rem; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+    }
+    .emp-input-wrap input:focus { border-color: #00c878; box-shadow: 0 0 0 3px rgba(0,200,120,0.15); }
+    .emp-input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(200,220,240,0.4); }
+    .emp-submit-btn {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #00c878, #00a060);
+      border: none; border-radius: 10px; color: #fff; font-size: 1rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.3px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,200,120,0.35); margin-top: 8px;
+    }
+    .emp-submit-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 8px 32px rgba(0,200,120,0.45); }
+    .emp-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .emp-footer-link { text-align: center; margin-top: 24px; font-size: 0.85rem; color: rgba(200,220,240,0.5); }
+    .emp-footer-link a { color: #00c878; text-decoration: none; }
+    .emp-footer-link a:hover { text-decoration: underline; }
+    .emp-msg { text-align: center; font-size: 0.88rem; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; display: none; }
+    .emp-msg.error { background: rgba(255,80,80,0.12); border: 1px solid rgba(255,80,80,0.3); color: #ff6b6b; display: block; }
+    .emp-msg.success { background: rgba(0,200,120,0.10); border: 1px solid rgba(0,200,120,0.3); color: #00c878; display: block; }
+
+    @media (max-width: 480px) {
+      .emp-card {
+        padding: 32px 20px;
+        border-radius: 16px;
+      }
+      .emp-title {
+        font-size: 1.4rem;
+      }
+      .emp-submit-btn {
+        min-height: 44px;
+      }
+      .emp-input-wrap input {
+        font-size: 16px;
+        min-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="emp-login-wrap">
+    <div class="emp-card">
+      <div class="emp-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <p class="emp-eyebrow">Employee Portal</p>
+      <h1 class="emp-title">Staff Sign In</h1>
+      <p class="emp-desc">Access your Robotree employee dashboard to manage leads and inquiries.</p>
+      <div class="emp-msg" id="empMsg"></div>
+      <form id="empLoginForm" novalidate>
+        <div class="emp-form-group">
+          <label for="empEmail" class="emp-form-label">Work Email</label>
+          <div class="emp-input-wrap">
+            <span class="emp-input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <input type="email" id="empEmail" name="email" placeholder="you@robotree.org" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="emp-form-group">
+          <label for="empPassword" class="emp-form-label">Password</label>
+          <div class="emp-input-wrap">
+            <span class="emp-input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="empPassword" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+          </div>
+        </div>
+        <div class="emp-form-group">
+          <label for="empId" class="emp-form-label">Employee ID <span style="color:rgba(200,220,240,0.4);font-weight:400;">(optional)</span></label>
+          <div class="emp-input-wrap">
+            <span class="emp-input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+            <input type="text" id="empId" name="employeeId" placeholder="EMP-001" autocomplete="off">
+          </div>
+        </div>
+        <button class="emp-submit-btn" type="submit" id="empLoginBtn">
+          <span>Sign In to Portal</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+      <p class="emp-footer-link">Not an employee? <a href="index.html">Go to main site</a></p>
+    </div>
+  </main>
+  <script>
+    (function () {
+      try { if (sessionStorage.getItem('robotree_user_role') === 'EMPLOYEE') { window.location.replace('employee.html'); return; } } catch(_) {}
+      var csrfToken = '';
+      async function fetchCsrf() {
+        try { const r = await fetch('/api/csrf-token', { credentials: 'include' }); const d = await r.json(); csrfToken = d.csrfToken || d.token || ''; } catch(_) {}
+      }
+      function showMsg(text, isError) {
+        var el = document.getElementById('empMsg');
+        el.textContent = text;
+        el.className = 'emp-msg ' + (isError ? 'error' : 'success');
+      }
+      document.getElementById('empLoginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('empLoginBtn');
+        btn.disabled = true;
+        btn.querySelector('span').textContent = 'Signing in...';
+        var email = document.getElementById('empEmail').value.trim();
+        var password = document.getElementById('empPassword').value;
+        var employeeId = document.getElementById('empId').value.trim();
+        try {
+          if (!csrfToken) {
+            await fetchCsrf();
+          }
+          var res = await fetch('/api/auth/login', {
+            method: 'POST', credentials: 'include',
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+            body: JSON.stringify({ email: email, password: password, role: 'EMPLOYEE' })
+          });
+          var data;
+          try { data = await res.json(); } catch(_) { throw new Error('Server returned an invalid response.'); }
+          if (!res.ok || !data.success) throw new Error(data.message || data.error || 'Login failed.');
+          if (data.user && data.user.role !== 'EMPLOYEE') throw new Error('This portal is for employees only.');
+          sessionStorage.setItem('robotree_user_role', data.user.role);
+          sessionStorage.setItem('robotree_user_name', data.user.name || '');
+          sessionStorage.setItem('robotree_user_email', data.user.email || '');
+          sessionStorage.setItem('robotree_user_id', data.user.id || '');
+          sessionStorage.setItem('robotree_employee_id', employeeId || data.user.id || '');
+          if (data.token) sessionStorage.setItem('robotree_session_token', data.token);
+          showMsg('Login successful! Redirecting...', false);
+          setTimeout(function() { window.location.replace('employee.html'); }, 600);
+        } catch(err) {
+          showMsg(err.message || 'An error occurred.', true);
+          btn.disabled = false;
+          btn.querySelector('span').textContent = 'Sign In to Portal';
+        }
+      });
+      fetchCsrf();
+    })();
+  </script>
+</body>
+</html>

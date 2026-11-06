@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AcceptPageBreak - FPDF Reference</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>AcceptPageBreak</h1>
+<code><b>boolean</b> AcceptPageBreak()</code>
+<h2>Description</h2>
+Whenever a page break condition is met (such as text or cell output exceeding the page boundary), this method is called automatically by FPDF. The page break will only occur if the function returns <code>true</code>.
+<br><br>
+In high-security certificate generation, overriding <code>AcceptPageBreak()</code> is critical:
+<ul>
+  <li><b>Single-Page Certificate Mode:</b> Returning <code>false</code> strictly guarantees that content will never accidentally leak into an unintended second page.</li>
+  <li><b>Multi-Page Transcript Mode:</b> Returning <code>true</code> allows seamless generation of Page 2 (Competency Transcript &amp; Government of India Accreditation Record).</li>
+</ul>
+This function is invoked internally by FPDF; it is rarely called directly.
+
+<h2>Example</h2>
+<div class="doc-source">
+<pre><code>class RobotreeCertificate extends FPDF
+{
+    protected $allowMultiPage = false;
+
+    function setAllowMultiPage($allow)
+    {
+        $this-&gt;allowMultiPage = (bool)$allow;
+    }
+
+    function AcceptPageBreak()
+    {
+        // Suppress automatic page breaks for single-page diploma
+        if (!$this-&gt;allowMultiPage) {
+            return false;
+        }
+        return true;
+    }
+}</code></pre>
+</div>
+<h2>See also</h2>
+<a href="setautopagebreak.htm">SetAutoPageBreak</a>, <a href="addpage.htm">AddPage</a>
+<hr>
+<div class="nav"><a href="index.htm">&larr; Back to Manual Index</a></div>
+</body>
+</html>

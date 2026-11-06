@@ -1,0 +1,40 @@
+[
+  {
+    "email": "subscriber_1790751568229@example.com",
+    "subscribedAt": "2026-09-30T06:59:28.234Z"
+  },
+  {
+    "email": "subscriber_1790750622490@example.com",
+    "subscribedAt": "2026-09-30T06:43:42.498Z"
+  },
+  {
+    "email": "subscriber_1790673894825@example.com",
+    "subscribedAt": "2026-09-29T09:24:54.831Z"
+  },
+  {
+    "email": "subscriber_1790673152437@example.com",
+    "subscribedAt": "2026-09-29T09:12:32.441Z"
+  },
+  {
+    "email": "subscriber_1790672978101@example.com",
+    "subscribedAt": "2026-09-29T09:09:38.105Z"
+  },
+  {
+    "email": "subscriber_1790672924104@example.com",
+    "subscribedAt": "2026-09-29T09:08:44.110Z"
+  },
+  {
+    "email": "newsletter_audit@test.com",
+    "subscribedAt": "2026-09-13T07:37:00.767Z"
+  },
+  {
+    "email": "test@example.com",
+    "subscribedAt": "2026-09-07T15:55:06.754Z"
+  },
+  {
+    "id": "NEWS-1787716341685-A56DEC",
+    "email": "aniketsingh4515@gmail.com",
+    "subscribedAt": "2026-08-26T03:52:21.687Z",
+    "source": "website-footer"
+  }
+]

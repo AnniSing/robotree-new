@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>RoundedRect - FPDF Reference</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>RoundedRect</h1>
+<code>RoundedRect(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h, <b>float</b> r [, <b>string</b> corners [, <b>string</b> style]])</code>
+<h2>Description</h2>
+Outputs a rectangle with smooth rounded corners calculated via high-precision cubic Bézier curves (using constant &kappa; = 4/3 &times; (&radic;2 &minus; 1) &approx; 0.55228).
+<br><br>
+Supports selective rounding of individual corners:
+<ul>
+  <li><code>1</code>: Top-left</li>
+  <li><code>2</code>: Top-right</li>
+  <li><code>3</code>: Bottom-right</li>
+  <li><code>4</code>: Bottom-left</li>
+  <li>Default: <code>1234</code> (all four corners rounded)</li>
+</ul>
+
+<h2>Parameters</h2>
+<dl class="param">
+<dt><code>x</code>, <code>y</code></dt>
+<dd>Coordinates of the upper-left corner.</dd>
+<dt><code>w</code>, <code>h</code></dt>
+<dd>Width and height of the rectangle.</dd>
+<dt><code>r</code></dt>
+<dd>Radius of the rounded corners in user units (e.g. millimeters).</dd>
+<dt><code>corners</code></dt>
+<dd>String indicating which corners to round: any combination of <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>.</dd>
+<dt><code>style</code></dt>
+<dd>Rendering style: <code>D</code> (draw outline), <code>F</code> (fill background), <code>DF</code> or <code>FD</code> (fill and stroke outline). Default is <code>D</code>.</dd>
+</dl>
+
+<h2>Example</h2>
+<div class="doc-source">
+<pre><code>// Draw a filled badge with rounded corners:
+$pdf-&gt;SetFillColor(0, 128, 60); // Robotree Emerald
+$pdf-&gt;SetDrawColor(212, 175, 55); // Gold Accent
+$pdf-&gt;RoundedRect(80, 40, 137, 12, 3, '1234', 'DF');</code></pre>
+</div>
+<h2>See also</h2>
+<a href="rect.htm">Rect</a>, <a href="line.htm">Line</a>
+<hr>
+<div class="nav"><a href="index.htm">&larr; Back to Manual Index</a></div>
+</body>
+</html>

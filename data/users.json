@@ -1,0 +1,13 @@
+[
+  {
+    "id": "usr_16bd62e63ffb4a98",
+    "name": "Aniket kumar singh",
+    "email": "aniketsingh4515@gmail.com",
+    "passwordHash": "pbkdf2_sha256$210000$40967c9991c537daf92cb9b6073df076$e8b02b77664cb7552269a57733c3e64eb67a32870cf78db48140bf5667ca4fed",
+    "role": "Student",
+    "failedLoginAttempts": 0,
+    "isLocked": false,
+    "createdAt": "2026-10-10T12:44:09.957Z",
+    "updatedAt": "2026-10-10T12:44:09.957Z"
+  }
+]

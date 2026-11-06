@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48">
+  <!-- DPS Green Shield Emblem -->
+  <g transform="translate(4, 4)">
+    <path d="M 20 4 L 34 10 L 34 26 C 34 32 20 37 20 37 C 20 37 6 32 6 26 L 6 10 Z" fill="#ffffff" stroke="#15803d" stroke-width="2.5"/>
+    <path d="M 20 7 L 31 12 L 31 24 C 31 29 20 33 20 33 C 20 33 9 29 9 24 L 9 12 Z" stroke="#15803d" stroke-width="1" fill="none"/>
+    <!-- Torch Flame -->
+    <path d="M 20 12 C 22 16 23 18 20 22 C 17 18 18 16 20 12 Z" fill="#dc2626"/>
+    <rect x="18.5" y="22" width="3" height="7" fill="#15803d"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="24" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="20" fill="#1e40af">DPS</text>
+  <text x="48" y="34" font-family="'Inter', sans-serif" font-weight="800" font-size="8" fill="#1e40af" letter-spacing="1">INDIA</text>
+</svg>

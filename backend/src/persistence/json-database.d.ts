@@ -1,0 +1,40 @@
+export interface JsonDatabase {
+  getUsers(): any[];
+  saveUsers(users: any[]): boolean;
+  getInquiries(): any[];
+  saveInquiries(inquiries: any[]): boolean;
+  getApplications(): any[];
+  saveApplications(applications: any[]): boolean;
+  getCertificates(): any[];
+  saveCertificates(certs: any[]): boolean;
+  getActivities(): any[];
+  saveActivities(activities: any[]): boolean;
+  getNewsletters(): any[];
+  saveNewsletters(newsletters: any[]): boolean;
+  getProgramInterests(): any[];
+  saveProgramInterests(interests: any[]): boolean;
+  getFeedback(): any[];
+  saveFeedback(feedback: any[]): boolean;
+  getAnalytics(): any[];
+  saveAnalytics(events: any[]): boolean;
+  getEventsGallery(): any[];
+  saveEventsGallery(events: any[]): boolean;
+  getEvents(): any[];
+  saveEvents(events: any[]): boolean;
+  getTeamMembers(): any[];
+  saveTeamMembers(members: any[]): boolean;
+  getTeam(): any[];
+  saveTeam(members: any[]): boolean;
+  getCourses(): any[];
+  saveCourses(courses: any[]): boolean;
+  getProducts(): any[];
+  saveProducts(products: any[]): boolean;
+  getOrders(): any[];
+  saveOrders(orders: any[]): boolean;
+  getShowcase(): any[];
+  saveShowcase(items: any[]): boolean;
+  getSettings(): any;
+  saveSettings(settings: any): boolean;
+}
+
+export declare const db: JsonDatabase;

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SetDash - FPDF Reference</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>SetDash</h1>
+<code>SetDash([<b>float</b> black, <b>float</b> white])</code>
+<h2>Description</h2>
+Sets the stroke line dashing pattern using native PDF graphic state operators (<code>[black white] 0 d</code>). This enables drawing decorative dashed lines, signature baselines, and security borders on certificates.
+<br><br>
+Calling <code>SetDash()</code> without arguments restores the default solid continuous line pattern (<code>[] 0 d</code>).
+
+<h2>Parameters</h2>
+<dl class="param">
+<dt><code>black</code></dt>
+<dd>Length of the colored dash segment in points/user units. Optional.</dd>
+<dt><code>white</code></dt>
+<dd>Length of the blank whitespace gap between dashes in points/user units. Optional.</dd>
+</dl>
+
+<h2>Example</h2>
+<div class="doc-source">
+<pre><code>// Draw a dotted name separator line:
+$pdf-&gt;SetDash(1.5, 1.5);
+$pdf-&gt;Line(50, 70, 247, 70);
+
+// Reset back to solid line:
+$pdf-&gt;SetDash();
+$pdf-&gt;Rect(10, 10, 277, 190);</code></pre>
+</div>
+<h2>See also</h2>
+<a href="line.htm">Line</a>, <a href="rect.htm">Rect</a>, <a href="roundedrect.htm">RoundedRect</a>
+<hr>
+<div class="nav"><a href="index.htm">&larr; Back to Manual Index</a></div>
+</body>
+</html>

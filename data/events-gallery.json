@@ -1,0 +1,181 @@
+[
+  {
+    "id": "EVT-2026-0032",
+    "title": "Robotics, Push Button & Arduino Circuitry at JNV Kolasib",
+    "category": "School Robotics",
+    "institution": "JNV Kolasib, North Thingdawl (Mizoram)",
+    "date": "2026-09-12",
+    "attendees": "Science Lab Students (Mizoram Cohort)",
+    "image": "assets/events/jnv_kolasib_smartboard_arduino_lecture.jpg",
+    "images": [
+      "assets/events/jnv_kolasib_smartboard_arduino_lecture.jpg",
+      "assets/events/jnv_kolasib_push_button_breadboard_lab.jpg",
+      "assets/events/jnv_kolasib_girls_stem_circuit_wiring.jpg",
+      "assets/events/jnv_kolasib_trainer_mentoring_students.jpg",
+      "assets/events/jnv_kolasib_breadboard_students_working.jpg"
+    ],
+    "description": "Hands-on PM SHRI Science Lab robotics and embedded systems training at Jawahar Navodaya Vidyalaya, Kolasib (North Thingdawl, Mizoram). Topics covered: Project-02 Push Button LED circuit connection, Arduino Uno pin mapping, breadboard prototyping, and interactive smart board simulation.",
+    "tags": [
+      "JNV Kolasib",
+      "Mizoram STEM",
+      "North Thingdawl",
+      "PM SHRI Science Lab",
+      "Push Button LED",
+      "Arduino Uno",
+      "School Robotics"
+    ],
+    "featured": true,
+    "uploadedBy": "Admin",
+    "createdAt": "2026-09-14T14:06:44.338Z",
+    "mediaType": "image",
+    "videoUrl": "",
+    "duration": ""
+  },
+  {
+    "id": "EVT-2026-0031",
+    "title": "Electronics & Logic Gates Prototyping at North Point School",
+    "category": "School Robotics",
+    "institution": "North Point School, Asansol (West Bengal)",
+    "date": "2026-08-07",
+    "attendees": "120+ Junior Students",
+    "image": "assets/events/north_point_school_asansol_stem_workshop_batch.jpg",
+    "images": [
+      "assets/events/north_point_school_asansol_stem_workshop_batch.jpg",
+      "assets/events/north_point_school_asansol_led_breadboard_closeup.jpg",
+      "assets/events/north_point_school_asansol_circuit_experiment.jpg",
+      "assets/events/north_point_school_asansol_hands_on_lab.jpg"
+    ],
+    "description": "Interactive STEM and electronics laboratory workshop at North Point School, Nigha, Asansol (West Bengal). Students explored breadboard prototyping, circuit diagrams, dual LED testing, and digital logic gate concepts.",
+    "tags": [
+      "North Point School Asansol",
+      "Asansol West Bengal",
+      "Breadboarding",
+      "LED Circuit",
+      "Logic Gates",
+      "School Robotics"
+    ],
+    "featured": true,
+    "uploadedBy": "Admin",
+    "createdAt": "2026-09-14T13:59:07.883Z",
+    "mediaType": "image",
+    "videoUrl": "",
+    "duration": ""
+  },
+  {
+    "id": "EVT-2026-0030",
+    "title": "Robotics & STEM Workshop at JNV Nalbari",
+    "category": "School Robotics",
+    "institution": "JNV Nalbari (Assam)",
+    "date": "2026-09-10",
+    "attendees": "187 Students (Classes 6A, 7A+B Girls, 8B, 9B, 10A+B)",
+    "image": "assets/events/jnv_nalbari_revision_smart_car_parking.jpg",
+    "images": [
+      "assets/events/jnv_nalbari_revision_smart_car_parking.jpg",
+      "assets/events/jnv_nalbari_girls_stem_evening_session.jpg",
+      "assets/events/jnv_nalbari_class_banekuchi_assam.jpg",
+      "assets/events/jnv_nalbari_suradi_assam_class.jpg"
+    ],
+    "description": "Hands-on robotics sessions across Class 6A (35 students), Class 8B (30 students), Class 9B (29 students), Class 10A+B (55 students), and Class 7A+B Girls cohort (38 students). Curriculum topics covered: Revision, LED Blink electronics, and Smart Car Parking Alarm systems.",
+    "tags": [
+      "JNV Nalbari",
+      "Assam STEM",
+      "School Robotics",
+      "LED Blink",
+      "Smart Car Parking Alarm",
+      "Girls STEM"
+    ],
+    "schedule": [
+      {
+        "class": "Class 6A",
+        "students": 35,
+        "time": "10:05 - 10:45",
+        "topics": "Revision & LED Blink"
+      },
+      {
+        "class": "Class 8B",
+        "students": 30,
+        "time": "10:45 - 11:25",
+        "topics": "Smart Car Parking Alarm"
+      },
+      {
+        "class": "Class 9B",
+        "students": 29,
+        "time": "1:15 - 1:45",
+        "topics": "Sensor Interfacing & Alarm Logic"
+      },
+      {
+        "class": "Class 10A+B",
+        "students": 55,
+        "time": "3:30 - 4:30",
+        "topics": "Automated Circuit Calibration"
+      },
+      {
+        "class": "Class 7A+B (Girls)",
+        "students": 38,
+        "time": "6:30 - 7:30",
+        "topics": "Girls in STEM Hands-on Workshop"
+      }
+    ],
+    "featured": true,
+    "uploadedBy": "Admin",
+    "createdAt": "2026-09-14T13:50:21.295Z",
+    "mediaType": "image",
+    "videoUrl": "",
+    "duration": ""
+  },
+  {
+    "id": "EVT-2026-0029",
+    "title": "Robotics & STEM Workshop at GD Goenka Public School",
+    "category": "School Robotics",
+    "institution": "GD Goenka Public School (Dhanbad - Jharkhand)",
+    "date": "2024-09-14",
+    "attendees": "250+ Students & Faculty",
+    "image": "assets/events/gd_goenka_space_robotics_lab.png",
+    "images": [
+      "assets/events/gd_goenka_lecture_hall.png",
+      "assets/events/gd_goenka_stem_lab_students.png",
+      "assets/events/gd_goenka_classroom_mentorship.jpg",
+      "assets/events/gd_goenka_space_robotics_lab.png",
+      "assets/events/gd_goenka_breadboard_robotics.jpg"
+    ],
+    "description": "Hands-on robotics, breadboard circuit prototyping, space science exploration, and STEM curriculum workshops conducted at GD Goenka Public School, Dhanbad, Jharkhand.",
+    "tags": [
+      "GD Goenka Dhanbad",
+      "Jharkhand STEM",
+      "School Robotics",
+      "Breadboarding",
+      "Space Lab",
+      "IoT"
+    ],
+    "featured": true,
+    "uploadedBy": "Admin",
+    "createdAt": "2026-09-14T13:39:41.289Z",
+    "mediaType": "image",
+    "videoUrl": "",
+    "duration": ""
+  },
+  {
+    "id": "EVT-2026-0028",
+    "title": "Junior Innovation Lab (RJIL) State Launch & Mentor Summit",
+    "category": "Keynotes",
+    "institution": "State Innovation Meet",
+    "date": "2024-03-05",
+    "attendees": "1,200+ Educators & Mentors",
+    "image": "assets/events/event_robotree_innovation_meet.jpg",
+    "description": "Keynote address on experiential STEM learning and the launch of the Junior Innovation Lab model for schools across India.",
+    "tags": [
+      "RJIL Launch",
+      "Keynote",
+      "Mentorship"
+    ],
+    "featured": true,
+    "uploadedBy": "Admin",
+    "createdAt": "2024-03-05T09:30:00Z",
+    "mediaType": "image",
+    "videoUrl": "",
+    "duration": "",
+    "images": [
+      "assets/events/event_robotree_innovation_meet.jpg"
+    ]
+  }
+]

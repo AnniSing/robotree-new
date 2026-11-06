@@ -1,0 +1,170 @@
+[
+  {
+    "id": "PROD-RBT-001",
+    "title": "4WD Autonomous Obstacle Avoidance Robot Kit",
+    "category": "Robotics Kits",
+    "price": 2499,
+    "originalPrice": 3499,
+    "inStock": true,
+    "stockQuantity": 25,
+    "sku": "RBT-KIT-4WD-01",
+    "image": "assets/store/kit_4wd_robot.jpg",
+    "description": "Complete STEM educational robotics kit featuring a 4-wheel drive chassis, Arduino-compatible microcontroller, HC-SR04 ultrasonic distance sensor, dual L298N motor driver, and rechargeable battery pack.",
+    "features": [
+      "Arduino Compatible (C/C++ & Block Coding)",
+      "Ultrasonic Obstacle Sensing & Navigation",
+      "Complete 4WD Acrylic Chassis & Gear Motors",
+      "Step-by-step Circuit Diagram & Video Guide"
+    ],
+    "featured": true,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-002",
+    "title": "Smart Line Follower Robot Kit with PID Tuning",
+    "category": "Robotics Kits",
+    "price": 1899,
+    "originalPrice": 2499,
+    "inStock": true,
+    "stockQuantity": 40,
+    "sku": "RBT-KIT-LFR-02",
+    "image": "assets/store/kit_line_follower.jpg",
+    "description": "High-precision line following robot kit equipped with a 5-channel high-sensitivity IR sensor array, dual high-torque BO motors, and programmable logic controller for school and college championships.",
+    "features": [
+      "5-Channel High-Sensitivity IR Array",
+      "PID Loop Tuning Capable",
+      "Quick Solderless Assembly",
+      "Competition & Hackathon Ready"
+    ],
+    "featured": true,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-003",
+    "title": "6-DOF Metal Articulated Robotic Arm Mechanical Kit",
+    "category": "Robotics Kits",
+    "price": 4999,
+    "originalPrice": 6999,
+    "inStock": true,
+    "stockQuantity": 15,
+    "sku": "RBT-KIT-ARM-03",
+    "image": "assets/store/kit_robotic_arm.jpg",
+    "description": "Heavy-duty 6 Degrees of Freedom metal mechanical arm kit with high-torque MG996R metal-gear servos, precision mechanical gripper claw, and joystick controller board.",
+    "features": [
+      "6 Axis Smooth Articulation",
+      "Aluminum Alloy Rigid Construction",
+      "High-Torque MG996R Metal Servos",
+      "Bluetooth & Potentiometer Dual Control"
+    ],
+    "featured": true,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-004",
+    "title": "ESP32 NodeMCU Wi-Fi + Bluetooth IoT Development Board",
+    "category": "Microcontrollers",
+    "price": 549,
+    "originalPrice": 799,
+    "inStock": true,
+    "stockQuantity": 80,
+    "sku": "RBT-MCU-ESP32-01",
+    "image": "assets/store/mcu_esp32.jpg",
+    "description": "Dual-core Tensilica Xtensa 32-bit LX6 microprocessor with integrated 2.4 GHz Wi-Fi and Bluetooth 4.2 BLE for smart home, cloud telemetry, and IoT automation projects.",
+    "features": [
+      "Dual Core 240MHz Clock Speed",
+      "Integrated Wi-Fi 802.11 b/g/n & BLE",
+      "30 Breadboard-Friendly GPIO Pins",
+      "Arduino IDE & MicroPython Support"
+    ],
+    "featured": true,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-005",
+    "title": "Robotree Uno R3 ATmega328P Development Board",
+    "category": "Microcontrollers",
+    "price": 449,
+    "originalPrice": 599,
+    "inStock": true,
+    "stockQuantity": 120,
+    "sku": "RBT-MCU-UNO-02",
+    "image": "assets/store/mcu_uno_r3.jpg",
+    "description": "Industry-standard educational microcontroller board with CH340G USB interface, 14 digital I/O pins, 6 analog inputs, and over-current protection for learning embedded systems.",
+    "features": [
+      "ATmega328P Microcontroller (16 MHz)",
+      "14 Digital I/O Pins (6 PWM outputs)",
+      "Includes High-Speed USB Cable",
+      "100% Arduino IDE Compatible"
+    ],
+    "featured": false,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-006",
+    "title": "Ultrasonic Distance Sensor HC-SR04 with Acrylic Mount",
+    "category": "Sensors & Actuators",
+    "price": 199,
+    "originalPrice": 299,
+    "inStock": true,
+    "stockQuantity": 150,
+    "sku": "RBT-SNS-HCSR04-01",
+    "image": "assets/store/sensor_ultrasonic.jpg",
+    "description": "Precision ultrasonic non-contact ranging module measuring distances from 2cm to 400cm with 3mm accuracy. Comes with custom acrylic mounting bracket and jumper wires.",
+    "features": [
+      "2cm - 400cm Non-Contact Ranging",
+      "High Accuracy (3mm precision)",
+      "Includes Custom Acrylic Servo Mount",
+      "Low 5V Operating Current"
+    ],
+    "featured": false,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-007",
+    "title": "Micro Servo Motor SG90 (Pack of 4)",
+    "category": "Sensors & Actuators",
+    "price": 399,
+    "originalPrice": 599,
+    "inStock": true,
+    "stockQuantity": 65,
+    "sku": "RBT-ACT-SG90-02",
+    "image": "assets/store/act_servo_sg90.jpg",
+    "description": "Set of 4 lightweight 9g micro servo motors delivering 1.8 kg/cm torque at 4.8V. Ideal for steering mechanisms, camera pan-tilts, robotic grippers, and RC planes.",
+    "features": [
+      "Pack of 4 Precision Servos",
+      "0 to 180 Degree Rotation Range",
+      "Includes Servo Horns & Mounting Screws",
+      "Lightweight 9g Compact Design"
+    ],
+    "featured": false,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-008",
+    "title": "Drone Quadcopter F450 DIY Frame & 2212 1000KV Motor Set",
+    "category": "Drones & Motors",
+    "price": 3299,
+    "originalPrice": 4499,
+    "inStock": true,
+    "stockQuantity": 20,
+    "sku": "RBT-DRN-F450-01",
+    "image": "assets/store/drone_frame_motors.jpg",
+    "description": "Complete aerial robotics frame set featuring an F450 tough nylon frame with integrated power distribution PCB, 4x 2212 1000KV brushless motors, 4x 30A ESC speed controllers, and 1045 propellers.",
+    "features": [
+      "F450 Impact-Resistant Nylon Frame",
+      "4x 2212 1000KV Brushless Motors",
+      "4x 30A SimonK Firmware ESCs",
+      "Integrated Power Distribution Board"
+    ],
+    "featured": true,
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "updatedAt": "2026-10-01T10:00:00.000Z"
+  }
+]

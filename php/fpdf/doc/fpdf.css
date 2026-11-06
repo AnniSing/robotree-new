@@ -1,0 +1,96 @@
+body {
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-size: 10pt;
+	color: #111;
+	background-color: #fff;
+	margin: 20px 30px;
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #002b66;
+	border-bottom: 2px solid #00803c;
+	padding-bottom: 4px;
+	margin-top: 0;
+}
+
+h2 {
+	font-size: 1.15em;
+	font-weight: bold;
+	color: #002b66;
+	margin-top: 1.4em;
+	margin-bottom: 0.4em;
+}
+
+code {
+	font-family: Consolas, "Courier New", monospace;
+	font-size: 9.5pt;
+	background-color: #f1f5f9;
+	padding: 1px 4px;
+	border-radius: 3px;
+	color: #0f172a;
+}
+
+pre {
+	font-family: Consolas, "Courier New", monospace;
+	font-size: 9pt;
+	background-color: #f8fafc;
+	border: 1px solid #cbd5e1;
+	border-left: 4px solid #00803c;
+	padding: 10px 14px;
+	border-radius: 4px;
+	overflow-x: auto;
+}
+
+.doc-source {
+	margin: 10px 0;
+}
+
+dl.param dt {
+	font-weight: bold;
+	color: #002b66;
+	margin-top: 8px;
+}
+
+dl.param dd {
+	margin-left: 20px;
+	margin-bottom: 8px;
+}
+
+ul {
+	margin-top: 4px;
+	margin-bottom: 8px;
+}
+
+li {
+	margin-bottom: 2px;
+}
+
+a {
+	color: #00803c;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background: #cbd5e1;
+	margin: 24px 0 12px 0;
+}
+
+.nav {
+	text-align: center;
+	font-size: 9pt;
+	color: #64748b;
+}
+
+.nav a {
+	margin: 0 8px;
+}

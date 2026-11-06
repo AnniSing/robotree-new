@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AddFont - FPDF Reference</title>
+<link type="text/css" rel="stylesheet" href="fpdf.css">
+</head>
+<body>
+<h1>AddFont</h1>
+<code>AddFont(<b>string</b> family [, <b>string</b> style [, <b>string</b> file]])</code>
+<h2>Description</h2>
+Imports a TrueType, OpenType, or Type1 font into the PDF document. Before invoking this method, a font definition file (<code>.php</code>) and compressed font file (<code>.z</code>) must be generated using <code>makefont/makefont.php</code>.
+<br><br>
+The definition file must reside in the directory pointed to by <code>FPDF_FONTPATH</code> (or the current directory), otherwise a fatal <i>"Could not include font definition file"</i> error occurs.
+<br><br>
+In the Robotree Certificate Generator, the wrapper method <code>SafeAddFont()</code> and <code>SafeSetFont()</code> is provided, which verifies file presence on disk and automatically falls back to standard core fonts (e.g. <code>Times</code>, <code>Helvetica</code>) without halting execution.
+
+<h2>Parameters</h2>
+<dl class="param">
+<dt><code>family</code></dt>
+<dd>Font family name chosen by the developer (e.g. <code>Cinzel</code>, <code>Montserrat</code>, <code>GreatVibes</code>). If matching a standard font family, it overrides it.</dd>
+<dt><code>style</code></dt>
+<dd>Font style. Possible values:
+<ul>
+<li>empty string: Regular</li>
+<li><code>B</code>: Bold</li>
+<li><code>I</code>: Italic</li>
+<li><code>BI</code> or <code>IB</code>: Bold Italic</li>
+</ul>
+Default is regular.</dd>
+<dt><code>file</code></dt>
+<dd>Font definition file name. Default is <code>&lt;family&gt;&lt;style&gt;.php</code> in lowercase without spaces.</dd>
+</dl>
+
+<h2>Example</h2>
+<div class="doc-source">
+<pre><code>// 1. Compile font definition (one-time offline):
+// require('makefont/makefont.php');
+// MakeFont('fonts/Cinzel-Bold.ttf', 'cp1252', true);
+
+// 2. Load in certificate:
+$pdf = new FPDF();
+$pdf-&gt;AddFont('Cinzel', 'B', 'cinzelb.php');
+$pdf-&gt;SetFont('Cinzel', 'B', 28);
+$pdf-&gt;Cell(0, 10, 'CERTIFICATE OF ACCREDITATION', 0, 1, 'C');</code></pre>
+</div>
+<h2>See also</h2>
+<a href="setfont.htm">SetFont</a>
+<hr>
+<div class="nav"><a href="index.htm">&larr; Back to Manual Index</a></div>
+</body>
+</html>

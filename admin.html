@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard Portal | Robotree Robotics LLP</title>
+  <meta name="description" content="Secure Admin Dashboard Portal for Robotree Robotics LLP to manage student inquiries, issue certificates, and review activity logs.">
+  <meta name="theme-color" content="#06101a">
+  <link rel="icon" type="image/png" href="assets/robotree_favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="app-status" id="appStatus" role="status" aria-live="polite" hidden></div>
+
+    <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="Robotree Robotics home">
+        <img src="assets/robotree_logo.png" alt="Robotree Robotics" class="brand-logo-img" width="160" height="50">
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <div class="nav-panel" id="navPanel">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">About Us</a>
+        <a class="nav-link" href="team.html">Our Team</a>
+        <a class="nav-link" href="courses.html">Courses</a>
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="services.html#junior-innovation-lab">Lab Setup</a>
+        <a class="nav-link" href="store.html">Store</a>
+        <a class="nav-link" href="gallery.html">Gallery</a>
+        <a class="nav-link" href="certificate.html">Verify Certificate</a>
+        <a class="nav-link" href="contact.html">Contact Us</a>
+        <button class="nav-link nav-btn-loc" type="button" id="locationOpen" aria-haspopup="dialog" aria-expanded="false" aria-controls="locationModal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Our Location
+        </button>
+        <button class="nav-link nav-button" type="button" id="accountOpen">Login</button>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary nav-cta" href="contact.html">
+          Get In Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="container">
+        <div class="hero-copy">
+          <p class="eyebrow">Secure Management System</p>
+          <h1>Robotree <span>Admin Control Dashboard</span></h1>
+          <p class="hero-text">Authenticate with your administrative passcode to review student inquiries, issue accredited certificates, and monitor security logs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 40px; padding-bottom: 80px;">
+      <div class="container">
+        
+        <!-- Professional Glassmorphic Admin Login Panel -->
+        <div class="admin-auth-card" id="adminLoginPanel">
+          <div class="admin-auth-glow"></div>
+          <div class="admin-auth-header">
+            <div class="admin-auth-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <p class="admin-auth-eyebrow">RESTRICTED ACCESS</p>
+            <h2 class="admin-auth-title">Admin Passcode</h2>
+            <p class="admin-auth-desc">Enter your administrative security credentials to unlock the Robotree management suite.</p>
+          </div>
+          
+          <form id="adminLoginForm" class="admin-auth-form" novalidate>
+            <div class="admin-form-group">
+              <label for="adminPasscode" class="admin-form-label">Security Passcode</label>
+              <div class="admin-input-wrap">
+                <span class="admin-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </span>
+                <input type="password" id="adminPasscode" name="passcode" placeholder="Enter Admin Passcode" autocomplete="current-password" required>
+                <button type="button" class="admin-toggle-passcode" id="togglePasscodeBtn" aria-label="Toggle password visibility" title="Toggle password visibility">
+                  <svg class="eye-show" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-hide" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary admin-submit-btn" type="submit" id="btnAdminAuthenticate">
+              <span>Authenticate Access</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <p id="adminStatus" class="form-feedback admin-auth-feedback" aria-live="polite"></p>
+
+          <div class="admin-auth-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>256-Bit Encrypted Session &bull; Authorized Personnel Only</span>
+          </div>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="adminDashboard" hidden>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h2 style="font-size: 1.85rem; margin: 0 0 4px; font-weight: 800; color: var(--text);">Robotree Management Suite</h2>
+              <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Complete administrative control over team directory, courses, gallery media, inquiries, and student certificates.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-secondary" id="adminRefresh" type="button" style="padding: 8px 16px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+                Refresh
+              </button>
+              <button class="btn btn-secondary" id="adminLogout" type="button" style="padding: 8px 16px; color: #ef4444; border-color: rgba(239, 68, 68, 0.25);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                Sign Out
+              </button>
+            </div>
+          </div>
+
+          <p id="adminDashboardStatus" class="form-feedback" aria-live="polite" style="margin-bottom: 20px; min-height: 20px; font-weight: 700;"></p>
+
+          <!-- Admin Navigation Bar / Tabs -->
+          <div class="admin-nav-tabs" role="tablist" aria-label="Admin Management Sections" style="display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 6px;">
+            <button class="admin-tab-btn is-active" type="button" role="tab" data-admin-tab="overview">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Overview &amp; Stats
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="team">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Team Directory
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="courses">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Courses &amp; Workshops
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="gallery">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Media Gallery
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="inquiries">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Leads &amp; Inquiries
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="certificates">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              Issue Certificates
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="store">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              Hardware Store
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="security">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Security &amp; Password
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="settings">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Site Settings &amp; Metrics
+            </button>
+          </div>
+
+          <!-- 1. SECTION: Overview & Stats -->
+          <section class="admin-section-view" id="adminSectionOverview">
+            <!-- Stats Strip -->
+            <div class="stats-strip" id="adminStats" style="margin-bottom: 28px;">
+              <!-- Rendered by JS -->
+            </div>
+
+            <!-- Main Grid -->
+            <div class="admin-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+              <article class="admin-card">
+                <h3>Recent Inquiries &amp; Leads</h3>
+                <ul class="admin-list" id="adminLeads">
+                  <!-- Rendered by JS -->
+                </ul>
+              </article>
+
+              <article class="admin-card">
+                <h3>System Activity</h3>
+                <ul class="admin-list" id="adminActivity">
+                  <!-- Rendered by JS -->
+                </ul>
+              </article>
+
+              <article class="admin-card">
+                <h3>Account Activity</h3>
+                <ul class="admin-list" id="adminAccountActivity">
+                  <!-- Rendered by JS -->
+                </ul>
+              </article>
+
+              <!-- Security Alerts saved internally in backend audit logs -->
+              <article class="admin-card" id="adminFailedLoginsCard" style="display: none;" hidden>
+                <h3>Security Alerts</h3>
+                <ul class="admin-list alert-list" id="adminFailedLogins">
+                  <!-- Kept for background test/DOM compatibility -->
+                </ul>
+              </article>
+
+              <article class="admin-card" style="grid-column: 1 / -1;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 1.25rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.25rem; display: flex; align-items: center; gap: 8px;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      Registered User Accounts &amp; Team Access
+                    </h3>
+                    <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 0.85rem;">Manage website login access. Create team employee accounts, grant/revoke privileges, or remove access.</p>
+                  </div>
+                  <button class="btn btn-primary btn-sm" id="btnOpenAddUserDrawer" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add Team User Access
+                  </button>
+                </div>
+
+                <!-- Add User Form Drawer -->
+                <div id="userFormDrawer" class="admin-form-drawer" style="display: none; margin-bottom: 1.5rem; background: var(--panel-2); border: 1px solid var(--line-bright); border-radius: var(--radius-md); padding: 1.25rem;">
+                  <h4 style="margin: 0 0 1rem; font-size: 1.1rem; color: var(--green);">Create Team / Employee User Account</h4>
+                  <form id="adminAddUserForm">
+                    <div class="form-row-2col">
+                      <div class="form-group">
+                        <label class="form-label" for="newUserName">Full Name *</label>
+                        <input type="text" id="newUserName" name="name" class="form-input" placeholder="e.g. Rahul Sharma" required maxlength="80">
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="newUserEmail">Email Address (Login ID) *</label>
+                        <input type="email" id="newUserEmail" name="email" class="form-input" placeholder="e.g. rahul@robotree.org" required maxlength="120">
+                      </div>
+                    </div>
+                    <div class="form-row-2col">
+                      <div class="form-group">
+                        <label class="form-label" for="newUserPassword">Password (Min 8 Characters) *</label>
+                        <input type="password" id="newUserPassword" name="password" class="form-input" placeholder="Enter secure password" required minlength="8" maxlength="100">
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="newUserRole">User Access Role *</label>
+                        <select id="newUserRole" name="role" class="form-select">
+                          <option value="EMPLOYEE" selected>Employee / Team Member (Portal Access)</option>
+                          <option value="Student">Student Learner (Standard Access)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-form-actions" style="margin-top: 1rem;">
+                      <button type="button" class="btn btn-secondary btn-sm" id="btnCancelAddUser">Cancel</button>
+                      <button type="submit" class="btn btn-primary btn-sm" id="btnSubmitAddUser">Create User Account</button>
+                    </div>
+                  </form>
+                  <p id="addUserFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+                </div>
+
+                <ul class="admin-list grid-list" id="adminUsers" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                  <!-- Rendered by JS -->
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- 2. SECTION: Team Directory Management -->
+          <section class="admin-section-view" id="adminSectionTeam" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  Team Members Directory
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Manage leadership, lead trainers, and assistant faculty with direct photo uploads and qualification records.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenTeamModal" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Team Member
+              </button>
+            </div>
+
+            <!-- Team Form Drawer -->
+            <div id="teamFormDrawer" class="admin-form-drawer" style="display: none;">
+              <h4 id="teamFormTitle" style="margin: 0 0 1rem; font-size: 1.15rem; color: var(--green);">Add New Team Member</h4>
+              <form id="adminTeamForm">
+                <input type="hidden" id="teamEditId" name="id" value="">
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="teamName">Full Name *</label>
+                    <input type="text" id="teamName" name="name" class="form-input" placeholder="e.g. John Doe" required maxlength="80">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="teamRole">Role / Job Title *</label>
+                    <input type="text" id="teamRole" name="role" class="form-input" placeholder="e.g. Assistant Trainer" required maxlength="100">
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="teamDepartment">Department *</label>
+                    <input type="text" id="teamDepartment" name="department" class="form-input" placeholder="e.g. Training & Curriculum" required maxlength="80">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="teamCategory">Category Tier</label>
+                    <select id="teamCategory" name="category" class="form-select">
+                      <option value="leadership">Executive Leadership</option>
+                      <option value="lead-trainers">Lead Trainer</option>
+                      <option value="assistant-trainers" selected>Assistant Trainer</option>
+                      <option value="operations">Administration &amp; Operations</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="teamQualification">Qualification *</label>
+                    <input type="text" id="teamQualification" name="qualification" class="form-input" placeholder="e.g. B.TECH or B.TECH+M.TECH" required maxlength="60">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="teamExperience">Experience *</label>
+                    <input type="text" id="teamExperience" name="experience" class="form-input" placeholder="e.g. 1+ Year / 6+ Years" required maxlength="40">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="teamEmail">Work Email *</label>
+                  <input type="email" id="teamEmail" name="email" class="form-input" placeholder="e.g. member@gmail.com" required maxlength="120">
+                </div>
+
+                <!-- Member Avatar Upload -->
+                <div class="upload-dropzone-section">
+                  <label class="form-label">Profile Photograph (Upload JPG/PNG or Path)</label>
+                  <div class="event-modal-dropzone" id="teamDropzone">
+                    <div class="dropzone-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <p class="dropzone-title">Click or Drag &amp; Drop Portrait Photo</p>
+                    <p class="dropzone-hint">Supports PNG, JPG, WebP (up to 10MB)</p>
+                    <input type="file" id="teamFileInput" accept="image/*" style="display: none;">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="teamImageUrl" name="image" class="form-input" placeholder="Or enter photo URL: assets/team/name.jpg">
+                  </div>
+                  <div id="teamPreviewBox" class="upload-preview-box" style="display: none;"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="teamSkills">Core Skills (Comma Separated)</label>
+                  <input type="text" id="teamSkills" name="skills" class="form-input" placeholder="e.g. Arduino, ROS2, Circuit Design, STEM" maxlength="200">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="teamResponsibilities">Key Responsibilities</label>
+                  <textarea id="teamResponsibilities" name="responsibilities" class="form-textarea" placeholder="Detail faculty responsibilities and institutional duties..." rows="2" maxlength="1000"></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                  <button type="button" class="btn btn-secondary" id="btnCancelTeamForm">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="btnSaveTeam">Save Team Member</button>
+                </div>
+              </form>
+              <p id="teamFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+            </div>
+
+            <!-- Team Grid / Table -->
+            <div id="adminTeamGrid" class="admin-data-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- 3. SECTION: Courses Catalog Management -->
+          <section class="admin-section-view" id="adminSectionCourses" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Course Catalog &amp; Pricing
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Modify curriculum tracks, authoritative pricing in INR, modules, and cover thumbnails.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenCourseModal" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Course Track
+              </button>
+            </div>
+
+            <!-- Course Form Drawer -->
+            <div id="courseFormDrawer" class="admin-form-drawer" style="display: none;">
+              <h4 id="courseFormTitle" style="margin: 0 0 1rem; font-size: 1.15rem; color: var(--green);">Add New Course Track</h4>
+              <form id="adminCourseForm">
+                <input type="hidden" id="courseEditId" name="id" value="">
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="courseTitle">Course Title *</label>
+                    <input type="text" id="courseTitle" name="title" class="form-input" placeholder="e.g. Advanced Robotics & Embedded Systems" required maxlength="140">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="courseCategory">Category *</label>
+                    <input type="text" id="courseCategory" name="category" class="form-input" placeholder="e.g. College & Engineering" required maxlength="80">
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="coursePrice">Price (INR) *</label>
+                    <input type="number" id="coursePrice" name="price" class="form-input" placeholder="e.g. 3999" required min="0" max="500000">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="courseDuration">Duration</label>
+                    <input type="text" id="courseDuration" name="duration" class="form-input" placeholder="e.g. 8 Weeks / 6 Weeks" maxlength="40">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="courseLevel">Skill Level</label>
+                  <select id="courseLevel" name="level" class="form-select">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate" selected>Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </div>
+
+                <!-- Course Thumbnail Upload -->
+                <div class="upload-dropzone-section">
+                  <label class="form-label">Course Cover Thumbnail (Upload Image or Path)</label>
+                  <div class="event-modal-dropzone" id="courseDropzone">
+                    <div class="dropzone-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <p class="dropzone-title">Click or Drag &amp; Drop Course Cover</p>
+                    <p class="dropzone-hint">Supports PNG, JPG, WebP (up to 10MB)</p>
+                    <input type="file" id="courseFileInput" accept="image/*" style="display: none;">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="courseImageUrl" name="image" class="form-input" placeholder="Or enter URL / file path: assets/courses/course_robotics.jpg">
+                  </div>
+                  <div id="coursePreviewBox" class="upload-preview-box" style="display: none;"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="courseDescription">Course Overview</label>
+                  <textarea id="courseDescription" name="description" class="form-textarea" placeholder="Detail course objectives, hardware kits used, and learning outcomes..." rows="2" maxlength="1500"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="courseModules">Curriculum Modules (One per line)</label>
+                  <textarea id="courseModules" name="modules" class="form-textarea" placeholder="Module 1: Fundamentals&#10;Module 2: Practical Interfacing&#10;Module 3: Autonomous Rover" rows="3"></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                  <button type="button" class="btn btn-secondary" id="btnCancelCourseForm">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="btnSaveCourse">Save Course Track</button>
+                </div>
+              </form>
+              <p id="courseFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+            </div>
+
+            <!-- Course Grid / Table -->
+            <div id="adminCoursesGrid" class="admin-data-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- 4. SECTION: Media & Visual Showcase Gallery Manager -->
+          <section class="admin-section-view" id="adminSectionGallery" hidden>
+            <!-- Sub-Tabs for Gallery Manager -->
+            <div id="gallerySubnav" class="gallery-subnav-tabs" role="tablist" style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 12px; overflow-x: auto;">
+              <button type="button" class="admin-subtab-btn is-active" id="subtabShowcasePhotos" data-gallery-tab="showcase" style="padding: 9px 18px; border-radius: var(--radius-sm); border: 1px solid rgba(120, 216, 68, 0.35); background: rgba(120, 216, 68, 0.12); color: var(--green); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Visual Showcase Photos (<span id="adminShowcaseCount">20</span>)
+              </button>
+              <button type="button" class="admin-subtab-btn" id="subtabEventAlbums" data-gallery-tab="events" style="padding: 9px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; color: var(--text-secondary); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Campus Event Albums &amp; Videos (<span id="adminEventsCount">5</span>)
+              </button>
+            </div>
+
+            <!-- VIEW A: Official Visual Showcase Photos -->
+            <div id="galleryViewShowcase">
+              <div class="admin-section-header">
+                <div>
+                  <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    Official Visual Showcase &amp; Field Moments
+                  </h3>
+                  <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Add, edit, or remove photographs displayed in the interactive lightbox showcase on the website gallery.</p>
+                </div>
+                <button class="btn btn-primary" id="btnOpenShowcaseModal" type="button">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add Showcase Photo
+                </button>
+              </div>
+
+              <!-- Showcase Upload / Edit Form Drawer -->
+              <div id="showcaseFormDrawer" class="admin-form-drawer" style="display: none;">
+                <h4 id="showcaseFormTitle" style="margin: 0 0 1rem; font-size: 1.15rem; color: var(--green);">Add New Showcase Photo</h4>
+                <form id="adminShowcaseForm">
+                  <input type="hidden" id="showcaseEditId" name="id" value="">
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label class="form-label" for="showcaseTitle">Photo Title *</label>
+                      <input type="text" id="showcaseTitle" name="title" class="form-input" placeholder="e.g. JNV Kolasib (Mizoram) • PM SHRI Science Lab" required maxlength="140">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="showcaseTileFormat">Layout Format *</label>
+                      <select id="showcaseTileFormat" name="tileWide" class="form-select">
+                        <option value="false">Standard Tile (Single Column)</option>
+                        <option value="true">Wide Tile (Featured - Spans 2 Columns)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="showcaseCaption">Subtitle &amp; Details *</label>
+                    <input type="text" id="showcaseCaption" name="caption" class="form-input" placeholder="e.g. Arduino Uno, Push-Button Circuits &amp; Interactive Smart Board Simulation" required maxlength="250">
+                  </div>
+
+                  <!-- Photo Upload Section -->
+                  <div class="upload-dropzone-section">
+                    <label class="form-label">Photo Asset * (Drag &amp; Drop, Browse File, or Image URL)</label>
+                    <div class="event-modal-dropzone" id="showcaseDropzone">
+                      <div class="dropzone-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      </div>
+                      <p class="dropzone-title">Click or drag &amp; drop photograph file</p>
+                      <p class="dropzone-hint">Supports PNG, JPG, WebP (up to 15MB)</p>
+                      <input type="file" id="showcaseFileInput" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                      <input type="text" id="showcaseImageUrl" name="image" class="form-input" placeholder="Or enter image URL / asset path: assets/events/my_photo.jpg">
+                    </div>
+                    <div class="upload-preview-box" id="showcasePreviewBox" style="display: none;"></div>
+                  </div>
+
+                  <div class="modal-form-actions">
+                    <button type="button" class="btn btn-secondary" id="btnCancelShowcaseForm">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnSaveShowcase">Save &amp; Publish Photo</button>
+                  </div>
+                </form>
+                <p id="showcaseFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+              </div>
+
+              <!-- Live Showcase Photos Grid -->
+              <div class="admin-gallery-grid" id="adminShowcaseGrid">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- VIEW B: Campus Event Albums & Videos -->
+            <div id="galleryViewEvents" style="display: none;">
+              <div class="admin-section-header">
+                <div>
+                  <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Campus Event Albums &amp; Videos
+                  </h3>
+                  <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Upload campus bootcamps, workshops, and competitions photos, or edit showcase event details.</p>
+                </div>
+                <button class="btn btn-primary" id="btnOpenEventModal" type="button">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Upload Event Media
+                </button>
+              </div>
+
+              <!-- Upload / Edit Form Drawer -->
+              <div id="eventFormDrawer" class="admin-form-drawer" style="display: none;">
+                <h4 id="eventFormTitle" style="margin: 0 0 1rem; font-size: 1.15rem; color: var(--green);">Upload New Event Media</h4>
+                <form id="adminEventForm">
+                  <input type="hidden" id="eventEditId" name="id" value="">
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label class="form-label" for="eventTitle">Event Title *</label>
+                      <input type="text" id="eventTitle" name="title" class="form-input" placeholder="e.g. Autonomous Robotics &amp; ROS2 Hackathon" required maxlength="140">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="eventMediaType">Media Type *</label>
+                      <select id="eventMediaType" name="mediaType" class="form-select" required>
+                        <option value="image">Photograph (JPG, PNG, WebP)</option>
+                        <option value="video">Video Clip (MP4, WebM, Stream)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label class="form-label" for="eventCategory">Category *</label>
+                      <div class="select-wrapper">
+                        <select id="eventCategory" name="category" class="form-select" required>
+                          <option value="College Bootcamps">College Bootcamps</option>
+                          <option value="School Robotics">School Robotics &amp; JNVs</option>
+                          <option value="Hackathons &amp; Fests">Hackathons &amp; Competitions</option>
+                          <option value="University Labs">University Labs &amp; ATL</option>
+                          <option value="Keynotes">Awards &amp; Summits</option>
+                          <option value="__custom__">Other / Custom Category (Type your own)...</option>
+                        </select>
+                      </div>
+                      <div id="eventCustomCategoryWrap" style="display: none; margin-top: 0.5rem;">
+                        <input type="text" id="eventCustomCategory" name="customCategory" class="form-input" placeholder="Enter custom event category (e.g. AI Bootcamp, Drone Racing)" maxlength="100">
+                        <small style="color: var(--muted); font-size: 0.78rem; display: block; margin-top: 0.25rem;">Type your own category name to label and organize this event.</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="eventInstitution">Institution / College Name *</label>
+                      <input type="text" id="eventInstitution" name="institution" class="form-input" placeholder="e.g. NIT Jamshedpur / JNV Roing" required maxlength="120">
+                    </div>
+                  </div>
+
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label class="form-label" for="eventDate">Event Date</label>
+                      <input type="date" id="eventDate" name="date" class="form-input">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="eventAttendees">Attendees Metric</label>
+                      <input type="text" id="eventAttendees" name="attendees" class="form-input" placeholder="e.g. 500+ Engineers" maxlength="60">
+                    </div>
+                  </div>
+
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label class="form-label" for="eventDuration">Video Duration (If Video)</label>
+                      <input type="text" id="eventDuration" name="duration" class="form-input" placeholder="e.g. 2:45 or 45s" maxlength="30">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="eventTags">Tags (Comma Separated)</label>
+                      <input type="text" id="eventTags" name="tags" class="form-input" placeholder="e.g. ROS2, Computer Vision, SLAM" maxlength="120">
+                    </div>
+                  </div>
+
+                  <!-- Photo / Video Upload Section -->
+                  <div class="upload-dropzone-section">
+                    <label class="form-label">Media Asset (File Upload or Image / Video URL)</label>
+                    <div class="event-modal-dropzone" id="eventDropzone">
+                      <div class="dropzone-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      </div>
+                      <p class="dropzone-title">Click or drag &amp; drop photos or video file</p>
+                      <p class="dropzone-hint">Select multiple photos for sliding gallery, or video (PNG, JPG, WebP, MP4, up to 15MB)</p>
+                      <input type="file" id="eventFileInput" accept="image/*,video/*" multiple style="display: none;">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" id="eventImageUrl" name="image" class="form-input" placeholder="Or enter URL / file path: assets/events/my_event.jpg">
+                    </div>
+                    <div class="upload-preview-box" id="eventPreviewBox" style="display: none;"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="eventDescription">Event Description</label>
+                    <textarea id="eventDescription" name="description" class="form-textarea" placeholder="Provide a brief summary of the workshop, technologies covered, and student outcomes..." rows="3" maxlength="1200"></textarea>
+                  </div>
+
+                  <div class="modal-form-actions">
+                    <button type="button" class="btn btn-secondary" id="btnCancelEventForm">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnSaveEvent">Save &amp; Publish Media</button>
+                  </div>
+                </form>
+                <p id="eventFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+              </div>
+
+              <!-- Live Events Grid -->
+              <div class="admin-gallery-grid" id="adminEventsGrid">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. SECTION: Leads & Inquiries Management -->
+          <section class="admin-section-view" id="adminSectionInquiries" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Student &amp; Institutional Inquiries
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Review submissions, update follow-up statuses, and organize partnership requests.</p>
+              </div>
+            </div>
+
+            <div id="adminInquiriesTableWrap" class="admin-table-wrapper">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- 6. SECTION: Issue & Manage Certificates -->
+          <section class="admin-section-view" id="adminSectionCertificates" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                  Accredited Certificate Dispatch &amp; Verification
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Issue accredited ISO 9001:2015 certificates with unique QR verification codes and valid vector PDF output.</p>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <a href="/workshop-cert" target="_blank" class="btn btn-secondary btn-sm" style="padding: 8px 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                  Interactive Workshop Generator
+                </a>
+                <button class="btn btn-primary" id="btnOpenCertModal" type="button">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Issue Certificate
+                </button>
+              </div>
+            </div>
+
+            <!-- Certificate Issue & Upload Drawer -->
+            <div id="certFormDrawer" class="admin-form-drawer" style="display: none;">
+              <h4 style="margin: 0 0 1rem; font-size: 1.15rem; color: var(--green);">Issue &amp; Upload Candidate Certificate</h4>
+              <form id="adminCertIssueForm">
+                <div class="form-row-2col">
+                  <!-- Student Enrollment Number -->
+                  <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label class="form-label" for="certEnrollmentNo">Candidate Enrollment Number / Roll No. *</label>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" id="certEnrollmentNo" name="enrollmentNo" class="form-input" placeholder="e.g. ENR-2026-744" required maxlength="80" style="font-family: monospace; letter-spacing: 0.5px;">
+                      <button type="button" class="btn btn-secondary btn-sm" id="btnAutoGenerateEnrollmentNo" style="white-space: nowrap; padding: 0 12px; font-weight: 700;" title="Generate random ENR-2026 enrollment code">
+                        ⚡ Random ENR
+                      </button>
+                    </div>
+                    <small style="color: var(--text-secondary); font-size: 0.78rem; display: block; margin-top: 4px;">
+                      Student easily accesses and downloads their certificate using this enrollment number (e.g. ENR-2026-744).
+                    </small>
+                  </div>
+
+                  <!-- Certificate Number / Reference Code -->
+                  <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label class="form-label" for="certNumber">Certificate Number / Reference Code *</label>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" id="certNumber" name="certificateNumber" class="form-input" placeholder="e.g. RBT-WS-2026-5594" style="font-family: monospace; letter-spacing: 0.5px;" maxlength="80">
+                      <button type="button" class="btn btn-secondary btn-sm" id="btnAutoGenerateCertNumber" style="white-space: nowrap; padding: 0 12px; font-weight: 700;" title="Generate random RBT-WS-2026 code">
+                        ⚡ Random Code
+                      </button>
+                    </div>
+                    <small style="color: var(--text-secondary); font-size: 0.78rem; display: block; margin-top: 4px;">
+                      Official unique accredited reference identifier (e.g. RBT-WS-2026-5594).
+                    </small>
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="certStudentName">Candidate / Student Full Name *</label>
+                    <input type="text" id="certStudentName" name="studentName" class="form-input" placeholder="e.g. Priya Sharma" required maxlength="80">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="certCourseName">Course / Workshop Title *</label>
+                    <input type="text" id="certCourseName" name="courseName" class="form-input" placeholder="e.g. Advanced Robotics &amp; Embedded Systems" required maxlength="120">
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="certEmail">Candidate Email Address (For Easy Student Lookup)</label>
+                    <input type="email" id="certEmail" name="email" class="form-input" placeholder="e.g. student@gmail.com" maxlength="120">
+                    <small style="color: var(--text-secondary); font-size: 0.76rem; display: block; margin-top: 2px;">Candidate can easily search &amp; verify by their email address.</small>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="certDate">Completion / Issue Date</label>
+                    <input type="date" id="certDate" name="issueDate" class="form-input">
+                  </div>
+                </div>
+
+                <div class="form-row-2col">
+                  <div class="form-group">
+                    <label class="form-label" for="certGrade">Award Grade / Distinction</label>
+                    <select id="certGrade" name="grade" class="form-select">
+                      <option value="Outstanding (A+)" selected>Outstanding (A+)</option>
+                      <option value="Excellence (A)">Excellence (A)</option>
+                      <option value="Distinction (B+)">Distinction (B+)</option>
+                      <option value="Merit (B)">Merit (B)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="certVenue">Training Venue (Optional)</label>
+                    <input type="text" id="certVenue" name="venue" class="form-input" placeholder="e.g. Robotree Asansol Centre of Excellence" maxlength="120">
+                  </div>
+                </div>
+
+                <!-- Certificate Document Upload Section -->
+                <div class="upload-dropzone-section" style="margin-top: 1rem; margin-bottom: 1.25rem;">
+                  <label class="form-label">Upload Candidate Certificate File (Optional PDF / Scanned Image)</label>
+                  <div class="event-modal-dropzone" id="certDropzone" style="cursor: pointer;">
+                    <div class="dropzone-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <p class="dropzone-title">Click or Drag &amp; Drop Certificate File</p>
+                    <p class="dropzone-hint">Supports PDF documents or scanned PNG/JPG certificate images (up to 15MB)</p>
+                    <input type="file" id="certFileInput" accept=".pdf,image/png,image/jpeg,image/webp" style="display: none;">
+                  </div>
+                  <input type="hidden" id="certFileBase64" name="fileBase64" value="">
+                  <input type="hidden" id="certFileOriginalName" name="fileOriginalName" value="">
+                  <div id="certFilePreviewBox" class="upload-preview-box" style="display: none; margin-top: 0.75rem;"></div>
+                  <small style="color: var(--text-secondary); font-size: 0.78rem; display: block; margin-top: 4px;">
+                    ⚡ If no file is uploaded, the system automatically generates an authentic high-resolution vector PDF certificate.
+                  </small>
+                </div>
+
+                <div class="modal-form-actions">
+                  <button type="button" class="btn btn-secondary" id="btnCancelCertForm">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="btnIssueCert">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Upload &amp; Issue Certificate
+                  </button>
+                </div>
+              </form>
+              <p id="certFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+            </div>
+
+            <!-- Certificates List -->
+            <div id="adminCertsTableWrap" class="admin-table-wrapper">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- 7. SECTION: Admin Security & Password Change -->
+          <section class="admin-section-view" id="adminSectionSecurity" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Admin Security &amp; Passcode Settings
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Update your admin password. Verify your old/current password to authenticate and save the new password.</p>
+              </div>
+            </div>
+
+            <div style="max-width: 640px; margin-top: 24px;">
+              <!-- Admin Permission Guard Status Card -->
+              <div class="admin-permission-guard-card" style="margin-bottom: 20px; padding: 18px 20px; background: rgba(10, 23, 38, 0.7); border: 1px solid var(--line); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div id="adminPermissionIconWrap" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(120, 216, 68, 0.15); border: 1.5px solid rgba(120, 216, 68, 0.35); display: flex; align-items: center; justify-content: center; color: var(--green);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-weight: 700; font-size: 0.95rem; color: var(--text);">Admin Permission Guard</span>
+                      <span id="adminPermissionStatusBadge" class="badge" style="background: rgba(120, 216, 68, 0.15); color: var(--green); border: 1px solid rgba(120, 216, 68, 0.35); font-size: 0.72rem; padding: 2px 8px; border-radius: 12px; font-weight: 600;">ACTIVE / UNLOCKED</span>
+                    </div>
+                    <p id="adminPermissionStatusNotice" style="margin: 2px 0 0; color: var(--text-secondary); font-size: 0.8rem;">Without verified permission of the administrator, changing the admin password is prohibited.</p>
+                  </div>
+                </div>
+                <button type="button" id="btnToggleAdminPermissionLock" class="btn btn-secondary btn-sm" style="font-size: 0.82rem; padding: 6px 14px; display: inline-flex; align-items: center; gap: 6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <span id="btnTogglePermissionText">Lock Password Changes</span>
+                </button>
+              </div>
+
+              <article class="admin-card" style="padding: 28px; background: rgba(10, 23, 38, 0.7); border: 1px solid var(--line); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                  <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 168, 89, 0.15); border: 1.5px solid rgba(0, 168, 89, 0.35); display: flex; align-items: center; justify-content: center; color: var(--green);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </div>
+                  <div>
+                    <h4 style="margin: 0 0 4px; font-size: 1.15rem; color: var(--text);">Change Admin Password</h4>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.84rem;">Protect your administrative suite with a strong, updated passcode.</p>
+                  </div>
+                </div>
+
+                <form id="adminChangePasswordForm" novalidate>
+                  <div class="form-group" style="margin-bottom: 18px;">
+                    <label for="oldAdminPasscode" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Current / Old Password *</label>
+                    <div class="admin-input-wrap" style="position: relative;">
+                      <input type="password" id="oldAdminPasscode" name="oldPassword" class="form-input" placeholder="Enter current admin password" required autocomplete="current-password" style="width: 100%; padding-right: 44px;">
+                      <button type="button" class="password-toggle-btn admin-toggle-passcode" aria-label="Toggle password visibility" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px;">
+                        <svg class="eye-show" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 18px;">
+                    <label for="adminPermissionPasscode" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Admin Permission / Authorization Key *</label>
+                    <div class="admin-input-wrap" style="position: relative;">
+                      <input type="password" id="adminPermissionPasscode" name="adminPermissionKey" class="form-input" placeholder="Enter Admin Permission Key" required autocomplete="off" style="width: 100%; padding-right: 44px;">
+                      <button type="button" class="password-toggle-btn admin-toggle-passcode" aria-label="Toggle password visibility" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px;">
+                        <svg class="eye-show" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                      </button>
+                    </div>
+                    <small style="color: var(--text-secondary); font-size: 0.78rem; display: block; margin-top: 4px;">
+                      🛡️ Required Admin Permission: Enter your Master Admin Permission Key to authorize password modification.
+                    </small>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 18px;">
+                    <label for="newAdminPasscode" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">New Password * (Min 8 characters)</label>
+                    <div class="admin-input-wrap" style="position: relative;">
+                      <input type="password" id="newAdminPasscode" name="newPassword" class="form-input" placeholder="Enter new strong password" minlength="8" required autocomplete="new-password" style="width: 100%; padding-right: 44px;">
+                      <button type="button" class="password-toggle-btn admin-toggle-passcode" aria-label="Toggle password visibility" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px;">
+                        <svg class="eye-show" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 22px;">
+                    <label for="confirmAdminPasscode" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Confirm New Password *</label>
+                    <div class="admin-input-wrap" style="position: relative;">
+                      <input type="password" id="confirmAdminPasscode" name="confirmPassword" class="form-input" placeholder="Re-enter new password" minlength="8" required autocomplete="new-password" style="width: 100%; padding-right: 44px;">
+                      <button type="button" class="password-toggle-btn admin-toggle-passcode" aria-label="Toggle password visibility" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px;">
+                        <svg class="eye-show" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                      </button>
+                    </div>
+                  <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; user-select: none;">
+                      <input type="checkbox" id="adminPermissionConfirmedCheck" name="adminPermissionConfirmed" required style="margin-top: 3px; accent-color: var(--green); width: 16px; height: 16px;">
+                      <span style="font-size: 0.85rem; color: var(--text); line-height: 1.4;">
+                        <strong>I confirm I have explicit permission from the System Administrator</strong> to update the administrative master passcode.
+                      </span>
+                    </label>
+                  </div>
+
+                  <p id="adminPasswordChangeStatus" class="form-feedback" aria-live="polite" style="margin-bottom: 18px; min-height: 20px; font-weight: 600;"></p>
+
+                  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" type="submit" id="btnAdminChangePassword" style="display: inline-flex; align-items: center; gap: 8px;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>Update Admin Password</span>
+                    </button>
+                    <button class="btn btn-secondary" type="reset" id="btnAdminResetPasswordForm">
+                      Clear Fields
+                    </button>
+                  </div>
+                </form>
+              </article>
+            </div>
+          </section>
+
+          <!-- 8. SECTION: Website Content, Hero Metric & Government Protocol -->
+          <section class="admin-section-view" id="adminSectionSettings" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  Website Content &amp; Metrics
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Modify live homepage impact numbers, hero badges, and the official Government of India protocol compliance notice.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 24px;">
+              <!-- Left: Form -->
+              <article class="admin-card" style="padding: 28px; background: rgba(10, 23, 38, 0.7); border: 1px solid var(--line); border-radius: var(--radius-md);">
+                <form id="adminSiteSettingsForm" novalidate>
+                  <h4 style="margin: 0 0 16px; font-size: 1.1rem; color: var(--text); display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Hero Floating Stat Card
+                  </h4>
+
+                  <div class="form-group" style="margin-bottom: 16px;">
+                    <label for="settingHeroStatNumber" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Metric Number * (e.g. 20,000+)</label>
+                    <input type="text" id="settingHeroStatNumber" name="heroStatNumber" class="form-input" placeholder="e.g. 20,000+" maxlength="50" required style="width: 100%;">
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 22px;">
+                    <label for="settingHeroStatLabel" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Metric Label * (e.g. Students Trained)</label>
+                    <input type="text" id="settingHeroStatLabel" name="heroStatLabel" class="form-input" placeholder="e.g. Students Trained" maxlength="100" required style="width: 100%;">
+                  </div>
+
+                  <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0;">
+
+                  <h4 style="margin: 0 0 16px; font-size: 1.1rem; color: var(--text); display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Government Protocol &amp; Accreditation Notice
+                  </h4>
+
+                  <div class="form-group" style="margin-bottom: 22px;">
+                    <label for="settingGovernmentProtocol" class="form-label" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">Official Compliance Statement (Footer)</label>
+                    <textarea id="settingGovernmentProtocol" name="governmentProtocol" class="form-textarea" rows="3" placeholder="Enter government protocol statement" maxlength="500" required style="width: 100%;"></textarea>
+                  </div>
+
+                  <p id="adminSiteSettingsStatus" class="form-feedback" aria-live="polite" style="margin-bottom: 18px; min-height: 20px; font-weight: 600;"></p>
+
+                  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" type="submit" id="btnAdminSaveSiteSettings" style="display: inline-flex; align-items: center; gap: 8px;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>Save Changes</span>
+                    </button>
+                    <button class="btn btn-secondary" type="button" id="btnAdminResetSiteSettings">
+                      Reset
+                    </button>
+                  </div>
+                </form>
+              </article>
+
+              <!-- Right: Live Preview Card matching user's image -->
+              <article class="admin-card" style="padding: 28px; background: rgba(10, 23, 38, 0.7); border: 1px solid var(--line); border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 16px;">Live Hero Badge Preview</div>
+                <div class="hero-stat-card" style="position: static; margin: 0 auto; box-shadow: 0 12px 32px rgba(0,0,0,0.5); pointer-events: none;">
+                  <small>Robotree</small>
+                  <strong id="previewHeroStatNumber">20,000+</strong>
+                  <span id="previewHeroStatLabel">Students Trained</span>
+                  <div class="avatar-row" aria-hidden="true">
+                    <b>A</b><b>R</b><b>S</b><b>K</b>
+                  </div>
+                </div>
+                <p style="margin-top: 16px; font-size: 0.82rem; color: var(--text-secondary); text-align: center;">This badge appears floating over the robot visual on the homepage.</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- 9. SECTION: Hardware Store & Products Management -->
+          <section class="admin-section-view" id="adminSectionStore" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green);"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                  Hardware Store &amp; E-Commerce Management
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Add, edit, manage stock, and upload product photos for the student hardware store.</p>
+              </div>
+              <button class="btn btn-primary" id="btnToggleAddProductForm" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add New Product</span>
+              </button>
+            </div>
+
+            <!-- Add / Edit Product Collapsible Form -->
+            <div id="adminProductFormCard" class="admin-card" style="margin-top: 20px;" hidden>
+              <h4 id="adminProductFormTitle" style="margin-top: 0; margin-bottom: 16px; font-size: 1.15rem; color: var(--text);">Add New Store Item</h4>
+              <form id="adminProductForm" novalidate>
+                <input type="hidden" id="adminProdId" name="id">
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="adminProdTitle" class="form-label">Product Title *</label>
+                    <input type="text" id="adminProdTitle" name="title" class="form-input" required placeholder="e.g. 4WD Autonomous Obstacle Avoidance Robot Kit">
+                  </div>
+                  <div class="form-group">
+                    <label for="adminProdCategory" class="form-label">Category *</label>
+                    <select id="adminProdCategory" name="category" class="form-select" required>
+                      <option value="Robotics Kits">Robotics Kits</option>
+                      <option value="Microcontrollers">Microcontrollers</option>
+                      <option value="Sensors & Actuators">Sensors &amp; Actuators</option>
+                      <option value="Drones & Motors">Drones &amp; Motors</option>
+                      <option value="3D Parts & Components">3D Parts &amp; Components</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="adminProdPrice" class="form-label">Selling Price (₹) *</label>
+                    <input type="number" id="adminProdPrice" name="price" class="form-input" required min="0" placeholder="2499">
+                  </div>
+                  <div class="form-group">
+                    <label for="adminProdOrigPrice" class="form-label">Original / MRP Price (₹)</label>
+                    <input type="number" id="adminProdOrigPrice" name="originalPrice" class="form-input" min="0" placeholder="3499">
+                  </div>
+                  <div class="form-group">
+                    <label for="adminProdStockQty" class="form-label">Stock Quantity</label>
+                    <input type="number" id="adminProdStockQty" name="stockQuantity" class="form-input" min="0" value="15">
+                  </div>
+                  <div class="form-group">
+                    <label for="adminProdSku" class="form-label">SKU / Item Code</label>
+                    <input type="text" id="adminProdSku" name="sku" class="form-input" placeholder="RBT-KIT-4WD-01">
+                  </div>
+                </div>
+
+                <!-- Drag & Drop Product Image Upload -->
+                <div class="form-group">
+                  <label class="form-label">Product Image (Drag &amp; Drop or Select File)</label>
+                  <div class="admin-dropzone" id="adminProdDropzone" style="border: 2px dashed var(--line); border-radius: var(--radius-sm); padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s;">
+                    <input type="file" id="adminProdFileInput" accept="image/*" style="display: none;">
+                    <div class="dropzone-content" id="adminProdDropzoneContent">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--green); margin-bottom: 8px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                      <p style="margin: 0 0 4px; font-size: 0.9rem;"><strong>Click or drag and drop</strong> image here to upload</p>
+                      <small style="color: var(--text-muted); font-size: 0.78rem;">Supports PNG, JPG, WEBP (Max 5MB)</small>
+                    </div>
+                    <div class="dropzone-preview" id="adminProdDropzonePreview" hidden style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                      <img id="adminProdPreviewImg" src="" alt="Preview" style="max-height: 120px; border-radius: 6px; object-fit: contain;">
+                      <button type="button" class="btn btn-secondary btn-sm" id="btnRemoveProdImg" style="font-size: 0.78rem; padding: 4px 10px;">Remove Photo</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="adminProdImageUrl" name="image">
+                  <input type="hidden" id="adminProdFileBase64" name="fileBase64">
+                </div>
+
+                <div class="form-group">
+                  <label for="adminProdDesc" class="form-label">Description *</label>
+                  <textarea id="adminProdDesc" name="description" class="form-input" rows="3" placeholder="Detailed product specifications, educational use, and contents..."></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                  <label for="adminProdFeatures" class="form-label">Key Features &amp; Specifications (One per line)</label>
+                  <textarea id="adminProdFeatures" name="features" class="form-input" rows="3" placeholder="Arduino Compatible (C/C++ &amp; Block Coding)&#10;Ultrasonic Obstacle Sensing &amp; Navigation&#10;Complete 4WD Acrylic Chassis &amp; Gear Motors"></textarea>
+                </div>
+
+                <div class="form-row" style="align-items: center; margin-top: 10px; gap: 20px;">
+                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="adminProdInStock" name="inStock" checked style="width: 18px; height: 18px; accent-color: var(--green);">
+                    <span style="font-size: 0.92rem; font-weight: 600;">Item is In Stock &amp; Available for Order</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="adminProdFeatured" name="featured" style="width: 18px; height: 18px; accent-color: var(--green);">
+                    <span style="font-size: 0.92rem; font-weight: 600;">Feature on Store Homepage</span>
+                  </label>
+                </div>
+
+                <div class="modal-form-actions" style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+                  <button type="button" class="btn btn-secondary" id="btnCancelProductForm">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="btnSaveProduct">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span id="btnSaveProductText">Save Product</span>
+                  </button>
+                </div>
+              </form>
+              <p id="adminProductFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 12px;"></p>
+            </div>
+
+            <!-- Products Table List -->
+            <div id="adminProductsTableWrap" class="admin-table-wrapper" style="margin-top: 24px;">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+        </div>
+        
+      </div>
+    </section>
+  </main>
+
+      <!-- Cookie Consent Banner -->
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Cookie Consent Banner" role="region" aria-live="polite">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <p><strong>We value your privacy.</strong> Robotree uses essential security cookies and privacy-first telemetry to enhance your robotics learning experience. Read our <a href="privacy.html" class="cookie-link">Privacy Policy</a> and <a href="terms.html" class="cookie-link">Terms of Service</a>.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn btn-secondary" id="cookieReject" type="button">Essential Only</button>
+        <button class="btn btn-primary" id="cookieAccept" type="button">Accept All</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Complete 4-Column Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo-link" aria-label="Robotree Robotics Home">
+          <div class="footer-logo-badge">
+            <img src="assets/robotree_logo.png" alt="Robotree Robotics Logo" width="150" height="46">
+          </div>
+        </a>
+        <p class="footer-tagline">Empowering the next generation of engineers, creators, and innovators with practical robotics, AI, and STEM education.</p>
+        <div class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>ISO 9001:2015 Certified Institution</span>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Quick Links</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Robotree</a></li>
+          <li><a href="team.html">Our 20 Team Members</a></li>
+          <li><a href="courses.html">Robotics & AI Courses</a></li>
+          <li><a href="services.html">Services &amp; Lab Setup</a></li>
+          <li><a href="gallery.html">Official Event Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Portals & Tools</h4>
+        <ul class="footer-nav-list">
+          <li><a href="certificate.html">Certificate Verification</a></li>
+          <li><a href="admin.html">Admin Management Portal</a></li>
+          <li><a href="contact.html">Institutional Lab Inquiry</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col footer-contact-col">
+        <h4 class="footer-col-title">Get In Touch</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <a href="tel:+917908932245">+91 79089 32245</a> / <a href="tel:+917979038537">+91 79790 38537</a>
+            </div>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div>
+              <a href="mailto:contact@robotree.in">contact@robotree.in</a> / <a href="mailto:info@robotree.org">info@robotree.org</a>
+            </div>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><strong>Reg. Office:</strong> AJ4, Sector H, South Dhadka Rd, Vivekananda Nagar, Asansol - 713301</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span><strong>Innovation Lab:</strong> Sentrum Mall, 3rd Floor, Shristinagar, Asansol - 713305</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom-bar">
+      <p class="footer-copy"><span class="footer-protocol-text">Robotree Robotics LLP &bull; Operating in accordance with Government of India Protocols (GeM &amp; MSME Accredited Entity)</span></p>
+      <div class="footer-bottom-nav">
+        <a href="index.html">Home</a>
+        <span class="dot">&bull;</span>
+        <a href="about.html">About</a>
+        <span class="dot">&bull;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&bull;</span>
+        <a href="courses.html">Courses</a>
+        <span class="dot">&bull;</span>
+        <a href="services.html">Services</a>
+        <span class="dot">&bull;</span>
+        <a href="gallery.html">Gallery</a>
+        <span class="dot">&bull;</span>
+        <a href="contact.html">Contact</a>
+        <span class="dot">&bull;</span>
+        <a href="privacy.html">Privacy</a>
+        <span class="dot">&bull;</span>
+        <a href="terms.html">Terms</a>
+      </div>
+      <button class="footer-to-top" type="button" id="toTop" aria-label="Scroll back to top" title="Scroll back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Unified Multi-Role Account / Portal Modal (Student, Employee, Admin) -->
+  <div class="modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle" hidden>
+    <article class="modal-card account-modal">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close portal modal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <p class="eyebrow">PORTAL ACCESS</p>
+      <h2 id="accountTitle">Student, Employee & Admin Login</h2>
+
+      <!-- Multi-Role Selector Tabs -->
+      <div class="role-selector-bar" role="tablist" aria-label="Select Portal Type">
+        <button class="role-tab is-active" type="button" role="tab" data-portal-role="student">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Student
+        </button>
+        <button class="role-tab" type="button" role="tab" data-portal-role="employee">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Employee
+        </button>
+        <button class="role-tab" type="button" role="tab" data-portal-role="admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Admin
+        </button>
+      </div>
+
+      <!-- Action Switcher for Student / Employee -->
+      <div class="account-tabs" id="accountActionTabs" role="tablist" aria-label="Account action">
+        <button class="is-active" type="button" role="tab" aria-selected="true" data-account-view="login">Login</button>
+        <button type="button" role="tab" aria-selected="false" data-account-view="register">Create Account</button>
+      </div>
+
+      <!-- 1. Student / Employee Login Panel -->
+      <section class="account-panel" id="accountLoginPanel">
+        <form class="feedback-form" id="accountLoginForm" novalidate>
+          <input type="hidden" name="role" id="loginRoleInput" value="Student">
+          <div class="portal-role-banner" id="portalRoleBanner">
+            <span>Logging in as <strong>Student</strong></span>
+          </div>
+          <label><span>Email Address</span><input type="email" name="email" placeholder="e.g. name@student.com" autocomplete="email" maxlength="120" required></label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password" minlength="8" required>
+          </label>
+          <button class="btn btn-primary" type="submit">Sign In to Portal <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg></button>
+        </form>
+      </section>
+
+      <!-- 2. Student / Employee Registration Panel -->
+      <section class="account-panel" id="accountRegisterPanel" hidden>
+        <form class="feedback-form" id="accountRegisterForm" novalidate>
+          <input type="hidden" name="role" id="registerRoleInput" value="Student">
+          <div class="portal-role-banner" id="registerRoleBanner">
+            <span>Creating account as <strong>Student</strong></span>
+          </div>
+          <div class="field-row">
+            <label><span>Full Name</span><input type="text" name="name" placeholder="Full name" autocomplete="name" maxlength="80" required></label>
+            <label><span>Phone Number</span><input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" inputmode="tel" maxlength="24"></label>
+          </div>
+          <label><span>Email Address</span><input type="email" name="email" placeholder="Email address" autocomplete="email" maxlength="120" required></label>
+          <label><span>Password</span><input type="password" name="password" placeholder="Minimum 8 characters" autocomplete="new-password" minlength="8" required></label>
+          <button class="btn btn-primary" type="submit">Register Account <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></button>
+        </form>
+      </section>
+
+      <!-- 4. Admin Passcode Panel -->
+      <section class="account-panel" id="accountAdminPanel" hidden>
+        <form class="feedback-form" id="portalAdminForm" novalidate>
+          <div class="portal-role-banner admin-banner">
+            <span>Security Protected &bull; <strong>Administrator Access</strong></span>
+          </div>
+          <label><span>Admin Passcode</span><input type="password" name="passcode" id="portalAdminPasscode" placeholder="Enter Admin Passcode" autocomplete="current-password" required></label>
+          <button class="btn btn-primary" type="submit">Unlock Admin Control <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+        </form>
+      </section>
+
+      <!-- 4. Active Logged-in Session View -->
+      <section class="account-session" id="accountSessionPanel" hidden>
+        <div class="account-profile-info">
+          <span class="role-pill" id="accountRoleBadge">Student</span>
+          <h3 id="accountWelcome">Welcome back</h3>
+          <p id="accountEmail"></p>
+          <div class="account-shortcuts">
+            <a href="certificate.html" class="mini-btn">My Certificates</a>
+            <a href="courses.html" class="mini-btn">Course Catalog</a>
+            <button class="mini-btn" type="button" id="sessionCheckInBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Live GPS Attendance Check-In</button>
+          </div>
+        </div>
+        <button class="btn btn-secondary" type="button" id="accountLogout">Sign Out <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+      </section>
+
+      <p class="form-feedback" id="accountStatus" role="status" aria-live="polite"></p>
+    </article>
+  </div>
+
+  <!-- Live Location & Interactive GPS Direction Modal -->
+  <div class="modal-backdrop" id="locationModal" role="dialog" aria-modal="true" aria-labelledby="locationTitle" hidden>
+    <article class="modal-card location-modal">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close location modal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <p class="eyebrow">HEADQUARTERS &amp; STEM LAB</p>
+      <h2 id="locationTitle">Robotree Office Location &amp; Directions</h2>
+
+      <div class="location-hub-card">
+        <div class="location-header-row">
+          <div>
+            <h3>Sentrum Mall Innovation Hub</h3>
+            <p>Sentrum Mall, 3rd Floor, Shristinagar, Asansol, WB 713305</p>
+          </div>
+          <span class="office-status-badge"><span class="status-indicator-dot" aria-hidden="true"></span>Open Now &bull; 9:30 AM &ndash; 6:30 PM</span>
+        </div>
+
+        <!-- Embedded Interactive OpenStreetMap -->
+        <div class="map-embed-wrapper">
+          <iframe
+            title="Robotree Sentrum Mall Map"
+            src="https://maps.google.com/maps?q=Sentrum+Mall+Asansol+West+Bengal&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+            width="100%"
+            height="260"
+            style="border:0; border-radius: 8px;"
+            loading="lazy">
+          </iframe>
+          <div class="map-beacon-overlay">
+            <span class="beacon-dot"></span>
+            <strong>Robotree HQ & Lab</strong>
+          </div>
+        </div>
+
+        <!-- Geolocation Distance Calculator -->
+        <div class="geo-action-box">
+          <button class="btn btn-primary" type="button" id="detectLocationBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 21 9 17 14 18 20 12 17 6 20 7 14 3 9 9 8 12 2"/></svg>
+            Show My Live Distance from Office
+          </button>
+          <a class="btn btn-secondary" href="https://www.google.com/maps/dir/?api=1&destination=Sentrum+Mall+Asansol" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+
+        <div id="locationResult" class="location-result-box" hidden></div>
+        <p class="form-feedback" id="locationStatus" role="status" aria-live="polite"></p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Admin Permission Confirmation Modal -->
+  <div class="modal-backdrop" id="modalAdminPermissionConfirm" role="dialog" aria-modal="true" aria-labelledby="adminPermModalTitle" hidden>
+    <article class="modal-card" style="max-width: 480px; padding: 26px;">
+      <button class="modal-close" type="button" id="btnCloseAdminPermModal" aria-label="Close permission confirmation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(120, 216, 68, 0.15); border: 1.5px solid rgba(120, 216, 68, 0.35); display: flex; align-items: center; justify-content: center; color: var(--green);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3 id="adminPermModalTitle" style="margin: 0; font-size: 1.2rem; color: var(--text);">Confirm Admin Permission</h3>
+          <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Administrative Security Authorization</p>
+        </div>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+        You are about to change the system-wide Master Admin Password. Without verified permission from the System Administrator, this action will be rejected and logged to security audit logs.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <button type="button" class="btn btn-secondary" id="btnCancelAdminPermConfirm">Cancel</button>
+        <button type="button" class="btn btn-primary" id="btnApproveAdminPermConfirm" style="display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Authorize &amp; Update
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

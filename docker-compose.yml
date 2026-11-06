@@ -1,0 +1,57 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: robotree_enterprise_backend
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - HOST=0.0.0.0
+      - ADMIN_PASSCODE=${ADMIN_PASSCODE:-Aniket4515}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-robotree}:${POSTGRES_PASSWORD:-robotree_secure_pass_2026}@db:5432/${POSTGRES_DB:-robotree_production}
+      - ALLOWED_ORIGINS=https://robotree.org,https://www.robotree.org,http://localhost:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - robotree_assets:/app/assets
+      - robotree_data:/app/data
+    networks:
+      - robotree_net
+
+  db:
+    image: postgres:16-alpine
+    container_name: robotree_postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-robotree}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-robotree_secure_pass_2026}
+      - POSTGRES_DB=${POSTGRES_DB:-robotree_production}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/001_initial_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-robotree} -d ${POSTGRES_DB:-robotree_production}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - robotree_net
+
+volumes:
+  postgres_data:
+    driver: local
+  robotree_assets:
+    driver: local
+  robotree_data:
+    driver: local
+
+networks:
+  robotree_net:
+    driver: bridge
