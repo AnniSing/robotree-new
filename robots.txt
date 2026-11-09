@@ -1,0 +1,9 @@
+# Robotree Robotics LLP - robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /employee.html
+Disallow: /employee-login.html
+Disallow: /api/
+
+Sitemap: https://robotree.org/sitemap.xml

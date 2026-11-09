@@ -25,7 +25,7 @@
     "db:seed": "node scripts/seed-via-api.js",
     "photos:gather": "node scripts/gather-all-photos.js",
     "build": "vite build",
-    "postbuild": "node -e \"import('node:fs').then(fs => { fs.cpSync('assets', 'dist/assets', {recursive: true, force: true}); })\"",
+    "postbuild": "node -e \"import('node:fs').then(fs => { fs.cpSync('assets', 'dist/assets', {recursive: true, force: true}); if(fs.existsSync('robots.txt')) fs.copyFileSync('robots.txt', 'dist/robots.txt'); if(fs.existsSync('sitemap.xml')) fs.copyFileSync('sitemap.xml', 'dist/sitemap.xml'); })\"",
     "preview": "vite preview"
   },
   "devDependencies": {

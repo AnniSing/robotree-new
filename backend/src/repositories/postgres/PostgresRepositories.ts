@@ -44,7 +44,7 @@ export class PostgresConnection {
         max: isSupabaseOrRemote ? 10 : 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 5000,
-        ssl: isSupabaseOrRemote ? { rejectUnauthorized: false } : undefined,
+        ssl: isSupabaseOrRemote ? { rejectUnauthorized: true } : undefined,
       });
 
       this.pool.on('error', (err) => {

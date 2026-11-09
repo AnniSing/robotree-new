@@ -43,7 +43,7 @@ export function sameOriginGuard(req: Request, res: Response, next: NextFunction)
   const isOriginLoopback = Boolean(origin) && /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin || '');
   const isSameHost = Boolean(origin) && Boolean(host) && (origin === `https://${host}` || origin === `http://${host}`);
   let isVercelPreview = false;
-  if (origin) {
+  if (origin && !isProduction) {
     try {
       isVercelPreview = /\.vercel\.app$/.test(new URL(origin).hostname);
     } catch {

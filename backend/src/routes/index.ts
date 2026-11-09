@@ -26,7 +26,7 @@ import {
 } from '../validators/inquiry.validator.js';
 import { adminLoginSchema } from '../validators/auth.validator.js';
 import { requireAdmin } from '../middleware/authenticate.js';
-import { authRateLimiter } from '../middleware/rateLimiter.js';
+import { authRateLimiter, formRateLimiter } from '../middleware/rateLimiter.js';
 
 export function createApiRouter(): Router {
   const router = Router();
@@ -47,22 +47,22 @@ export function createApiRouter(): Router {
   router.get('/v1/site-settings', AdminController.getPublicSettings);
 
   // Inbound public forms
-  router.post('/contact', validateRequest(contactSchema), InquiryController.submitContact);
-  router.post('/v1/contact', validateRequest(contactSchema), InquiryController.submitContact);
-  router.post('/inquiries', validateRequest(contactSchema), InquiryController.submitContact);
-  router.post('/v1/inquiries', validateRequest(contactSchema), InquiryController.submitContact);
+  router.post('/contact', formRateLimiter, validateRequest(contactSchema), InquiryController.submitContact);
+  router.post('/v1/contact', formRateLimiter, validateRequest(contactSchema), InquiryController.submitContact);
+  router.post('/inquiries', formRateLimiter, validateRequest(contactSchema), InquiryController.submitContact);
+  router.post('/v1/inquiries', formRateLimiter, validateRequest(contactSchema), InquiryController.submitContact);
 
-  router.post('/newsletter', validateRequest(newsletterSchema), InquiryController.subscribeNewsletter);
-  router.post('/v1/newsletter', validateRequest(newsletterSchema), InquiryController.subscribeNewsletter);
+  router.post('/newsletter', formRateLimiter, validateRequest(newsletterSchema), InquiryController.subscribeNewsletter);
+  router.post('/v1/newsletter', formRateLimiter, validateRequest(newsletterSchema), InquiryController.subscribeNewsletter);
 
-  router.post('/program-interest', validateRequest(programInterestSchema), InquiryController.recordProgramInterest);
-  router.post('/v1/program-interest', validateRequest(programInterestSchema), InquiryController.recordProgramInterest);
+  router.post('/program-interest', formRateLimiter, validateRequest(programInterestSchema), InquiryController.recordProgramInterest);
+  router.post('/v1/program-interest', formRateLimiter, validateRequest(programInterestSchema), InquiryController.recordProgramInterest);
 
-  router.post('/feedback', validateRequest(feedbackSchema), InquiryController.submitFeedback);
-  router.post('/v1/feedback', validateRequest(feedbackSchema), InquiryController.submitFeedback);
+  router.post('/feedback', formRateLimiter, validateRequest(feedbackSchema), InquiryController.submitFeedback);
+  router.post('/v1/feedback', formRateLimiter, validateRequest(feedbackSchema), InquiryController.submitFeedback);
 
-  router.post('/analytics/event', validateRequest(analyticsEventSchema), InquiryController.recordAnalytics);
-  router.post('/v1/analytics/event', validateRequest(analyticsEventSchema), InquiryController.recordAnalytics);
+  router.post('/analytics/event', formRateLimiter, validateRequest(analyticsEventSchema), InquiryController.recordAnalytics);
+  router.post('/v1/analytics/event', formRateLimiter, validateRequest(analyticsEventSchema), InquiryController.recordAnalytics);
 
   // Direct uploads & activity log compatibility
   router.get('/showcase', EventController.listShowcase);

@@ -71,3 +71,9 @@ export const publicRateLimiter = createRateLimiter({
   maxRequests: 200,
   message: 'Request limit reached. Please slow down.',
 });
+
+export const formRateLimiter = createRateLimiter({
+  windowMs: 60 * 1000,
+  maxRequests: 10,
+  message: 'Too many form submissions. Please try again in a minute.',
+});

@@ -7,6 +7,7 @@ import {
   createStoreOrderSchema,
 } from '../../validators/product.validator.js';
 import { requireAdmin } from '../../middleware/authenticate.js';
+import { formRateLimiter } from '../../middleware/rateLimiter.js';
 
 const router = Router();
 
@@ -17,7 +18,7 @@ router.get('/', ProductController.list);
 router.get('/:id', ProductController.getById);
 
 // Public Order / Procurement Inquiries Endpoint
-router.post('/orders', validateRequest(createStoreOrderSchema), ProductController.createOrder);
+router.post('/orders', formRateLimiter, validateRequest(createStoreOrderSchema), ProductController.createOrder);
 
 // Admin-Protected Product Management Endpoints
 router.post(

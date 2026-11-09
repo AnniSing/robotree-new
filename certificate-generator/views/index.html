@@ -10,73 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Great+Vibes&family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .admin-auth-guard {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(7, 16, 28, 0.96);
-      backdrop-filter: blur(10px);
-      z-index: 99999;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .admin-auth-card {
-      background: #0f233a;
-      border: 1px solid rgba(120, 216, 68, 0.35);
-      border-radius: 16px;
-      padding: 36px 30px;
-      max-width: 480px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    }
-    .admin-auth-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(120, 216, 68, 0.15);
-      border: 2px solid rgba(120, 216, 68, 0.35);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #78d844;
-      margin-bottom: 20px;
-    }
-    .admin-auth-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #f1f5f9;
-      margin: 0 0 10px;
-    }
-    .admin-auth-desc {
-      font-size: 0.9rem;
-      color: #94a3b8;
-      line-height: 1.6;
-      margin: 0 0 24px;
-    }
-    .admin-auth-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #78d844;
-      color: #07101c;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .admin-auth-btn:hover {
-      background: #8ae259;
-      transform: translateY(-2px);
-    }
-  </style>
 </head>
 <body>
   <!-- Admin Authentication Gate -->
@@ -91,7 +24,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
         Sign In via Admin Portal
       </a>
-      <a href="/certificate.html" style="display: block; margin-top: 14px; font-size: 0.82rem; color: #94a3b8; text-decoration: underline;">
+      <a href="/certificate.html" class="auth-return-link">
         Return to Public Certificate Verification
       </a>
     </div>
@@ -101,10 +34,10 @@
     <div class="header-container">
       <a href="/" class="brand">
         <span>ROBOTREE ROBOTICS</span>
-        <span class="brand-badge" style="background: rgba(120, 216, 68, 0.15); color: #78d844; border: 1px solid rgba(120, 216, 68, 0.3);">Admin Generator</span>
+        <span class="brand-badge brand-badge--admin">Admin Generator</span>
       </a>
       <div class="header-meta">
-        <a href="/admin.html" style="font-size: 0.85rem; color: #78d844; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+        <a href="/admin.html" class="admin-portal-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           Admin Portal
         </a>
@@ -121,7 +54,7 @@
       </h1>
       <p class="card-subtitle">Official Administrator Tool — Only authorized administrators are permitted to generate and issue participation certificates.</p>
 
-      <form id="certForm" onsubmit="return false;">
+      <form id="certForm">
         <div class="form-group">
           <label for="studentName">Student Full Name</label>
           <input type="text" id="studentName" class="form-control" placeholder="e.g. Aarav Sharma" value="Rahul Sharma" autocomplete="name" required autofocus>
@@ -129,30 +62,30 @@
 
         <div class="form-group">
           <label for="certId">Certificate Verification Code</label>
-          <div style="display: flex; gap: 8px;">
-            <input type="text" id="certId" class="form-control" placeholder="e.g. RBT-WS-2026-5594" value="" style="font-family: monospace; letter-spacing: 0.5px;">
-            <button type="button" class="btn btn-secondary" id="btnAutoGenerateCode" style="white-space: nowrap; padding: 0 16px; font-weight: 700; background: rgba(120, 216, 68, 0.15); border: 1px solid rgba(120, 216, 68, 0.4); color: #78d844; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem;">
+          <div class="cert-id-row">
+            <input type="text" id="certId" class="form-control cert-id-input" placeholder="e.g. RBT-WS-2026-5594" value="">
+            <button type="button" class="btn btn-secondary btn-random-code" id="btnAutoGenerateCode">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
               Random Code
             </button>
           </div>
-          <small style="color: #94a3b8; font-size: 0.8rem; display: block; margin-top: 6px;">Click <strong>Random Code</strong> to generate a unique code like <code>RBT-WS-2026-5594</code>.</small>
+          <small class="cert-id-hint">Click <strong>Random Code</strong> to generate a unique code like <code>RBT-WS-2026-5594</code>.</small>
         </div>
 
         <div class="form-group">
           <label>Student Name Typography Style</label>
           <div class="font-grid">
-            <button type="button" class="font-option active" data-font="Great Vibes" style="font-family: 'Great Vibes', cursive; font-size: 1.15rem;">Calligraphy</button>
-            <button type="button" class="font-option" data-font="Playfair Display" style="font-family: 'Playfair Display', serif;">Classic Serif</button>
-            <button type="button" class="font-option" data-font="Cinzel" style="font-family: 'Cinzel', serif;">Formal Roman</button>
-            <button type="button" class="font-option" data-font="Montserrat" style="font-family: 'Montserrat', sans-serif;">Modern Bold</button>
+            <button type="button" class="font-option active font-great-vibes" data-font="Great Vibes">Calligraphy</button>
+            <button type="button" class="font-option font-playfair" data-font="Playfair Display">Classic Serif</button>
+            <button type="button" class="font-option font-cinzel" data-font="Cinzel">Formal Roman</button>
+            <button type="button" class="font-option font-montserrat" data-font="Montserrat">Modern Bold</button>
           </div>
         </div>
 
-        <div class="form-group" style="margin-top: 1.25rem;">
-          <label style="color: #94a3b8;">Workshop Event Details</label>
-          <div style="padding: 0.75rem 0.9rem; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: #cbd5e1;">
-            <strong style="color: #78d844;">FREE Robotics Workshop</strong> (Class 2 to 7)<br>
+        <div class="form-group form-group--event">
+          <label class="event-label">Workshop Event Details</label>
+          <div class="event-details-box">
+            <strong class="event-highlight">FREE Robotics Workshop</strong> (Class 2 to 7)<br>
             📅 26th July, 2026 (Sunday) &bull; ⏰ 11:00 AM – 1:00 PM<br>
             📍 Robotree Asansol, Sentrum Mall, 3rd Floor
           </div>
@@ -167,7 +100,7 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
             Download Image (PNG)
           </button>
-          <button type="button" class="btn btn-secondary" id="printBtn" style="padding: 0.6rem;">
+          <button type="button" class="btn btn-secondary btn-print" id="printBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
             Direct Print
           </button>

@@ -40,7 +40,7 @@ export function createApp(): Express {
       origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true);
-        } else if (origin.endsWith('.vercel.app')) {
+        } else if (!isProduction && origin.endsWith('.vercel.app')) {
           callback(null, true);
         } else if (!isProduction) {
           const isLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin);
@@ -52,6 +52,7 @@ export function createApp(): Express {
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
       allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Request-Id'],
+      maxAge: 600,
     })
   );
 

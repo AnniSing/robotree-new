@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('node:crypto');
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
 
-// Load environment variables from .env if present
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf8');
@@ -20,36 +20,135 @@ if (fs.existsSync(envPath)) {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const IS_PRODUCTION = NODE_ENV === 'production';
 
-// CORS & Security headers middleware
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || '';
+
+const DEFAULT_ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://localhost:5000',
+  'http://127.0.0.1:5000',
+  'https://robotree.in',
+  'https://www.robotree.in',
+];
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
+  : DEFAULT_ALLOWED_ORIGINS);
+
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 30;
+
+function getClientIp(req) {
+  return (
+    (req.headers['x-forwarded-for'] || '').toString().split(',')[0].trim() ||
+    req.headers['x-real-ip'] ||
+    req.socket.remoteAddress ||
+    'unknown'
+  );
+}
+
+function rateLimiter(req, res, next) {
+  const ip = getClientIp(req);
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+  const timestamps = (rateLimitMap.get(ip) || []).filter((t) => t > windowStart);
+
+  if (timestamps.length >= RATE_LIMIT_MAX) {
+    res.status(429).json({
+      success: false,
+      error: 'Too Many Requests',
+      message: 'Request limit exceeded. Please try again later.',
+    });
+    return;
+  }
+  timestamps.push(now);
+  rateLimitMap.set(ip, timestamps);
+  next();
+}
+
+setInterval(() => {
+  const windowStart = Date.now() - RATE_LIMIT_WINDOW_MS;
+  for (const [ip, timestamps] of rateLimitMap.entries()) {
+    const valid = timestamps.filter((t) => t > windowStart);
+    if (valid.length === 0) rateLimitMap.delete(ip);
+    else rateLimitMap.set(ip, valid);
+  }
+}, RATE_LIMIT_WINDOW_MS).unref();
+
+app.disable('x-powered-by');
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  const origin = req.headers.origin;
+  const isAllowed = !origin || ALLOWED_ORIGINS.includes(origin) ||
+    (origin && /\.vercel\.app$/.test(new URL(origin).hostname));
+  if (isAllowed && origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.sendStatus(204);
   }
   next();
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), payment=()');
+  const csp = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'";
+  if (IS_PRODUCTION) {
+    res.setHeader('Content-Security-Policy', csp);
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
+  } else {
+    res.setHeader('Content-Security-Policy', csp);
+  }
+  next();
+});
 
-// Serve static assets from public/
+app.use(rateLimiter);
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Root route: Serve frontend certificate generator UI
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// API: Generate High-Resolution Vector PDF Certificate
-app.post('/api/generate-pdf', async (req, res) => {
+function requireAdminAuth(req, res, next) {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : '';
+  if (!token) {
+    res.status(401).json({ success: false, error: 'Unauthorized', message: 'Admin authentication required.' });
+    return;
+  }
+  if (ADMIN_PASSCODE) {
+    const expected = crypto.createHash('sha256').update(ADMIN_PASSCODE).digest('hex');
+    const provided = crypto.createHash('sha256').update(token).digest('hex');
+    if (
+      token.length < 8 ||
+      !crypto.timingSafeEqual(Buffer.from(provided), Buffer.from(expected))
+    ) {
+      res.status(403).json({ success: false, error: 'Forbidden', message: 'Invalid admin token.' });
+      return;
+    }
+  }
+  next();
+}
+
+app.post('/api/generate-pdf', requireAdminAuth, async (req, res) => {
   try {
-    const studentName = (req.body.studentName || 'Student Name').trim();
+    const studentName = String((req.body.studentName || 'Student Name')).trim().slice(0, 120);
     const year = new Date().getFullYear();
     const randSuffix = Math.floor(1000 + Math.random() * 9000);
-    const certId = (req.body.certId || `RBT-WS-${year}-${randSuffix}`).trim();
+    const certId = String((req.body.certId || `RBT-WS-${year}-${randSuffix}`)).trim().slice(0, 64);
 
     const templateJpeg = path.join(__dirname, 'public', 'certificate.jpeg');
     const templatePng = path.join(__dirname, 'public', 'certificate.png');
@@ -64,7 +163,6 @@ app.post('/api/generate-pdf', async (req, res) => {
       return res.status(500).json({ error: 'Certificate template asset not found' });
     }
 
-    // Create PDF in Landscape format matching template aspect ratio (4:3)
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([1024, 771]);
 
@@ -75,7 +173,6 @@ app.post('/api/generate-pdf', async (req, res) => {
       image = await pdfDoc.embedPng(imgBytes);
     }
 
-    // Draw full-page certificate background
     page.drawImage(image, {
       x: 0,
       y: 0,
@@ -83,11 +180,9 @@ app.post('/api/generate-pdf', async (req, res) => {
       height: 771,
     });
 
-    // Embed fonts
     const timesBold = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
     const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
-    // Calculate dynamic font size based on name length
     let fontSize = 38;
     if (studentName.length > 20) {
       fontSize = Math.max(24, 38 - (studentName.length - 20) * 0.9);
@@ -95,9 +190,8 @@ app.post('/api/generate-pdf', async (req, res) => {
 
     const textWidth = timesBold.widthOfTextAtSize(studentName, fontSize);
     const nameX = (1024 - textWidth) / 2;
-    const nameY = 442; // Positioned directly above dotted line in PDF coordinates
+    const nameY = 442;
 
-    // Draw Student Name in crisp Deep Navy (#0a243d)
     page.drawText(studentName, {
       x: nameX,
       y: nameY,
@@ -106,7 +200,6 @@ app.post('/api/generate-pdf', async (req, res) => {
       color: rgb(0.04, 0.14, 0.24),
     });
 
-    // Draw Reference ID inside the official Reference ID card
     page.drawRectangle({
       x: 550,
       y: 50,
@@ -134,13 +227,12 @@ app.post('/api/generate-pdf', async (req, res) => {
     res.send(Buffer.from(pdfBytes));
   } catch (error) {
     console.error('Server PDF Generation Error:', error);
-    res.status(500).json({ error: 'Failed to generate PDF', details: error.message });
+    res.status(500).json({ error: 'Failed to generate PDF' });
   }
 });
 
-// API: Verify Certificate against Official Registry
 app.get('/api/verify/:id', (req, res) => {
-  const certId = String(req.params.id || '').toUpperCase().trim();
+  const certId = String(req.params.id || '').toUpperCase().trim().slice(0, 64);
   const certDbPath = path.join(__dirname, '..', 'data', 'certificates.json');
 
   let cert = null;
@@ -149,7 +241,6 @@ app.get('/api/verify/:id', (req, res) => {
       const records = JSON.parse(fs.readFileSync(certDbPath, 'utf8'));
       cert = records.find((c) => (c.id || c.code || '').toUpperCase() === certId);
     } catch {
-      // Fallback
     }
   }
 
@@ -175,7 +266,6 @@ app.get('/api/verify/:id', (req, res) => {
   });
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'Robotree Certificate Generator' });
 });

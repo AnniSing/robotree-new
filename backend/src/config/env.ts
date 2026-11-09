@@ -2,12 +2,15 @@ import { z } from 'zod';
 import path from 'path';
 import { PROJECT_ROOT } from '../utils/paths.js';
 
+const DEFAULT_ADMIN_PASSCODE = 'Aniket4515';
+const DEFAULT_SESSION_SECRET = 'robotree-enterprise-secret-key-salt-2026-secure';
+
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().int().positive().default(5000),
   HOST: z.string().default('0.0.0.0'),
-  ADMIN_PASSCODE: z.string().min(6).default('Aniket4515'),
-  SESSION_SECRET: z.string().min(16).default('robotree-enterprise-secret-key-salt-2026-secure'),
+  ADMIN_PASSCODE: z.string().min(6).default(DEFAULT_ADMIN_PASSCODE),
+  SESSION_SECRET: z.string().min(16).default(DEFAULT_SESSION_SECRET),
   ROBOTREE_DATA_DIR: z.string().default(path.join(PROJECT_ROOT, 'data')),
   DATABASE_URL: z.string().optional(),
   SUPABASE_DB_URL: z.string().optional(),
@@ -31,7 +34,6 @@ if (!parsed.success) {
 
 const resolvedData = parsed.success ? parsed.data : envSchema.parse({});
 
-// Normalize DATABASE_URL from either DATABASE_URL or SUPABASE_DB_URL
 if (!resolvedData.DATABASE_URL && resolvedData.SUPABASE_DB_URL) {
   resolvedData.DATABASE_URL = resolvedData.SUPABASE_DB_URL;
 }
@@ -41,7 +43,25 @@ export const isProduction = env.NODE_ENV === 'production';
 export const isTest = env.NODE_ENV === 'test';
 
 if (isProduction) {
-  if (env.ADMIN_PASSCODE === 'Aniket4515' || env.SESSION_SECRET === 'robotree-enterprise-secret-key-salt-2026-secure') {
-    console.warn('\x1b[33m%s\x1b[0m', '[SECURITY WARNING] Default ADMIN_PASSCODE or SESSION_SECRET detected in production! Set secure production credentials in deployment environment.');
+  const usingDefaultAdmin = env.ADMIN_PASSCODE === DEFAULT_ADMIN_PASSCODE;
+  const usingDefaultSecret = env.SESSION_SECRET === DEFAULT_SESSION_SECRET;
+
+  if (usingDefaultAdmin || usingDefaultSecret) {
+    console.error(
+      '\x1b[31m%s\x1b[0m',
+      '[FATAL SECURITY ERROR] Production must not use default ADMIN_PASSCODE or SESSION_SECRET. ' +
+        'Set strong, unique secrets via environment variables before starting the server.'
+    );
+    process.exit(1);
+  }
+
+  const origins = env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean);
+  const hasLoopback = origins.some((o) => /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(o));
+  if (hasLoopback) {
+    console.warn(
+      '\x1b[33m%s\x1b[0m',
+      '[SECURITY WARNING] ALLOWED_ORIGINS contains loopback origins in production. ' +
+        'Remove localhost/127.0.0.1 entries for a hardened production deployment.'
+    );
   }
 }

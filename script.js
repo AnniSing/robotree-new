@@ -337,11 +337,22 @@ initLiveLocation();
 initAdminPanel();
 initExperiment();
 initTeamEmailModal();
-loadTeam();
-initPublicEventGallery();
-loadPublicCourses();
-loadDynamicSiteSettings();
 refreshIcons();
+
+const runWhenIdle = (fn) => {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    window.requestIdleCallback(() => fn(), { timeout: 2000 });
+  } else {
+    setTimeout(fn, 60);
+  }
+};
+
+runWhenIdle(() => {
+  loadTeam();
+  initPublicEventGallery();
+  loadPublicCourses();
+  loadDynamicSiteSettings();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const safeInit = (fn, name) => {

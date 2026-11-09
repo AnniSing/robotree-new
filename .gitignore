@@ -35,6 +35,8 @@ scratch/
 .backend*.log
 .vite*.log
 data/*.tmp
+assets/certificates/*.pdf
+assets/gallery/attempt_*
 
 # Vercel deployment cache & local artifacts
 .vercel/

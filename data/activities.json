@@ -1,5 +1,980 @@
 [
   {
+    "id": "log_c1199947cf205757",
+    "timestamp": "2026-11-09T09:36:58.630Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_DELETED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794217018354",
+    "result": "SUCCESS",
+    "details": "Permanently deleted RRT-TEST-1794217018354"
+  },
+  {
+    "id": "ACT_1794217018623_d4e040",
+    "timestamp": "2026-11-09T09:36:58.623Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_DELETED",
+    "details": "Permanently deleted RRT-TEST-1794217018354",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_f5afdb492cf67054",
+    "timestamp": "2026-11-09T09:36:58.468Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_ISSUED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794217018354",
+    "result": "SUCCESS",
+    "details": "Issued RRT-TEST-1794217018354 to Priya Sharma (Enrollment: ENR-TEST-1794217018354)"
+  },
+  {
+    "id": "ACT_1794217018455_698c3e",
+    "timestamp": "2026-11-09T09:36:58.455Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_ISSUED",
+    "details": "Issued RRT-TEST-1794217018354 to Priya Sharma (Enrollment: ENR-TEST-1794217018354)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_0602c102c4711560",
+    "timestamp": "2026-11-09T09:36:58.421Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_DELETED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-8088527",
+    "result": "SUCCESS",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-8088527)"
+  },
+  {
+    "id": "ACT_1794217018402_58db44",
+    "timestamp": "2026-11-09T09:36:58.402Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_DELETED",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-8088527)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_e27fb9324e962592",
+    "timestamp": "2026-11-09T09:36:58.383Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_DELETED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794217017849",
+    "result": "SUCCESS",
+    "details": "Deleted showcase photo: test-showcase-1794217017849"
+  },
+  {
+    "id": "ACT_1794217018373_8625b8",
+    "timestamp": "2026-11-09T09:36:58.373Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_DELETED",
+    "details": "Deleted showcase photo: test-showcase-1794217017849",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_907619996ec43682",
+    "timestamp": "2026-11-09T09:36:58.346Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794217018336_86caa9",
+    "timestamp": "2026-11-09T09:36:58.336Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_df9b838821f2d193",
+    "timestamp": "2026-11-09T09:36:58.231Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_UPDATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-8088527",
+    "result": "SUCCESS",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-8088527)"
+  },
+  {
+    "id": "ACT_1794217018220_31af16",
+    "timestamp": "2026-11-09T09:36:58.220Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_UPDATED",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-8088527)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_b8f83f6181b1d6be",
+    "timestamp": "2026-11-09T09:36:58.198Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_UPDATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794217017849",
+    "result": "SUCCESS",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
+  },
+  {
+    "id": "ACT_1794217018173_b50147",
+    "timestamp": "2026-11-09T09:36:58.173Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_UPDATED",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_2709afcf64328a9b",
+    "timestamp": "2026-11-09T09:36:58.127Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_CREATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-8088527",
+    "result": "SUCCESS",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-8088527)"
+  },
+  {
+    "id": "ACT_1794217018106_138c1d",
+    "timestamp": "2026-11-09T09:36:58.106Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_CREATED",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-8088527)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_3703b71939a7e34c",
+    "timestamp": "2026-11-09T09:36:58.069Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_CREATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794217017849",
+    "result": "SUCCESS",
+    "details": "Added showcase photo: Automated Test Lab Showcase"
+  },
+  {
+    "id": "ACT_1794217018056_e70729",
+    "timestamp": "2026-11-09T09:36:58.057Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_CREATED",
+    "details": "Added showcase photo: Automated Test Lab Showcase",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_e3d40a40a8f7ff0d",
+    "timestamp": "2026-11-09T09:36:57.922Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794217017915_14db10",
+    "timestamp": "2026-11-09T09:36:57.915Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_3aa28f6d187a1536",
+    "timestamp": "2026-11-09T09:36:57.840Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794217017828_b9803d",
+    "timestamp": "2026-11-09T09:36:57.829Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_8b81ba74fdb48cec",
+    "timestamp": "2026-11-09T09:31:34.376Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_DELETED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216693653",
+    "result": "SUCCESS",
+    "details": "Permanently deleted RRT-TEST-1794216693653"
+  },
+  {
+    "id": "ACT_1794216694370_a6f300",
+    "timestamp": "2026-11-09T09:31:34.370Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_DELETED",
+    "details": "Permanently deleted RRT-TEST-1794216693653",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_c2b10cd975c19a57",
+    "timestamp": "2026-11-09T09:31:34.226Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_DELETED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216693746",
+    "result": "SUCCESS",
+    "details": "Deleted showcase photo: test-showcase-1794216693746"
+  },
+  {
+    "id": "ACT_1794216694219_d8299a",
+    "timestamp": "2026-11-09T09:31:34.219Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_DELETED",
+    "details": "Deleted showcase photo: test-showcase-1794216693746",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_dfbc664c7b3a4cb4",
+    "timestamp": "2026-11-09T09:31:34.204Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_ISSUED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216693653",
+    "result": "SUCCESS",
+    "details": "Issued RRT-TEST-1794216693653 to Priya Sharma (Enrollment: ENR-TEST-1794216693653)"
+  },
+  {
+    "id": "ACT_1794216694187_cf5aab",
+    "timestamp": "2026-11-09T09:31:34.187Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_ISSUED",
+    "details": "Issued RRT-TEST-1794216693653 to Priya Sharma (Enrollment: ENR-TEST-1794216693653)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_ef8a8f0eb9269731",
+    "timestamp": "2026-11-09T09:31:34.144Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_DELETED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-3521774",
+    "result": "SUCCESS",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-3521774)"
+  },
+  {
+    "id": "ACT_1794216694133_94117c",
+    "timestamp": "2026-11-09T09:31:34.133Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_DELETED",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-3521774)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_e7617eab96ed49fe",
+    "timestamp": "2026-11-09T09:31:34.112Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_UPDATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216693746",
+    "result": "SUCCESS",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
+  },
+  {
+    "id": "ACT_1794216694104_23eb48",
+    "timestamp": "2026-11-09T09:31:34.104Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_UPDATED",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_722bcbd0648c3574",
+    "timestamp": "2026-11-09T09:31:34.047Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_CREATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216693746",
+    "result": "SUCCESS",
+    "details": "Added showcase photo: Automated Test Lab Showcase"
+  },
+  {
+    "id": "ACT_1794216694040_cc66be",
+    "timestamp": "2026-11-09T09:31:34.040Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_CREATED",
+    "details": "Added showcase photo: Automated Test Lab Showcase",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_4a9c5faf3c454f47",
+    "timestamp": "2026-11-09T09:31:33.988Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_UPDATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-3521774",
+    "result": "SUCCESS",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-3521774)"
+  },
+  {
+    "id": "ACT_1794216693980_3ef43d",
+    "timestamp": "2026-11-09T09:31:33.980Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_UPDATED",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-3521774)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_62f71fb1645de041",
+    "timestamp": "2026-11-09T09:31:33.739Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216693725_eddfe0",
+    "timestamp": "2026-11-09T09:31:33.725Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_ef2026e15680abf6",
+    "timestamp": "2026-11-09T09:31:33.645Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216693635_c6b0af",
+    "timestamp": "2026-11-09T09:31:33.635Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_02735548ac2f9cb1",
+    "timestamp": "2026-11-09T09:31:33.552Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_CREATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-3521774",
+    "result": "SUCCESS",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-3521774)"
+  },
+  {
+    "id": "ACT_1794216693536_740258",
+    "timestamp": "2026-11-09T09:31:33.536Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_CREATED",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-3521774)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_d6c36875fc221374",
+    "timestamp": "2026-11-09T09:31:33.506Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216693491_ef886b",
+    "timestamp": "2026-11-09T09:31:33.491Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_d34abb89d2dbc34d",
+    "timestamp": "2026-11-09T09:30:52.882Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_DELETED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216652390",
+    "result": "SUCCESS",
+    "details": "Permanently deleted RRT-TEST-1794216652390"
+  },
+  {
+    "id": "ACT_1794216652875_789d74",
+    "timestamp": "2026-11-09T09:30:52.875Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_DELETED",
+    "details": "Permanently deleted RRT-TEST-1794216652390",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_26c89c01cb843947",
+    "timestamp": "2026-11-09T09:30:52.705Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_DELETED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216652197",
+    "result": "SUCCESS",
+    "details": "Deleted showcase photo: test-showcase-1794216652197"
+  },
+  {
+    "id": "ACT_1794216652696_b31ff8",
+    "timestamp": "2026-11-09T09:30:52.696Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_DELETED",
+    "details": "Deleted showcase photo: test-showcase-1794216652197",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_6a4f7dd8b5573304",
+    "timestamp": "2026-11-09T09:30:52.653Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_DELETED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2395558",
+    "result": "SUCCESS",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-2395558)"
+  },
+  {
+    "id": "ACT_1794216652642_14787f",
+    "timestamp": "2026-11-09T09:30:52.643Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_DELETED",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-2395558)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_5a02a88f60493004",
+    "timestamp": "2026-11-09T09:30:52.620Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_ISSUED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216652390",
+    "result": "SUCCESS",
+    "details": "Issued RRT-TEST-1794216652390 to Priya Sharma (Enrollment: ENR-TEST-1794216652390)"
+  },
+  {
+    "id": "ACT_1794216652611_eac4fc",
+    "timestamp": "2026-11-09T09:30:52.611Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_ISSUED",
+    "details": "Issued RRT-TEST-1794216652390 to Priya Sharma (Enrollment: ENR-TEST-1794216652390)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_ff5e9f82192d893e",
+    "timestamp": "2026-11-09T09:30:52.566Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_UPDATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216652197",
+    "result": "SUCCESS",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
+  },
+  {
+    "id": "ACT_1794216652554_cd6a15",
+    "timestamp": "2026-11-09T09:30:52.555Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_UPDATED",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_86c45d8f72ec073e",
+    "timestamp": "2026-11-09T09:30:52.526Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_UPDATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2395558",
+    "result": "SUCCESS",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-2395558)"
+  },
+  {
+    "id": "ACT_1794216652517_92d18b",
+    "timestamp": "2026-11-09T09:30:52.518Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_UPDATED",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-2395558)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_70c91dd87a16af00",
+    "timestamp": "2026-11-09T09:30:52.480Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_CREATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216652197",
+    "result": "SUCCESS",
+    "details": "Added showcase photo: Automated Test Lab Showcase"
+  },
+  {
+    "id": "ACT_1794216652466_0d728e",
+    "timestamp": "2026-11-09T09:30:52.467Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_CREATED",
+    "details": "Added showcase photo: Automated Test Lab Showcase",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_2017f9eb8836862f",
+    "timestamp": "2026-11-09T09:30:52.437Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_CREATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2395558",
+    "result": "SUCCESS",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-2395558)"
+  },
+  {
+    "id": "ACT_1794216652412_47c1ee",
+    "timestamp": "2026-11-09T09:30:52.413Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_CREATED",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-2395558)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_fb91d18ab75c9340",
+    "timestamp": "2026-11-09T09:30:52.381Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216652358_1912c7",
+    "timestamp": "2026-11-09T09:30:52.358Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_5801a51a0b73f798",
+    "timestamp": "2026-11-09T09:30:52.186Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216652163_f81da1",
+    "timestamp": "2026-11-09T09:30:52.163Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_5233aa16cc09d95f",
+    "timestamp": "2026-11-09T09:30:52.058Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216652044_f24e9f",
+    "timestamp": "2026-11-09T09:30:52.045Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_120cc8ad1c48bbcf",
+    "timestamp": "2026-11-09T09:28:55.515Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_DELETED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216535242",
+    "result": "SUCCESS",
+    "details": "Permanently deleted RRT-TEST-1794216535242"
+  },
+  {
+    "id": "ACT_1794216535508_0afd7c",
+    "timestamp": "2026-11-09T09:28:55.508Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_DELETED",
+    "details": "Permanently deleted RRT-TEST-1794216535242",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_3355f66057d0e0e4",
+    "timestamp": "2026-11-09T09:28:55.387Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_ISSUED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216535242",
+    "result": "SUCCESS",
+    "details": "Issued RRT-TEST-1794216535242 to Priya Sharma (Enrollment: ENR-TEST-1794216535242)"
+  },
+  {
+    "id": "ACT_1794216535378_77b9da",
+    "timestamp": "2026-11-09T09:28:55.378Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_ISSUED",
+    "details": "Issued RRT-TEST-1794216535242 to Priya Sharma (Enrollment: ENR-TEST-1794216535242)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_fc04df8d6f882dd3",
+    "timestamp": "2026-11-09T09:28:55.361Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_DELETED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-5077487",
+    "result": "SUCCESS",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-5077487)"
+  },
+  {
+    "id": "ACT_1794216535354_8ca78f",
+    "timestamp": "2026-11-09T09:28:55.354Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_DELETED",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-5077487)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_acfef7e3124bd1eb",
+    "timestamp": "2026-11-09T09:28:55.302Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_DELETED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216534872",
+    "result": "SUCCESS",
+    "details": "Deleted showcase photo: test-showcase-1794216534872"
+  },
+  {
+    "id": "ACT_1794216535295_b7751e",
+    "timestamp": "2026-11-09T09:28:55.295Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_DELETED",
+    "details": "Deleted showcase photo: test-showcase-1794216534872",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_baa75954ad04986e",
+    "timestamp": "2026-11-09T09:28:55.213Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216535205_efa3ca",
+    "timestamp": "2026-11-09T09:28:55.206Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_62a637bae2c3d75c",
+    "timestamp": "2026-11-09T09:28:55.149Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_UPDATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-5077487",
+    "result": "SUCCESS",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-5077487)"
+  },
+  {
+    "id": "ACT_1794216535128_ea436c",
+    "timestamp": "2026-11-09T09:28:55.128Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_UPDATED",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-5077487)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_06c6ba730edb8b59",
+    "timestamp": "2026-11-09T09:28:55.102Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_CREATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-5077487",
+    "result": "SUCCESS",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-5077487)"
+  },
+  {
+    "id": "ACT_1794216535091_a80106",
+    "timestamp": "2026-11-09T09:28:55.091Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_CREATED",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-5077487)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_5711b5de09848883",
+    "timestamp": "2026-11-09T09:28:55.068Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_UPDATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216534872",
+    "result": "SUCCESS",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
+  },
+  {
+    "id": "ACT_1794216535059_2aaff1",
+    "timestamp": "2026-11-09T09:28:55.059Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_UPDATED",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_1bd6ee24346d8c2a",
+    "timestamp": "2026-11-09T09:28:55.043Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216535035_45c89f",
+    "timestamp": "2026-11-09T09:28:55.035Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_eb01faff5730481a",
+    "timestamp": "2026-11-09T09:28:54.910Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_CREATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216534872",
+    "result": "SUCCESS",
+    "details": "Added showcase photo: Automated Test Lab Showcase"
+  },
+  {
+    "id": "ACT_1794216534896_0c8278",
+    "timestamp": "2026-11-09T09:28:54.896Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_CREATED",
+    "details": "Added showcase photo: Automated Test Lab Showcase",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_070d3a542b472a45",
+    "timestamp": "2026-11-09T09:28:54.861Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216534844_497ab1",
+    "timestamp": "2026-11-09T09:28:54.844Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_e826bf82d179a33c",
+    "timestamp": "2026-11-09T09:28:43.309Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_DELETED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216522999",
+    "result": "SUCCESS",
+    "details": "Permanently deleted RRT-TEST-1794216522999"
+  },
+  {
+    "id": "ACT_1794216523301_e8f1aa",
+    "timestamp": "2026-11-09T09:28:43.301Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_DELETED",
+    "details": "Permanently deleted RRT-TEST-1794216522999",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_7ec76f095a52eb56",
+    "timestamp": "2026-11-09T09:28:43.158Z",
+    "actor": "admin@robotree.org",
+    "action": "CERTIFICATE_ISSUED",
+    "resource": "certificates",
+    "resourceId": "RRT-TEST-1794216522999",
+    "result": "SUCCESS",
+    "details": "Issued RRT-TEST-1794216522999 to Priya Sharma (Enrollment: ENR-TEST-1794216522999)"
+  },
+  {
+    "id": "ACT_1794216523146_e10964",
+    "timestamp": "2026-11-09T09:28:43.146Z",
+    "user": "admin@robotree.org",
+    "type": "CERTIFICATE_ISSUED",
+    "details": "Issued RRT-TEST-1794216522999 to Priya Sharma (Enrollment: ENR-TEST-1794216522999)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_b89bcf0286fa726b",
+    "timestamp": "2026-11-09T09:28:43.132Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_DELETED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2892322",
+    "result": "SUCCESS",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-2892322)"
+  },
+  {
+    "id": "ACT_1794216523122_1692d3",
+    "timestamp": "2026-11-09T09:28:43.122Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_DELETED",
+    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-2892322)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_b109ee5450c8a396",
+    "timestamp": "2026-11-09T09:28:43.106Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_DELETED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216522799",
+    "result": "SUCCESS",
+    "details": "Deleted showcase photo: test-showcase-1794216522799"
+  },
+  {
+    "id": "ACT_1794216523100_2607d2",
+    "timestamp": "2026-11-09T09:28:43.100Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_DELETED",
+    "details": "Deleted showcase photo: test-showcase-1794216522799",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_25497baca6781233",
+    "timestamp": "2026-11-09T09:28:43.055Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_UPDATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2892322",
+    "result": "SUCCESS",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-2892322)"
+  },
+  {
+    "id": "ACT_1794216523043_ddc682",
+    "timestamp": "2026-11-09T09:28:43.043Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_UPDATED",
+    "details": "Updated product Photo Removal Test Robot (PROD-RBT-2892322)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_4743936b91171361",
+    "timestamp": "2026-11-09T09:28:43.019Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_UPDATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216522799",
+    "result": "SUCCESS",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
+  },
+  {
+    "id": "ACT_1794216523011_0833f6",
+    "timestamp": "2026-11-09T09:28:43.011Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_UPDATED",
+    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_788215326f6d326a",
+    "timestamp": "2026-11-09T09:28:42.991Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216522978_ae7101",
+    "timestamp": "2026-11-09T09:28:42.978Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_ca6ab5ffca86bddc",
+    "timestamp": "2026-11-09T09:28:42.910Z",
+    "actor": "admin@robotree.org",
+    "action": "PRODUCT_CREATED",
+    "resource": "store",
+    "resourceId": "PROD-RBT-2892322",
+    "result": "SUCCESS",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-2892322)"
+  },
+  {
+    "id": "ACT_1794216522902_52fb12",
+    "timestamp": "2026-11-09T09:28:42.902Z",
+    "user": "admin@robotree.org",
+    "type": "PRODUCT_CREATED",
+    "details": "Added product Photo Removal Test Robot (PROD-RBT-2892322)",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_a72c28effd9e99ee",
+    "timestamp": "2026-11-09T09:28:42.881Z",
+    "actor": "admin@robotree.org",
+    "action": "SHOWCASE_CREATED",
+    "resource": "showcase",
+    "resourceId": "test-showcase-1794216522799",
+    "result": "SUCCESS",
+    "details": "Added showcase photo: Automated Test Lab Showcase"
+  },
+  {
+    "id": "ACT_1794216522874_293f8b",
+    "timestamp": "2026-11-09T09:28:42.874Z",
+    "user": "admin@robotree.org",
+    "type": "SHOWCASE_CREATED",
+    "details": "Added showcase photo: Automated Test Lab Showcase",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_db6bd2a44936fe68",
+    "timestamp": "2026-11-09T09:28:42.849Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216522843_6b35d9",
+    "timestamp": "2026-11-09T09:28:42.843Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "log_1d94e762972efe86",
+    "timestamp": "2026-11-09T09:28:42.792Z",
+    "actor": "admin@robotree.org",
+    "action": "ADMIN_LOGIN_SUCCESS",
+    "resource": "admin",
+    "result": "SUCCESS",
+    "details": "Admin session created"
+  },
+  {
+    "id": "ACT_1794216522784_625fdb",
+    "timestamp": "2026-11-09T09:28:42.784Z",
+    "user": "admin@robotree.org",
+    "type": "ADMIN_LOGIN_SUCCESS",
+    "details": "Admin session created",
+    "status": "SUCCESS"
+  },
+  {
     "id": "log_cf2458ca8bca7bed",
     "timestamp": "2026-11-06T13:46:30.528Z",
     "actor": "admin@robotree.org",
@@ -3461,981 +4436,5 @@
     "resourceId": "PROD-RBT-0278314",
     "result": "SUCCESS",
     "details": "Updated product Photo Removal Test Robot (PROD-RBT-0278314)"
-  },
-  {
-    "id": "ACT_1793710850341_36800c",
-    "timestamp": "2026-11-03T13:00:50.341Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_UPDATED",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-0278314)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_1bd38553f638f1b1",
-    "timestamp": "2026-11-03T13:00:50.318Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_DELETED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793710850156",
-    "result": "SUCCESS",
-    "details": "Deleted showcase photo: test-showcase-1793710850156"
-  },
-  {
-    "id": "ACT_1793710850310_5c444f",
-    "timestamp": "2026-11-03T13:00:50.310Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_DELETED",
-    "details": "Deleted showcase photo: test-showcase-1793710850156",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_9b308d4d8d92ca56",
-    "timestamp": "2026-11-03T13:00:50.295Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_CREATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-0278314",
-    "result": "SUCCESS",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-0278314)"
-  },
-  {
-    "id": "ACT_1793710850289_f95bb0",
-    "timestamp": "2026-11-03T13:00:50.289Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_CREATED",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-0278314)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_708dc6158f1557a7",
-    "timestamp": "2026-11-03T13:00:50.270Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793710850261_383030",
-    "timestamp": "2026-11-03T13:00:50.261Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_db26fbf2bf881a5a",
-    "timestamp": "2026-11-03T13:00:50.246Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793710850236_0a805c",
-    "timestamp": "2026-11-03T13:00:50.236Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_c197e56409261b1a",
-    "timestamp": "2026-11-03T13:00:50.213Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_UPDATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793710850156",
-    "result": "SUCCESS",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
-  },
-  {
-    "id": "ACT_1793710850204_841304",
-    "timestamp": "2026-11-03T13:00:50.204Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_UPDATED",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_ab571acbe4bf2452",
-    "timestamp": "2026-11-03T13:00:50.182Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_CREATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793710850156",
-    "result": "SUCCESS",
-    "details": "Added showcase photo: Automated Test Lab Showcase"
-  },
-  {
-    "id": "ACT_1793710850173_9c6379",
-    "timestamp": "2026-11-03T13:00:50.173Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_CREATED",
-    "details": "Added showcase photo: Automated Test Lab Showcase",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_f17928c5dd0245ec",
-    "timestamp": "2026-11-03T13:00:50.147Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793710850136_1192ba",
-    "timestamp": "2026-11-03T13:00:50.136Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_b9b9493c441fb3ca",
-    "timestamp": "2026-11-03T12:40:31.776Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_DELETED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793709631573",
-    "result": "SUCCESS",
-    "details": "Permanently deleted RRT-TEST-1793709631573"
-  },
-  {
-    "id": "ACT_1793709631768_9aa1dd",
-    "timestamp": "2026-11-03T12:40:31.768Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_DELETED",
-    "details": "Permanently deleted RRT-TEST-1793709631573",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_48b9fc4e8f96e594",
-    "timestamp": "2026-11-03T12:40:31.695Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1576716",
-    "result": "SUCCESS",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1576716)"
-  },
-  {
-    "id": "ACT_1793709631687_9c1c7a",
-    "timestamp": "2026-11-03T12:40:31.687Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1576716)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_ccb3b3869c44969b",
-    "timestamp": "2026-11-03T12:40:31.674Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_ISSUED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793709631573",
-    "result": "SUCCESS",
-    "details": "Issued RRT-TEST-1793709631573 to Priya Sharma (Enrollment: ENR-TEST-1793709631573)"
-  },
-  {
-    "id": "ACT_1793709631666_35c1f2",
-    "timestamp": "2026-11-03T12:40:31.666Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_ISSUED",
-    "details": "Issued RRT-TEST-1793709631573 to Priya Sharma (Enrollment: ENR-TEST-1793709631573)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_c78e0f23e0278d33",
-    "timestamp": "2026-11-03T12:40:31.643Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_UPDATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1576716",
-    "result": "SUCCESS",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-1576716)"
-  },
-  {
-    "id": "ACT_1793709631636_3c908d",
-    "timestamp": "2026-11-03T12:40:31.637Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_UPDATED",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-1576716)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_0a9af3b8665c8412",
-    "timestamp": "2026-11-03T12:40:31.610Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_DELETED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793709631457",
-    "result": "SUCCESS",
-    "details": "Deleted showcase photo: test-showcase-1793709631457"
-  },
-  {
-    "id": "ACT_1793709631602_3097b7",
-    "timestamp": "2026-11-03T12:40:31.603Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_DELETED",
-    "details": "Deleted showcase photo: test-showcase-1793709631457",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_a7e5ccec8de8c9c1",
-    "timestamp": "2026-11-03T12:40:31.590Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_CREATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1576716",
-    "result": "SUCCESS",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-1576716)"
-  },
-  {
-    "id": "ACT_1793709631583_b20da4",
-    "timestamp": "2026-11-03T12:40:31.583Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_CREATED",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-1576716)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_65202d472bc77f74",
-    "timestamp": "2026-11-03T12:40:31.565Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793709631558_6ad103",
-    "timestamp": "2026-11-03T12:40:31.558Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_054eb96545b9b6e3",
-    "timestamp": "2026-11-03T12:40:31.544Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793709631537_262ccc",
-    "timestamp": "2026-11-03T12:40:31.537Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_279f60de76c2f23d",
-    "timestamp": "2026-11-03T12:40:31.522Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_UPDATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793709631457",
-    "result": "SUCCESS",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
-  },
-  {
-    "id": "ACT_1793709631508_ed337e",
-    "timestamp": "2026-11-03T12:40:31.508Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_UPDATED",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_d26dcc7d5ac7c644",
-    "timestamp": "2026-11-03T12:40:31.487Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_CREATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793709631457",
-    "result": "SUCCESS",
-    "details": "Added showcase photo: Automated Test Lab Showcase"
-  },
-  {
-    "id": "ACT_1793709631475_62201e",
-    "timestamp": "2026-11-03T12:40:31.475Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_CREATED",
-    "details": "Added showcase photo: Automated Test Lab Showcase",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_12f77a8aa46e15e8",
-    "timestamp": "2026-11-03T12:40:31.444Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793709631430_74ada4",
-    "timestamp": "2026-11-03T12:40:31.430Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_70c1ab0d52e30370",
-    "timestamp": "2026-11-03T12:19:41.698Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_DELETED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793708381608",
-    "result": "SUCCESS",
-    "details": "Permanently deleted RRT-TEST-1793708381608"
-  },
-  {
-    "id": "ACT_1793708381690_c4d481",
-    "timestamp": "2026-11-03T12:19:41.690Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_DELETED",
-    "details": "Permanently deleted RRT-TEST-1793708381608",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_132ce6db384c1022",
-    "timestamp": "2026-11-03T12:19:41.639Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_ISSUED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793708381608",
-    "result": "SUCCESS",
-    "details": "Issued RRT-TEST-1793708381608 to Priya Sharma (Enrollment: ENR-TEST-1793708381608)"
-  },
-  {
-    "id": "ACT_1793708381633_64208c",
-    "timestamp": "2026-11-03T12:19:41.633Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_ISSUED",
-    "details": "Issued RRT-TEST-1793708381608 to Priya Sharma (Enrollment: ENR-TEST-1793708381608)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_8692f1b4b2d9bf9f",
-    "timestamp": "2026-11-03T12:19:41.590Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708381580_3fab39",
-    "timestamp": "2026-11-03T12:19:41.580Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_59963e0554954b2c",
-    "timestamp": "2026-11-03T12:19:41.567Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1423666",
-    "result": "SUCCESS",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1423666)"
-  },
-  {
-    "id": "ACT_1793708381555_a352be",
-    "timestamp": "2026-11-03T12:19:41.555Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1423666)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_7c6bee7ff27a1085",
-    "timestamp": "2026-11-03T12:19:41.539Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_DELETED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708381356",
-    "result": "SUCCESS",
-    "details": "Deleted showcase photo: test-showcase-1793708381356"
-  },
-  {
-    "id": "ACT_1793708381531_2d0656",
-    "timestamp": "2026-11-03T12:19:41.531Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_DELETED",
-    "details": "Deleted showcase photo: test-showcase-1793708381356",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_cbe5cec4c5cd812c",
-    "timestamp": "2026-11-03T12:19:41.505Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_UPDATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1423666",
-    "result": "SUCCESS",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-1423666)"
-  },
-  {
-    "id": "ACT_1793708381497_109e65",
-    "timestamp": "2026-11-03T12:19:41.497Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_UPDATED",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-1423666)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_f04146e5f3a71963",
-    "timestamp": "2026-11-03T12:19:41.475Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_UPDATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708381356",
-    "result": "SUCCESS",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
-  },
-  {
-    "id": "ACT_1793708381467_a83a6a",
-    "timestamp": "2026-11-03T12:19:41.467Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_UPDATED",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_ab7f9472cbaf1332",
-    "timestamp": "2026-11-03T12:19:41.447Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_CREATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1423666",
-    "result": "SUCCESS",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-1423666)"
-  },
-  {
-    "id": "ACT_1793708381437_eb5daa",
-    "timestamp": "2026-11-03T12:19:41.437Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_CREATED",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-1423666)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_b40f486bddcf5a4e",
-    "timestamp": "2026-11-03T12:19:41.409Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_CREATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708381356",
-    "result": "SUCCESS",
-    "details": "Added showcase photo: Automated Test Lab Showcase"
-  },
-  {
-    "id": "ACT_1793708381398_e5dfe8",
-    "timestamp": "2026-11-03T12:19:41.398Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_CREATED",
-    "details": "Added showcase photo: Automated Test Lab Showcase",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_31c26fb72fb16ad6",
-    "timestamp": "2026-11-03T12:19:41.372Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708381361_cccf94",
-    "timestamp": "2026-11-03T12:19:41.362Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_61eb8044bbf6a014",
-    "timestamp": "2026-11-03T12:19:41.323Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708381305_4e9a7f",
-    "timestamp": "2026-11-03T12:19:41.305Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_c2ee7ed2a699ff69",
-    "timestamp": "2026-11-03T12:19:30.599Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_DELETED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793708370518",
-    "result": "SUCCESS",
-    "details": "Permanently deleted RRT-TEST-1793708370518"
-  },
-  {
-    "id": "ACT_1793708370586_eca518",
-    "timestamp": "2026-11-03T12:19:30.586Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_DELETED",
-    "details": "Permanently deleted RRT-TEST-1793708370518",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_476b0079d8547898",
-    "timestamp": "2026-11-03T12:19:30.540Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_ISSUED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793708370518",
-    "result": "SUCCESS",
-    "details": "Issued RRT-TEST-1793708370518 to Priya Sharma (Enrollment: ENR-TEST-1793708370518)"
-  },
-  {
-    "id": "ACT_1793708370533_f1aa45",
-    "timestamp": "2026-11-03T12:19:30.533Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_ISSUED",
-    "details": "Issued RRT-TEST-1793708370518 to Priya Sharma (Enrollment: ENR-TEST-1793708370518)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_7b870cae4921bf99",
-    "timestamp": "2026-11-03T12:19:30.512Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708370503_10281a",
-    "timestamp": "2026-11-03T12:19:30.503Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_704f05cbd11259b6",
-    "timestamp": "2026-11-03T12:15:10.575Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-0467611",
-    "result": "SUCCESS",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-0467611)"
-  },
-  {
-    "id": "ACT_1793708110567_d1983b",
-    "timestamp": "2026-11-03T12:15:10.567Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-0467611)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_f21e25c7b50b2036",
-    "timestamp": "2026-11-03T12:15:10.544Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_UPDATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-0467611",
-    "result": "SUCCESS",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-0467611)"
-  },
-  {
-    "id": "ACT_1793708110536_716606",
-    "timestamp": "2026-11-03T12:15:10.536Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_UPDATED",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-0467611)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_62b587ec7a5b2a0e",
-    "timestamp": "2026-11-03T12:15:10.514Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_DELETED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708110372",
-    "result": "SUCCESS",
-    "details": "Deleted showcase photo: test-showcase-1793708110372"
-  },
-  {
-    "id": "ACT_1793708110503_242635",
-    "timestamp": "2026-11-03T12:15:10.503Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_DELETED",
-    "details": "Deleted showcase photo: test-showcase-1793708110372",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_f7fa16b7c3221fc2",
-    "timestamp": "2026-11-03T12:15:10.487Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_CREATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-0467611",
-    "result": "SUCCESS",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-0467611)"
-  },
-  {
-    "id": "ACT_1793708110477_91af09",
-    "timestamp": "2026-11-03T12:15:10.477Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_CREATED",
-    "details": "Added product Photo Removal Test Robot (PROD-RBT-0467611)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_5029bc19cd79212f",
-    "timestamp": "2026-11-03T12:15:10.455Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708110444_5f0975",
-    "timestamp": "2026-11-03T12:15:10.445Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_6fbe0b7aa770c779",
-    "timestamp": "2026-11-03T12:15:10.430Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_UPDATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708110372",
-    "result": "SUCCESS",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)"
-  },
-  {
-    "id": "ACT_1793708110420_94104d",
-    "timestamp": "2026-11-03T12:15:10.420Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_UPDATED",
-    "details": "Updated showcase photo: Automated Test Lab Showcase (Updated)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_74c1b2632bcf8310",
-    "timestamp": "2026-11-03T12:15:10.398Z",
-    "actor": "admin@robotree.org",
-    "action": "SHOWCASE_CREATED",
-    "resource": "showcase",
-    "resourceId": "test-showcase-1793708110372",
-    "result": "SUCCESS",
-    "details": "Added showcase photo: Automated Test Lab Showcase"
-  },
-  {
-    "id": "ACT_1793708110383_4a7456",
-    "timestamp": "2026-11-03T12:15:10.384Z",
-    "user": "admin@robotree.org",
-    "type": "SHOWCASE_CREATED",
-    "details": "Added showcase photo: Automated Test Lab Showcase",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_4dcdea049e59d09a",
-    "timestamp": "2026-11-03T12:15:10.365Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793708110353_68cdac",
-    "timestamp": "2026-11-03T12:15:10.353Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_dd0f713be840d792",
-    "timestamp": "2026-11-03T12:02:44.357Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793707364336_6ea7ec",
-    "timestamp": "2026-11-03T12:02:44.336Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_f05af54206fdcc52",
-    "timestamp": "2026-11-03T12:02:37.558Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-008",
-    "result": "SUCCESS",
-    "details": "Deleted product Drone Quadcopter F450 DIY Frame & 2212 1000KV Motor Set (PROD-RBT-008)"
-  },
-  {
-    "id": "ACT_1793707357543_8102a4",
-    "timestamp": "2026-11-03T12:02:37.544Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Drone Quadcopter F450 DIY Frame & 2212 1000KV Motor Set (PROD-RBT-008)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_3544650b6b1ce3e6",
-    "timestamp": "2026-11-03T12:02:35.480Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-007",
-    "result": "SUCCESS",
-    "details": "Deleted product Micro Servo Motor SG90 (Pack of 4) (PROD-RBT-007)"
-  },
-  {
-    "id": "ACT_1793707355445_8c5999",
-    "timestamp": "2026-11-03T12:02:35.445Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Micro Servo Motor SG90 (Pack of 4) (PROD-RBT-007)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_173aa98cdf9d0f49",
-    "timestamp": "2026-11-03T12:02:32.431Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-006",
-    "result": "SUCCESS",
-    "details": "Deleted product Ultrasonic Distance Sensor HC-SR04 with Acrylic Mount (PROD-RBT-006)"
-  },
-  {
-    "id": "ACT_1793707352410_c5fc8b",
-    "timestamp": "2026-11-03T12:02:32.410Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Ultrasonic Distance Sensor HC-SR04 with Acrylic Mount (PROD-RBT-006)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_08380a5359d36f43",
-    "timestamp": "2026-11-03T12:02:29.458Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-005",
-    "result": "SUCCESS",
-    "details": "Deleted product Robotree Uno R3 ATmega328P Development Board (PROD-RBT-005)"
-  },
-  {
-    "id": "ACT_1793707349441_8dd410",
-    "timestamp": "2026-11-03T12:02:29.441Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Robotree Uno R3 ATmega328P Development Board (PROD-RBT-005)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_a6992dc68c1baa48",
-    "timestamp": "2026-11-03T12:02:26.541Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-004",
-    "result": "SUCCESS",
-    "details": "Deleted product ESP32 NodeMCU Wi-Fi + Bluetooth IoT Development Board (PROD-RBT-004)"
-  },
-  {
-    "id": "ACT_1793707346513_0aa854",
-    "timestamp": "2026-11-03T12:02:26.513Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product ESP32 NodeMCU Wi-Fi + Bluetooth IoT Development Board (PROD-RBT-004)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_d289b39e5f4a5773",
-    "timestamp": "2026-11-03T12:02:23.579Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-003",
-    "result": "SUCCESS",
-    "details": "Deleted product 6-DOF Metal Articulated Robotic Arm Mechanical Kit (PROD-RBT-003)"
-  },
-  {
-    "id": "ACT_1793707343555_b3faa9",
-    "timestamp": "2026-11-03T12:02:23.555Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product 6-DOF Metal Articulated Robotic Arm Mechanical Kit (PROD-RBT-003)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_6800358c61954852",
-    "timestamp": "2026-11-03T12:02:20.836Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-002",
-    "result": "SUCCESS",
-    "details": "Deleted product Smart Line Follower Robot Kit with PID Tuning (PROD-RBT-002)"
-  },
-  {
-    "id": "ACT_1793707340810_6dbb72",
-    "timestamp": "2026-11-03T12:02:20.811Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Smart Line Follower Robot Kit with PID Tuning (PROD-RBT-002)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_011da70e63d268e7",
-    "timestamp": "2026-11-03T12:02:18.051Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-001",
-    "result": "SUCCESS",
-    "details": "Deleted product 4WD Autonomous Obstacle Avoidance Robot Kit (PROD-RBT-001)"
-  },
-  {
-    "id": "ACT_1793707338032_76f713",
-    "timestamp": "2026-11-03T12:02:18.035Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product 4WD Autonomous Obstacle Avoidance Robot Kit (PROD-RBT-001)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_87ed11fc9488918c",
-    "timestamp": "2026-11-03T12:01:13.766Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_DELETED",
-    "resource": "certificates",
-    "resourceId": "RBT-WS-2026-6354",
-    "result": "SUCCESS",
-    "details": "Permanently deleted RBT-WS-2026-6354"
-  },
-  {
-    "id": "ACT_1793707273753_91e9f1",
-    "timestamp": "2026-11-03T12:01:13.753Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_DELETED",
-    "details": "Permanently deleted RBT-WS-2026-6354",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_866e6209f4a83654",
-    "timestamp": "2026-11-03T12:00:12.724Z",
-    "actor": "admin@robotree.org",
-    "action": "ADMIN_LOGIN_SUCCESS",
-    "resource": "admin",
-    "result": "SUCCESS",
-    "details": "Admin session created"
-  },
-  {
-    "id": "ACT_1793707212704_c320c6",
-    "timestamp": "2026-11-03T12:00:12.704Z",
-    "user": "admin@robotree.org",
-    "type": "ADMIN_LOGIN_SUCCESS",
-    "details": "Admin session created",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_940b162a6b1027d7",
-    "timestamp": "2026-11-03T11:55:32.100Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_DELETED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793706931913",
-    "result": "SUCCESS",
-    "details": "Permanently deleted RRT-TEST-1793706931913"
-  },
-  {
-    "id": "ACT_1793706932095_b1e792",
-    "timestamp": "2026-11-03T11:55:32.095Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_DELETED",
-    "details": "Permanently deleted RRT-TEST-1793706931913",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_bdc0afb86ecdbebd",
-    "timestamp": "2026-11-03T11:55:32.021Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_DELETED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1916499",
-    "result": "SUCCESS",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1916499)"
-  },
-  {
-    "id": "ACT_1793706932013_49325f",
-    "timestamp": "2026-11-03T11:55:32.013Z",
-    "user": "admin@robotree.org",
-    "type": "PRODUCT_DELETED",
-    "details": "Deleted product Photo Removal Test Robot (PROD-RBT-1916499)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_ebf5d0dbb79abe12",
-    "timestamp": "2026-11-03T11:55:31.990Z",
-    "actor": "admin@robotree.org",
-    "action": "CERTIFICATE_ISSUED",
-    "resource": "certificates",
-    "resourceId": "RRT-TEST-1793706931913",
-    "result": "SUCCESS",
-    "details": "Issued RRT-TEST-1793706931913 to Priya Sharma (Enrollment: ENR-TEST-1793706931913)"
-  },
-  {
-    "id": "ACT_1793706931983_35b435",
-    "timestamp": "2026-11-03T11:55:31.983Z",
-    "user": "admin@robotree.org",
-    "type": "CERTIFICATE_ISSUED",
-    "details": "Issued RRT-TEST-1793706931913 to Priya Sharma (Enrollment: ENR-TEST-1793706931913)",
-    "status": "SUCCESS"
-  },
-  {
-    "id": "log_a80a3cdd4496d0f4",
-    "timestamp": "2026-11-03T11:55:31.971Z",
-    "actor": "admin@robotree.org",
-    "action": "PRODUCT_UPDATED",
-    "resource": "store",
-    "resourceId": "PROD-RBT-1916499",
-    "result": "SUCCESS",
-    "details": "Updated product Photo Removal Test Robot (PROD-RBT-1916499)"
   }
 ]
