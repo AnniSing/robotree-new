@@ -18,15 +18,10 @@ COPY package*.json ./
 RUN npm ci
 
 # Copy source code and config
-COPY tsconfig.json ./
-COPY backend/ ./backend/
-COPY assets/ ./assets/
-COPY data/ ./data/
-COPY server.js ./
-COPY *.html *.css *.js ./
+COPY . .
 
-# Compile TypeScript
-RUN npm run backend:build || npx tsc
+# Compile TypeScript backend and frontend distribution
+RUN npm run backend:build && npm run build
 
 # 2. Production runtime stage
 FROM node:20-alpine AS runner
@@ -52,6 +47,9 @@ COPY --from=builder /app/script.js ./
 COPY --from=builder /app/security.js ./
 COPY --from=builder /app/icons.js ./
 COPY --from=builder /app/certificate.js ./
+
+# Ensure node user owns the runtime data folder for write access
+RUN chown -R node:node /app/data
 
 # Use unprivileged user for security compliance
 USER node
