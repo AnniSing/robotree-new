@@ -1,8 +1,22 @@
 import assert from 'node:assert/strict';
 
-const BASE_URL = 'http://localhost:5000';
+let server;
+let BASE_URL = 'http://localhost:5000';
+try {
+  const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
+  if (!probe.ok) throw new Error('Not running');
+} catch {
+  const { app } = await import('../server.js');
+  await new Promise((resolve) => {
+    server = app.listen(0, '127.0.0.1', () => {
+      BASE_URL = `http://127.0.0.1:${server.address().port}`;
+      resolve();
+    });
+  });
+}
 
 async function run() {
+  try {
   console.log('--- TESTING CERTIFICATE ENROLLMENT & INQUIRY PRODUCT IMAGE FEATURES ---');
 
   // 1. Verify student access to certificate by Enrollment Number
@@ -176,6 +190,9 @@ async function run() {
   });
 
   console.log('\n--- ALL CERTIFICATE ENROLLMENT & PRODUCT INQUIRY TESTS PASSED ---');
+  } finally {
+    if (server) server.close();
+  }
 }
 
 run().catch((err) => {

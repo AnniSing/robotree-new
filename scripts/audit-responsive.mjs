@@ -32,6 +32,17 @@ const pages = [
 ];
 
 async function run() {
+  let server;
+  try {
+    const probe = await fetch('http://127.0.0.1:5000/api/health', { signal: AbortSignal.timeout(300) });
+    if (!probe.ok) throw new Error();
+  } catch {
+    const { app } = await import('../server.js');
+    await new Promise((resolve) => {
+      server = app.listen(5000, '127.0.0.1', resolve);
+    });
+  }
+
   const proc = spawn(edgePath, [
     '--headless=new',
     '--remote-debugging-port=9223',
@@ -193,6 +204,7 @@ async function run() {
     }
   } finally {
     proc.kill();
+    if (server) server.close();
   }
 }
 

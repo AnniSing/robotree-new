@@ -3,7 +3,22 @@ import assert from 'node:assert';
 async function testShowcaseLifecycle() {
   console.log('--- TESTING SHOWCASE GALLERY API & CRUD LIFECYCLE ---');
 
-  const BASE_URL = 'http://127.0.0.1:5000';
+  let server;
+  let BASE_URL = 'http://127.0.0.1:5000';
+  try {
+    const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
+    if (!probe.ok) throw new Error('Not running');
+  } catch {
+    const { app } = await import('../server.js');
+    await new Promise((resolve) => {
+      server = app.listen(0, '127.0.0.1', () => {
+        BASE_URL = `http://127.0.0.1:${server.address().port}`;
+        resolve();
+      });
+    });
+  }
+
+  try {
 
   // 1. Fetch CSRF token
   const csrfRes = await fetch(`${BASE_URL}/api/csrf-token`);
@@ -130,6 +145,9 @@ async function testShowcaseLifecycle() {
   console.log('✅ PASS: Public endpoint confirms complete item deletion');
 
   console.log('\n--- ALL SHOWCASE CRUD TESTS PASSED SUCCESSFULLY ---');
+  } finally {
+    if (server) server.close();
+  }
 }
 
 testShowcaseLifecycle().catch(err => {

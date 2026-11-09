@@ -1,7 +1,20 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const baseUrl = 'http://localhost:5000';
+let server;
+let baseUrl = 'http://localhost:5000';
+try {
+  const probe = await fetch(`${baseUrl}/api/health`, { signal: AbortSignal.timeout(300) });
+  if (!probe.ok) throw new Error('Not running');
+} catch {
+  const { app } = await import('../server.js');
+  await new Promise((resolve) => {
+    server = app.listen(0, '127.0.0.1', () => {
+      baseUrl = `http://127.0.0.1:${server.address().port}`;
+      resolve();
+    });
+  });
+}
 
 console.log('--- TESTING REMOVE PHOTO FUNCTIONALITY ---');
 
@@ -127,5 +140,9 @@ async function runLivePhotoTest() {
   console.log('✅ PASS: Cleaned up test product');
 }
 
-await runLivePhotoTest();
-console.log('\n--- ALL REMOVE PHOTO TESTS PASSED SUCCESSFULLY ---');
+try {
+  await runLivePhotoTest();
+  console.log('\n--- ALL REMOVE PHOTO TESTS PASSED SUCCESSFULLY ---');
+} finally {
+  if (server) server.close();
+}

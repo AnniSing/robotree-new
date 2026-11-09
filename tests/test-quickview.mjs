@@ -37,16 +37,35 @@ assert.ok(scriptJs.includes("document.body.classList.remove('modal-open')"), 'mo
 console.log('✅ PASS: script.js Quick View logic');
 
 // 4. Test live fetch against running server
-const res = await fetch('http://127.0.0.1:5000/store.html');
-assert.equal(res.status, 200);
-const liveHtml = await res.text();
-assert.ok(liveHtml.includes('id="productQuickViewModal"'), 'Live store.html has productQuickViewModal');
-assert.ok(liveHtml.includes('class="modal-backdrop" id="productQuickViewModal"'), 'Live store.html has modal-backdrop for Quick View');
+let server;
+let BASE_URL = 'http://127.0.0.1:5000';
+try {
+  const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
+  if (!probe.ok) throw new Error('Not running');
+} catch {
+  const { app } = await import('../server.js');
+  await new Promise((resolve) => {
+    server = app.listen(0, '127.0.0.1', () => {
+      BASE_URL = `http://127.0.0.1:${server.address().port}`;
+      resolve();
+    });
+  });
+}
 
-const resRoute = await fetch('http://127.0.0.1:5000/store');
-assert.equal(resRoute.status, 200);
-const liveRouteHtml = await resRoute.text();
-assert.ok(liveRouteHtml.includes('id="productQuickViewModal"'), 'Live /store route has productQuickViewModal');
-console.log('✅ PASS: Live HTTP endpoints deliver updated Quick View modal');
+try {
+  const res = await fetch(`${BASE_URL}/store.html`);
+  assert.equal(res.status, 200);
+  const liveHtml = await res.text();
+  assert.ok(liveHtml.includes('id="productQuickViewModal"'), 'Live store.html has productQuickViewModal');
+  assert.ok(liveHtml.includes('class="modal-backdrop" id="productQuickViewModal"'), 'Live store.html has modal-backdrop for Quick View');
 
-console.log('\n--- ALL QUICK VIEW TESTS PASSED SUCCESSFULLY ---');
+  const resRoute = await fetch(`${BASE_URL}/store`);
+  assert.equal(resRoute.status, 200);
+  const liveRouteHtml = await resRoute.text();
+  assert.ok(liveRouteHtml.includes('id="productQuickViewModal"'), 'Live /store route has productQuickViewModal');
+  console.log('✅ PASS: Live HTTP endpoints deliver updated Quick View modal');
+
+  console.log('\n--- ALL QUICK VIEW TESTS PASSED SUCCESSFULLY ---');
+} finally {
+  if (server) server.close();
+}
