@@ -52,8 +52,7 @@ async function getCsrfSession() {
 async function runLivePhotoTest() {
   const { token, cookie } = await getCsrfSession();
 
-  const settings = JSON.parse(fs.readFileSync('data/settings.json', 'utf8'));
-  const passcode = settings.adminPasscode || process.env.ADMIN_PASSCODE || 'Anni4515';
+  const passcode = 'Anni4515';
 
   // Admin login
   const loginRes = await fetch(`${baseUrl}/api/admin/login`, {
