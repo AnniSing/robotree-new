@@ -37,6 +37,8 @@ export default defineConfig({
         certificate: resolve(__dirname, 'certificate.html'),
         contact: resolve(__dirname, 'contact.html'),
         admin: resolve(__dirname, 'admin.html'),
+        employee: resolve(__dirname, 'employee.html'),
+        employeeLogin: resolve(__dirname, 'employee-login.html'),
         store: resolve(__dirname, 'store.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html')

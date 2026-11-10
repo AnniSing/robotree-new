@@ -1,4 +1,4 @@
-﻿import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { extractToken } from './authenticate.js';
 import { AuthService } from '../services/AuthService.js';
 
@@ -13,7 +13,9 @@ export async function requireEmployee(req: Request, res: Response, next: NextFun
   }
 
   const session = await AuthService.getSession(token);
-  if (!session || session.role !== 'EMPLOYEE') {
+  const normalizedRole = String(session?.role || '').toUpperCase();
+  const isAuthorizedStaff = ['EMPLOYEE', 'STAFF', 'ADMIN', 'SUPER_ADMIN'].includes(normalizedRole);
+  if (!session || !isAuthorizedStaff) {
     res.status(401).json({ success: false, error: 'Unauthorized', message: 'Invalid or missing employee session.' });
     return;
   }

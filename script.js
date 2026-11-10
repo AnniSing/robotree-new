@@ -808,6 +808,7 @@ function initAccountAccess() {
     setButtonBusy(submitButton, true, 'Creating...');
     try {
       const result = await postJson('/api/auth/register', payload);
+      if (result.token) sessionStorage.setItem('robotree_session_token', result.token);
       saveAccountUser(result.user);
       accountRegisterForm.reset();
       switchAccountView('login');
@@ -831,13 +832,14 @@ function initAccountAccess() {
     if (RateLimiter.isRateLimited('account_login', 6, 10 * 60000)) {
       return setAccountStatus('Too many login attempts. Please wait and try again.', true);
     }
-    if (!validateEmail(payload.email) || payload.password.length < 8) {
+    if (!validateEmail(payload.email) || !payload.password) {
       return setAccountStatus('Valid email and password are required.', true);
     }
 
     setButtonBusy(submitButton, true, 'Signing in...');
     try {
       const result = await postJson('/api/auth/login', payload);
+      if (result.token) sessionStorage.setItem('robotree_session_token', result.token);
       saveAccountUser(result.user);
       accountLoginForm.reset();
       renderAccountSession();
@@ -852,12 +854,17 @@ function initAccountAccess() {
   });
 
   accountLogout?.addEventListener('click', () => {
+    const token = sessionStorage.getItem('robotree_session_token') || '';
+    sessionStorage.removeItem('robotree_session_token');
     sessionStorage.removeItem('robotree_account_user');
     localStorage.removeItem('robotree_account_user');
     renderAccountSession();
     switchAccountView('login');
     setAccountStatus('Signed out.');
     window.dispatchEvent(new CustomEvent('robotree:user_logout'));
+    if (token) {
+      postJson('/api/auth/logout', {}, { Authorization: `Bearer ${token}` }).catch(() => {});
+    }
   });
 
   // GPS Attendance Check-In Button in user session
@@ -1065,18 +1072,10 @@ function initAdminPanel() {
       const link = event.target.closest('a[href]');
       if (link) {
         const href = link.getAttribute('href') || '';
-        if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.includes('admin.html')) {
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.includes('admin.html') && !href.endsWith('/admin')) {
           sessionStorage.removeItem('robotree_admin_token');
         }
       }
-    });
-
-    // Auto-logout: Clear admin token when leaving the admin panel page
-    window.addEventListener('pagehide', () => {
-      sessionStorage.removeItem('robotree_admin_token');
-    });
-    window.addEventListener('beforeunload', () => {
-      sessionStorage.removeItem('robotree_admin_token');
     });
 
     // Passcode visibility toggle

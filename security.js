@@ -70,11 +70,11 @@ export const CSRFManager = {
   async getToken() {
     if (this.token) return this.token;
 
-    // Check if token was previously saved in sessionStorage
+    // Check if a real server token was previously saved in sessionStorage
     try {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         const cached = window.sessionStorage.getItem('robotree_csrf_token');
-        if (cached && typeof cached === 'string' && cached.length >= 16) {
+        if (cached && typeof cached === 'string' && !cached.startsWith('rb_token_') && cached.length >= 16) {
           this.token = cached;
           return this.token;
         }
@@ -106,18 +106,11 @@ export const CSRFManager = {
           return this.token;
         }
       } catch (err) {
-        console.warn('[Robotree CSRF] Server CSRF endpoint unavailable, using resilient fallback token:', err?.message || err);
+        console.warn('[Robotree CSRF] Server CSRF endpoint unavailable, using temporary token:', err?.message || err);
       }
 
-      // 2. Generate resilient fallback token so forms / UI never crash with "Could not create a security token."
-      const fallbackToken = 'rb_token_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-      this.token = fallbackToken;
-      try {
-        if (typeof window !== 'undefined' && window.sessionStorage) {
-          window.sessionStorage.setItem('robotree_csrf_token', this.token);
-        }
-      } catch (_) {}
-      return this.token;
+      // 2. Return non-persisted fallback token so UI never crashes, without poisoning sessionStorage
+      return 'rb_token_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
     })().finally(() => {
       this.pending = null;
     });

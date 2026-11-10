@@ -406,8 +406,8 @@
   (function () {
     'use strict';
     // Auth guard
-    var role = sessionStorage.getItem('robotree_user_role');
-    if (role !== 'EMPLOYEE') { window.location.replace('employee-login.html'); return; }
+    var role = String(sessionStorage.getItem('robotree_user_role') || '').toUpperCase();
+    if (['EMPLOYEE', 'STAFF', 'ADMIN', 'SUPER_ADMIN'].indexOf(role) === -1) { window.location.replace('employee-login.html'); return; }
 
     var sessionToken = sessionStorage.getItem('robotree_session_token') || '';
     var empName  = sessionStorage.getItem('robotree_user_name')  || 'Employee';

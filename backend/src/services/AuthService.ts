@@ -2,14 +2,68 @@ import crypto from 'node:crypto';
 import { repositories } from '../repositories/index.js';
 import { hashPassword, verifyPassword } from '../security/hasher.js';
 import { timingSafeEqual } from '../security/timingSafe.js';
-import { generateSecureToken } from '../security/tokens.js';
-import { env } from '../config/env.js';
+import { env, isVercel } from '../config/env.js';
 import { User, Session, Role } from '../types/index.js';
 import { UnauthorizedError, ConflictError, NotFoundError, ValidationError } from '../errors/AppError.js';
 import { db } from '../persistence/json-database.js';
 import { AuditService } from './AuditService.js';
 
+function normalizePortalRole(role?: string): string {
+  const clean = String(role || '').trim().toLowerCase();
+  if (clean === 'employee' || clean === 'staff') return 'staff';
+  if (clean === 'admin' || clean === 'super_admin') return 'admin';
+  if (clean === 'student') return 'student';
+  return clean;
+}
+
+function signSessionPayload(payload: {
+  jti: string;
+  userId: string;
+  role: Role;
+  email: string;
+  name: string;
+  iat: number;
+  exp: number;
+}): string {
+  const encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+  const sig = crypto.createHmac('sha256', env.SESSION_SECRET).update(encoded).digest('base64url');
+  return `rbt1.${encoded}.${sig}`;
+}
+
+function verifySignedSessionToken(token: string): Session | null {
+  if (!token || !token.startsWith('rbt1.')) return null;
+  const parts = token.split('.');
+  if (parts.length !== 3) return null;
+  const [, encoded, sig] = parts;
+  if (!encoded || !sig) return null;
+
+  const expectedSig = crypto.createHmac('sha256', env.SESSION_SECRET).update(encoded).digest('base64url');
+  if (!timingSafeEqual(sig, expectedSig)) return null;
+
+  try {
+    const payload = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
+    if (!payload || typeof payload.exp !== 'number' || payload.exp <= Date.now()) {
+      return null;
+    }
+    return {
+      id: token,
+      userId: String(payload.userId || ''),
+      role: payload.role as Role,
+      email: String(payload.email || ''),
+      name: String(payload.name || ''),
+      createdAt: new Date(payload.iat || Date.now()).toISOString(),
+      expiresAt: new Date(payload.exp).toISOString(),
+      lastActive: new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
+
 export class AuthService {
+  private static revokedTokens = new Set<string>();
+  private static userRevokedAfter = new Map<string, number>();
+
   public static async register(
     name: string,
     email: string,
@@ -57,7 +111,7 @@ export class AuthService {
       throw new UnauthorizedError('Invalid email or password');
     }
 
-    if (requestedRole && user.role.toLowerCase() !== requestedRole.toLowerCase()) {
+    if (requestedRole && normalizePortalRole(user.role) !== normalizePortalRole(requestedRole)) {
       await AuditService.logAction(cleanEmail, 'USER_LOGIN_FAILED', 'users', 'Role mismatch', { result: 'FAILURE' });
       throw new UnauthorizedError('Invalid email or password for requested portal');
     }
@@ -135,6 +189,17 @@ export class AuthService {
 
   public static verifyAdminPasscode(passcode: string): boolean {
     const settings = db.getSettings() || {};
+
+    // Allow explicitly configured Vercel deployment ADMIN_PASSCODE before runtime password rotation
+    if (
+      isVercel &&
+      !settings.adminPasswordRuntimeUpdated &&
+      process.env.ADMIN_PASSCODE &&
+      process.env.ADMIN_PASSCODE !== 'Aniket4515' &&
+      timingSafeEqual(passcode, process.env.ADMIN_PASSCODE)
+    ) {
+      return true;
+    }
     
     // 1. Check strong PBKDF2 / Argon2 cryptographic hash
     if (settings.adminPasscodeHash) {
@@ -210,19 +275,33 @@ export class AuthService {
 
     this.resetFailedAttempts(lockoutKey);
 
-    const adminToken = generateSecureToken(32);
+    const now = Date.now();
+    const ttlMs = 8 * 60 * 60 * 1000;
+    const adminToken = signSessionPayload({
+      jti: crypto.randomBytes(16).toString('hex'),
+      userId: 'admin_root',
+      role: 'SUPER_ADMIN',
+      email: 'admin@robotree.org',
+      name: 'System Administrator',
+      iat: now,
+      exp: now + ttlMs,
+    });
     const session: Session = {
       id: adminToken,
       userId: 'admin_root',
       role: 'SUPER_ADMIN',
       email: 'admin@robotree.org',
       name: 'System Administrator',
-      createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
-      lastActive: new Date().toISOString(),
+      createdAt: new Date(now).toISOString(),
+      expiresAt: new Date(now + ttlMs).toISOString(),
+      lastActive: new Date(now).toISOString(),
     };
 
-    await repositories.users.createSession(session);
+    try {
+      await repositories.users.createSession(session);
+    } catch {
+      // Signed stateless token remains valid across serverless instances
+    }
     await AuditService.logAction('admin@robotree.org', 'ADMIN_LOGIN_SUCCESS', 'admin', 'Admin session created');
 
     return { token: adminToken, role: 'SUPER_ADMIN' };
@@ -376,6 +455,7 @@ export class AuthService {
     currentSettings.adminPasscodeHash = hashPassword(newPassword);
     delete currentSettings.adminPasscode;
     currentSettings.adminPasswordUpdatedAt = new Date().toISOString();
+    currentSettings.adminPasswordRuntimeUpdated = true;
     db.saveSettings(currentSettings);
 
     process.env.ADMIN_PASSCODE = newPassword;
@@ -391,26 +471,73 @@ export class AuthService {
   }
 
   public static async createSession(user: User): Promise<Session> {
-    const sessionId = generateSecureToken(32);
+    const now = Date.now();
+    const ttlMs = 7 * 24 * 60 * 60 * 1000;
+    const sessionId = signSessionPayload({
+      jti: crypto.randomBytes(16).toString('hex'),
+      userId: user.id,
+      role: user.role,
+      email: user.email,
+      name: user.name,
+      iat: now,
+      exp: now + ttlMs,
+    });
     const session: Session = {
       id: sessionId,
       userId: user.id,
       role: user.role,
       email: user.email,
       name: user.name,
-      createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      lastActive: new Date().toISOString(),
+      createdAt: new Date(now).toISOString(),
+      expiresAt: new Date(now + ttlMs).toISOString(),
+      lastActive: new Date(now).toISOString(),
     };
-    return repositories.users.createSession(session);
+    try {
+      return await repositories.users.createSession(session);
+    } catch {
+      return session;
+    }
   }
 
   public static async getSession(sessionId: string): Promise<Session | null> {
-    return repositories.users.findSession(sessionId);
+    if (!sessionId || this.revokedTokens.has(sessionId)) {
+      return null;
+    }
+
+    let session: Session | null = null;
+    try {
+      session = await repositories.users.findSession(sessionId);
+    } catch {
+      session = null;
+    }
+
+    if (!session) {
+      session = verifySignedSessionToken(sessionId);
+    }
+
+    if (!session) return null;
+
+    const revokedAt = this.userRevokedAfter.get(session.userId);
+    if (revokedAt && new Date(session.createdAt).getTime() <= revokedAt) {
+      return null;
+    }
+
+    return session;
   }
 
   public static async logout(sessionId: string): Promise<void> {
-    await repositories.users.deleteSession(sessionId);
+    if (sessionId) {
+      this.revokedTokens.add(sessionId);
+      if (this.revokedTokens.size > 5000) {
+        const oldest = this.revokedTokens.values().next().value;
+        if (oldest) this.revokedTokens.delete(oldest);
+      }
+      try {
+        await repositories.users.deleteSession(sessionId);
+      } catch {
+        // Already revoked in memory
+      }
+    }
   }
 
   public static async resetPassword(email: string, newPassword: string): Promise<User> {
@@ -433,6 +560,7 @@ export class AuthService {
       isLocked: false,
     });
 
+    this.userRevokedAfter.set(user.id, Date.now());
     await repositories.users.deleteUserSessions(user.id);
     await AuditService.logAction(user.email, 'PASSWORD_RESET', 'users', 'Password reset successfully', { resourceId: user.id });
 
@@ -448,6 +576,7 @@ export class AuthService {
       throw new UnauthorizedError('Invalid password confirmation');
     }
 
+    this.userRevokedAfter.set(userId, Date.now());
     await repositories.users.deleteUserSessions(userId);
     const success = await repositories.users.delete(userId);
     await AuditService.logAction(user.email, 'ACCOUNT_DELETED', 'users', 'User erased account under GDPR', { resourceId: user.id });

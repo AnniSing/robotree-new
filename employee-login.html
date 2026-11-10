@@ -133,7 +133,11 @@
   </main>
   <script>
     (function () {
-      try { if (sessionStorage.getItem('robotree_user_role') === 'EMPLOYEE') { window.location.replace('employee.html'); return; } } catch(_) {}
+      var allowedRoles = ['EMPLOYEE', 'STAFF', 'ADMIN', 'SUPER_ADMIN'];
+      try {
+        var existingRole = String(sessionStorage.getItem('robotree_user_role') || '').toUpperCase();
+        if (allowedRoles.indexOf(existingRole) !== -1) { window.location.replace('employee.html'); return; }
+      } catch(_) {}
       var csrfToken = '';
       async function fetchCsrf() {
         try { const r = await fetch('/api/csrf-token', { credentials: 'include' }); const d = await r.json(); csrfToken = d.csrfToken || d.token || ''; } catch(_) {}
@@ -160,11 +164,20 @@
             headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
             body: JSON.stringify({ email: email, password: password, role: 'EMPLOYEE' })
           });
+          if (res.status === 403) {
+            await fetchCsrf();
+            res = await fetch('/api/auth/login', {
+              method: 'POST', credentials: 'include',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              body: JSON.stringify({ email: email, password: password, role: 'EMPLOYEE' })
+            });
+          }
           var data;
           try { data = await res.json(); } catch(_) { throw new Error('Server returned an invalid response.'); }
           if (!res.ok || !data.success) throw new Error(data.message || data.error || 'Login failed.');
-          if (data.user && data.user.role !== 'EMPLOYEE') throw new Error('This portal is for employees only.');
-          sessionStorage.setItem('robotree_user_role', data.user.role);
+          var userRole = String((data.user && data.user.role) || '').toUpperCase();
+          if (allowedRoles.indexOf(userRole) === -1) throw new Error('This portal is for employees only.');
+          sessionStorage.setItem('robotree_user_role', userRole);
           sessionStorage.setItem('robotree_user_name', data.user.name || '');
           sessionStorage.setItem('robotree_user_email', data.user.email || '');
           sessionStorage.setItem('robotree_user_id', data.user.id || '');

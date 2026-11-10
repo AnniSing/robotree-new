@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { env, isProduction } from './config/env.js';
 import { securityHeaders } from './middleware/securityHeaders.js';
 import { requestLogger } from './middleware/requestLogger.js';
-import { sameOriginGuard, csrfGuard } from './middleware/csrf.js';
+import { sameOriginGuard, csrfGuard, isTrustedVercelOrigin } from './middleware/csrf.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { createApiRouter } from './routes/index.js';
 import { COURSES_CATALOG } from './services/CourseService.js';
@@ -38,9 +38,7 @@ export function createApp(): Express {
   app.use(
     cors({
       origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else if (!isProduction && origin.endsWith('.vercel.app')) {
+        if (!origin || allowedOrigins.includes(origin) || isTrustedVercelOrigin(origin)) {
           callback(null, true);
         } else if (!isProduction) {
           const isLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin);
@@ -67,6 +65,13 @@ export function createApp(): Express {
 
   // 6. Mount Master API Router (/api/v1 and /api aliases)
   app.use('/api', createApiRouter());
+  app.use('/api', (_req: Request, res: Response) => {
+    res.status(404).json({
+      success: false,
+      error: 'NOT_FOUND',
+      message: 'API endpoint not found.',
+    });
+  });
 
   // 6.5. System Resource Protection: Block unauthorized probing of server data, hidden files, source files, and traversal
   app.use((req: Request, res: Response, next: NextFunction) => {

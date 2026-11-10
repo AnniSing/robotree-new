@@ -42,8 +42,16 @@ export interface RepositoryContainer {
   products: IProductRepository;
 }
 
+function hasValidPostgresUrl(url?: string): boolean {
+  if (!url || !url.trim()) return false;
+  if (url.includes('[YOUR_PASSWORD]') || url.includes('your_password')) return false;
+  return /^postgres(ql)?:\/\//i.test(url.trim());
+}
+
 export function createRepositories(): RepositoryContainer {
-  const usePostgres = (env.DB_PROVIDER === 'postgres' || env.DB_PROVIDER === 'supabase' || env.DB_PROVIDER === 'auto') && Boolean(env.DATABASE_URL);
+  const usePostgres =
+    (env.DB_PROVIDER === 'postgres' || env.DB_PROVIDER === 'supabase' || env.DB_PROVIDER === 'auto') &&
+    hasValidPostgresUrl(env.DATABASE_URL);
 
   if (usePostgres) {
     Logger.info('Initializing Supabase / PostgreSQL database repositories...');

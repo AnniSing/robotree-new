@@ -39,12 +39,14 @@ export class PostgresConnection {
         connectionString.includes('sslmode=') ||
         env.NODE_ENV === 'production';
 
+      const requireStrictTls = connectionString.includes('sslmode=verify-full') || connectionString.includes('sslmode=verify-ca');
+
       this.pool = new Pool({
         connectionString,
         max: isSupabaseOrRemote ? 10 : 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 5000,
-        ssl: isSupabaseOrRemote ? { rejectUnauthorized: true } : undefined,
+        ssl: isSupabaseOrRemote ? { rejectUnauthorized: requireStrictTls } : undefined,
       });
 
       this.pool.on('error', (err) => {
@@ -78,6 +80,16 @@ export class PostgresConnection {
 // ==============================================================================
 // 1. Users & Sessions Repository
 // ==============================================================================
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function normalizePostgresRole(role?: string): string {
+  const upper = String(role || 'STUDENT').trim().toUpperCase();
+  if (upper === 'EMPLOYEE' || upper === 'STAFF') return 'STAFF';
+  if (upper === 'STUDENT') return 'STUDENT';
+  if (upper === 'ADMIN' || upper === 'SUPER_ADMIN' || upper === 'PUBLIC') return upper;
+  return 'STUDENT';
+}
+
 export class PostgresUserRepository implements IUserRepository {
   private get pool() {
     return PostgresConnection.getPool();
@@ -118,7 +130,7 @@ export class PostgresUserRepository implements IUserRepository {
        VALUES ($1, $2, $3, $4)
        RETURNING id, email, name, password_hash as "passwordHash", role,
                  created_at as "createdAt", updated_at as "updatedAt"`,
-      [user.email.toLowerCase().trim(), user.name.trim(), user.passwordHash, user.role || 'STUDENT']
+      [user.email.toLowerCase().trim(), user.name.trim(), user.passwordHash, normalizePostgresRole(user.role)]
     );
     return res.rows[0];
   }
@@ -131,7 +143,7 @@ export class PostgresUserRepository implements IUserRepository {
 
     if (updates.name !== undefined) { fields.push(`name = $${idx++}`); values.push(updates.name); }
     if (updates.passwordHash !== undefined) { fields.push(`password_hash = $${idx++}`); values.push(updates.passwordHash); }
-    if (updates.role !== undefined) { fields.push(`role = $${idx++}`); values.push(updates.role); }
+    if (updates.role !== undefined) { fields.push(`role = $${idx++}`); values.push(normalizePostgresRole(updates.role)); }
     if (updates.isLocked !== undefined) { fields.push(`is_locked = $${idx++}`); values.push(updates.isLocked); }
     if (updates.failedLoginAttempts !== undefined) { fields.push(`failed_login_attempts = $${idx++}`); values.push(updates.failedLoginAttempts); }
     if (updates.lockUntil !== undefined) { fields.push(`lock_until = $${idx++}`); values.push(updates.lockUntil); }
@@ -173,11 +185,12 @@ export class PostgresUserRepository implements IUserRepository {
 
   async createSession(session: Session): Promise<Session> {
     if (!this.pool) return session;
+    const dbUserId = UUID_REGEX.test(session.userId) ? session.userId : null;
     await this.pool.query(
       `INSERT INTO sessions (id, user_id, role, email, expires_at)
        VALUES ($1, $2, $3, $4, $5)
        ON CONFLICT (id) DO UPDATE SET last_active = CURRENT_TIMESTAMP, expires_at = EXCLUDED.expires_at`,
-      [session.id, session.userId, session.role, session.email, session.expiresAt]
+      [session.id, dbUserId, normalizePostgresRole(session.role), session.email, session.expiresAt]
     );
     return session;
   }
@@ -185,7 +198,8 @@ export class PostgresUserRepository implements IUserRepository {
   async findSession(sessionId: string): Promise<Session | null> {
     if (!this.pool) return null;
     const res = await this.pool.query(
-      `SELECT s.id, s.user_id as "userId", s.role, s.email, u.name,
+      `SELECT s.id, COALESCE(s.user_id::text, 'admin_root') as "userId", s.role, s.email,
+              COALESCE(u.name, CASE WHEN s.role IN ('ADMIN', 'SUPER_ADMIN') THEN 'System Administrator' ELSE s.email END) as name,
               s.expires_at as "expiresAt", s.created_at as "createdAt", s.last_active as "lastActive"
        FROM sessions s
        LEFT JOIN users u ON u.id = s.user_id

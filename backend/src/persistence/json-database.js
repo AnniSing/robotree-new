@@ -1,4 +1,5 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -22,22 +23,44 @@ function findProjectRoot() {
   return cwd;
 }
 const PROJECT_ROOT = findProjectRoot();
-const DATA_DIR = process.env.ROBOTREE_DATA_DIR
-  ? path.resolve(process.env.ROBOTREE_DATA_DIR)
-  : path.join(PROJECT_ROOT, 'data');
+const SEED_DATA_DIR = path.join(PROJECT_ROOT, 'data');
+
+function resolveWritableDataDir() {
+  if (process.env.ROBOTREE_DATA_DIR) {
+    return path.resolve(process.env.ROBOTREE_DATA_DIR);
+  }
+  if (process.env.VERCEL === '1' || process.env.VERCEL_ENV) {
+    return path.join(os.tmpdir(), 'robotree-data');
+  }
+  try {
+    if (!fs.existsSync(SEED_DATA_DIR)) {
+      fs.mkdirSync(SEED_DATA_DIR, { recursive: true });
+    }
+    fs.accessSync(SEED_DATA_DIR, fs.constants.W_OK);
+    return SEED_DATA_DIR;
+  } catch {
+    return path.join(os.tmpdir(), 'robotree-data');
+  }
+}
+
+const DATA_DIR = resolveWritableDataDir();
 
 // Ensure Data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (err) {
+  console.warn('Warning creating DATA_DIR:', err?.message || err);
 }
 
 /**
  * Resolves file path securely with path traversal protection
  */
-function getSecureFilePath(filename) {
+function getSecureFilePath(filename, baseDir = DATA_DIR) {
   const safeName = path.basename(String(filename || '')).replace(/[^a-zA-Z0-9._-]/g, '');
-  const resolved = path.resolve(DATA_DIR, safeName);
-  if (!resolved.startsWith(DATA_DIR)) {
+  const resolved = path.resolve(baseDir, safeName);
+  if (!resolved.startsWith(baseDir)) {
     throw new Error('Security Error: Path traversal attempt detected.');
   }
   return resolved;
@@ -61,7 +84,20 @@ function readData(filename, defaultData = []) {
   try {
     const filePath = getSecureFilePath(filename);
     if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2), 'utf8');
+      if (DATA_DIR !== SEED_DATA_DIR && !process.env.ROBOTREE_DATA_DIR) {
+        const seedPath = getSecureFilePath(filename, SEED_DATA_DIR);
+        if (fs.existsSync(seedPath)) {
+          const seedRaw = fs.readFileSync(seedPath, 'utf8');
+          const seedParsed = JSON.parse(seedRaw);
+          try {
+            fs.writeFileSync(filePath, seedRaw, 'utf8');
+          } catch {}
+          return sanitizeRecord(seedParsed);
+        }
+      }
+      try {
+        fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2), 'utf8');
+      } catch {}
       return defaultData;
     }
     const raw = fs.readFileSync(filePath, 'utf8');

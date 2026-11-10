@@ -1,11 +1,34 @@
 import { Request, Response, NextFunction } from 'express';
 import crypto from 'node:crypto';
 import { timingSafeEqual } from '../security/timingSafe.js';
-import { env, isProduction } from '../config/env.js';
+import { env, isProduction, isVercel } from '../config/env.js';
 
 const allowedOrigins = new Set(
   env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
 );
+
+for (const host of [
+  process.env.VERCEL_URL,
+  process.env.VERCEL_BRANCH_URL,
+  process.env.VERCEL_PROJECT_PRODUCTION_URL,
+]) {
+  if (host) {
+    allowedOrigins.add(`https://${host.trim()}`);
+  }
+}
+
+export function isTrustedVercelOrigin(origin?: string): boolean {
+  if (!origin) return false;
+  if (allowedOrigins.has(origin)) return true;
+  if (!isProduction || isVercel) {
+    try {
+      return /\.vercel\.app$/i.test(new URL(origin).hostname);
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
 
 export function buildCookie(name: string, value: string, maxAgeSec: number, httpOnly = true): string {
   const parts = [
@@ -28,7 +51,11 @@ export function parseCookies(cookieHeader?: string): Record<string, string> {
     if (idx === -1) continue;
     const key = part.slice(0, idx).trim();
     const val = part.slice(idx + 1).trim();
-    result[key] = decodeURIComponent(val);
+    try {
+      result[key] = decodeURIComponent(val);
+    } catch {
+      result[key] = val;
+    }
   }
   return result;
 }
@@ -38,24 +65,16 @@ export function sameOriginGuard(req: Request, res: Response, next: NextFunction)
     return next();
   }
   const origin = req.get('origin');
-  const host = req.get('host');
-  const isLoopback = Boolean(host) && /^127\.0\.0\.1(:\d+)?$|^localhost(:\d+)?$|^0\.0\.0\.0(:\d+)?$/.test(host || '');
+  const forwardedHost = (req.get('x-forwarded-host') || '').split(',')[0].trim();
+  const host = forwardedHost || req.get('host') || '';
+  const isLoopback = Boolean(host) && /^127\.0\.0\.1(:\d+)?$|^localhost(:\d+)?$|^0\.0\.0\.0(:\d+)?$/.test(host);
   const isOriginLoopback = Boolean(origin) && /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin || '');
   const isSameHost = Boolean(origin) && Boolean(host) && (origin === `https://${host}` || origin === `http://${host}`);
-  let isVercelPreview = false;
-  if (origin && !isProduction) {
-    try {
-      isVercelPreview = /\.vercel\.app$/.test(new URL(origin).hostname);
-    } catch {
-      isVercelPreview = false;
-    }
-  }
 
   if (origin) {
     if (
-      allowedOrigins.has(origin) ||
+      isTrustedVercelOrigin(origin) ||
       isSameHost ||
-      isVercelPreview ||
       (isLoopback && isOriginLoopback)
     ) {
       return next();

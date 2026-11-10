@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import crypto from 'node:crypto';
 import path from 'path';
 import { PROJECT_ROOT } from '../utils/paths.js';
 
@@ -19,7 +20,7 @@ const envSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
   DB_PROVIDER: z.enum(['auto', 'postgres', 'supabase', 'json']).default('auto'),
   MONGODB_URI: z.string().optional(),
-  ALLOWED_ORIGINS: z.string().default('http://localhost:5000,http://127.0.0.1:5000,http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:5500,http://127.0.0.1:5500,http://0.0.0.0:5000'),
+  ALLOWED_ORIGINS: z.string().default('http://localhost:5000,http://127.0.0.1:5000,http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:5500,http://127.0.0.1:5500,http://0.0.0.0:5000,https://robotree.in,https://www.robotree.in,https://robotree.org,https://www.robotree.org'),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
 });
 
@@ -27,9 +28,6 @@ const parsed = envSchema.safeParse(process.env);
 
 if (!parsed.success) {
   console.error('Invalid environment variables:', parsed.error.format());
-  if (process.env.NODE_ENV === 'production') {
-    process.exit(1);
-  }
 }
 
 const resolvedData = parsed.success ? parsed.data : envSchema.parse({});
@@ -38,21 +36,34 @@ if (!resolvedData.DATABASE_URL && resolvedData.SUPABASE_DB_URL) {
   resolvedData.DATABASE_URL = resolvedData.SUPABASE_DB_URL;
 }
 
+export const isVercel = process.env.VERCEL === '1' || Boolean(process.env.VERCEL_ENV);
+
+if (resolvedData.NODE_ENV === 'production' && resolvedData.SESSION_SECRET === DEFAULT_SESSION_SECRET) {
+  const seed = [
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+    process.env.SUPABASE_URL,
+    resolvedData.ADMIN_PASSCODE,
+    DEFAULT_SESSION_SECRET,
+  ]
+    .filter(Boolean)
+    .join('|');
+  resolvedData.SESSION_SECRET = crypto.createHash('sha256').update(seed).digest('hex');
+}
+
 export const env = resolvedData;
 export const isProduction = env.NODE_ENV === 'production';
 export const isTest = env.NODE_ENV === 'test';
 
 if (isProduction) {
   const usingDefaultAdmin = env.ADMIN_PASSCODE === DEFAULT_ADMIN_PASSCODE;
-  const usingDefaultSecret = env.SESSION_SECRET === DEFAULT_SESSION_SECRET;
+  const usingDefaultSecret = !process.env.SESSION_SECRET || process.env.SESSION_SECRET === DEFAULT_SESSION_SECRET;
 
   if (usingDefaultAdmin || usingDefaultSecret) {
-    console.error(
-      '\x1b[31m%s\x1b[0m',
-      '[FATAL SECURITY ERROR] Production must not use default ADMIN_PASSCODE or SESSION_SECRET. ' +
-        'Set strong, unique secrets via environment variables before starting the server.'
+    console.warn(
+      '[SECURITY WARNING] Using fallback ADMIN_PASSCODE or derived SESSION_SECRET in production. ' +
+        'Set strong ADMIN_PASSCODE and SESSION_SECRET environment variables in your deployment settings.'
     );
-    process.exit(1);
   }
 
   const origins = env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean);

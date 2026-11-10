@@ -6,6 +6,11 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{data,dist-server,assets/brochures}/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
