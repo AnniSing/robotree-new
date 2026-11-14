@@ -6,10 +6,14 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+
 jobs:
   validate-and-test:
     name: Typecheck, Test & Security Audit
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     strategy:
       matrix:
@@ -32,7 +36,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build TypeScript Backend
-        run: npx tsc
+        run: npm run backend:build
 
       - name: Run Test Suites
         run: npm test
@@ -44,7 +48,7 @@ jobs:
         run: npm run build
 
       - name: Security Vulnerability Audit
-        run: npm audit --audit-level=high || true
+        run: npm audit --audit-level=high
 
   docker-build:
     name: Build Production Docker Image

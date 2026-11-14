@@ -1,11 +1,18 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
 let server;
+let tempDataDir = null;
 let BASE_URL = 'http://localhost:5000';
 try {
   const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
   if (!probe.ok) throw new Error('Not running');
 } catch {
+  tempDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-cert-test-'));
+  fs.cpSync(path.resolve('data'), tempDataDir, { recursive: true });
+  process.env.ROBOTREE_DATA_DIR = tempDataDir;
   const { app } = await import('../server.js');
   await new Promise((resolve) => {
     server = app.listen(0, '127.0.0.1', () => {
@@ -192,6 +199,7 @@ async function run() {
   console.log('\n--- ALL CERTIFICATE ENROLLMENT & PRODUCT INQUIRY TESTS PASSED ---');
   } finally {
     if (server) server.close();
+    if (tempDataDir) fs.rmSync(tempDataDir, { recursive: true, force: true });
   }
 }
 

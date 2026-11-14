@@ -17,7 +17,7 @@ router.post('/register', authRateLimiter, validateRequest(registerSchema), AuthC
 router.post('/login', authRateLimiter, validateRequest(loginSchema), AuthController.login);
 router.get('/me', requireAuth, AuthController.getMe);
 router.post('/logout', requireAuth, AuthController.logout);
-router.post('/reset-password', validateRequest(resetPasswordSchema), AuthController.resetPassword);
+router.post('/reset-password', authRateLimiter, validateRequest(resetPasswordSchema), AuthController.resetPassword);
 router.get('/export-data', requireAuth, AuthController.exportData);
 router.post('/delete-account', requireAuth, validateRequest(deleteAccountSchema), AuthController.deleteAccount);
 

@@ -42,7 +42,17 @@ function verifySignedSessionToken(token: string): Session | null {
 
   try {
     const payload = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
-    if (!payload || typeof payload.exp !== 'number' || payload.exp <= Date.now()) {
+    if (
+      !payload ||
+      typeof payload.userId !== 'string' ||
+      !payload.userId ||
+      typeof payload.role !== 'string' ||
+      !payload.role ||
+      typeof payload.iat !== 'number' ||
+      typeof payload.exp !== 'number' ||
+      payload.exp <= payload.iat ||
+      payload.exp <= Date.now()
+    ) {
       return null;
     }
     return {

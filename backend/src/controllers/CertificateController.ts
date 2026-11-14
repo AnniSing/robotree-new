@@ -88,9 +88,12 @@ export class CertificateController {
 
       if (cert.certificateFile) {
         const cleanPath = cert.certificateFile.replace(/^assets\//, '');
-        const fullPath = path.resolve(PROJECT_ROOT, 'assets', cleanPath);
-        if (fs.existsSync(fullPath)) {
-          const rawName = (cert.fileOriginalName || cert.id || cert.code || 'Certificate').trim();
+        const assetsRoot = path.resolve(PROJECT_ROOT, 'assets');
+        const fullPath = path.resolve(assetsRoot, cleanPath);
+        if (fullPath.startsWith(assetsRoot + path.sep) && fs.existsSync(fullPath)) {
+          const rawName = (cert.fileOriginalName || cert.id || cert.code || 'Certificate')
+            .replace(/["\r\n]/g, '')
+            .trim() || 'Certificate';
           const cleanFileName = rawName.toLowerCase().endsWith('.pdf') ? rawName : `${rawName}.pdf`;
           res.setHeader('Content-Type', 'application/pdf');
           res.setHeader('Content-Disposition', `${isInline ? 'inline' : 'attachment'}; filename="${cleanFileName}"`);

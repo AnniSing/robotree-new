@@ -1,12 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
 const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-test-'));
+const TEST_SESSION_SECRET = crypto.randomBytes(32).toString('hex');
 process.env.NODE_ENV = 'test';
 process.env.ADMIN_PASSCODE = 'TestAdmin!2026';
+process.env.SESSION_SECRET = TEST_SESSION_SECRET;
 process.env.ROBOTREE_DATA_DIR = dataDir;
 
 const { app, hashPassword, verifyPassword, sanitizeValue } = await import('../server.js');
@@ -120,6 +123,12 @@ test('hashes passwords and supports authenticated login', async () => {
   assert.equal(employeeLogin.user.role, 'Employee');
 });
 
+function signTestRbt1Token(payload, secret = TEST_SESSION_SECRET) {
+  const encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+  const sig = crypto.createHmac('sha256', secret).update(encoded).digest('base64url');
+  return `rbt1.${encoded}.${sig}`;
+}
+
 test('protects admin dashboard and records failed logins', async () => {
   const denied = await fetch(`${baseUrl}/api/admin/dashboard`);
   assert.equal(denied.status, 401);
@@ -135,7 +144,29 @@ test('protects admin dashboard and records failed logins', async () => {
 
   const admin = await postJson('/api/admin/login', { passcode: 'TestAdmin!2026' });
   assert.equal(admin.success, true);
-  assert.match(admin.token, /^[a-f0-9]{64}$/);
+
+  // Verify structured rbt1.<base64url-payload>.<base64url-hmac> token format and signature
+  assert.match(admin.token, /^rbt1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
+  const parts = admin.token.split('.');
+  assert.equal(parts.length, 3);
+  const [prefix, encodedPayload, signature] = parts;
+  assert.equal(prefix, 'rbt1');
+
+  const expectedSig = crypto
+    .createHmac('sha256', TEST_SESSION_SECRET)
+    .update(encodedPayload)
+    .digest('base64url');
+  assert.equal(signature, expectedSig);
+
+  const decodedPayload = JSON.parse(Buffer.from(encodedPayload, 'base64url').toString('utf8'));
+  assert.equal(decodedPayload.userId, 'admin_root');
+  assert.equal(decodedPayload.role, 'SUPER_ADMIN');
+  assert.equal(decodedPayload.email, 'admin@robotree.org');
+  assert.equal(typeof decodedPayload.jti, 'string');
+  assert.equal(decodedPayload.jti.length >= 16, true);
+  assert.equal(typeof decodedPayload.iat, 'number');
+  assert.equal(typeof decodedPayload.exp, 'number');
+  assert.equal(decodedPayload.exp > decodedPayload.iat, true);
 
   const dashboard = await getJson('/api/admin/dashboard', {
     Authorization: `Bearer ${admin.token}`
@@ -149,6 +180,94 @@ test('protects admin dashboard and records failed logins', async () => {
   assert.equal(dashboard.accountActivity.some((item) => item.type === 'ACCOUNT_CREATED'), true);
   assert.equal(dashboard.accountActivity.some((item) => item.type === 'USER_LOGIN'), true);
   assert.equal(dashboard.users.every((user) => user.passwordHash === undefined), true);
+});
+
+test('verifies rbt1 token cryptographic integrity, expiration, and admin RBAC', async () => {
+  const admin = await postJson('/api/admin/login', { passcode: 'TestAdmin!2026' });
+  const [, encodedPayload, signature] = admin.token.split('.');
+
+  // 1. Tampered signature must be rejected (401)
+  const flippedChar = signature.endsWith('A') ? 'B' : 'A';
+  const tamperedSigToken = `rbt1.${encodedPayload}.${signature.slice(0, -1)}${flippedChar}`;
+  const tamperedSigRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: `Bearer ${tamperedSigToken}` }
+  });
+  assert.equal(tamperedSigRes.status, 401);
+
+  // 2. Tampered payload with original signature must be rejected (401)
+  const forgedPayload = Buffer.from(
+    JSON.stringify({
+      jti: 'forged_jti_123456',
+      userId: 'admin_root',
+      role: 'SUPER_ADMIN',
+      email: 'attacker@example.com',
+      name: 'Attacker',
+      iat: Date.now(),
+      exp: Date.now() + 3600_000
+    }),
+    'utf8'
+  ).toString('base64url');
+  const tamperedPayloadRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: `Bearer rbt1.${forgedPayload}.${signature}` }
+  });
+  assert.equal(tamperedPayloadRes.status, 401);
+
+  // 3. Token signed with wrong secret must be rejected (401)
+  const wrongSecretToken = signTestRbt1Token(
+    {
+      jti: 'wrong_secret_jti',
+      userId: 'admin_root',
+      role: 'SUPER_ADMIN',
+      email: 'admin@robotree.org',
+      name: 'System Administrator',
+      iat: Date.now(),
+      exp: Date.now() + 3600_000
+    },
+    'different-secret-key-not-valid'
+  );
+  const wrongSecretRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: `Bearer ${wrongSecretToken}` }
+  });
+  assert.equal(wrongSecretRes.status, 401);
+
+  // 4. Expired rbt1 token must be rejected even with valid signature (401)
+  const expiredToken = signTestRbt1Token({
+    jti: 'expired_jti_123456',
+    userId: 'admin_root',
+    role: 'SUPER_ADMIN',
+    email: 'admin@robotree.org',
+    name: 'System Administrator',
+    iat: Date.now() - 60_000,
+    exp: Date.now() - 5_000
+  });
+  const expiredRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: `Bearer ${expiredToken}` }
+  });
+  assert.equal(expiredRes.status, 401);
+
+  // 5. Malformed token must be rejected (401)
+  const malformedRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: 'Bearer rbt2.notvalid.token' }
+  });
+  assert.equal(malformedRes.status, 401);
+
+  // 6. Non-admin (Student) valid rbt1 token must be denied access to admin dashboard (403 Forbidden)
+  const studentLogin = await postJson('/api/auth/login', {
+    email: 'student@example.com',
+    password: 'StrongPass123',
+    role: 'Student'
+  });
+  assert.match(studentLogin.token, /^rbt1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
+
+  const meRes = await fetch(`${baseUrl}/api/auth/me`, {
+    headers: { Authorization: `Bearer ${studentLogin.token}` }
+  });
+  assert.equal(meRes.status, 200);
+
+  const forbiddenAdminRes = await fetch(`${baseUrl}/api/admin/dashboard`, {
+    headers: { Authorization: `Bearer ${studentLogin.token}` }
+  });
+  assert.equal(forbiddenAdminRes.status, 403);
 });
 
 test('file upload safety: rejects unauthorized upload attempts', async () => {

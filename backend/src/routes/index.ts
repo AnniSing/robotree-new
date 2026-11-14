@@ -67,7 +67,7 @@ export function createApiRouter(): Router {
   // Direct uploads & activity log compatibility
   router.get('/showcase', EventController.listShowcase);
   router.get('/v1/showcase', EventController.listShowcase);
-  router.post('/gallery/upload', EventController.uploadPhoto);
+  router.post('/gallery/upload', authRateLimiter, EventController.uploadPhoto);
   router.get('/activity-logs', requireAdmin, AdminController.getActivityLogs);
   router.post('/generate-pdf', requireAdmin, CertificateController.generateWorkshopPdf);
   router.post('/v1/generate-pdf', requireAdmin, CertificateController.generateWorkshopPdf);

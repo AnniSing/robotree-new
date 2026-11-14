@@ -4,7 +4,6 @@ import { storageService } from '../services/StorageService.js';
 import { ValidationError, UnauthorizedError } from '../errors/AppError.js';
 import { getParam } from '../utils/params.js';
 import { AuthService } from '../services/AuthService.js';
-import { timingSafeEqual } from '../security/timingSafe.js';
 
 export class EventController {
   public static async listEvents(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -83,7 +82,7 @@ export class EventController {
     try {
       const passcode = String(req.body?.adminPasscode || '').trim();
       const isAdminSession = req.user?.role === 'SUPER_ADMIN' || req.user?.role === 'ADMIN';
-      const isPasscodeValid = passcode ? timingSafeEqual(passcode, AuthService.getAdminPasscode()) : false;
+      const isPasscodeValid = passcode ? AuthService.verifyAdminPasscode(passcode) : false;
 
       if (!isAdminSession && !isPasscodeValid) {
         throw new UnauthorizedError('Administrative authorization required to upload media or publish gallery items.');

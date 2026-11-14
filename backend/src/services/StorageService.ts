@@ -12,7 +12,7 @@ export interface IStorageService {
 
 export class LocalStorageService implements IStorageService {
   private baseDir: string;
-  private readonly allowedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.svg', '.pdf']);
+  private readonly allowedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.pdf']);
 
   constructor(baseDir = path.join(PROJECT_ROOT, 'assets')) {
     this.baseDir = baseDir;
@@ -48,8 +48,9 @@ export class LocalStorageService implements IStorageService {
 
   async deleteFile(relativeUrl: string): Promise<boolean> {
     const cleanRel = relativeUrl.replace(/^assets\//, '');
-    const fullPath = path.resolve(this.baseDir, cleanRel);
-    if (!fullPath.startsWith(this.baseDir)) {
+    const resolvedBase = path.resolve(this.baseDir);
+    const fullPath = path.resolve(resolvedBase, cleanRel);
+    if (!fullPath.startsWith(resolvedBase + path.sep)) {
       throw new Error('Security Error: Path traversal detected.');
     }
     if (fs.existsSync(fullPath)) {
@@ -61,7 +62,11 @@ export class LocalStorageService implements IStorageService {
 
   async fileExists(relativeUrl: string): Promise<boolean> {
     const cleanRel = relativeUrl.replace(/^assets\//, '');
-    const fullPath = path.resolve(this.baseDir, cleanRel);
+    const resolvedBase = path.resolve(this.baseDir);
+    const fullPath = path.resolve(resolvedBase, cleanRel);
+    if (!fullPath.startsWith(resolvedBase + path.sep)) {
+      return false;
+    }
     return fs.existsSync(fullPath);
   }
 
