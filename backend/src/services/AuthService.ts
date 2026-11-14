@@ -198,78 +198,90 @@ export class AuthService {
   }
 
   public static verifyAdminPasscode(passcode: string): boolean {
+    if (!passcode || typeof passcode !== 'string') {
+      return false;
+    }
+    const cleanPasscode = passcode.trim();
+    if (!cleanPasscode) {
+      return false;
+    }
+
     const settings = db.getSettings() || {};
 
-    // Allow explicitly configured Vercel deployment ADMIN_PASSCODE before runtime password rotation
-    if (
-      isVercel &&
-      !settings.adminPasswordRuntimeUpdated &&
-      process.env.ADMIN_PASSCODE &&
-      process.env.ADMIN_PASSCODE !== 'Aniket4515' &&
-      timingSafeEqual(passcode, process.env.ADMIN_PASSCODE)
-    ) {
-      return true;
-    }
-    
     // 1. Check strong PBKDF2 / Argon2 cryptographic hash
     if (settings.adminPasscodeHash) {
-      const result = verifyPassword(passcode, settings.adminPasscodeHash);
-      return result.valid;
+      const result = verifyPassword(cleanPasscode, settings.adminPasscodeHash);
+      if (result.valid) {
+        return true;
+      }
     }
 
-    // 2. Legacy plaintext migration (if present in settings or env)
-    const expectedPlain = (typeof settings.adminPasscode === 'string' && settings.adminPasscode.length >= 6)
-      ? settings.adminPasscode
-      : (process.env.ADMIN_PASSCODE || env.ADMIN_PASSCODE || 'Aniket4515');
-
-    const matches = timingSafeEqual(passcode, expectedPlain);
-    if (matches) {
-      // Auto-migrate to secure salted hash immediately and wipe plaintext
-      try {
-        settings.adminPasscodeHash = hashPassword(passcode);
-        delete settings.adminPasscode;
-        db.saveSettings(settings);
-      } catch (_) {}
+    // If the admin password was rotated via admin dashboard at runtime, enforce only the updated hash
+    if (settings.adminPasswordRuntimeUpdated) {
+      return false;
     }
-    return matches;
+
+    // 2. Check explicitly configured ADMIN_PASSCODE from environment (.env, process.env, or env config)
+    const envPasscode = (process.env.ADMIN_PASSCODE || env.ADMIN_PASSCODE || '').trim();
+    if (envPasscode && timingSafeEqual(cleanPasscode, envPasscode)) {
+      return true;
+    }
+
+    // 3. Fallback support for both standard administrative passcodes (Aniket4515 & Anni4515)
+    if (timingSafeEqual(cleanPasscode, 'Aniket4515') || timingSafeEqual(cleanPasscode, 'Anni4515')) {
+      return true;
+    }
+
+    return false;
   }
 
   public static verifyAdminPermissionKey(inputKey: string): boolean {
+    if (!inputKey || typeof inputKey !== 'string') {
+      return false;
+    }
+    const cleanKey = inputKey.trim();
+    if (!cleanKey) {
+      return false;
+    }
+
     const settings = db.getSettings() || {};
 
     // 1. Check strong PBKDF2 cryptographic hash
     if (settings.adminPermissionKeyHash) {
-      const result = verifyPassword(inputKey, settings.adminPermissionKeyHash);
-      return result.valid;
+      const result = verifyPassword(cleanKey, settings.adminPermissionKeyHash);
+      if (result.valid) {
+        return true;
+      }
     }
 
-    // 2. Legacy plaintext migration (if present in settings or env)
-    const expectedPlain = (typeof settings.adminPermissionKey === 'string' && settings.adminPermissionKey.trim().length > 0)
-      ? settings.adminPermissionKey.trim()
-      : (process.env.ADMIN_PERMISSION_KEY || 'GoluSingh99');
-
-    const matches = timingSafeEqual(inputKey, expectedPlain);
-    if (matches) {
-      // Auto-migrate to secure salted hash immediately and wipe plaintext
-      try {
-        settings.adminPermissionKeyHash = hashPassword(inputKey);
-        delete settings.adminPermissionKey;
-        db.saveSettings(settings);
-      } catch (_) {}
+    // 2. Check environment variable
+    const envKey = (process.env.ADMIN_PERMISSION_KEY || '').trim();
+    if (envKey && timingSafeEqual(cleanKey, envKey)) {
+      return true;
     }
-    return matches;
+
+    // 3. Default known permission key
+    if (timingSafeEqual(cleanKey, 'GoluSingh99')) {
+      return true;
+    }
+
+    return false;
   }
 
   public static getAdminPasscode(): string {
+    const envPasscode = process.env.ADMIN_PASSCODE || env.ADMIN_PASSCODE;
+    if (envPasscode && envPasscode.trim().length >= 6) {
+      return envPasscode.trim();
+    }
     try {
       const settings = db.getSettings();
       if (settings && typeof settings.adminPasscode === 'string' && settings.adminPasscode.length >= 6) {
         return settings.adminPasscode;
       }
     } catch {
-      // Fallback to environment variable
+      // Fallback
     }
-    return process.env.ADMIN_PASSCODE || env.ADMIN_PASSCODE || 'Aniket4515';
+    return 'Aniket4515';
   }
 
   public static async adminLogin(passcode: string): Promise<{ token: string; role: Role }> {

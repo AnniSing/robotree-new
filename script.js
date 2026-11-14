@@ -1099,9 +1099,13 @@ function initAdminPanel() {
   adminLoginForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const submitButton = adminLoginForm.querySelector("button[type='submit']");
-    const passcode = String(new FormData(adminLoginForm).get('passcode') || '');
+    const passcode = String(new FormData(adminLoginForm).get('passcode') || '').trim();
 
-    if (RateLimiter.isRateLimited('admin_login', 5, 15 * 60000)) {
+    if (!passcode) {
+      return setAdminStatus('Please enter the admin passcode.', true);
+    }
+
+    if (RateLimiter.isRateLimited('admin_login', 10, 15 * 60000)) {
       return setAdminStatus('Too many attempts. Please wait before trying again.', true);
     }
 
@@ -1114,7 +1118,7 @@ function initAdminPanel() {
       await loadAdminDashboard();
     } catch (error) {
       sessionStorage.removeItem('robotree_admin_token');
-      setAdminStatus(error.message || 'Admin login failed.', true);
+      setAdminStatus(error.message || 'Invalid admin passcode.', true);
     } finally {
       setButtonBusy(submitButton, false);
       refreshIcons();
@@ -5790,7 +5794,8 @@ async function getJson(url, options = {}) {
   });
   const data = await readJsonResponse(response);
   if (!response.ok || data.success === false) {
-    throw new Error(data.message || 'Request failed.');
+    const errMsg = data.message || data.error || (response.status === 401 ? 'Session expired or unauthorized. Please sign in again.' : response.status === 403 ? 'Access denied: administrative permissions required.' : `Request failed (${response.status}).`);
+    throw new Error(errMsg);
   }
   return data;
 }
@@ -5827,7 +5832,7 @@ async function postJson(url, payload, headers = {}) {
       continue;
     }
     if (!response.ok || data.success === false) {
-      const errMsg = data.message || (response.status >= 500 ? 'Server is temporarily unavailable. Please try again later.' : 'Request failed.');
+      const errMsg = data.message || data.error || (response.status === 401 ? 'Invalid passcode or credentials.' : response.status >= 500 ? 'Server is temporarily unavailable. Please try again later.' : `Request failed (${response.status}).`);
       throw new Error(errMsg);
     }
     return data;
