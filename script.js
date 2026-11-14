@@ -720,9 +720,14 @@ function initAccountAccess() {
   portalAdminForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const submitButton = portalAdminForm.querySelector("button[type='submit']");
-    const passcode = String(document.getElementById('portalAdminPasscode')?.value || '');
+    const passcodeInput = portalAdminForm.querySelector("input[name='passcode']") || document.getElementById('portalAdminPasscode');
+    const passcode = String(passcodeInput?.value || '').trim();
 
-    if (RateLimiter.isRateLimited('admin_login', 5, 15 * 60000)) {
+    if (!passcode) {
+      return setAccountStatus('Please enter the admin passcode.', true);
+    }
+
+    if (RateLimiter.isRateLimited('admin_login', 10, 15 * 60000)) {
       return setAccountStatus('Too many attempts. Please wait before trying again.', true);
     }
 
@@ -730,10 +735,25 @@ function initAccountAccess() {
     try {
       const result = await postJson('/api/admin/login', { passcode });
       sessionStorage.setItem('robotree_admin_token', result.token);
-      setAccountStatus('Admin passcode verified. Redirecting to admin dashboard...');
-      window.location.href = 'admin.html';
+      setAccountStatus('Admin passcode verified. Access granted.');
+
+      const accountModal = document.getElementById('accountModal');
+      if (accountModal) accountModal.hidden = true;
+
+      const isAdminPage = typeof window !== 'undefined' && (
+        window.location.pathname.includes('admin.html') ||
+        window.location.pathname.endsWith('/admin') ||
+        window.location.pathname.endsWith('/admin/')
+      );
+
+      if (isAdminPage && typeof loadAdminDashboard === 'function') {
+        await loadAdminDashboard();
+      } else {
+        window.location.href = 'admin.html';
+      }
     } catch (error) {
-      setAccountStatus(error.message || 'Invalid admin passcode.', true);
+      const errText = error?.message && error.message !== '[object Object]' ? error.message : 'Invalid admin passcode.';
+      setAccountStatus(errText, true);
     } finally {
       setButtonBusy(submitButton, false);
       refreshIcons();
@@ -5783,6 +5803,26 @@ function initCourseEnrollModal() {
   });
 }
 
+function extractErrorMessage(data, status = 200, fallback = 'Request failed.') {
+  if (!data) return fallback;
+  if (typeof data === 'string' && data.trim()) return data.trim();
+  if (typeof data.message === 'string' && data.message.trim()) return data.message.trim();
+  if (data.error && typeof data.error === 'object') {
+    if (typeof data.error.message === 'string' && data.error.message.trim()) return data.error.message.trim();
+    if (typeof data.error.code === 'string' && data.error.code.trim()) return data.error.code.trim();
+  }
+  if (typeof data.error === 'string' && data.error.trim()) return data.error.trim();
+  if (Array.isArray(data.details) && data.details.length > 0) {
+    const d = data.details[0];
+    if (typeof d === 'string' && d.trim()) return d.trim();
+    if (d && typeof d.message === 'string' && d.message.trim()) return d.message.trim();
+  }
+  if (status === 401) return 'Invalid admin passcode or credentials.';
+  if (status === 403) return 'Access denied: administrative authorization required.';
+  if (status >= 500) return 'Server is temporarily unavailable. Please try again later.';
+  return fallback;
+}
+
 async function getJson(url, options = {}) {
   const response = await fetch(url, {
     credentials: 'same-origin',
@@ -5794,7 +5834,15 @@ async function getJson(url, options = {}) {
   });
   const data = await readJsonResponse(response);
   if (!response.ok || data.success === false) {
-    const errMsg = data.message || data.error || (response.status === 401 ? 'Session expired or unauthorized. Please sign in again.' : response.status === 403 ? 'Access denied: administrative permissions required.' : `Request failed (${response.status}).`);
+    const errMsg = extractErrorMessage(
+      data,
+      response.status,
+      response.status === 401
+        ? 'Session expired or unauthorized. Please sign in again.'
+        : response.status === 403
+        ? 'Access denied: administrative permissions required.'
+        : `Request failed (${response.status}).`
+    );
     throw new Error(errMsg);
   }
   return data;
@@ -5832,7 +5880,15 @@ async function postJson(url, payload, headers = {}) {
       continue;
     }
     if (!response.ok || data.success === false) {
-      const errMsg = data.message || data.error || (response.status === 401 ? 'Invalid passcode or credentials.' : response.status >= 500 ? 'Server is temporarily unavailable. Please try again later.' : `Request failed (${response.status}).`);
+      const errMsg = extractErrorMessage(
+        data,
+        response.status,
+        response.status === 401
+          ? 'Invalid passcode or credentials.'
+          : response.status >= 500
+          ? 'Server is temporarily unavailable. Please try again later.'
+          : `Request failed (${response.status}).`
+      );
       throw new Error(errMsg);
     }
     return data;
@@ -5863,7 +5919,21 @@ function setButtonBusy(button, busy, text) {
 
 function showFeedback(element, message, isError = false) {
   if (!element) return;
-  element.textContent = message;
+  let text = '';
+  if (typeof message === 'string') {
+    text = message.trim();
+  } else if (message && typeof message === 'object') {
+    if (typeof message.message === 'string') text = message.message;
+    else if (typeof message.error === 'string') text = message.error;
+    else if (message.error && typeof message.error.message === 'string') text = message.error.message;
+    else text = isError ? 'Invalid passcode or request failed.' : '';
+  } else {
+    text = String(message || '');
+  }
+  if (text === '[object Object]' || text === 'object Object' || !text) {
+    text = isError ? 'Invalid admin passcode or request failed.' : '';
+  }
+  element.textContent = text;
   element.style.color = isError ? '#ef4444' : 'var(--green)';
 }
 

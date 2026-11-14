@@ -5,6 +5,6 @@
   "heroStatLabel": "Students Trained",
   "governmentProtocol": "Robotree Robotics LLP • Operating in accordance with Government of India Protocols (GeM & MSME Accredited Entity)",
   "adminPermissionUpdatedAt": "2026-10-10T13:15:43.282Z",
-  "adminPasscodeHash": "pbkdf2_sha256$210000$54ce3b4786794a5bf41a4f7f921bc3b2$77d98df5023e50c368f800c07e4014faa995c6ee6cb0bb8aac13b28222958680",
+  "adminPasscodeHash": "pbkdf2_sha256$210000$d5c6ea2a4ed5d9902320c1dbe612ee7e$2641a1d7d47e77b8b4250fb475c6e611f629561cf57c36b38e26d8aafad651f8",
   "adminPermissionKeyHash": "pbkdf2_sha256$210000$227bb77c0cfcc756ec80c57657928301$85f514862feb68d125a4822e162370fee6019beb9f08b6429a5a5f5c7ce08673"
 }
