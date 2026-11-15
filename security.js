@@ -1,5 +1,8 @@
 /* Robotree browser-side validation and form safety helpers */
 
+import { buildApiUrl, API_BASE_URL } from './apiConfig.js';
+export { buildApiUrl, API_BASE_URL };
+
 // Defensive guard: Prevent 'Unexpected end of JSON input' on empty/invalid responses globally
 if (typeof Response !== 'undefined' && Response.prototype && !Response.prototype._safeJsonPatched) {
   const originalJson = Response.prototype.json;
@@ -89,7 +92,7 @@ export const CSRFManager = {
         const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
         const timeoutId = controller ? setTimeout(() => controller.abort(), 4000) : null;
 
-        const response = await fetch('/api/csrf-token', {
+        const response = await fetch(buildApiUrl('/api/csrf-token'), {
           credentials: 'include',
           signal: controller?.signal
         });

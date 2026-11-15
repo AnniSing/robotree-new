@@ -1,10 +1,9 @@
 import { app } from '../dist-server/app.js';
 
 export default function handler(req, res) {
-  // Preserve original /api/* path under Vercel serverless rewrites without clobbering with /api/index.js
   let url = req.url || '/api';
 
-  // 1. Check if original path was provided via query param (_path)
+  // 1. If path is provided via query param (_path or path)
   if (url.includes('_path=')) {
     try {
       const parsedUrl = new URL(url, 'http://localhost');
@@ -15,7 +14,7 @@ export default function handler(req, res) {
     } catch (_) {}
   }
 
-  // 2. Check headers passed by Vercel / reverse proxy
+  // 2. Check matched path headers from Vercel / proxy
   const matchedUri = req.headers['x-matched-path'] ||
                      req.headers['x-vercel-matched-path'] ||
                      req.headers['x-forwarded-uri'] ||
@@ -24,8 +23,13 @@ export default function handler(req, res) {
 
   if (typeof matchedUri === 'string' && (matchedUri.startsWith('/api') || matchedUri.startsWith('/health'))) {
     url = matchedUri;
-  } else if (url.startsWith('/api/index.js')) {
-    const suffix = url.slice('/api/index.js'.length);
+  } else if (url.startsWith('/api/index.js') || url.startsWith('/api/[...path].js') || url.startsWith('/api/[...path]')) {
+    const prefix = url.startsWith('/api/index.js')
+      ? '/api/index.js'
+      : url.startsWith('/api/[...path].js')
+      ? '/api/[...path].js'
+      : '/api/[...path]';
+    const suffix = url.slice(prefix.length);
     url = suffix.startsWith('/') ? `/api${suffix}` : `/api${suffix ? `/${suffix}` : ''}`;
   }
 
@@ -33,13 +37,14 @@ export default function handler(req, res) {
     url = `/api${url.startsWith('/') ? url : `/${url}`}`;
   }
 
-  // 3. Preserve any original query parameters (excluding internal _path param)
+  // 3. Preserve query string if needed
   const rawUrl = req.url || '';
   const queryIndex = rawUrl.indexOf('?');
   if (queryIndex !== -1 && !url.includes('?')) {
     try {
       const searchParams = new URLSearchParams(rawUrl.slice(queryIndex));
       searchParams.delete('_path');
+      searchParams.delete('path');
       const cleanQuery = searchParams.toString();
       if (cleanQuery) {
         url = `${url}?${cleanQuery}`;

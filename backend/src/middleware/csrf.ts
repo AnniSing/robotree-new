@@ -20,14 +20,11 @@ for (const host of [
 export function isTrustedVercelOrigin(origin?: string): boolean {
   if (!origin) return false;
   if (allowedOrigins.has(origin)) return true;
-  if (!isProduction || isVercel) {
-    try {
-      return /\.vercel\.app$/i.test(new URL(origin).hostname);
-    } catch {
-      return false;
-    }
+  try {
+    return /\.vercel\.app$/i.test(new URL(origin).hostname);
+  } catch {
+    return false;
   }
-  return false;
 }
 
 export function buildCookie(name: string, value: string, maxAgeSec: number, httpOnly = true): string {

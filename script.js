@@ -6,7 +6,8 @@ import {
   sanitizePlainText,
   validateEmail,
   validatePhone,
-  readJsonResponse
+  readJsonResponse,
+  buildApiUrl
 } from './security.js';
 
 if (typeof window !== 'undefined') {
@@ -396,7 +397,7 @@ window.addEventListener('unhandledrejection', (event) => {
 /** Hydrate Dynamic Hero Metric & Government Protocol from Server Settings */
 async function loadDynamicSiteSettings() {
   try {
-    const res = await fetch('/api/site-settings');
+    const res = await fetch(buildApiUrl('/api/site-settings'));
     if (!res.ok) return;
     const data = await res.json();
     if (!data.success || !data.settings) return;
@@ -1706,7 +1707,7 @@ function initAdminSiteSettingsManager(data) {
         statusEl.className = 'form-feedback';
       }
 
-      const res = await fetch('/api/admin/settings', {
+      const res = await fetch(buildApiUrl('/api/admin/settings'), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -1819,7 +1820,7 @@ function initAdminUserManager(data) {
 
       try {
         const csrfToken = await getCsrfToken();
-        const res = await fetch('/api/admin/users', {
+        const res = await fetch(buildApiUrl('/api/admin/users'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1871,7 +1872,7 @@ function initAdminUserManager(data) {
         setButtonBusy(toggleBtn, true, 'Updating...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/users/${userId}/role`, {
+          const res = await fetch(buildApiUrl(`/api/admin/users/${userId}/role`), {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -1906,7 +1907,7 @@ function initAdminUserManager(data) {
         setButtonBusy(deleteBtn, true, 'Removing...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/users/${userId}`, {
+          const res = await fetch(buildApiUrl(`/api/admin/users/${userId}`), {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -2199,7 +2200,7 @@ function initAdminTeamManager(data) {
         const url = isEdit ? `/api/admin/team/${id}` : '/api/admin/team';
         const method = isEdit ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
+        const res = await fetch(buildApiUrl(url), {
           method,
           headers: {
             'Content-Type': 'application/json',
@@ -2233,7 +2234,7 @@ function initAdminTeamManager(data) {
     if (!token) return;
     try {
       const csrfToken = await getCsrfToken();
-      const res = await fetch(`/api/admin/team/${id}`, {
+      const res = await fetch(buildApiUrl(`/api/admin/team/${id}`), {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}`, 'X-CSRF-Token': csrfToken }
       });
@@ -2480,7 +2481,7 @@ function initAdminCourseManager(data) {
         const url = isEdit ? `/api/admin/courses/${id}` : '/api/admin/courses';
         const method = isEdit ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
+        const res = await fetch(buildApiUrl(url), {
           method,
           headers: {
             'Content-Type': 'application/json',
@@ -2515,7 +2516,7 @@ function initAdminCourseManager(data) {
     if (!token) return;
     try {
       const csrfToken = await getCsrfToken();
-      const res = await fetch(`/api/admin/courses/${id}`, {
+      const res = await fetch(buildApiUrl(`/api/admin/courses/${id}`), {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}`, 'X-CSRF-Token': csrfToken }
       });
@@ -2662,7 +2663,7 @@ function initAdminInquiriesManager(data) {
 
       try {
         const csrfToken = await getCsrfToken();
-        const res = await fetch(`/api/admin/inquiries/${id}`, {
+        const res = await fetch(buildApiUrl(`/api/admin/inquiries/${id}`), {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -2691,7 +2692,7 @@ function initAdminInquiriesManager(data) {
       setButtonBusy(btn, true, 'Deleting...');
       try {
         const csrfToken = await getCsrfToken();
-        const res = await fetch(`/api/admin/inquiries/${encodeURIComponent(id)}`, {
+        const res = await fetch(buildApiUrl(`/api/admin/inquiries/${encodeURIComponent(id)}`), {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -2845,7 +2846,7 @@ function initAdminCertificateManager(data) {
         setButtonBusy(btn, true, 'Revoking...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/certificates/${encodeURIComponent(id)}/revoke`, {
+          const res = await fetch(buildApiUrl(`/api/admin/certificates/${encodeURIComponent(id)}/revoke`), {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -2884,7 +2885,7 @@ function initAdminCertificateManager(data) {
         setButtonBusy(btn, true, 'Reinstating...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/certificates/${encodeURIComponent(id)}/reinstate`, {
+          const res = await fetch(buildApiUrl(`/api/admin/certificates/${encodeURIComponent(id)}/reinstate`), {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -2923,7 +2924,7 @@ function initAdminCertificateManager(data) {
         setButtonBusy(btn, true, 'Deleting...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/certificates/${encodeURIComponent(id)}`, {
+          const res = await fetch(buildApiUrl(`/api/admin/certificates/${encodeURIComponent(id)}`), {
             method: 'DELETE',
             credentials: 'same-origin',
             headers: {
@@ -3136,7 +3137,7 @@ function initAdminCertificateManager(data) {
 
       try {
         const csrfToken = await getCsrfToken();
-        const res = await fetch('/api/admin/certificates/issue', {
+        const res = await fetch(buildApiUrl('/api/admin/certificates/issue'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -3195,7 +3196,7 @@ function initAdminStoreManager(data) {
 
   async function loadProducts() {
     try {
-      const res = await fetch('/api/store/products');
+      const res = await fetch(buildApiUrl('/api/store/products'));
       if (res.ok) {
         const d = await res.json();
         if (d.success && Array.isArray(d.products)) {
@@ -3294,7 +3295,7 @@ function initAdminStoreManager(data) {
         setButtonBusy(btn, true, 'Updating...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/products/${encodeURIComponent(prodId)}/stock`, {
+          const res = await fetch(buildApiUrl(`/api/admin/products/${encodeURIComponent(prodId)}/stock`), {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -3395,7 +3396,7 @@ function initAdminStoreManager(data) {
         setButtonBusy(btn, true, 'Deleting...');
         try {
           const csrfToken = await getCsrfToken();
-          const res = await fetch(`/api/admin/products/${encodeURIComponent(prodId)}`, {
+          const res = await fetch(buildApiUrl(`/api/admin/products/${encodeURIComponent(prodId)}`), {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -4009,7 +4010,7 @@ function initAdminEventGallery(data) {
         const url = isEdit ? `/api/admin/events/${id}` : '/api/admin/events';
         const method = isEdit ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
+        const res = await fetch(buildApiUrl(url), {
           method,
           headers: {
             'Content-Type': 'application/json',
@@ -4049,7 +4050,7 @@ function initAdminEventGallery(data) {
 
     try {
       const csrfToken = await getCsrfToken();
-      const res = await fetch(`/api/admin/events/${id}`, {
+      const res = await fetch(buildApiUrl(`/api/admin/events/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -4442,7 +4443,7 @@ function initAdminShowcaseGallery(data) {
 
     try {
       const csrfToken = await getCsrfToken();
-      const res = await fetch(`/api/admin/showcase/${encodeURIComponent(id)}`, {
+      const res = await fetch(buildApiUrl(`/api/admin/showcase/${encodeURIComponent(id)}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -4465,7 +4466,7 @@ function initAdminShowcaseGallery(data) {
 
   // Load showcase items if not already in data
   if (!showcaseItems.length) {
-    fetch('/api/showcase')
+    fetch(buildApiUrl('/api/showcase'))
       .then((r) => r.json())
       .then((d) => {
         if (d && Array.isArray(d.items)) {
@@ -4556,7 +4557,7 @@ function initPublicEventGallery() {
 
   async function fetchEvents() {
     try {
-      const res = await fetch('/api/events');
+      const res = await fetch(buildApiUrl('/api/events'));
       const data = await readJsonResponse(res);
       if (data.success && Array.isArray(data.events) && data.events.length > 0) {
         allEvents = data.events;
@@ -4964,7 +4965,7 @@ function initPublicEventGallery() {
   // Dynamically load updated showcase photos from API if available
   const masonryContainer = document.getElementById('pictureGalleryMasonry');
   if (masonryContainer) {
-    fetch('/api/showcase')
+    fetch(buildApiUrl('/api/showcase'))
       .then((r) => r.json())
       .then((d) => {
         if (d && Array.isArray(d.items) && d.items.length > 0) {
@@ -5172,7 +5173,7 @@ function initPublicEventGallery() {
 
     try {
       const csrf = await getCsrfToken();
-      const res = await fetch('/api/gallery/upload', {
+      const res = await fetch(buildApiUrl('/api/gallery/upload'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -5824,7 +5825,8 @@ function extractErrorMessage(data, status = 200, fallback = 'Request failed.') {
 }
 
 async function getJson(url, options = {}) {
-  const response = await fetch(url, {
+  const resolvedUrl = buildApiUrl(url);
+  const response = await fetch(resolvedUrl, {
     credentials: 'same-origin',
     ...options,
     headers: {
@@ -5849,6 +5851,7 @@ async function getJson(url, options = {}) {
 }
 
 async function postJson(url, payload, headers = {}) {
+  const resolvedUrl = buildApiUrl(url);
   for (let attempt = 0; attempt < 2; attempt += 1) {
     let csrfToken = '';
     try {
@@ -5859,7 +5862,7 @@ async function postJson(url, payload, headers = {}) {
 
     let response;
     try {
-      response = await fetch(url, {
+      response = await fetch(resolvedUrl, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -6826,7 +6829,7 @@ function initStoreClient() {
 
   async function loadStoreProducts() {
     try {
-      const res = await fetch('/api/store/products');
+      const res = await fetch(buildApiUrl('/api/store/products'));
       if (res.ok) {
         const data = await res.json();
         if (data.success && Array.isArray(data.products) && data.products.length > 0) {
@@ -6840,7 +6843,7 @@ function initStoreClient() {
     }
 
     try {
-      const res = await fetch('/api/v1/store/products');
+      const res = await fetch(buildApiUrl('/api/v1/store/products'));
       if (res.ok) {
         const data = await res.json();
         if (data && data.products) {
@@ -7139,7 +7142,7 @@ function initStoreClient() {
           items: cart.map(i => ({ productId: i.id, title: i.title, price: i.price, quantity: i.quantity }))
         };
 
-        const res = await fetch('/api/store/orders', {
+        const res = await fetch(buildApiUrl('/api/store/orders'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
