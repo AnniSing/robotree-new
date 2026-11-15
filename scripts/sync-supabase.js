@@ -74,6 +74,22 @@ async function run() {
       console.log('\x1b[32m%s\x1b[0m', '✔ 002_products_and_orders.sql executed successfully.');
     }
 
+    // 1.5. Seed Users
+    const usersFile = path.join(ROOT, 'data', 'users.json');
+    if (fs.existsSync(usersFile)) {
+      console.log('Seeding / syncing users from data/users.json...');
+      const usersData = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
+      for (const u of usersData) {
+        await client.query(
+          `INSERT INTO users (email, name, password_hash, role)
+           VALUES ($1, $2, $3, $4)
+           ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash, name = EXCLUDED.name`,
+          [u.email.toLowerCase().trim(), u.name.trim(), u.passwordHash, 'STUDENT']
+        );
+      }
+      console.log(`\x1b[32m✔ Seeded ${usersData.length} users.\x1b[0m`);
+    }
+
     // 2. Seed Team
     const teamFile = path.join(ROOT, 'data', 'team.json');
     if (fs.existsSync(teamFile)) {

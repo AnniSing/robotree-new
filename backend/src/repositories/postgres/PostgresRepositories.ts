@@ -8,6 +8,7 @@ import { IEventRepository } from '../interfaces/IEventRepository.js';
 import { IAuditRepository } from '../interfaces/IAuditRepository.js';
 import { IInquiryRepository, Inquiry } from '../interfaces/IInquiryRepository.js';
 import { IProductRepository } from '../interfaces/IProductRepository.js';
+import { JsonUserRepository } from '../json/JsonRepositories.js';
 import {
   User,
   Session,
@@ -24,12 +25,44 @@ import { Logger } from '../../telemetry/logger.js';
 
 const { Pool } = pg;
 
+export function normalizePostgresConnectionString(rawUrl?: string): string {
+  if (!rawUrl || typeof rawUrl !== 'string') return '';
+  const url = rawUrl.trim();
+  const protocolEnd = url.indexOf('://');
+  if (protocolEnd === -1) return url;
+  const lastAt = url.lastIndexOf('@');
+  if (lastAt === -1 || lastAt < protocolEnd) return url;
+
+  const prefix = url.slice(0, protocolEnd + 3);
+  const auth = url.slice(protocolEnd + 3, lastAt);
+  const hostAndRest = url.slice(lastAt + 1);
+
+  const firstColon = auth.indexOf(':');
+  if (firstColon === -1) return url;
+
+  const user = auth.slice(0, firstColon);
+  let pass = auth.slice(firstColon + 1);
+
+  if (pass.startsWith('[') && pass.endsWith(']')) {
+    pass = pass.slice(1, -1);
+  }
+
+  let decoded = pass;
+  try {
+    decoded = decodeURIComponent(pass);
+  } catch (_) {}
+  const encodedPass = encodeURIComponent(decoded);
+
+  return `${prefix}${user}:${encodedPass}@${hostAndRest}`;
+}
+
 export class PostgresConnection {
   private static pool: pg.Pool | null = null;
 
   public static getPool(): pg.Pool | null {
-    const connectionString = env.DATABASE_URL;
-    if (!connectionString) return null;
+    const rawConnectionString = env.DATABASE_URL;
+    if (!rawConnectionString) return null;
+    const connectionString = normalizePostgresConnectionString(rawConnectionString);
 
     if (!this.pool) {
       const isSupabaseOrRemote =
@@ -96,43 +129,62 @@ export class PostgresUserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    if (!this.pool) return null;
-    const res = await this.pool.query(
-      `SELECT id, email, name, password_hash as "passwordHash", role,
-              created_at as "createdAt", updated_at as "updatedAt",
-              is_locked as "isLocked", failed_login_attempts as "failedLoginAttempts",
-              lock_until as "lockUntil", reset_token as "resetToken",
-              reset_token_expires as "resetTokenExpires"
-       FROM users WHERE LOWER(email) = LOWER($1) AND deleted_at IS NULL`,
-      [email.trim()]
-    );
-    return res.rows[0] || null;
+    if (this.pool) {
+      try {
+        const res = await this.pool.query(
+          `SELECT id, email, name, password_hash as "passwordHash", role,
+                  created_at as "createdAt", updated_at as "updatedAt",
+                  is_locked as "isLocked", failed_login_attempts as "failedLoginAttempts",
+                  lock_until as "lockUntil", reset_token as "resetToken",
+                  reset_token_expires as "resetTokenExpires"
+           FROM users WHERE LOWER(email) = LOWER($1) AND deleted_at IS NULL`,
+          [email.trim()]
+        );
+        if (res.rows[0]) return res.rows[0];
+      } catch (err: any) {
+        Logger.error(`Postgres findByEmail failed: ${err.message}. Falling back to JSON repository.`);
+      }
+    }
+    return new JsonUserRepository().findByEmail(email);
   }
 
   async findById(id: string): Promise<User | null> {
-    if (!this.pool) return null;
-    const res = await this.pool.query(
-      `SELECT id, email, name, password_hash as "passwordHash", role,
-              created_at as "createdAt", updated_at as "updatedAt",
-              is_locked as "isLocked", failed_login_attempts as "failedLoginAttempts",
-              lock_until as "lockUntil", reset_token as "resetToken",
-              reset_token_expires as "resetTokenExpires"
-       FROM users WHERE id::text = $1 AND deleted_at IS NULL`,
-      [id]
-    );
-    return res.rows[0] || null;
+    if (this.pool) {
+      try {
+        const res = await this.pool.query(
+          `SELECT id, email, name, password_hash as "passwordHash", role,
+                  created_at as "createdAt", updated_at as "updatedAt",
+                  is_locked as "isLocked", failed_login_attempts as "failedLoginAttempts",
+                  lock_until as "lockUntil", reset_token as "resetToken",
+                  reset_token_expires as "resetTokenExpires"
+           FROM users WHERE id::text = $1 AND deleted_at IS NULL`,
+          [id]
+        );
+        if (res.rows[0]) return res.rows[0];
+      } catch (err: any) {
+        Logger.error(`Postgres findById failed: ${err.message}. Falling back to JSON repository.`);
+      }
+    }
+    return new JsonUserRepository().findById(id);
   }
 
   async create(user: Omit<User, 'createdAt' | 'updatedAt'>): Promise<User> {
-    if (!this.pool) throw new Error('Database pool not connected');
-    const res = await this.pool.query(
-      `INSERT INTO users (email, name, password_hash, role)
-       VALUES ($1, $2, $3, $4)
-       RETURNING id, email, name, password_hash as "passwordHash", role,
-                 created_at as "createdAt", updated_at as "updatedAt"`,
-      [user.email.toLowerCase().trim(), user.name.trim(), user.passwordHash, normalizePostgresRole(user.role)]
-    );
-    return res.rows[0];
+    if (this.pool) {
+      try {
+        const res = await this.pool.query(
+          `INSERT INTO users (email, name, password_hash, role)
+           VALUES ($1, $2, $3, $4)
+           RETURNING id, email, name, password_hash as "passwordHash", role,
+                     created_at as "createdAt", updated_at as "updatedAt"`,
+          [user.email.toLowerCase().trim(), user.name.trim(), user.passwordHash, normalizePostgresRole(user.role)]
+        );
+        try { await new JsonUserRepository().create(user); } catch (_) {}
+        return res.rows[0];
+      } catch (err: any) {
+        Logger.error(`Postgres user create failed: ${err.message}. Falling back to JSON repository.`);
+      }
+    }
+    return new JsonUserRepository().create(user);
   }
 
   async update(id: string, updates: Partial<User>): Promise<User | null> {
