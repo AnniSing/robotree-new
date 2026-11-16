@@ -443,12 +443,29 @@ async function loadDynamicInstitutes() {
     const data = await res.json();
     if (!data.success || !Array.isArray(data.institutes)) return;
 
-    if (!data.institutes.length) {
+    // Dynamically update IIT Bombay Premier National Collaboration spotlight cards across pages
+    const iitbItem = data.institutes.find(i => i.id === 'iit-bombay');
+    if (iitbItem) {
+      document.querySelectorAll('.iitb-partnership-card').forEach(card => {
+        const descP = card.querySelector('.iitb-partnership-info p');
+        if (descP && iitbItem.description) {
+          descP.innerHTML = escapeHtml(iitbItem.description).replace(/IIT Bombay/g, '<strong>IIT Bombay</strong>');
+        }
+        const logoImg = card.querySelector('.iitb-logo-wrap img');
+        if (logoImg && iitbItem.logo) {
+          logoImg.src = iitbItem.logo.startsWith('/') || iitbItem.logo.startsWith('http') || iitbItem.logo.startsWith('data:') ? iitbItem.logo : '/' + iitbItem.logo;
+        }
+      });
+    }
+
+    const gridInstitutes = data.institutes.filter(i => i.id !== 'iit-bombay');
+
+    if (!gridInstitutes.length) {
       collegeGrid.innerHTML = '<p class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 2.5rem; color: var(--text-secondary);">No partner institutions currently listed.</p>';
       return;
     }
 
-    collegeGrid.innerHTML = data.institutes.map(inst => {
+    collegeGrid.innerHTML = gridInstitutes.map(inst => {
       const logoSrc = inst.logo ? (inst.logo.startsWith('http') || inst.logo.startsWith('/') ? inst.logo : '/' + inst.logo) : '/assets/colleges/logo_dit_dhanbad.png';
       const tags = Array.isArray(inst.tags) ? inst.tags : (typeof inst.tags === 'string' ? inst.tags.split(',').map(t => t.trim()).filter(Boolean) : []);
       const tagsHtml = tags.map(t => `<span class="tag-pill">${escapeHtml(t)}</span>`).join('');
@@ -2862,6 +2879,43 @@ function initAdminInstitutesManager(data) {
       await loadAdminDashboard();
     } catch (err) {
       setAdminStatus(err.message, true);
+    }
+  }
+
+  const btnEditIitb = document.getElementById('btnEditIitbSpotlight');
+  if (btnEditIitb && !btnEditIitb._bound) {
+    btnEditIitb._bound = true;
+    btnEditIitb.addEventListener('click', () => {
+      const iitb = institutes.find((i) => i.id === 'iit-bombay') || {
+        id: 'iit-bombay',
+        name: 'IIT Bombay',
+        tier: 'Premier National Collaboration',
+        category: 'national',
+        location: 'Mumbai, Maharashtra (East India Zonal Fest)',
+        logo: 'assets/colleges/logo_iit_bombay.png',
+        tags: [
+          'Regional Zonal Qualifiers',
+          'Regional Robotics Hackathons',
+          'Direct Grand Finale Pathway',
+          '5,000+ Participants Reached'
+        ],
+        description: 'Robotree is proud to be the designated Technical Fest Partner for East India of IIT Bombay, conducting regional robotics competitions, ideathons, and technical bootcamps to scout and nurture engineering talent across colleges and universities in the region.',
+        status: 'Verified Academic Partner'
+      };
+      openEditForm(iitb);
+    });
+  }
+
+  // Sync admin spotlight card if IIT Bombay data exists
+  const iitbData = institutes.find((i) => i.id === 'iit-bombay');
+  if (iitbData) {
+    const adminIitbDesc = document.getElementById('adminIitbDesc');
+    if (adminIitbDesc && iitbData.description) {
+      adminIitbDesc.textContent = iitbData.description;
+    }
+    const adminIitbLogo = document.getElementById('adminIitbLogo');
+    if (adminIitbLogo && iitbData.logo) {
+      adminIitbLogo.src = iitbData.logo.startsWith('/') || iitbData.logo.startsWith('http') || iitbData.logo.startsWith('data:') ? iitbData.logo : '/' + iitbData.logo;
     }
   }
 

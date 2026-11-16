@@ -1,5 +1,24 @@
 [
   {
+    "id": "iit-bombay",
+    "name": "IIT Bombay",
+    "tier": "Premier National Collaboration",
+    "category": "national",
+    "location": "Mumbai, Maharashtra (East India Zonal Fest)",
+    "logo": "assets/colleges/logo_iit_bombay.png",
+    "title": "Technical Fest Partner for East India • IIT Bombay",
+    "badgeTag": "★ PREMIER NATIONAL COLLABORATION",
+    "roleTag": "Designated East India Zonal Partner",
+    "description": "Robotree is proud to be the designated Technical Fest Partner for East India of IIT Bombay, conducting regional robotics competitions, ideathons, and technical bootcamps to scout and nurture engineering talent across colleges and universities in the region.",
+    "tags": [
+      "Regional Zonal Qualifiers",
+      "Regional Robotics Hackathons",
+      "Direct Grand Finale Pathway",
+      "5,000+ Participants Reached"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
     "id": "amity-ranchi",
     "name": "Amity University Ranchi",
     "tier": "University Partner",
