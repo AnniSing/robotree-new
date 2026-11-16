@@ -4,23 +4,18 @@ import os from 'node:os';
 import path from 'node:path';
 
 let server;
-let tempDataDir = null;
-let baseUrl = 'http://localhost:5000';
-try {
-  const probe = await fetch(`${baseUrl}/api/health`, { signal: AbortSignal.timeout(300) });
-  if (!probe.ok) throw new Error('Not running');
-} catch {
-  tempDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-photo-test-'));
-  fs.cpSync(path.resolve('data'), tempDataDir, { recursive: true });
-  process.env.ROBOTREE_DATA_DIR = tempDataDir;
-  const { app } = await import('../server.js');
-  await new Promise((resolve) => {
-    server = app.listen(0, '127.0.0.1', () => {
-      baseUrl = `http://127.0.0.1:${server.address().port}`;
-      resolve();
-    });
+let baseUrl = '';
+const tempDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-photo-test-'));
+fs.cpSync(path.resolve('data'), tempDataDir, { recursive: true });
+process.env.NODE_ENV = 'test';
+process.env.ROBOTREE_DATA_DIR = tempDataDir;
+const { app } = await import('../server.js');
+await new Promise((resolve) => {
+  server = app.listen(0, '127.0.0.1', () => {
+    baseUrl = `http://127.0.0.1:${server.address().port}`;
+    resolve();
   });
-}
+});
 
 console.log('--- TESTING REMOVE PHOTO FUNCTIONALITY ---');
 
@@ -58,10 +53,10 @@ async function getCsrfSession() {
 async function runLivePhotoTest() {
   const { token, cookie } = await getCsrfSession();
 
-  const passcode = 'Anni4515';
+  let passcode = process.env.ADMIN_PASSCODE || 'Aniket4515';
 
   // Admin login
-  const loginRes = await fetch(`${baseUrl}/api/admin/login`, {
+  let loginRes = await fetch(`${baseUrl}/api/admin/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -71,6 +66,19 @@ async function runLivePhotoTest() {
     },
     body: JSON.stringify({ passcode })
   });
+  if (!loginRes.ok) {
+    passcode = 'Anni4515';
+    loginRes = await fetch(`${baseUrl}/api/admin/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Origin': baseUrl,
+        'X-CSRF-Token': token,
+        'Cookie': cookie
+      },
+      body: JSON.stringify({ passcode })
+    });
+  }
   assert.equal(loginRes.status, 200, 'Admin login must succeed');
   const loginData = await loginRes.json();
   const adminToken = loginData.token;

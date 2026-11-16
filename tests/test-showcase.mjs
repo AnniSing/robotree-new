@@ -7,23 +7,18 @@ async function testShowcaseLifecycle() {
   console.log('--- TESTING SHOWCASE GALLERY API & CRUD LIFECYCLE ---');
 
   let server;
-  let tempDataDir = null;
-  let BASE_URL = 'http://127.0.0.1:5000';
-  try {
-    const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
-    if (!probe.ok) throw new Error('Not running');
-  } catch {
-    tempDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-showcase-test-'));
-    fs.cpSync(path.resolve('data'), tempDataDir, { recursive: true });
-    process.env.ROBOTREE_DATA_DIR = tempDataDir;
-    const { app } = await import('../server.js');
-    await new Promise((resolve) => {
-      server = app.listen(0, '127.0.0.1', () => {
-        BASE_URL = `http://127.0.0.1:${server.address().port}`;
-        resolve();
-      });
+  const tempDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'robotree-showcase-test-'));
+  fs.cpSync(path.resolve('data'), tempDataDir, { recursive: true });
+  process.env.NODE_ENV = 'test';
+  process.env.ROBOTREE_DATA_DIR = tempDataDir;
+  const { app } = await import('../server.js');
+  let BASE_URL = '';
+  await new Promise((resolve) => {
+    server = app.listen(0, '127.0.0.1', () => {
+      BASE_URL = `http://127.0.0.1:${server.address().port}`;
+      resolve();
     });
-  }
+  });
 
   try {
 
@@ -58,7 +53,7 @@ async function testShowcaseLifecycle() {
   console.log('✅ PASS: All 4 user-highlighted showcase photos are present in data store');
 
   // 3. Admin login
-  const loginRes = await fetch(`${BASE_URL}/api/admin/login`, {
+  let loginRes = await fetch(`${BASE_URL}/api/admin/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -66,8 +61,20 @@ async function testShowcaseLifecycle() {
       'X-CSRF-Token': csrfToken,
       'Cookie': cookieVal
     },
-    body: JSON.stringify({ passcode: 'Anni4515' })
+    body: JSON.stringify({ passcode: 'Aniket4515' })
   });
+  if (!loginRes.ok) {
+    loginRes = await fetch(`${BASE_URL}/api/admin/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Origin': BASE_URL,
+        'X-CSRF-Token': csrfToken,
+        'Cookie': cookieVal
+      },
+      body: JSON.stringify({ passcode: 'Anni4515' })
+    });
+  }
   assert.strictEqual(loginRes.status, 200, 'Admin login should succeed');
   const loginData = await loginRes.json();
   assert.ok(loginData.token, 'Should receive admin token');

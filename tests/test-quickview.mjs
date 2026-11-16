@@ -38,19 +38,14 @@ console.log('✅ PASS: script.js Quick View logic');
 
 // 4. Test live fetch against running server
 let server;
-let BASE_URL = 'http://127.0.0.1:5000';
-try {
-  const probe = await fetch(`${BASE_URL}/api/health`, { signal: AbortSignal.timeout(300) });
-  if (!probe.ok) throw new Error('Not running');
-} catch {
-  const { app } = await import('../server.js');
-  await new Promise((resolve) => {
-    server = app.listen(0, '127.0.0.1', () => {
-      BASE_URL = `http://127.0.0.1:${server.address().port}`;
-      resolve();
-    });
+const { app } = await import('../server.js');
+let BASE_URL = '';
+await new Promise((resolve) => {
+  server = app.listen(0, '127.0.0.1', () => {
+    BASE_URL = `http://127.0.0.1:${server.address().port}`;
+    resolve();
   });
-}
+});
 
 try {
   const res = await fetch(`${BASE_URL}/store.html`);

@@ -441,7 +441,12 @@ async function loadDynamicInstitutes() {
     const res = await fetch(buildApiUrl('/api/institutes'));
     if (!res.ok) return;
     const data = await res.json();
-    if (!data.success || !Array.isArray(data.institutes) || !data.institutes.length) return;
+    if (!data.success || !Array.isArray(data.institutes)) return;
+
+    if (!data.institutes.length) {
+      collegeGrid.innerHTML = '<p class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 2.5rem; color: var(--text-secondary);">No partner institutions currently listed.</p>';
+      return;
+    }
 
     collegeGrid.innerHTML = data.institutes.map(inst => {
       const logoSrc = inst.logo ? (inst.logo.startsWith('http') || inst.logo.startsWith('/') ? inst.logo : '/' + inst.logo) : '/assets/colleges/logo_dit_dhanbad.png';
@@ -3013,14 +3018,18 @@ function initAdminInquiriesManager(data) {
   });
 
   // Delete Inquiry Listener
-  tableWrap.querySelectorAll('[data-delete-inquiry]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const id = btn.dataset.deleteInquiry;
+  if (!tableWrap._inqDelDelegated) {
+    tableWrap._inqDelDelegated = true;
+    tableWrap.addEventListener('click', async (e) => {
+      const delBtn = e.target.closest('[data-delete-inquiry]');
+      if (!delBtn) return;
+      e.preventDefault();
+      const id = delBtn.dataset.deleteInquiry;
       if (!confirm('Are you sure you want to delete this inquiry lead?')) return;
       const token = getAdminToken();
       if (!token) return;
 
-      setButtonBusy(btn, true, 'Deleting...');
+      setButtonBusy(delBtn, true, 'Deleting...');
       try {
         const csrfToken = await getCsrfToken();
         const res = await fetch(buildApiUrl(`/api/admin/inquiries/${encodeURIComponent(id)}`), {
@@ -3039,10 +3048,10 @@ function initAdminInquiriesManager(data) {
       } catch (err) {
         setAdminStatus(err.message, true);
       } finally {
-        setButtonBusy(btn, false);
+        setButtonBusy(delBtn, false);
       }
     });
-  });
+  }
 }
 
 /** Admin Certificate Management Controller (Issue & Revoke) */
@@ -3639,6 +3648,7 @@ function initAdminStoreManager(data) {
           if (!res.ok || !result.success) throw new Error(result.message || 'Failed to update stock.');
           setAdminStatus(`Stock status updated for ${result.product?.title || prodId}.`, false);
           await loadProducts();
+        await loadAdminDashboard();
         } catch (err) {
           setAdminStatus(err.message, true);
         } finally {
@@ -3737,7 +3747,11 @@ function initAdminStoreManager(data) {
           const result = await readJsonResponse(res);
           if (!res.ok || !result.success) throw new Error(result.message || 'Failed to delete product.');
           setAdminStatus(`Product "${name}" deleted successfully.`, false);
+          productsList = productsList.filter((p) => p.id !== prodId);
+          renderProducts(productsList);
           await loadProducts();
+        await loadAdminDashboard();
+          await loadAdminDashboard();
         } catch (err) {
           setAdminStatus(err.message, true);
         } finally {
@@ -3745,6 +3759,47 @@ function initAdminStoreManager(data) {
         }
       });
     });
+
+    if (!tableWrap._delDelegated) {
+      tableWrap._delDelegated = true;
+      tableWrap.addEventListener('click', async (e) => {
+        const delBtn = e.target.closest('[data-delete-prod]');
+        if (delBtn) {
+          e.preventDefault();
+          const prodId = delBtn.dataset.deleteProd;
+          const prod = productsList.find((p) => p.id === prodId);
+          const name = prod?.title || prodId;
+          if (!confirm(`Are you sure you want to delete "${name}" from the store catalog?`)) return;
+
+          const token = getAdminToken();
+          if (!token) return setAdminStatus('Admin session expired. Please sign in again.', true);
+
+          setButtonBusy(delBtn, true, 'Deleting...');
+          try {
+            const csrfToken = await getCsrfToken();
+            const res = await fetch(buildApiUrl(`/api/admin/products/${encodeURIComponent(prodId)}`), {
+              method: 'DELETE',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'X-CSRF-Token': csrfToken,
+              }
+            });
+            const result = await readJsonResponse(res);
+            if (!res.ok || !result.success) throw new Error(result.message || 'Failed to delete product.');
+            setAdminStatus(`Product "${name}" deleted successfully.`, false);
+            productsList = productsList.filter((p) => p.id !== prodId);
+            renderProducts(productsList);
+            await loadProducts();
+        await loadAdminDashboard();
+            await loadAdminDashboard();
+          } catch (err) {
+            setAdminStatus(err.message, true);
+          } finally {
+            setButtonBusy(delBtn, false);
+          }
+        }
+      });
+    }
   }
 
   if (btnToggleForm && !btnToggleForm._bound) {
@@ -3906,6 +3961,7 @@ function initAdminStoreManager(data) {
         }, 1200);
 
         await loadProducts();
+        await loadAdminDashboard();
       } catch (err) {
         showFeedback(feedback, err.message, true);
       } finally {
@@ -4890,7 +4946,7 @@ function initPublicEventGallery() {
     try {
       const res = await fetch(buildApiUrl('/api/events'));
       const data = await readJsonResponse(res);
-      if (data.success && Array.isArray(data.events) && data.events.length > 0) {
+      if (data.success && Array.isArray(data.events)) {
         allEvents = data.events;
         syncDynamicCategoryFilters();
         applyFilters();
@@ -5299,17 +5355,21 @@ function initPublicEventGallery() {
     fetch(buildApiUrl('/api/showcase'))
       .then((r) => r.json())
       .then((d) => {
-        if (d && Array.isArray(d.items) && d.items.length > 0) {
-          masonryContainer.innerHTML = d.items.map((item) => `
-            <div class="gallery-tile ${item.tileWide ? 'tile-wide' : ''}" role="button" tabindex="0">
-              <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" loading="lazy">
-              <div class="gallery-tile-caption">
-                <h4>${escapeHtml(item.title)}</h4>
-                <p>${escapeHtml(item.caption)}</p>
+        if (d && Array.isArray(d.items)) {
+          if (!d.items.length) {
+            masonryContainer.innerHTML = '<p class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);">No showcase photographs currently available.</p>';
+          } else {
+            masonryContainer.innerHTML = d.items.map((item) => `
+              <div class="gallery-tile ${item.tileWide ? 'tile-wide' : ''}" role="button" tabindex="0">
+                <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" loading="lazy">
+                <div class="gallery-tile-caption">
+                  <h4>${escapeHtml(item.title)}</h4>
+                  <p>${escapeHtml(item.caption)}</p>
+                </div>
               </div>
-            </div>
-          `).join('');
-          bindMasonryTiles();
+            `).join('');
+            bindMasonryTiles();
+          }
         }
       })
       .catch(() => {});
@@ -5654,7 +5714,7 @@ async function loadTeam() {
   if (!teamGrid) return;
   try {
     const data = await getJson('/api/team');
-    allTeamMembers = data.members || fallbackTeam;
+    allTeamMembers = Array.isArray(data?.members) ? data.members : (Array.isArray(data?.team) ? data.team : fallbackTeam);
   } catch {
     allTeamMembers = fallbackTeam;
   }
@@ -5951,7 +6011,7 @@ async function loadPublicCourses() {
 
   try {
     const data = await getJson('/api/courses');
-    allCoursesList = (data && data.courses && data.courses.length) ? data.courses : [];
+    allCoursesList = (data && Array.isArray(data.courses)) ? data.courses : [];
   } catch (err) {
     console.warn('Could not fetch live courses from /api/courses, using fallback catalog:', err.message);
   }
@@ -7163,7 +7223,7 @@ function initStoreClient() {
       const res = await fetch(buildApiUrl('/api/store/products'));
       if (res.ok) {
         const data = await res.json();
-        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+        if (data.success && Array.isArray(data.products)) {
           allProducts = data.products;
           renderCatalog();
           return;
@@ -7177,7 +7237,7 @@ function initStoreClient() {
       const res = await fetch(buildApiUrl('/api/v1/store/products'));
       if (res.ok) {
         const data = await res.json();
-        if (data && data.products) {
+        if (data && Array.isArray(data.products)) {
           allProducts = data.products;
           renderCatalog();
         }

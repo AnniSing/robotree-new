@@ -7,13 +7,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 function findProjectRoot() {
+  const isRealRoot = (dir) => {
+    try {
+      return (
+        fs.existsSync(path.join(dir, 'server.js')) &&
+        (fs.existsSync(path.join(dir, 'admin.html')) || fs.existsSync(path.join(dir, 'backend')))
+      );
+    } catch {
+      return false;
+    }
+  };
+
   const cwd = process.cwd();
-  if (fs.existsSync(path.join(cwd, 'package.json'))) {
+  if (isRealRoot(cwd)) {
     return cwd;
   }
+  if (isRealRoot(path.join(cwd, 'robotree.in-main'))) {
+    return path.join(cwd, 'robotree.in-main');
+  }
+
   let curr = __dirname;
-  for (let i = 0; i < 5; i++) {
-    if (fs.existsSync(path.join(curr, 'package.json'))) {
+  for (let i = 0; i < 6; i++) {
+    if (isRealRoot(curr)) {
       return curr;
     }
     const parent = path.dirname(curr);
@@ -140,6 +155,14 @@ function writeData(filename, data) {
         }
       }
     }
+
+    if (replaced && DATA_DIR !== SEED_DATA_DIR && !process.env.ROBOTREE_DATA_DIR && process.env.NODE_ENV !== 'test') {
+      try {
+        const seedPath = getSecureFilePath(filename, SEED_DATA_DIR);
+        fs.writeFileSync(seedPath, JSON.stringify(cleanData, null, 2), 'utf8');
+      } catch {}
+    }
+
     return replaced;
   } catch (err) {
     console.error(`Error writing database file ${filename}:`, err.message);

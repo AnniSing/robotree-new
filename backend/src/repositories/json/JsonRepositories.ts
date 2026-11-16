@@ -431,7 +431,7 @@ export class JsonProductRepository implements IProductRepository {
   async findById(id: string): Promise<Product | null> {
     const products = db.getProducts();
     const cleanId = id.trim().toLowerCase();
-    const product = products.find((p: Product) => p.id.toLowerCase() === cleanId || p.sku.toLowerCase() === cleanId);
+    const product = products.find((p: Product) => (p.id && p.id.toLowerCase() === cleanId) || (p.sku && p.sku.toLowerCase() === cleanId));
     return product || null;
   }
 
@@ -451,7 +451,7 @@ export class JsonProductRepository implements IProductRepository {
   async update(id: string, updates: Partial<Product>): Promise<Product | null> {
     const products = db.getProducts();
     const cleanId = id.trim().toLowerCase();
-    const index = products.findIndex((p: Product) => p.id.toLowerCase() === cleanId || p.sku.toLowerCase() === cleanId);
+    const index = products.findIndex((p: Product) => (p.id && p.id.toLowerCase() === cleanId) || (p.sku && p.sku.toLowerCase() === cleanId));
     if (index === -1) return null;
     const now = new Date().toISOString();
     const updated: Product = {
@@ -468,7 +468,7 @@ export class JsonProductRepository implements IProductRepository {
     const products = db.getProducts();
     const cleanId = id.trim().toLowerCase();
     const initialLen = products.length;
-    const filtered = products.filter((p: Product) => p.id.toLowerCase() !== cleanId && p.sku.toLowerCase() !== cleanId);
+    const filtered = products.filter((p: Product) => (p.id && p.id.toLowerCase() !== cleanId) && (!p.sku || p.sku.toLowerCase() !== cleanId));
     if (filtered.length === initialLen) return false;
     db.saveProducts(filtered);
     return true;
