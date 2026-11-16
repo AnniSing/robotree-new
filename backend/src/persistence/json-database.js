@@ -614,6 +614,18 @@ function loadDefaultProducts() {
   return [];
 }
 
+function loadDefaultInstitutes() {
+  try {
+    const rootDataPath = path.join(PROJECT_ROOT, 'data', 'institutes.json');
+    if (fs.existsSync(rootDataPath)) {
+      const raw = fs.readFileSync(rootDataPath, 'utf8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch {}
+  return [];
+}
+
 export const db = {
   getUsers: () => readData('users.json', []),
   saveUsers: (users) => writeData('users.json', users),
@@ -665,6 +677,9 @@ export const db = {
   saveShowcase: (items) => writeData('showcase-gallery.json', items),
 
   getSettings: () => readData('settings.json', {}),
-  saveSettings: (settings) => writeData('settings.json', settings)
+  saveSettings: (settings) => writeData('settings.json', settings),
+
+  getInstitutes: () => readData('institutes.json', loadDefaultInstitutes()),
+  saveInstitutes: (institutes) => writeData('institutes.json', institutes)
 };
 

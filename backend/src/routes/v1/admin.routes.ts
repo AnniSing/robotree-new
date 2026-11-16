@@ -77,4 +77,10 @@ router.put('/products/:id', validateRequest(updateProductSchema), ProductControl
 router.delete('/products/:id', ProductController.delete);
 router.patch('/products/:id/stock', ProductController.toggleStock);
 
+// Partner Institutes & Colleges Management
+router.get('/institutes', AdminController.listInstitutes);
+router.post('/institutes', AdminController.createInstitute);
+router.put('/institutes/:id', AdminController.updateInstitute);
+router.delete('/institutes/:id', AdminController.deleteInstitute);
+
 export default router;

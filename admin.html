@@ -144,6 +144,10 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               Courses &amp; Workshops
             </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="institutes">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Academic Partners
+            </button>
             <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="gallery">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
               Media Gallery
@@ -459,6 +463,95 @@
 
             <!-- Course Grid / Table -->
             <div id="adminCoursesGrid" class="admin-data-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- SECTION: Academic Alliances & Partner Institutes Management -->
+          <section class="admin-section-view" id="adminSectionInstitutes" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h2>Academic Alliances &amp; Partner Institutes</h2>
+                <p>Manage partner engineering colleges, polytechnics, national institutes, and their verified campus logos.</p>
+              </div>
+              <button type="button" class="btn btn-primary" id="btnOpenInstituteModal">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Partner Institute
+              </button>
+            </div>
+
+            <!-- Form Drawer: Add / Edit Partner Institute -->
+            <div id="instituteFormDrawer" class="admin-form-drawer" style="display: none; margin-bottom: 24px; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md);">
+              <h3 id="instituteFormTitle" style="margin-bottom: 16px;">Add New Partner Institution</h3>
+              <form id="adminInstituteForm" class="admin-form">
+                <input type="hidden" id="instituteEditId" name="id">
+
+                <div class="form-row">
+                  <div class="form-group" style="flex: 2;">
+                    <label class="form-label" for="instituteName">Institution Name <span style="color: var(--accent-red);">*</span></label>
+                    <input type="text" id="instituteName" name="name" class="form-input" placeholder="e.g. DIT Dhanbad" required>
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="instituteCategory">Institutional Category</label>
+                    <select id="instituteCategory" name="category" class="form-select">
+                      <option value="national">National Institutes (NITs / IITs)</option>
+                      <option value="state">State &amp; Premier Colleges</option>
+                      <option value="engineering" selected>Engineering Colleges</option>
+                      <option value="polytechnic">Polytechnics &amp; Tech</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="instituteTier">Partnership Tier / Badge</label>
+                    <input type="text" id="instituteTier" name="tier" class="form-input" placeholder="e.g. Institute Partner / University Partner">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="instituteLocation">Campus Location</label>
+                    <input type="text" id="instituteLocation" name="location" class="form-input" placeholder="e.g. Dhanbad, Jharkhand">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="instituteStatus">Verification Status</label>
+                    <input type="text" id="instituteStatus" name="status" class="form-input" value="Verified Academic Partner" placeholder="e.g. Verified Academic Partner">
+                  </div>
+                </div>
+
+                <!-- Logo Upload Section -->
+                <div class="upload-dropzone-section" style="margin-bottom: 16px;">
+                  <label class="form-label">Institution Official Logo</label>
+                  <div class="upload-dropzone" id="instituteDropzone">
+                    <input type="file" id="instituteFileInput" accept="image/*" style="display: none;">
+                    <div class="dropzone-content">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <p><strong>Click or drag &amp; drop institution logo here</strong></p>
+                      <span class="upload-hint">Supports PNG, SVG, JPG, WebP (Transparent PNG recommended)</span>
+                    </div>
+                  </div>
+                  <input type="text" id="instituteLogoUrl" name="logo" class="form-input" placeholder="or enter logo path: assets/colleges/logo_dit_dhanbad.png" style="margin-top: 8px;">
+                  <div id="institutePreviewBox" class="upload-preview-box" style="display: none; margin-top: 10px;"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="instituteTags">Specialization / Focus Tags (Comma-separated)</label>
+                  <input type="text" id="instituteTags" name="tags" class="form-input" placeholder="e.g. Embedded Firmware, Motor Controllers, Robotics Kits">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="instituteDescription">Partnership Scope &amp; Lab Description</label>
+                  <textarea id="instituteDescription" name="description" class="form-textarea" placeholder="Detail collaborative initiatives, Center of Excellence setups, workshops, and lab facilities..." rows="3"></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                  <button type="button" class="btn btn-secondary" id="btnCancelInstituteForm">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="btnSaveInstitute">Save Partner Institute</button>
+                </div>
+              </form>
+              <p id="instituteFormFeedback" class="form-feedback" aria-live="polite" style="margin-top: 10px;"></p>
+            </div>
+
+            <!-- Institutes Grid -->
+            <div id="adminInstitutesGrid" class="admin-data-grid">
               <!-- Rendered by JS -->
             </div>
           </section>

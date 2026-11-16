@@ -75,6 +75,7 @@ export class AdminService {
         totalGalleryItems: eventsGallery.length,
         totalTeamMembers: team.length,
         totalCourses: courses.length,
+        totalInstitutes: (db.getInstitutes ? db.getInstitutes() : []).length,
         failedLogins: failedLogins.length,
         failedLoginCount: failedLogins.length,
       },
@@ -93,6 +94,7 @@ export class AdminService {
       showcaseGallery: db.getShowcase ? db.getShowcase() : [],
       team,
       courses,
+      institutes: db.getInstitutes ? db.getInstitutes() : [],
       settings,
       products: db.getProducts ? db.getProducts() : [],
       orders: db.getOrders ? db.getOrders() : [],
@@ -109,6 +111,7 @@ export class AdminService {
         eventsGallery,
         team,
         courses,
+        institutes: db.getInstitutes ? db.getInstitutes() : [],
         settings,
         products: db.getProducts ? db.getProducts() : [],
         orders: db.getOrders ? db.getOrders() : [],
@@ -233,5 +236,106 @@ export class AdminService {
       { resourceId: id }
     );
     return updated;
+  }
+
+  public static listInstitutes(): any[] {
+    return db.getInstitutes ? db.getInstitutes() : [];
+  }
+
+  public static async createInstitute(payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
+    if (!payload.name) {
+      throw new ValidationError('Institute name is required.');
+    }
+    const institutes = AdminService.listInstitutes();
+    const id = payload.id || payload.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `inst-${Date.now()}`;
+    const tags = Array.isArray(payload.tags)
+      ? payload.tags
+      : (typeof payload.tags === 'string' ? payload.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : []);
+
+    const newInst = {
+      id,
+      name: payload.name.trim(),
+      tier: payload.tier ? payload.tier.trim() : 'Institute Partner',
+      category: payload.category ? payload.category.trim() : 'engineering',
+      location: payload.location ? payload.location.trim() : 'India',
+      logo: payload.logo ? payload.logo.trim() : 'assets/colleges/logo_dit_dhanbad.png',
+      description: payload.description ? payload.description.trim() : '',
+      tags,
+      status: payload.status ? payload.status.trim() : 'Verified Academic Partner',
+      createdAt: new Date().toISOString()
+    };
+
+    institutes.push(newInst);
+    db.saveInstitutes(institutes);
+    await AuditService.logAction(
+      actor,
+      'INSTITUTE_CREATED',
+      'institutes',
+      `Admin added partner institute: ${newInst.name} (${newInst.tier})`,
+      { resourceId: id }
+    );
+    return newInst;
+  }
+
+  public static async updateInstitute(id: string, payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
+    if (!id) {
+      throw new ValidationError('Institute ID is required.');
+    }
+    const institutes = AdminService.listInstitutes();
+    const index = institutes.findIndex((i: any) => String(i.id) === String(id));
+    if (index === -1) {
+      throw new NotFoundError('Partner institute not found.');
+    }
+
+    const current = institutes[index];
+    const tags = payload.tags !== undefined
+      ? (Array.isArray(payload.tags) ? payload.tags : (typeof payload.tags === 'string' ? payload.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : []))
+      : current.tags;
+
+    const updated = {
+      ...current,
+      name: payload.name !== undefined ? payload.name.trim() : current.name,
+      tier: payload.tier !== undefined ? payload.tier.trim() : current.tier,
+      category: payload.category !== undefined ? payload.category.trim() : current.category,
+      location: payload.location !== undefined ? payload.location.trim() : current.location,
+      logo: payload.logo !== undefined ? payload.logo.trim() : current.logo,
+      description: payload.description !== undefined ? payload.description.trim() : current.description,
+      tags,
+      status: payload.status !== undefined ? payload.status.trim() : current.status,
+      updatedAt: new Date().toISOString()
+    };
+
+    institutes[index] = updated;
+    db.saveInstitutes(institutes);
+    await AuditService.logAction(
+      actor,
+      'INSTITUTE_UPDATED',
+      'institutes',
+      `Admin updated partner institute: ${updated.name}`,
+      { resourceId: id }
+    );
+    return updated;
+  }
+
+  public static async deleteInstitute(id: string, actor: string = 'admin@robotree.org'): Promise<any> {
+    if (!id) {
+      throw new ValidationError('Institute ID is required.');
+    }
+    const institutes = AdminService.listInstitutes();
+    const index = institutes.findIndex((i: any) => String(i.id) === String(id));
+    if (index === -1) {
+      throw new NotFoundError('Partner institute not found.');
+    }
+
+    const removed = institutes.splice(index, 1)[0];
+    db.saveInstitutes(institutes);
+    await AuditService.logAction(
+      actor,
+      'INSTITUTE_DELETED',
+      'institutes',
+      `Admin removed partner institute: ${removed.name}`,
+      { resourceId: id }
+    );
+    return removed;
   }
 }

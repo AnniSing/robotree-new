@@ -1,0 +1,167 @@
+[
+  {
+    "id": "amity-ranchi",
+    "name": "Amity University Ranchi",
+    "tier": "University Partner",
+    "category": "state",
+    "location": "Ranchi, Jharkhand",
+    "logo": "assets/colleges/logo_amity.png",
+    "description": "Collaborative academic workshops, state-level technical symposiums, robotics bootcamps, and curriculum-aligned hands-on labs.",
+    "tags": [
+      "Technical Symposia",
+      "Robotics Bootcamps",
+      "Hands-on Labs"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "kk-polytechnic",
+    "name": "K.K. Polytechnic",
+    "tier": "Polytechnic Partner",
+    "category": "polytechnic",
+    "location": "Dhanbad, Jharkhand",
+    "logo": "assets/colleges/logo_kk_polytechnic.png",
+    "description": "Polytechnic technical diploma training, microcontrollers, sensor interfacing, and breadboard circuit assembly.",
+    "tags": [
+      "Diploma Training",
+      "Sensor Interfacing",
+      "Circuit Lab"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "kk-college",
+    "name": "K.K. College of Engg. & Mgmt.",
+    "tier": "Turnkey CoE Hub",
+    "category": "engineering",
+    "location": "Dhanbad, Jharkhand",
+    "logo": "assets/colleges/logo_kk_college.png",
+    "description": "Permanent Turnkey Robotics & AI Innovation Center setup, multi-disciplinary capstone projects and hackathons.",
+    "tags": [
+      "Turnkey Lab Setup",
+      "Capstone Projects",
+      "Annual Hackathons"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "bcet-durgapur",
+    "name": "BCET Durgapur",
+    "tier": "Engineering College",
+    "category": "engineering",
+    "location": "Durgapur, West Bengal",
+    "logo": "assets/colleges/logo_bcet.png",
+    "description": "Industry 4.0 skill development, embedded systems, custom PCB layout design, and robotics championships.",
+    "tags": [
+      "Industry 4.0",
+      "Embedded Systems",
+      "PCB Design"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "aec-asansol",
+    "name": "Asansol Engineering College",
+    "tier": "Founding CoE Partner",
+    "category": "engineering",
+    "location": "Asansol, West Bengal",
+    "logo": "assets/colleges/logo_aec.png",
+    "description": "Founding partner of the landmark \"Robotics Society\" Innovation Lab, annual state-level technical symposiums & FDPs.",
+    "tags": [
+      "Founding CoE Partner",
+      "Robotics Society",
+      "Faculty FDPs"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "kgec-kalyani",
+    "name": "Kalyani Govt. Engg. College",
+    "tier": "Govt. Engg. College",
+    "category": "state",
+    "location": "Nadia, West Bengal",
+    "logo": "assets/colleges/logo_kgec.png",
+    "description": "Autonomous mobile rovers, line-followers, computer vision processing, and state government college cohorts.",
+    "tags": [
+      "Autonomous Rovers",
+      "Computer Vision",
+      "State Govt. Hub"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "bit-sindri",
+    "name": "BIT Sindri",
+    "tier": "Premier State College",
+    "category": "state",
+    "location": "Dhanbad, Jharkhand",
+    "logo": "assets/colleges/logo_bit_sindri.png",
+    "description": "Premier state engineering institution: IoT sensor networks, industrial automation, robotics fests, and research.",
+    "tags": [
+      "Estd. 1949",
+      "Industrial IoT",
+      "Automation Research"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "dit-dhanbad",
+    "name": "DIT Dhanbad",
+    "tier": "Institute Partner",
+    "category": "polytechnic",
+    "location": "Dhanbad, Jharkhand",
+    "logo": "assets/colleges/logo_dit_dhanbad.png",
+    "description": "Applied technical education, embedded systems firmware programming, motor controllers, and hands-on kits.",
+    "tags": [
+      "Embedded Firmware",
+      "Motor Controllers",
+      "Robotics Kits"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "sit-giridih",
+    "name": "Subhash Institute of Technology",
+    "tier": "Engineering & Tech",
+    "category": "engineering",
+    "location": "Giridih, Jharkhand",
+    "logo": "assets/colleges/logo_subhash_tech.png",
+    "description": "Hands-on robotics lab establishment, quadcopter telemetry, microcontroller programming, and technical workshops.",
+    "tags": [
+      "Hands-on Labs",
+      "Quadcopter Telemetry",
+      "Technical Workshops"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "nit-arunachal",
+    "name": "NIT Arunachal Pradesh",
+    "tier": "National Institute (NIT)",
+    "category": "national",
+    "location": "Yupia, Arunachal Pradesh",
+    "logo": "assets/colleges/logo_nit_ap.png",
+    "description": "National Institute of Technology: Drone flight dynamics, aerial photogrammetry, AI vision systems & hackathons.",
+    "tags": [
+      "Drone Flight Labs",
+      "Photogrammetry",
+      "AI Vision Systems"
+    ],
+    "status": "Verified Academic Partner"
+  },
+  {
+    "id": "nit-jamshedpur",
+    "name": "NIT Jamshedpur",
+    "tier": "National Institute (NIT)",
+    "category": "national",
+    "location": "Jamshedpur, Jharkhand",
+    "logo": "assets/colleges/logo_nit_jsr.png",
+    "description": "National Institute of Technology: Robo-soccer championships, ROS2 simulation, obstacle-avoidance rovers, and FDPs.",
+    "tags": [
+      "Robo-Soccer",
+      "ROS2 Simulation",
+      "Faculty FDPs"
+    ],
+    "status": "Verified Academic Partner"
+  }
+]

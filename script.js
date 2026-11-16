@@ -353,6 +353,7 @@ runWhenIdle(() => {
   initPublicEventGallery();
   loadPublicCourses();
   loadDynamicSiteSettings();
+  loadDynamicInstitutes();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -375,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initCollegeTabs, 'collegeTabs');
   safeInit(initMarqueeRotate, 'marqueeRotate');
   safeInit(loadDynamicSiteSettings, 'siteSettings');
+  safeInit(loadDynamicInstitutes, 'dynamicInstitutes');
   safeInit(initStoreClient, 'storeClient');
   safeInit(initBranchTabs, 'branchTabs');
   safeInit(() => {
@@ -428,6 +430,54 @@ async function loadDynamicSiteSettings() {
     }
   } catch (err) {
     // Graceful fallback to static HTML content
+  }
+}
+
+/** Hydrate Dynamic Partner Institutions from Server */
+async function loadDynamicInstitutes() {
+  const collegeGrid = document.getElementById('collegeGrid');
+  if (!collegeGrid) return;
+  try {
+    const res = await fetch(buildApiUrl('/api/institutes'));
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.success || !Array.isArray(data.institutes) || !data.institutes.length) return;
+
+    collegeGrid.innerHTML = data.institutes.map(inst => {
+      const logoSrc = inst.logo ? (inst.logo.startsWith('http') || inst.logo.startsWith('/') ? inst.logo : '/' + inst.logo) : '/assets/colleges/logo_dit_dhanbad.png';
+      const tags = Array.isArray(inst.tags) ? inst.tags : (typeof inst.tags === 'string' ? inst.tags.split(',').map(t => t.trim()).filter(Boolean) : []);
+      const tagsHtml = tags.map(t => `<span class="tag-pill">${escapeHtml(t)}</span>`).join('');
+      const tierBadgeClass = inst.category === 'national' ? 'college-tier-badge tier-national' : 'college-tier-badge';
+
+      return `
+      <article class="college-card" data-category="${escapeHtml(inst.category || 'engineering')}">
+        <div class="college-card-header">
+          <div class="college-logo-wrapper">
+            <img src="${escapeHtml(logoSrc)}" alt="${escapeHtml(inst.name)} Logo" loading="lazy" decoding="async" width="500" height="500" onerror="this.onerror=null; this.src='/assets/colleges/logo_dit_dhanbad.png'">
+          </div>
+          <div class="college-meta">
+            <span class="${tierBadgeClass}">${escapeHtml(inst.tier || 'Institute Partner')}</span>
+            <span class="college-location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${escapeHtml(inst.location || 'India')}</span>
+          </div>
+        </div>
+        <div class="college-card-body">
+          <h3>${escapeHtml(inst.name)}</h3>
+          <p class="college-desc">${escapeHtml(inst.description || '')}</p>
+          <div class="college-tags">
+            ${tagsHtml}
+          </div>
+        </div>
+        <div class="college-card-footer">
+          <span class="status-verified"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> ${escapeHtml(inst.status || 'Verified Academic Partner')}</span>
+        </div>
+      </article>
+      `;
+    }).join('');
+
+    // Re-bind category filtering tabs
+    initCollegeTabs();
+  } catch (err) {
+    // Graceful fallback to static HTML college cards
   }
 }
 
@@ -1287,11 +1337,22 @@ function renderAdminDashboard(data) {
     `;
   }
 
+  // Update Academic Partners tab counter dynamically
+  const instTabBtn = document.querySelector('.admin-tab-btn[data-admin-tab="institutes"]');
+  if (instTabBtn) {
+    const instCount = (data.institutes || []).length;
+    instTabBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Academic Partners (${instCount})
+    `;
+  }
+
   // Initialize Admin Tabs & Subsystems
   initAdminTabs();
   initAdminUserManager(data);
   initAdminTeamManager(data);
   initAdminCourseManager(data);
+  initAdminInstitutesManager(data);
   initAdminEventGallery(data);
   initAdminShowcaseGallery(data);
   initAdminInquiriesManager(data);
@@ -1310,6 +1371,7 @@ function initAdminTabs() {
     overview: document.getElementById('adminSectionOverview'),
     team: document.getElementById('adminSectionTeam'),
     courses: document.getElementById('adminSectionCourses'),
+    institutes: document.getElementById('adminSectionInstitutes'),
     gallery: document.getElementById('adminSectionGallery'),
     inquiries: document.getElementById('adminSectionInquiries'),
     certificates: document.getElementById('adminSectionCertificates'),
@@ -2530,6 +2592,275 @@ function initAdminCourseManager(data) {
   }
 
   renderCourses(courses);
+}
+
+/** Admin Partner Institutes & Academic Alliances Manager Controller */
+function initAdminInstitutesManager(data) {
+  const institutesGrid = document.getElementById('adminInstitutesGrid');
+  const btnOpenModal = document.getElementById('btnOpenInstituteModal');
+  const formDrawer = document.getElementById('instituteFormDrawer');
+  const formTitle = document.getElementById('instituteFormTitle');
+  const instituteForm = document.getElementById('adminInstituteForm');
+  const editIdInput = document.getElementById('instituteEditId');
+  const btnCancel = document.getElementById('btnCancelInstituteForm');
+  const dropzone = document.getElementById('instituteDropzone');
+  const fileInput = document.getElementById('instituteFileInput');
+  const logoUrlInput = document.getElementById('instituteLogoUrl');
+  const previewBox = document.getElementById('institutePreviewBox');
+  const feedback = document.getElementById('instituteFormFeedback');
+
+  if (!institutesGrid) return;
+
+  const institutes = data?.institutes || [];
+
+  function renderInstitutes(list) {
+    if (!list || !list.length) {
+      institutesGrid.innerHTML = '<p class="empty-state" style="grid-column: 1/-1;">No partner institutions available.</p>';
+      return;
+    }
+
+    institutesGrid.innerHTML = list.map((inst) => {
+      const logoSrc = inst.logo ? (inst.logo.startsWith('http') || inst.logo.startsWith('data:') || inst.logo.startsWith('/') ? inst.logo : '/' + inst.logo) : '/assets/colleges/logo_dit_dhanbad.png';
+      const tags = Array.isArray(inst.tags) ? inst.tags : (typeof inst.tags === 'string' ? inst.tags.split(',').map((t) => t.trim()).filter(Boolean) : []);
+      const tagsHtml = tags.map((t) => `<span class="tag-pill" style="font-size: 0.72rem; padding: 2px 7px; background: rgba(120, 216, 68, 0.12); color: var(--green); border-radius: 4px; display: inline-block; margin-right: 4px; margin-top: 4px;">${escapeHtml(t)}</span>`).join('');
+
+      return `
+      <div class="admin-data-card" id="admin-institute-${escapeHtml(inst.id)}">
+        <div class="admin-card-header">
+          <img class="admin-card-avatar" style="border-radius: 8px; width: 54px; height: 54px; object-fit: contain; background: rgba(255, 255, 255, 0.05); padding: 4px;" src="${escapeHtml(logoSrc)}" alt="${escapeHtml(inst.name)}" onerror="this.onerror=null; this.src='/assets/colleges/logo_dit_dhanbad.png'">
+          <div class="admin-card-title-group">
+            <h4>${escapeHtml(inst.name)}</h4>
+            <p><span class="admin-card-badge">${escapeHtml(inst.tier || 'Institute Partner')}</span> • <span class="badge-purple" style="font-size: 0.75rem; text-transform: uppercase;">${escapeHtml(inst.category || 'engineering')}</span></p>
+          </div>
+        </div>
+        <div class="admin-card-meta">
+          <div><strong>Location:</strong> <span style="color: var(--text-secondary);">${escapeHtml(inst.location || 'India')}</span></div>
+          <div><strong>Status:</strong> <span style="color: var(--green); font-size: 0.8rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 3px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>${escapeHtml(inst.status || 'Verified Academic Partner')}</span></div>
+          <div style="margin-top: 6px; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4;">${escapeHtml(inst.description || '')}</div>
+          ${tagsHtml ? `<div style="margin-top: 6px;">${tagsHtml}</div>` : ''}
+        </div>
+        <div class="admin-card-actions">
+          <button type="button" class="admin-btn-action admin-btn-edit" data-edit-institute="${escapeHtml(inst.id)}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Edit
+          </button>
+          <button type="button" class="admin-btn-action admin-btn-delete" data-delete-institute="${escapeHtml(inst.id)}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Delete
+          </button>
+        </div>
+      </div>
+      `;
+    }).join('');
+
+    institutesGrid.querySelectorAll('[data-edit-institute]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = btn.dataset.editInstitute;
+        const item = institutes.find((i) => String(i.id) === String(id));
+        if (item) openEditForm(item);
+      });
+    });
+
+    institutesGrid.querySelectorAll('[data-delete-institute]').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = btn.dataset.deleteInstitute;
+        const item = institutes.find((i) => String(i.id) === String(id));
+        if (!confirm(`Are you sure you want to delete partner institute: "${item?.name || id}"?`)) return;
+        await deleteInstitute(id);
+      });
+    });
+  }
+
+  function openEditForm(item) {
+    if (!formDrawer) return;
+    formDrawer.style.display = 'block';
+    if (formTitle) formTitle.textContent = item ? `Edit Partner Institute: ${item.name}` : 'Add New Partner Institution';
+    if (editIdInput) editIdInput.value = item ? item.id : '';
+    const nameEl = document.getElementById('instituteName');
+    if (nameEl) nameEl.value = item ? (item.name || '') : '';
+    const catEl = document.getElementById('instituteCategory');
+    if (catEl) catEl.value = item ? (item.category || 'engineering') : 'engineering';
+    const tierEl = document.getElementById('instituteTier');
+    if (tierEl) tierEl.value = item ? (item.tier || 'Institute Partner') : 'Institute Partner';
+    const locEl = document.getElementById('instituteLocation');
+    if (locEl) locEl.value = item ? (item.location || '') : '';
+    const statusEl = document.getElementById('instituteStatus');
+    if (statusEl) statusEl.value = item ? (item.status || 'Verified Academic Partner') : 'Verified Academic Partner';
+    if (logoUrlInput) logoUrlInput.value = item ? (item.logo || '') : '';
+    const tagsEl = document.getElementById('instituteTags');
+    if (tagsEl) {
+      const t = item?.tags;
+      tagsEl.value = Array.isArray(t) ? t.join(', ') : (t || '');
+    }
+    const descEl = document.getElementById('instituteDescription');
+    if (descEl) descEl.value = item ? (item.description || '') : '';
+
+    renderInstituteLogoPreview();
+    formDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderInstituteLogoPreview() {
+    const val = logoUrlInput ? logoUrlInput.value.trim() : '';
+    renderSinglePhotoPreview(previewBox, val, () => {
+      if (logoUrlInput) logoUrlInput.value = '';
+      if (fileInput) fileInput.value = '';
+      renderInstituteLogoPreview();
+    });
+  }
+
+  if (btnOpenModal && !btnOpenModal._bound) {
+    btnOpenModal._bound = true;
+    btnOpenModal.addEventListener('click', () => {
+      instituteForm?.reset();
+      openEditForm(null);
+    });
+  }
+
+  if (btnCancel && !btnCancel._bound) {
+    btnCancel._bound = true;
+    btnCancel.addEventListener('click', () => {
+      formDrawer.style.display = 'none';
+      instituteForm?.reset();
+      renderInstituteLogoPreview();
+      if (feedback) feedback.textContent = '';
+    });
+  }
+
+  // Logo Drag & Drop and File Input
+  if (dropzone && !dropzone._bound) {
+    dropzone._bound = true;
+    dropzone.addEventListener('click', () => fileInput?.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('drag-over');
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('drag-over');
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('drag-over');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+  }
+
+  if (fileInput && !fileInput._bound) {
+    fileInput._bound = true;
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) {
+        handleFile(fileInput.files[0]);
+      }
+    });
+  }
+
+  function handleFile(file) {
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file (PNG, SVG, JPG, WebP).');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (logoUrlInput) logoUrlInput.value = e.target.result;
+      renderInstituteLogoPreview();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if (logoUrlInput && !logoUrlInput._bound) {
+    logoUrlInput._bound = true;
+    logoUrlInput.addEventListener('input', () => {
+      renderInstituteLogoPreview();
+    });
+  }
+
+  if (instituteForm && !instituteForm._bound) {
+    instituteForm._bound = true;
+    instituteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = getAdminToken();
+      if (!token) return showFeedback(feedback, 'Admin session expired. Please sign in.', true);
+
+      const id = editIdInput.value;
+      const isEdit = Boolean(id);
+      const submitBtn = document.getElementById('btnSaveInstitute');
+      if (submitBtn) setButtonBusy(submitBtn, true);
+
+      const name = document.getElementById('instituteName').value.trim();
+      const generatedId = isEdit ? id : (name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `inst-${Date.now()}`);
+
+      const tagsRaw = document.getElementById('instituteTags').value;
+      const tags = tagsRaw.split(',').map((t) => t.trim()).filter(Boolean);
+
+      const payload = {
+        id: generatedId,
+        name,
+        category: document.getElementById('instituteCategory').value,
+        tier: document.getElementById('instituteTier').value.trim() || 'Institute Partner',
+        location: document.getElementById('instituteLocation').value.trim() || 'India',
+        status: document.getElementById('instituteStatus').value.trim() || 'Verified Academic Partner',
+        logo: logoUrlInput.value.trim() || undefined,
+        description: document.getElementById('instituteDescription').value.trim(),
+        tags
+      };
+
+      try {
+        const csrfToken = await getCsrfToken();
+        const url = isEdit ? `/api/admin/institutes/${id}` : '/api/admin/institutes';
+        const method = isEdit ? 'PUT' : 'POST';
+
+        const res = await fetch(buildApiUrl(url), {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await readJsonResponse(res);
+        if (!res.ok || !result.success) throw new Error(result.message || 'Failed to save partner institution.');
+
+        showFeedback(feedback, result.message || 'Partner institution saved successfully!', false);
+        setTimeout(() => {
+          formDrawer.style.display = 'none';
+          instituteForm.reset();
+          if (previewBox) previewBox.style.display = 'none';
+          if (feedback) feedback.textContent = '';
+        }, 1000);
+
+        await loadAdminDashboard();
+      } catch (err) {
+        showFeedback(feedback, err.message, true);
+      } finally {
+        if (submitBtn) setButtonBusy(submitBtn, false);
+      }
+    });
+  }
+
+  async function deleteInstitute(id) {
+    const token = getAdminToken();
+    if (!token) return;
+    try {
+      const csrfToken = await getCsrfToken();
+      const res = await fetch(buildApiUrl(`/api/admin/institutes/${id}`), {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}`, 'X-CSRF-Token': csrfToken }
+      });
+      const result = await readJsonResponse(res);
+      if (!res.ok || !result.success) throw new Error(result.message || 'Failed to delete partner institute.');
+      setAdminStatus('Partner institution deleted successfully.');
+      await loadAdminDashboard();
+    } catch (err) {
+      setAdminStatus(err.message, true);
+    }
+  }
+
+  renderInstitutes(institutes);
 }
 
 /** Admin Leads & Inquiries Manager Controller */

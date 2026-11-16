@@ -150,4 +150,58 @@ export class AdminController {
       next(err);
     }
   }
+
+  public static listInstitutes(req: Request, res: Response, next: NextFunction): void {
+    try {
+      const institutes = AdminService.listInstitutes();
+      res.json({
+        success: true,
+        institutes,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public static async createInstitute(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const actor = (req as any).user?.email || 'admin@robotree.org';
+      const institute = await AdminService.createInstitute(req.body || {}, actor);
+      res.status(201).json({
+        success: true,
+        message: 'Partner institution added successfully.',
+        institute,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public static async updateInstitute(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const actor = (req as any).user?.email || 'admin@robotree.org';
+      const institute = await AdminService.updateInstitute(String(req.params.id), req.body || {}, actor);
+      res.json({
+        success: true,
+        message: 'Partner institution updated successfully.',
+        institute,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public static async deleteInstitute(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const actor = (req as any).user?.email || 'admin@robotree.org';
+      const institute = await AdminService.deleteInstitute(String(req.params.id), actor);
+      res.json({
+        success: true,
+        message: 'Partner institution removed successfully.',
+        institute,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
