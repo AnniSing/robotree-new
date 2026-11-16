@@ -166,5 +166,215 @@
     "featured": true,
     "createdAt": "2026-10-01T10:00:00.000Z",
     "updatedAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "PROD-RBT-009",
+    "title": "Object detector project",
+    "category": "Sensors & Actuators",
+    "price": 1800,
+    "originalPrice": 2400,
+    "inStock": true,
+    "stockQuantity": 30,
+    "sku": "RBT-PRJ-OBJ-09",
+    "image": "assets/store/proj_object_detector.jpg",
+    "description": "DIY Object Detector hardware project featuring ultrasonic distance sensing, audible buzzer alert, microcontroller board, and pre-wired student experimental breadboard enclosure.",
+    "features": [
+      "Ultrasonic Distance & Object Detection",
+      "Audible Warning Buzzer & LED Indicator",
+      "Arduino Compatible Circuit Architecture",
+      "School Science Exhibition & Hackathon Ready"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.643Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-010",
+    "title": "Gps project",
+    "category": "Sensors & Actuators",
+    "price": 2100,
+    "originalPrice": 2800,
+    "inStock": true,
+    "stockQuantity": 25,
+    "sku": "RBT-PRJ-GPS-10",
+    "image": "assets/store/proj_gps_tracker.jpg",
+    "description": "Real-time GPS Tracking & Geolocation project kit with high-sensitivity GPS module, active antenna, serial communication interface, and position readout capability.",
+    "features": [
+      "High-Precision Satellite GPS Module with Antenna",
+      "Real-Time Latitude, Longitude & Speed Telemetry",
+      "UART Serial Interfacing for Microcontrollers",
+      "Vehicle & Asset Tracking Project Documentation"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-011",
+    "title": "Wire less bot",
+    "category": "Robotics Kits",
+    "price": 3300,
+    "originalPrice": 4200,
+    "inStock": true,
+    "stockQuantity": 20,
+    "sku": "RBT-BOT-WLS-11",
+    "image": "assets/store/kit_wireless_bot.jpg",
+    "description": "Wireless controlled robotic vehicle kit equipped with RF/Bluetooth wireless telemetry, dual DC motor drivers, durable chassis, and directional remote control.",
+    "features": [
+      "Long-Range Wireless Control Interface",
+      "Dual High-Torque BO Motors & Rubber Grip Wheels",
+      "High-Efficiency H-Bridge Motor Driver Module",
+      "Ideal for College Robotics Battles & Demos"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-012",
+    "title": "Drone",
+    "category": "Drones & Motors",
+    "price": 12000,
+    "originalPrice": 15500,
+    "inStock": true,
+    "stockQuantity": 12,
+    "sku": "RBT-DRN-QUAD-12",
+    "image": "assets/store/drone_quadcopter_complete.jpg",
+    "description": "Complete autonomous quadcopter drone engineering system with 4 brushless motors, electronic speed controllers (ESCs), flight controller, high-efficiency propellers, and carbon-fiber composite frame.",
+    "features": [
+      "Complete 4-Rotor Aerodynamic Quadcopter Frame",
+      "High-RPM Brushless Motors & Matched ESC Units",
+      "Multi-Axis Gyro Flight Controller Platform",
+      "Aeronautical & Drone Pilot Hands-On Training"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-013",
+    "title": "Touch sensor project",
+    "category": "Sensors & Actuators",
+    "price": 1500,
+    "originalPrice": 1999,
+    "inStock": true,
+    "stockQuantity": 35,
+    "sku": "RBT-PRJ-TCH-13",
+    "image": "assets/store/proj_touch_sensor.jpg",
+    "description": "Capacitive touch switch and security alarm project kit with digital touch sensor module, instant tactile response, output relay, and project enclosure.",
+    "features": [
+      "High-Sensitivity Capacitive Touch Detection",
+      "Zero-Debounce Digital Output Signal",
+      "Integrated Buzzer & Status Indication",
+      "Plug-and-Play STEM Physics Curriculum Lab"
+    ],
+    "featured": false,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-014",
+    "title": "Smoke sensor project",
+    "category": "Sensors & Actuators",
+    "price": 1500,
+    "originalPrice": 1999,
+    "inStock": true,
+    "stockQuantity": 30,
+    "sku": "RBT-PRJ-SMK-14",
+    "image": "assets/store/proj_smoke_sensor.jpg",
+    "description": "Gas and smoke detection security safety system utilizing an MQ-series electrochemical sensor, adjustable sensitivity potentiometer, and high-decibel alarm.",
+    "features": [
+      "MQ Gas & Smoke Electrochemical Sensor Core",
+      "Analog & Digital Output Dual Mode",
+      "Audible Siren & Visual Emergency Alert",
+      "Fire Safety Demonstration & School Prototype"
+    ],
+    "featured": false,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-015",
+    "title": "RFID card detector project",
+    "category": "Sensors & Actuators",
+    "price": 1500,
+    "originalPrice": 2100,
+    "inStock": true,
+    "stockQuantity": 28,
+    "sku": "RBT-PRJ-RFD-15",
+    "image": "assets/store/proj_rfid_detector.jpg",
+    "description": "Radio Frequency Identification (RFID) 13.56MHz access control project with RC522 reader module, smart RFID key fobs, contact card verification, and auth microcontroller.",
+    "features": [
+      "MFRC522 13.56 MHz High-Frequency RFID Reader",
+      "Includes Contactless Smart Card & Key Tag",
+      "Attendance & Security Gate Simulation Circuit",
+      "Full Source Code & Wiring Diagram Included"
+    ],
+    "featured": false,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-016",
+    "title": "Object detector bot",
+    "category": "Robotics Kits",
+    "price": 2500,
+    "originalPrice": 3200,
+    "inStock": true,
+    "stockQuantity": 22,
+    "sku": "RBT-BOT-OBJ-16",
+    "image": "assets/store/bot_object_detector.jpg",
+    "description": "Autonomous obstacle detecting robot vehicle with twin ultrasonic sensor mounts, agile dual-wheel differential drive, real-time collision avoidance algorithm, and clear acrylic chassis.",
+    "features": [
+      "Ultrasonic Obstacle Avoidance & Pathfinding",
+      "Differential Steering with Ball Caster Wheel",
+      "Smart Motor Shield & Power Management",
+      "Hands-on Robotics Robotics Competition Bot"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-017",
+    "title": "Home Automation",
+    "category": "Sensors & Actuators",
+    "price": 1800,
+    "originalPrice": 2400,
+    "inStock": true,
+    "stockQuantity": 25,
+    "sku": "RBT-PRJ-AUT-17",
+    "image": "assets/store/proj_home_automation.jpg",
+    "description": "Smart Home Automation project kit featuring a 4-channel optocoupler isolated relay board, infrared wireless remote control handset, and appliance control module.",
+    "features": [
+      "4-Channel High-Power Relay Board (AC/DC Support)",
+      "Handheld IR Wireless Remote Control with Keypad",
+      "Optocoupler Isolation for Electrical Safety",
+      "Smart Appliance Switching Demonstration"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
+  },
+  {
+    "id": "PROD-RBT-018",
+    "title": "Finger print lock",
+    "category": "Sensors & Actuators",
+    "price": 3500,
+    "originalPrice": 4500,
+    "inStock": true,
+    "stockQuantity": 18,
+    "sku": "RBT-PRJ-FPR-18",
+    "image": "assets/store/proj_fingerprint_lock.jpg",
+    "description": "Biometric optical fingerprint scanner security lock project kit with onboard DSP image processing, biometric template matching, solenoid latch trigger, and status indicators.",
+    "features": [
+      "High-Accuracy Optical Fingerprint Sensor Module",
+      "Stores Up to 120 Enrolled Fingerprint Templates",
+      "Rapid Biometric Authentication (< 1 Second)",
+      "Electronic Door & Safe Lock Prototyping"
+    ],
+    "featured": true,
+    "createdAt": "2026-11-16T11:26:40.660Z",
+    "updatedAt": "2026-11-16T11:26:40.660Z"
   }
 ]
