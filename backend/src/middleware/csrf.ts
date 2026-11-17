@@ -62,24 +62,37 @@ export function sameOriginGuard(req: Request, res: Response, next: NextFunction)
     return next();
   }
   const origin = req.get('origin');
+  if (!origin) {
+    return next();
+  }
+
   const forwardedHost = (req.get('x-forwarded-host') || '').split(',')[0].trim();
   const host = forwardedHost || req.get('host') || '';
   const isLoopback = Boolean(host) && /^127\.0\.0\.1(:\d+)?$|^localhost(:\d+)?$|^0\.0\.0\.0(:\d+)?$/.test(host);
   const isOriginLoopback = Boolean(origin) && /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin || '');
   const isSameHost = Boolean(origin) && Boolean(host) && (origin === `https://${host}` || origin === `http://${host}`);
+  const isLanOrLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+)(:\d+)?$/i.test(origin);
 
-  if (origin) {
-    if (
-      isTrustedVercelOrigin(origin) ||
-      isSameHost ||
-      (isLoopback && isOriginLoopback)
-    ) {
-      return next();
+  let isHostnameMatch = false;
+  try {
+    const originHost = new URL(origin).hostname.toLowerCase();
+    const reqHost = host.split(':')[0].toLowerCase();
+    if (originHost && reqHost && originHost === reqHost) {
+      isHostnameMatch = true;
     }
-    res.status(403).json({ success: false, error: 'Forbidden', message: 'Request origin is not allowed.' });
-    return;
+  } catch {}
+
+  if (
+    isTrustedVercelOrigin(origin) ||
+    allowedOrigins.has(origin) ||
+    isSameHost ||
+    isHostnameMatch ||
+    isLanOrLoopback ||
+    (isLoopback && isOriginLoopback)
+  ) {
+    return next();
   }
-  next();
+  res.status(403).json({ success: false, error: 'Forbidden', message: 'Request origin is not allowed.' });
 }
 
 export function csrfGuard(req: Request, res: Response, next: NextFunction): void {

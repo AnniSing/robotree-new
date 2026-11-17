@@ -23,7 +23,7 @@ export class ProductService {
     return product;
   }
 
-  public static async createProduct(dto: any, actor = 'System Administrator'): Promise<Product> {
+  public static async createProduct(dto: any, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Product> {
     const uniqueNum = Math.floor(100 + Math.random() * 900);
     const id = dto.id || `PROD-RBT-${Date.now().toString().slice(-4)}${uniqueNum}`;
     const sku = dto.sku || `RBT-${dto.category?.slice(0, 3).toUpperCase() || 'ITM'}-${Date.now().toString().slice(-4)}`;
@@ -61,15 +61,17 @@ export class ProductService {
 
     const created = await repositories.products.create(newProduct);
     SyncService.broadcast('products', 'CREATE', created.id);
+    await repositories.history.record('products', created.id, 'CREATE', null, created, actor, ip);
 
-    await AuditService.logAction(actor, 'PRODUCT_CREATED', 'store', `Added product ${created.title} (${created.id})`, {
+    await AuditService.logAction(actor, 'PRODUCT_CREATED', 'store', `Added product ${created.title} (${created.id}) from IP ${ip}`, {
       resourceId: created.id,
+      ip,
     });
 
     return created;
   }
 
-  public static async updateProduct(id: string, dto: any, actor = 'System Administrator'): Promise<Product> {
+  public static async updateProduct(id: string, dto: any, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Product> {
     const existing = await repositories.products.findById(id);
     if (!existing) {
       throw new NotFoundError(`Product not found: ${id}`);
@@ -107,15 +109,17 @@ export class ProductService {
     }
 
     SyncService.broadcast('products', 'UPDATE', id);
+    await repositories.history.record('products', id, 'UPDATE', existing, updated, actor, ip);
 
-    await AuditService.logAction(actor, 'PRODUCT_UPDATED', 'store', `Updated product ${updated.title} (${id})`, {
+    await AuditService.logAction(actor, 'PRODUCT_UPDATED', 'store', `Updated product ${updated.title} (${id}) from IP ${ip}`, {
       resourceId: id,
+      ip,
     });
 
     return updated;
   }
 
-  public static async deleteProduct(id: string, actor = 'System Administrator'): Promise<boolean> {
+  public static async deleteProduct(id: string, actor = 'System Administrator', ip = '127.0.0.1'): Promise<boolean> {
     const existing = await repositories.products.findById(id);
     if (!existing) {
       throw new NotFoundError(`Product not found: ${id}`);
@@ -123,15 +127,17 @@ export class ProductService {
 
     const success = await repositories.products.delete(id);
     SyncService.broadcast('products', 'DELETE', id);
+    await repositories.history.record('products', id, 'DELETE', existing, null, actor, ip);
 
-    await AuditService.logAction(actor, 'PRODUCT_DELETED', 'store', `Deleted product ${existing.title} (${id})`, {
+    await AuditService.logAction(actor, 'PRODUCT_DELETED', 'store', `Deleted product ${existing.title} (${id}) from IP ${ip}`, {
       resourceId: id,
+      ip,
     });
 
     return success;
   }
 
-  public static async toggleStock(id: string, inStock: boolean, actor = 'System Administrator'): Promise<Product> {
+  public static async toggleStock(id: string, inStock: boolean, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Product> {
     const existing = await repositories.products.findById(id);
     if (!existing) {
       throw new NotFoundError(`Product not found: ${id}`);
@@ -146,13 +152,17 @@ export class ProductService {
     }
 
     SyncService.broadcast('products', 'UPDATE', id);
+    await repositories.history.record('products', id, 'UPDATE', existing, updated, actor, ip);
 
     await AuditService.logAction(
       actor,
       'PRODUCT_STOCK_TOGGLED',
       'store',
-      `Toggled stock for ${updated.title} to ${inStock ? 'IN_STOCK' : 'OUT_OF_STOCK'}`,
-      { resourceId: id }
+      `Toggled stock for ${updated.title} to ${inStock ? 'IN_STOCK' : 'OUT_OF_STOCK'} from IP ${ip}`,
+      {
+        resourceId: id,
+        ip,
+      }
     );
 
     return updated;

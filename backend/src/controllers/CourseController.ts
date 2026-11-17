@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { CourseService } from '../services/CourseService.js';
 import { db } from '../persistence/json-database.js';
 import { getParam } from '../utils/params.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class CourseController {
   public static async listCourses(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -19,7 +20,8 @@ export class CourseController {
 
   public static async createCourse(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const course = await CourseService.createCourse(req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const course = await CourseService.createCourse(req.body, req.user?.email || 'Administrator', clientIp);
       res.status(201).json({
         success: true,
         message: 'Course track created successfully.',
@@ -33,7 +35,8 @@ export class CourseController {
   public static async updateCourse(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      const course = await CourseService.updateCourse(id, req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const course = await CourseService.updateCourse(id, req.body, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Course track updated successfully.',
@@ -47,7 +50,8 @@ export class CourseController {
   public static async deleteCourse(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      await CourseService.deleteCourse(id, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      await CourseService.deleteCourse(id, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Course track deleted successfully.',

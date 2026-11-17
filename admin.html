@@ -115,7 +115,11 @@
               <h2 style="font-size: 1.85rem; margin: 0 0 4px; font-weight: 800; color: var(--text);">Robotree Management Suite</h2>
               <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Complete administrative control over team directory, courses, gallery media, inquiries, and student certificates.</p>
             </div>
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+              <div class="admin-ip-badge" id="adminSystemIpBadge" title="Your connected system IP address" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; font-size: 0.82rem; color: #93c5fd; font-family: monospace;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; display: inline-block;"></span>
+                <span>System IP: <strong id="currentSystemIp">Detecting...</strong></span>
+              </div>
               <button class="btn btn-secondary" id="adminRefresh" type="button" style="padding: 8px 16px;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
                 Refresh
@@ -170,6 +174,10 @@
             <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="settings">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               Site Settings &amp; Metrics
+            </button>
+            <button class="admin-tab-btn" type="button" role="tab" data-admin-tab="history">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Audit &amp; System IP Logs
             </button>
           </div>
 
@@ -1235,6 +1243,48 @@
             <!-- Products Table List -->
             <div id="adminProductsTableWrap" class="admin-table-wrapper" style="margin-top: 24px;">
               <!-- Rendered by JS -->
+            </div>
+          </section>
+
+          <!-- 10. SECTION: Audit Logs & System IP Activity -->
+          <section class="admin-section-view" id="adminSectionHistory" hidden>
+            <div class="admin-section-header">
+              <div>
+                <h3 style="margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #60a5fa;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  System IP Activity &amp; Audit Logs
+                </h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Review real-time client IP addresses, administrative logins, and data modifications across all systems.</p>
+              </div>
+              <button class="btn btn-secondary" id="btnRefreshHistory" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+                <span>Refresh Logs</span>
+              </button>
+            </div>
+
+            <div class="admin-card" style="margin-top: 20px;">
+              <h4 style="margin-top: 0; margin-bottom: 16px; font-size: 1.1rem; color: var(--text); display: flex; align-items: center; justify-content: space-between;">
+                <span>Detailed IP Activity &amp; Content Modification Trail</span>
+                <span id="historyLogCount" style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">Showing recent actions</span>
+              </h4>
+              <div class="table-responsive" style="overflow-x: auto;">
+                <table class="admin-table" style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border); text-align: left; color: var(--text-secondary);">
+                      <th style="padding: 10px 12px;">Timestamp</th>
+                      <th style="padding: 10px 12px;">System IP Address</th>
+                      <th style="padding: 10px 12px;">Action</th>
+                      <th style="padding: 10px 12px;">Resource</th>
+                      <th style="padding: 10px 12px;">Actor</th>
+                      <th style="padding: 10px 12px;">Details</th>
+                      <th style="padding: 10px 12px;">Rollback</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminHistoryTableBody">
+                    <tr><td colspan="7" style="padding: 20px; text-align: center; color: var(--text-secondary);">Loading system IP history...</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
 

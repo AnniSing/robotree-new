@@ -284,14 +284,24 @@ export class AuthService {
     return 'Aniket4515';
   }
 
-  public static async adminLogin(passcode: string): Promise<{ token: string; role: Role }> {
-    const lockoutKey = 'admin_login';
+  public static async adminLogin(
+    passcode: string,
+    meta: { ip?: string; userAgent?: string; requestId?: string } = {}
+  ): Promise<{ token: string; role: Role }> {
+    const clientIp = meta.ip || '127.0.0.1';
+    const lockoutKey = `admin_login_${clientIp}`;
     this.checkBruteForceLockout(lockoutKey, 5, 15 * 60 * 1000);
 
     const isMatch = this.verifyAdminPasscode(passcode);
     if (!isMatch) {
       this.recordFailedAttempt(lockoutKey, 5, 15 * 60 * 1000);
-      await AuditService.logAction('UNKNOWN', 'ADMIN_LOGIN_FAILED', 'admin', 'Invalid passcode attempt', { result: 'FAILURE' });
+      await AuditService.logAction(
+        'UNKNOWN',
+        'ADMIN_LOGIN_FAILED',
+        'admin',
+        `Invalid admin passcode attempt from IP ${clientIp}`,
+        { result: 'FAILURE', ip: clientIp, userAgent: meta.userAgent, requestId: meta.requestId }
+      );
       throw new UnauthorizedError('Invalid admin passcode');
     }
 
@@ -324,7 +334,13 @@ export class AuthService {
     } catch {
       // Signed stateless token remains valid across serverless instances
     }
-    await AuditService.logAction('admin@robotree.org', 'ADMIN_LOGIN_SUCCESS', 'admin', 'Admin session created');
+    await AuditService.logAction(
+      'admin@robotree.org',
+      'ADMIN_LOGIN_SUCCESS',
+      'admin',
+      `Admin logged in successfully from IP ${clientIp}`,
+      { ip: clientIp, userAgent: meta.userAgent, requestId: meta.requestId }
+    );
 
     return { token: adminToken, role: 'SUPER_ADMIN' };
   }

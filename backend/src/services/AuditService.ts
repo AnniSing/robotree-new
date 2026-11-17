@@ -19,36 +19,52 @@ export class AuditService {
       result?: 'SUCCESS' | 'FAILURE';
     } = {}
   ): Promise<AuditLog> {
+    const clientIp = meta.ip || '127.0.0.1';
+    let formattedDetails = details || '';
+    if (clientIp && !formattedDetails.includes(clientIp)) {
+      formattedDetails = formattedDetails
+        ? `${formattedDetails} (IP: ${clientIp})`
+        : `Action from IP: ${clientIp}`;
+    }
+
     const entry: Omit<AuditLog, 'id' | 'timestamp'> = {
       actor,
       action,
       resource,
       resourceId: meta.resourceId,
       requestId: meta.requestId,
-      ip: meta.ip,
+      ip: clientIp,
       userAgent: meta.userAgent,
       result: meta.result || 'SUCCESS',
-      details,
+      details: formattedDetails,
     };
 
-    Logger.info(`AUDIT: [${action}] ${resource} by ${actor}`, {
+    Logger.info(`AUDIT: [${action}] ${resource} by ${actor} from IP ${clientIp}`, {
       actor,
       requestId: meta.requestId,
-      details,
+      ip: clientIp,
+      details: formattedDetails,
     });
 
     // Also persist to activities collection for dashboard telemetry
     this.recordActivity(
       actor,
       action,
-      details || '',
-      meta.result === 'FAILURE' ? 'FAILED' : 'SUCCESS'
+      formattedDetails,
+      meta.result === 'FAILURE' ? 'FAILED' : 'SUCCESS',
+      clientIp
     );
 
     return repositories.audit.log(entry);
   }
 
-  public static recordActivity(user: string, type: string, details: string, status = 'SUCCESS'): void {
+  public static recordActivity(
+    user: string,
+    type: string,
+    details: string,
+    status = 'SUCCESS',
+    ip = '127.0.0.1'
+  ): void {
     try {
       const activities = db.getActivities();
       const newActivity = {
@@ -58,6 +74,7 @@ export class AuditService {
         type: sanitizeValue(type || 'UNKNOWN', 80),
         details: sanitizeValue(details || '', 500),
         status,
+        ip: sanitizeValue(ip || '127.0.0.1', 45),
       };
       activities.unshift(newActivity);
       if (activities.length > 500) activities.length = 500;

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { ProductService } from '../services/ProductService.js';
 import { getParam } from '../utils/params.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class ProductController {
   public static async list(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -36,7 +37,8 @@ export class ProductController {
   public static async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const actor = req.user?.email || 'System Administrator';
-      const product = await ProductService.createProduct(req.body, actor);
+      const clientIp = extractClientIp(req);
+      const product = await ProductService.createProduct(req.body, actor, clientIp);
       res.status(201).json({
         success: true,
         message: 'Product created successfully.',
@@ -51,7 +53,8 @@ export class ProductController {
     try {
       const id = getParam(req, 'id');
       const actor = req.user?.email || 'System Administrator';
-      const product = await ProductService.updateProduct(id, req.body, actor);
+      const clientIp = extractClientIp(req);
+      const product = await ProductService.updateProduct(id, req.body, actor, clientIp);
       res.json({
         success: true,
         message: 'Product updated successfully.',
@@ -66,7 +69,8 @@ export class ProductController {
     try {
       const id = getParam(req, 'id');
       const actor = req.user?.email || 'System Administrator';
-      await ProductService.deleteProduct(id, actor);
+      const clientIp = extractClientIp(req);
+      await ProductService.deleteProduct(id, actor, clientIp);
       res.json({
         success: true,
         message: 'Product deleted successfully.',
@@ -81,7 +85,8 @@ export class ProductController {
       const id = getParam(req, 'id');
       const inStock = Boolean(req.body.inStock);
       const actor = req.user?.email || 'System Administrator';
-      const product = await ProductService.toggleStock(id, inStock, actor);
+      const clientIp = extractClientIp(req);
+      const product = await ProductService.toggleStock(id, inStock, actor, clientIp);
       res.json({
         success: true,
         message: `Product stock status updated to ${inStock ? 'In Stock' : 'Out of Stock'}.`,

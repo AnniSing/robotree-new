@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { TeamService } from '../services/TeamService.js';
 import { getParam } from '../utils/params.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class TeamController {
   public static async listTeam(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -19,7 +20,8 @@ export class TeamController {
 
   public static async createTeamMember(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const member = await TeamService.createTeamMember(req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const member = await TeamService.createTeamMember(req.body, req.user?.email || 'Administrator', clientIp);
       res.status(201).json({
         success: true,
         message: 'Team member added successfully.',
@@ -33,7 +35,8 @@ export class TeamController {
   public static async updateTeamMember(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      const member = await TeamService.updateTeamMember(id, req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const member = await TeamService.updateTeamMember(id, req.body, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Team member updated successfully.',
@@ -47,7 +50,8 @@ export class TeamController {
   public static async deleteTeamMember(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      await TeamService.deleteTeamMember(id, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      await TeamService.deleteTeamMember(id, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Team member removed successfully.',

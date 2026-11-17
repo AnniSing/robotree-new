@@ -4,6 +4,7 @@ import { storageService } from '../services/StorageService.js';
 import { ValidationError, UnauthorizedError } from '../errors/AppError.js';
 import { getParam } from '../utils/params.js';
 import { AuthService } from '../services/AuthService.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class EventController {
   public static async listEvents(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -21,7 +22,8 @@ export class EventController {
 
   public static async createEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const event = await EventService.createEvent(req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const event = await EventService.createEvent(req.body, req.user?.email || 'Administrator', clientIp);
       res.status(201).json({
         success: true,
         message: 'Event published successfully.',
@@ -35,7 +37,8 @@ export class EventController {
   public static async updateEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      const event = await EventService.updateEvent(id, req.body, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const event = await EventService.updateEvent(id, req.body, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Event updated successfully.',
@@ -49,7 +52,8 @@ export class EventController {
   public static async deleteEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      await EventService.deleteEvent(id, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      await EventService.deleteEvent(id, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Event removed from gallery.',
@@ -67,7 +71,8 @@ export class EventController {
       if (!photoUrl) {
         throw new ValidationError('photoUrl is required');
       }
-      const event = await EventService.deletePhoto(id, photoUrl, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      const event = await EventService.deletePhoto(id, photoUrl, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Photo removed from event album.',
@@ -88,9 +93,10 @@ export class EventController {
         throw new UnauthorizedError('Administrative authorization required to upload media or publish gallery items.');
       }
 
+      const clientIp = extractClientIp(req);
       if (req.body.title) {
         const actor = req.user?.email || (isPasscodeValid ? 'Verified Passcode Admin' : 'Administrator');
-        const event = await EventService.createEvent(req.body, actor);
+        const event = await EventService.createEvent(req.body, actor, clientIp);
         res.status(201).json({
           success: true,
           message: 'Gallery item published successfully.',
@@ -144,10 +150,11 @@ export class EventController {
         throw new ValidationError('Photo title and caption are required.');
       }
 
+      const clientIp = extractClientIp(req);
       const item = await EventService.createShowcase({
         ...req.body,
         image: imagePath || req.body.image,
-      }, req.user?.email || 'Administrator');
+      }, req.user?.email || 'Administrator', clientIp);
 
       res.status(201).json({
         success: true,
@@ -169,10 +176,11 @@ export class EventController {
         imagePath = await storageService.saveFile(buffer, req.body.filename || 'showcase_photo.jpg', 'gallery');
       }
 
+      const clientIp = extractClientIp(req);
       const item = await EventService.updateShowcase(id, {
         ...req.body,
         ...(imagePath ? { image: imagePath } : {}),
-      }, req.user?.email || 'Administrator');
+      }, req.user?.email || 'Administrator', clientIp);
 
       res.json({
         success: true,
@@ -187,7 +195,8 @@ export class EventController {
   public static async deleteShowcase(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = getParam(req, 'id');
-      await EventService.deleteShowcase(id, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      await EventService.deleteShowcase(id, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Showcase photo removed.',

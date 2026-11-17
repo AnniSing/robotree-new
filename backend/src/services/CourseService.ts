@@ -122,34 +122,42 @@ export class CourseService {
     return course;
   }
 
-  public static async createCourse(course: Course, actor = 'System Administrator'): Promise<Course> {
+  public static async createCourse(course: Course, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Course> {
     if (!course.id) {
       course.id = course.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `course-${Date.now()}`;
     }
     const created = await repositories.courses.create(course);
     SyncService.broadcast('courses', 'CREATE', course.id);
-    await AuditService.logAction(actor, 'COURSE_CREATED', 'courses', `Created course: ${course.title}`, {
+    await repositories.history.record('courses', course.id, 'CREATE', null, created, actor, ip);
+    await AuditService.logAction(actor, 'COURSE_CREATED', 'courses', `Created course: ${course.title} from IP ${ip}`, {
       resourceId: course.id,
+      ip,
     });
     return created;
   }
 
-  public static async updateCourse(id: string, updates: Partial<Course>, actor = 'System Administrator'): Promise<Course> {
+  public static async updateCourse(id: string, updates: Partial<Course>, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Course> {
+    const prev = await repositories.courses.findById(id);
     const updated = await repositories.courses.update(id, updates);
     if (!updated) throw new NotFoundError(`Course not found: ${id}`);
     SyncService.broadcast('courses', 'UPDATE', id);
-    await AuditService.logAction(actor, 'COURSE_UPDATED', 'courses', `Updated course: ${updated.title}`, {
+    await repositories.history.record('courses', id, 'UPDATE', prev, updated, actor, ip);
+    await AuditService.logAction(actor, 'COURSE_UPDATED', 'courses', `Updated course: ${updated.title} from IP ${ip}`, {
       resourceId: id,
+      ip,
     });
     return updated;
   }
 
-  public static async deleteCourse(id: string, actor = 'System Administrator'): Promise<boolean> {
+  public static async deleteCourse(id: string, actor = 'System Administrator', ip = '127.0.0.1'): Promise<boolean> {
+    const prev = await repositories.courses.findById(id);
     const success = await repositories.courses.delete(id);
     if (!success) throw new NotFoundError(`Course not found: ${id}`);
     SyncService.broadcast('courses', 'DELETE', id);
-    await AuditService.logAction(actor, 'COURSE_DELETED', 'courses', `Deleted course: ${id}`, {
+    await repositories.history.record('courses', id, 'DELETE', prev, null, actor, ip);
+    await AuditService.logAction(actor, 'COURSE_DELETED', 'courses', `Deleted course: ${id} from IP ${ip}`, {
       resourceId: id,
+      ip,
     });
     return true;
   }

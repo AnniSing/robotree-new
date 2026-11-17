@@ -44,12 +44,25 @@ export class AdminService {
       ['employee', 'staff', 'admin', 'super_admin'].includes((u.role || '').toLowerCase())
     ).length;
 
-    const failedLogins = activities.filter(
-      (item: any) => String(item.type || item.action).includes('LOGIN_FAILED')
+    const normalizeActivity = (item: any) => ({
+      id: item.id || `act_${Math.random().toString(36).substring(2, 9)}`,
+      timestamp: item.timestamp || new Date().toISOString(),
+      user: item.user || item.actor || 'admin@robotree.org',
+      type: item.type || item.action || 'ACTIVITY',
+      details: item.details || '',
+      ip: item.ip || '127.0.0.1',
+      status: item.status || (item.result === 'FAILURE' ? 'FAILED' : 'SUCCESS'),
+    });
+
+    const normalizedActivities = activities.map(normalizeActivity);
+    const failedLogins = normalizedActivities.filter(
+      (item: any) => String(item.type).includes('LOGIN_FAILED') || item.status === 'FAILED'
     );
-    const accountActivity = activities.filter((item: any) =>
-      ['ACCOUNT_CREATED', 'USER_LOGIN', 'USER_LOGIN_FAILED'].includes(String(item.type || item.action))
+    const accountActivity = normalizedActivities.filter((item: any) =>
+      ['ACCOUNT_CREATED', 'USER_LOGIN', 'USER_LOGIN_FAILED', 'ADMIN_LOGIN_SUCCESS', 'ADMIN_LOGIN_FAILED'].includes(String(item.type))
     );
+
+    const history = await repositories.history.list(50).catch(() => []);
 
     const sanitizedUsers = users.map((u: any) => {
       const copy = { ...u };
@@ -85,7 +98,8 @@ export class AdminService {
       applications,
       certificates,
       certs: certificates,
-      activities,
+      activities: normalizedActivities,
+      history,
       newsletters,
       programInterests,
       feedback,
@@ -103,7 +117,8 @@ export class AdminService {
         applications,
         certificates,
         certs: certificates,
-        activities,
+        activities: normalizedActivities,
+        history,
         newsletters,
         programInterests,
         feedback,
@@ -140,7 +155,7 @@ export class AdminService {
     };
   }
 
-  public static async updateSiteSettings(dto: UpdateSettingsDto, actor: string = 'admin@robotree.org'): Promise<SiteSettings> {
+  public static async updateSiteSettings(dto: UpdateSettingsDto, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<SiteSettings> {
     const updates: Partial<SiteSettings> = {};
 
     if (dto.heroStatNumber !== undefined) {
@@ -153,23 +168,26 @@ export class AdminService {
       updates.governmentProtocol = String(dto.governmentProtocol).trim().slice(0, 500);
     }
 
+    const previous = await this.getSiteSettings();
     const updated = await repositories.settings.update(updates);
 
     // Broadcast real-time change to all connected clients & browsers
     SyncService.broadcast('settings', 'UPDATE', 'site_settings');
 
+    await repositories.history.record('settings', 'site_settings', 'UPDATE', previous, updated, actor, ip);
+
     await AuditService.logAction(
       actor,
       'SETTINGS_UPDATED',
       'settings',
-      `Admin updated website content: Hero Stat "${updated.heroStatNumber}" (${updated.heroStatLabel})`,
-      { resourceId: 'site-settings', result: 'SUCCESS' }
+      `Admin updated website content: Hero Stat "${updated.heroStatNumber}" (${updated.heroStatLabel}) from IP ${ip}`,
+      { resourceId: 'site-settings', result: 'SUCCESS', ip }
     );
 
     return updated;
   }
 
-  public static async createUser(dto: CreateUserDto, actor: string = 'admin@robotree.org'): Promise<Omit<User, 'passwordHash'>> {
+  public static async createUser(dto: CreateUserDto, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<Omit<User, 'passwordHash'>> {
     const { name, email, password, role } = dto;
     if (!name || !email) {
       throw new ValidationError('Name and email are required.');
@@ -195,12 +213,14 @@ export class AdminService {
 
     SyncService.broadcast('users', 'CREATE', userId);
 
+    await repositories.history.record('users', userId, 'CREATE', null, newUser, actor, ip);
+
     await AuditService.logAction(
       actor,
       'USER_CREATED',
       'users',
-      `Admin created user: ${newUser.email} (${newUser.role})`,
-      { resourceId: userId }
+      `Admin created user: ${newUser.email} (${newUser.role}) from IP ${ip}`,
+      { resourceId: userId, ip }
     );
 
     const sanitized = { ...newUser };
@@ -208,24 +228,27 @@ export class AdminService {
     return sanitized;
   }
 
-  public static async deleteUser(id: string, actor: string = 'admin@robotree.org'): Promise<User> {
+  public static async deleteUser(id: string, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<User> {
     const existing = await repositories.users.findById(id);
     if (!existing) {
       throw new NotFoundError('User account not found.');
     }
     await repositories.users.delete(id);
     SyncService.broadcast('users', 'DELETE', id);
+
+    await repositories.history.record('users', id, 'DELETE', existing, null, actor, ip);
+
     await AuditService.logAction(
       actor,
       'USER_DELETED',
       'users',
-      `Admin deleted user: ${existing.email} (${existing.role})`,
-      { resourceId: id }
+      `Admin deleted user: ${existing.email} (${existing.role}) from IP ${ip}`,
+      { resourceId: id, ip }
     );
     return existing;
   }
 
-  public static async updateUserRole(id: string, role: string, actor: string = 'admin@robotree.org'): Promise<User> {
+  public static async updateUserRole(id: string, role: string, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<User> {
     if (!id || !role) {
       throw new ValidationError('User ID and role are required.');
     }
@@ -238,12 +261,15 @@ export class AdminService {
       throw new NotFoundError('User account not found.');
     }
     SyncService.broadcast('users', 'UPDATE', id);
+
+    await repositories.history.record('users', id, 'UPDATE', { role: existing.role }, { role: updated.role }, actor, ip);
+
     await AuditService.logAction(
       actor,
       'USER_ROLE_UPDATED',
       'users',
-      `Admin changed role of ${existing.email} to ${role}`,
-      { resourceId: id }
+      `Admin changed role of ${existing.email} to ${role} from IP ${ip}`,
+      { resourceId: id, ip }
     );
     return updated;
   }
@@ -252,7 +278,7 @@ export class AdminService {
     return repositories.institutes.list();
   }
 
-  public static async createInstitute(payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
+  public static async createInstitute(payload: any, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<any> {
     if (!payload.name) {
       throw new ValidationError('Institute name is required.');
     }
@@ -277,17 +303,19 @@ export class AdminService {
     const created = await repositories.institutes.create(newInst);
     SyncService.broadcast('institutes', 'CREATE', id);
 
+    await repositories.history.record('institutes', id, 'CREATE', null, created, actor, ip);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_CREATED',
       'institutes',
-      `Admin added partner institute: ${newInst.name} (${newInst.tier})`,
-      { resourceId: id }
+      `Admin added partner institute: ${newInst.name} (${newInst.tier}) from IP ${ip}`,
+      { resourceId: id, ip }
     );
     return created;
   }
 
-  public static async updateInstitute(id: string, payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
+  public static async updateInstitute(id: string, payload: any, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<any> {
     if (!id) {
       throw new ValidationError('Institute ID is required.');
     }
@@ -316,17 +344,19 @@ export class AdminService {
     const updated = await repositories.institutes.update(id, updates);
     SyncService.broadcast('institutes', 'UPDATE', id);
 
+    await repositories.history.record('institutes', id, 'UPDATE', existing, updated, actor, ip);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_UPDATED',
       'institutes',
-      `Admin updated partner institute: ${updated.name}`,
-      { resourceId: id }
+      `Admin updated partner institute: ${updated.name} from IP ${ip}`,
+      { resourceId: id, ip }
     );
     return updated;
   }
 
-  public static async deleteInstitute(id: string, actor: string = 'admin@robotree.org'): Promise<any> {
+  public static async deleteInstitute(id: string, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<any> {
     if (!id) {
       throw new ValidationError('Institute ID is required.');
     }
@@ -338,12 +368,14 @@ export class AdminService {
     await repositories.institutes.delete(id);
     SyncService.broadcast('institutes', 'DELETE', id);
 
+    await repositories.history.record('institutes', id, 'DELETE', existing, null, actor, ip);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_DELETED',
       'institutes',
-      `Admin removed partner institute: ${existing.name}`,
-      { resourceId: id }
+      `Admin removed partner institute: ${existing.name} from IP ${ip}`,
+      { resourceId: id, ip }
     );
     return existing;
   }
@@ -352,7 +384,7 @@ export class AdminService {
     return repositories.history.list(limit, entity);
   }
 
-  public static async restoreHistory(historyId: string, actor: string = 'admin@robotree.org'): Promise<any> {
+  public static async restoreHistory(historyId: string, actor: string = 'admin@robotree.org', ip: string = '127.0.0.1'): Promise<any> {
     const item = await repositories.history.findById(historyId);
     if (!item) {
       throw new NotFoundError(`History revision record not found: ${historyId}`);

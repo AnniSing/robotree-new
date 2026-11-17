@@ -35,19 +35,22 @@ export function createApp(): Express {
   // 2. Enterprise Security Headers (Helmet, CSP, HSTS, X-Content-Type-Options, Frameguard)
   app.use(securityHeaders);
 
-  // 3. CORS configuration
+  // 3. CORS configuration: permit any authorized administrative system, LAN devices, and trusted origins
   const allowedOrigins = env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean);
   app.use(
     cors({
       origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin) || isTrustedVercelOrigin(origin)) {
-          callback(null, true);
-        } else if (!isProduction) {
-          const isLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/.test(origin);
-          callback(null, isLoopback);
-        } else {
-          callback(null, false);
+          return callback(null, true);
         }
+        const isLanOrLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+)(:\d+)?$/i.test(origin);
+        if (isLanOrLoopback) {
+          return callback(null, true);
+        }
+        if (!isProduction) {
+          return callback(null, true);
+        }
+        callback(null, false);
       },
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],

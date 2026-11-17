@@ -1453,6 +1453,13 @@ function renderAdminDashboard(data) {
     `).join('') : '<p class="empty-state">No leads or feedback yet.</p>';
   }
 
+  // Update connected system IP badge
+  const systemIpEl = document.getElementById('currentSystemIp');
+  if (systemIpEl && data.clientIp) {
+    systemIpEl.textContent = data.clientIp;
+    systemIpEl.title = `Connected System IP: ${data.clientIp}`;
+  }
+
   // Update Team Directory tab counter dynamically
   const teamTabBtn = document.querySelector('.admin-tab-btn[data-admin-tab="team"]');
   if (teamTabBtn) {
@@ -1486,6 +1493,7 @@ function renderAdminDashboard(data) {
   initAdminStoreManager(data);
   initAdminPasswordManager(data);
   initAdminSiteSettingsManager(data);
+  initAdminHistory(data);
 
   refreshIcons();
 }
@@ -1503,7 +1511,8 @@ function initAdminTabs() {
     certificates: document.getElementById('adminSectionCertificates'),
     store: document.getElementById('adminSectionStore'),
     security: document.getElementById('adminSectionSecurity'),
-    settings: document.getElementById('adminSectionSettings')
+    settings: document.getElementById('adminSectionSettings'),
+    history: document.getElementById('adminSectionHistory')
   };
 
   tabs.forEach((tab) => {
@@ -1945,6 +1954,77 @@ function initAdminSiteSettingsManager(data) {
     }
   });
 }
+
+/** Admin System IP Activity & Audit Logs Controller */
+function initAdminHistory(data) {
+  const tbody = document.getElementById('adminHistoryTableBody');
+  const countEl = document.getElementById('historyLogCount');
+  const btnRefresh = document.getElementById('btnRefreshHistory');
+
+  async function loadHistory() {
+    if (!tbody) return;
+    try {
+      const res = await getJson('/api/admin/history?limit=50', { cache: 'no-store' });
+      const items = res?.history || data?.history || [];
+      if (countEl) countEl.textContent = `Showing last ${items.length} system IP & modification logs`;
+
+      if (!items || items.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="padding: 24px; text-align: center; color: var(--text-secondary);">No content modifications recorded yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = items.map((item) => {
+        const ip = item.ip || '127.0.0.1';
+        const actionBadge = item.action === 'CREATE'
+          ? '<span style="color:#22c55e;font-weight:700;">CREATE</span>'
+          : (item.action === 'DELETE' ? '<span style="color:#ef4444;font-weight:700;">DELETE</span>' : '<span style="color:#eab308;font-weight:700;">UPDATE</span>');
+
+        const detailsText = item.newData?.title || item.newData?.name || item.previousData?.title || item.previousData?.name || item.entityId || 'Modified record';
+        const canRestore = Boolean(item.previousData || item.action === 'DELETE');
+
+        return `
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px 12px; font-size: 0.82rem; white-space: nowrap; color: var(--text-secondary);">${escapeHtml(formatDate(item.timestamp))}</td>
+            <td style="padding: 10px 12px; font-family: monospace; font-size: 0.85rem; font-weight: 700; color: #93c5fd;">
+              <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:10px;">🌐 ${escapeHtml(ip)}</span>
+            </td>
+            <td style="padding: 10px 12px;">${actionBadge}</td>
+            <td style="padding: 10px 12px; font-weight: 600; text-transform: capitalize;">${escapeHtml(item.entity)}</td>
+            <td style="padding: 10px 12px; color: var(--text-secondary);">${escapeHtml(item.updatedBy || 'admin@robotree.org')}</td>
+            <td style="padding: 10px 12px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${escapeHtml(detailsText)}">${escapeHtml(detailsText)}</td>
+            <td style="padding: 10px 12px;">
+              ${canRestore ? `<button type="button" class="btn btn-secondary btn-sm" onclick="restoreRevision('${escapeHtml(item.id)}')" style="padding:4px 8px;font-size:0.75rem;">Rollback</button>` : '<span style="color:var(--text-secondary);font-size:0.75rem;">Initial</span>'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    } catch (err) {
+      if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="padding: 20px; text-align: center; color: #ef4444;">Failed to load modification history: ${escapeHtml(err.message)}</td></tr>`;
+    }
+  }
+
+  if (btnRefresh && !btnRefresh._bound) {
+    btnRefresh._bound = true;
+    btnRefresh.addEventListener('click', loadHistory);
+  }
+
+  loadHistory();
+}
+
+window.restoreRevision = async function(historyId) {
+  if (!confirm('Are you sure you want to roll back this change to its previous state?')) return;
+  try {
+    const res = await postJson('/api/admin/history/restore', { historyId });
+    if (res.success) {
+      alert(res.message || 'Restored successfully!');
+      if (typeof window.refreshAdminDashboard === 'function') window.refreshAdminDashboard();
+    } else {
+      alert('Restore failed: ' + (res.message || 'Unknown error'));
+    }
+  } catch (err) {
+    alert('Restore error: ' + err.message);
+  }
+};
 
 /** Admin User Accounts & Team Access Management Controller */
 function initAdminUserManager(data) {
@@ -5782,9 +5862,16 @@ function initPublicEventGallery() {
 }
 
 function renderActivityItem(activity) {
+  const ipDisplay = activity.ip
+    ? `<span class="activity-ip-badge" title="System IP Address" style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:10px;font-size:0.75rem;color:#93c5fd;font-family:monospace;font-weight:700;">🌐 IP: ${escapeHtml(activity.ip)}</span>`
+    : '';
+
   return `
     <li class="${activity.status === 'FAILED' ? 'is-failed' : ''}">
-      <strong>${escapeHtml(formatActivityType(activity.type))}</strong>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:2px;">
+        <strong>${escapeHtml(formatActivityType(activity.type))}</strong>
+        ${ipDisplay}
+      </div>
       <span>${escapeHtml(activity.user)} - ${escapeHtml(activity.details)}</span>
       <time>${escapeHtml(formatDate(activity.timestamp))}</time>
     </li>

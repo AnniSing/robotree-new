@@ -29,7 +29,7 @@ export interface IssueCertificateDto {
 }
 
 export class CertificateService {
-  public static async issueCertificate(dto: IssueCertificateDto, actor = 'System Administrator'): Promise<Certificate> {
+  public static async issueCertificate(dto: IssueCertificateDto, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Certificate> {
     const rawNumber = dto.certificateNumber?.trim();
     const issueDate = dto.issueDate || new Date().toISOString().split('T')[0];
     const courseTitle = dto.courseTitle || dto.course;
@@ -80,9 +80,11 @@ export class CertificateService {
     });
 
     SyncService.broadcast('certificates', 'CREATE', code);
+    await repositories.history.record('certificates', code, 'CREATE', null, certificate, actor, ip);
 
-    await AuditService.logAction(actor, 'CERTIFICATE_ISSUED', 'certificates', `Issued ${code} to ${dto.studentName}${enrollmentNo ? ` (Enrollment: ${enrollmentNo})` : ''}`, {
+    await AuditService.logAction(actor, 'CERTIFICATE_ISSUED', 'certificates', `Issued ${code} to ${dto.studentName}${enrollmentNo ? ` (Enrollment: ${enrollmentNo})` : ''} from IP ${ip}`, {
       resourceId: code,
+      ip,
     });
 
     return certificate;
@@ -191,46 +193,52 @@ export class CertificateService {
     return cert;
   }
 
-  public static async revokeCertificate(codeOrId: string, actor = 'System Administrator', reason?: string): Promise<Certificate> {
+  public static async revokeCertificate(codeOrId: string, actor = 'System Administrator', reason?: string, ip = '127.0.0.1'): Promise<Certificate> {
     const cert = await repositories.certificates.revoke(codeOrId, reason);
     if (!cert) {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
 
     SyncService.broadcast('certificates', 'UPDATE', codeOrId);
+    await repositories.history.record('certificates', codeOrId, 'UPDATE', null, cert, actor, ip);
 
-    await AuditService.logAction(actor, 'CERTIFICATE_REVOKED', 'certificates', `Revoked ${codeOrId}. Reason: ${reason || 'N/A'}`, {
+    await AuditService.logAction(actor, 'CERTIFICATE_REVOKED', 'certificates', `Revoked ${codeOrId}. Reason: ${reason || 'N/A'} from IP ${ip}`, {
       resourceId: codeOrId,
+      ip,
     });
 
     return cert;
   }
 
-  public static async reinstateCertificate(codeOrId: string, actor = 'System Administrator'): Promise<Certificate> {
+  public static async reinstateCertificate(codeOrId: string, actor = 'System Administrator', ip = '127.0.0.1'): Promise<Certificate> {
     const cert = await repositories.certificates.reinstate(codeOrId);
     if (!cert) {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
 
     SyncService.broadcast('certificates', 'UPDATE', codeOrId);
+    await repositories.history.record('certificates', codeOrId, 'UPDATE', null, cert, actor, ip);
 
-    await AuditService.logAction(actor, 'CERTIFICATE_REINSTATED', 'certificates', `Reinstated ${codeOrId} to active status`, {
+    await AuditService.logAction(actor, 'CERTIFICATE_REINSTATED', 'certificates', `Reinstated ${codeOrId} to active status from IP ${ip}`, {
       resourceId: codeOrId,
+      ip,
     });
 
     return cert;
   }
 
-  public static async deleteCertificate(codeOrId: string, actor = 'System Administrator'): Promise<boolean> {
+  public static async deleteCertificate(codeOrId: string, actor = 'System Administrator', ip = '127.0.0.1'): Promise<boolean> {
     const deleted = await repositories.certificates.delete(codeOrId);
     if (!deleted) {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
 
     SyncService.broadcast('certificates', 'DELETE', codeOrId);
+    await repositories.history.record('certificates', codeOrId, 'DELETE', { code: codeOrId }, null, actor, ip);
 
-    await AuditService.logAction(actor, 'CERTIFICATE_DELETED', 'certificates', `Permanently deleted ${codeOrId}`, {
+    await AuditService.logAction(actor, 'CERTIFICATE_DELETED', 'certificates', `Deleted certificate ${codeOrId} from IP ${ip}`, {
       resourceId: codeOrId,
+      ip,
     });
 
     return true;

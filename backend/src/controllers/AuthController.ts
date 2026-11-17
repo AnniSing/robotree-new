@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { AuthService } from '../services/AuthService.js';
 import { buildCookie } from '../middleware/csrf.js';
 import { repositories } from '../repositories/index.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class AuthController {
   public static async register(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -123,13 +124,20 @@ export class AuthController {
   public static async adminLogin(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { passcode } = req.body;
-      const { token, role } = await AuthService.adminLogin(passcode);
+      const clientIp = extractClientIp(req);
+      const userAgent = req.get('user-agent') || 'Unknown';
+      const { token, role } = await AuthService.adminLogin(passcode, {
+        ip: clientIp,
+        userAgent,
+        requestId: (req as any).requestId,
+      });
 
       res.setHeader('Set-Cookie', buildCookie('robotree_admin_token', token, 8 * 60 * 60));
       res.json({
         success: true,
         token,
         role,
+        clientIp,
         message: 'Admin access granted.',
       });
     } catch (err) {

@@ -6,6 +6,7 @@ import { CertificateService } from '../services/CertificateService.js';
 import { repositories } from '../repositories/index.js';
 import { getParam } from '../utils/params.js';
 import { PROJECT_ROOT } from '../utils/paths.js';
+import { extractClientIp } from '../utils/ip.js';
 
 export class CertificateController {
   public static async verify(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -161,6 +162,7 @@ export class CertificateController {
       const enrollmentNo = (req.body.enrollmentNo || req.body.enrollmentNumber || '').trim();
       const studentEmail = req.body.studentEmail || req.body.email || '';
       const course = req.body.courseTitle || req.body.courseName || req.body.course || 'Robotics & AI Masterclass';
+      const clientIp = extractClientIp(req);
       const cert = await CertificateService.issueCertificate(
         {
           studentName,
@@ -178,7 +180,8 @@ export class CertificateController {
           fileOriginalName,
           issuer: 'Robotree Academic Accreditation Board',
         },
-        req.user?.email || 'Administrator'
+        req.user?.email || 'Administrator',
+        clientIp
       );
 
       res.status(201).json({
@@ -195,10 +198,12 @@ export class CertificateController {
     try {
       const certId = getParam(req, 'id').trim();
       const reason = req.body?.reason || req.query?.reason || 'Administrative revocation';
+      const clientIp = extractClientIp(req);
       const cert = await CertificateService.revokeCertificate(
         certId,
         req.user?.email || 'Administrator',
-        String(reason)
+        String(reason),
+        clientIp
       );
       res.json({
         success: true,
@@ -213,9 +218,11 @@ export class CertificateController {
   public static async reinstate(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const certId = getParam(req, 'id').trim();
+      const clientIp = extractClientIp(req);
       const cert = await CertificateService.reinstateCertificate(
         certId,
-        req.user?.email || 'Administrator'
+        req.user?.email || 'Administrator',
+        clientIp
       );
       res.json({
         success: true,
@@ -233,7 +240,8 @@ export class CertificateController {
       if (req.query?.action === 'revoke') {
         return CertificateController.revoke(req, res, next);
       }
-      await CertificateService.deleteCertificate(certId, req.user?.email || 'Administrator');
+      const clientIp = extractClientIp(req);
+      await CertificateService.deleteCertificate(certId, req.user?.email || 'Administrator', clientIp);
       res.json({
         success: true,
         message: 'Certificate permanently deleted and removed from registry.',

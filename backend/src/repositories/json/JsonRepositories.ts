@@ -496,7 +496,8 @@ export class JsonHistoryRepository {
     action: 'CREATE' | 'UPDATE' | 'DELETE',
     previousData: any,
     newData: any,
-    updatedBy: string = 'admin@robotree.org'
+    updatedBy: string = 'admin@robotree.org',
+    ip: string = '127.0.0.1'
   ): Promise<void> {
     try {
       const history = (db.getHistory ? db.getHistory() : []) || [];
@@ -508,6 +509,7 @@ export class JsonHistoryRepository {
         previousData: previousData ? JSON.parse(JSON.stringify(previousData)) : null,
         newData: newData ? JSON.parse(JSON.stringify(newData)) : null,
         updatedBy,
+        ip: ip || '127.0.0.1',
         timestamp: new Date().toISOString(),
       };
       history.unshift(entry);
