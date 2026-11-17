@@ -23,6 +23,8 @@ router.use(requireAdmin);
 // Dashboard & Telemetry
 router.get('/dashboard', AdminController.getDashboard);
 router.get('/activity-logs', AdminController.getActivityLogs);
+router.get('/history', AdminController.getHistory);
+router.post('/history/restore', AdminController.restoreHistory);
 
 // Security & Password Management
 router.get('/permission-status', AdminController.getPermissionStatus);

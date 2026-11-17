@@ -3,6 +3,7 @@ import { repositories } from '../repositories/index.js';
 import { Product, StoreOrder } from '../models/index.js';
 import { NotFoundError, ValidationError } from '../errors/AppError.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 import { storageService } from './StorageService.js';
 
 export class ProductService {
@@ -59,6 +60,7 @@ export class ProductService {
     };
 
     const created = await repositories.products.create(newProduct);
+    SyncService.broadcast('products', 'CREATE', created.id);
 
     await AuditService.logAction(actor, 'PRODUCT_CREATED', 'store', `Added product ${created.title} (${created.id})`, {
       resourceId: created.id,
@@ -104,6 +106,8 @@ export class ProductService {
       throw new NotFoundError(`Product update failed: ${id}`);
     }
 
+    SyncService.broadcast('products', 'UPDATE', id);
+
     await AuditService.logAction(actor, 'PRODUCT_UPDATED', 'store', `Updated product ${updated.title} (${id})`, {
       resourceId: id,
     });
@@ -118,6 +122,7 @@ export class ProductService {
     }
 
     const success = await repositories.products.delete(id);
+    SyncService.broadcast('products', 'DELETE', id);
 
     await AuditService.logAction(actor, 'PRODUCT_DELETED', 'store', `Deleted product ${existing.title} (${id})`, {
       resourceId: id,
@@ -139,6 +144,8 @@ export class ProductService {
     if (!updated) {
       throw new NotFoundError(`Product update failed: ${id}`);
     }
+
+    SyncService.broadcast('products', 'UPDATE', id);
 
     await AuditService.logAction(
       actor,

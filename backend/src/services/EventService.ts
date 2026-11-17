@@ -2,6 +2,7 @@ import { repositories } from '../repositories/index.js';
 import { EventGalleryItem, ShowcaseItem } from '../types/index.js';
 import { NotFoundError } from '../errors/AppError.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 import { db } from '../persistence/json-database.js';
 import crypto from 'node:crypto';
 
@@ -34,6 +35,7 @@ export class EventService {
     };
 
     const created = await repositories.events.create(newEvent);
+    SyncService.broadcast('events', 'CREATE', newEvent.id);
     await AuditService.logAction(actor, 'EVENT_CREATED', 'events', `Created event: ${newEvent.title}`, {
       resourceId: newEvent.id,
     });
@@ -46,6 +48,7 @@ export class EventService {
     }
     const updated = await repositories.events.update(id, updates);
     if (!updated) throw new NotFoundError(`Event not found: ${id}`);
+    SyncService.broadcast('events', 'UPDATE', id);
     await AuditService.logAction(actor, 'EVENT_UPDATED', 'events', `Updated event: ${updated.title}`, {
       resourceId: id,
     });
@@ -55,6 +58,7 @@ export class EventService {
   public static async deleteEvent(id: string, actor = 'System Administrator'): Promise<boolean> {
     const success = await repositories.events.delete(id);
     if (!success) throw new NotFoundError(`Event not found: ${id}`);
+    SyncService.broadcast('events', 'DELETE', id);
     await AuditService.logAction(actor, 'EVENT_DELETED', 'events', `Deleted event: ${id}`, {
       resourceId: id,
     });
@@ -64,6 +68,7 @@ export class EventService {
   public static async deletePhoto(id: string, photoUrl: string, actor = 'System Administrator'): Promise<EventGalleryItem> {
     const updated = await repositories.events.deletePhoto(id, photoUrl);
     if (!updated) throw new NotFoundError(`Event not found: ${id}`);
+    SyncService.broadcast('events', 'UPDATE', id);
     await AuditService.logAction(actor, 'EVENT_PHOTO_DELETED', 'events', `Deleted photo from event: ${id}`, {
       resourceId: id,
     });
@@ -71,19 +76,16 @@ export class EventService {
   }
 
   public static async listShowcase(): Promise<ShowcaseItem[]> {
-    return db.getShowcase();
+    return repositories.showcase.list();
   }
 
   public static async getShowcaseItem(id: string): Promise<ShowcaseItem> {
-    const items = db.getShowcase();
-    const cleanId = String(id).trim().toLowerCase();
-    const item = items.find((i: ShowcaseItem) => String(i.id).toLowerCase() === cleanId);
+    const item = await repositories.showcase.findById(id);
     if (!item) throw new NotFoundError(`Showcase photo not found: ${id}`);
     return item;
   }
 
   public static async createShowcase(data: Partial<ShowcaseItem>, actor = 'System Administrator'): Promise<ShowcaseItem> {
-    const items = db.getShowcase();
     const newItem: ShowcaseItem = {
       id: data.id || `SC-${Date.now().toString().slice(-4)}-${crypto.randomBytes(2).toString('hex').toUpperCase()}`,
       title: data.title || 'Official Visual Showcase',
@@ -94,29 +96,18 @@ export class EventService {
       createdAt: new Date().toISOString(),
     };
 
-    items.unshift(newItem);
-    db.saveShowcase(items);
+    const created = await repositories.showcase.create(newItem);
+    SyncService.broadcast('showcase', 'CREATE', created.id);
     await AuditService.logAction(actor, 'SHOWCASE_CREATED', 'showcase', `Added showcase photo: ${newItem.title}`, {
       resourceId: newItem.id,
     });
-    return newItem;
+    return created;
   }
 
   public static async updateShowcase(id: string, updates: Partial<ShowcaseItem>, actor = 'System Administrator'): Promise<ShowcaseItem> {
-    const items = db.getShowcase();
-    const cleanId = String(id).trim().toLowerCase();
-    const index = items.findIndex((i: ShowcaseItem) => String(i.id).toLowerCase() === cleanId);
-    if (index === -1) throw new NotFoundError(`Showcase photo not found: ${id}`);
-
-    const updated: ShowcaseItem = {
-      ...items[index],
-      ...updates,
-      id: items[index].id,
-      tileWide: typeof updates.tileWide === 'boolean' ? updates.tileWide : items[index].tileWide,
-    };
-
-    items[index] = updated;
-    db.saveShowcase(items);
+    const updated = await repositories.showcase.update(id, updates);
+    if (!updated) throw new NotFoundError(`Showcase photo not found: ${id}`);
+    SyncService.broadcast('showcase', 'UPDATE', id);
     await AuditService.logAction(actor, 'SHOWCASE_UPDATED', 'showcase', `Updated showcase photo: ${updated.title}`, {
       resourceId: id,
     });
@@ -124,13 +115,9 @@ export class EventService {
   }
 
   public static async deleteShowcase(id: string, actor = 'System Administrator'): Promise<boolean> {
-    const items = db.getShowcase();
-    const cleanId = String(id).trim().toLowerCase();
-    const initialLen = items.length;
-    const filtered = items.filter((i: ShowcaseItem) => String(i.id).toLowerCase() !== cleanId);
-    if (filtered.length === initialLen) throw new NotFoundError(`Showcase photo not found: ${id}`);
-
-    db.saveShowcase(filtered);
+    const success = await repositories.showcase.delete(id);
+    if (!success) throw new NotFoundError(`Showcase photo not found: ${id}`);
+    SyncService.broadcast('showcase', 'DELETE', id);
     await AuditService.logAction(actor, 'SHOWCASE_DELETED', 'showcase', `Deleted showcase photo: ${id}`, {
       resourceId: id,
     });

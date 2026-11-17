@@ -377,6 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initMarqueeRotate, 'marqueeRotate');
   safeInit(loadDynamicSiteSettings, 'siteSettings');
   safeInit(loadDynamicInstitutes, 'dynamicInstitutes');
+  safeInit(initRealtimeSync, 'realtimeSync');
   safeInit(initStoreClient, 'storeClient');
   safeInit(initBranchTabs, 'branchTabs');
   safeInit(() => {
@@ -399,7 +400,7 @@ window.addEventListener('unhandledrejection', (event) => {
 /** Hydrate Dynamic Hero Metric & Government Protocol from Server Settings */
 async function loadDynamicSiteSettings() {
   try {
-    const res = await fetch(buildApiUrl('/api/site-settings'));
+    const res = await fetch(buildApiUrl('/api/site-settings'), { cache: 'no-store' });
     if (!res.ok) return;
     const data = await res.json();
     if (!data.success || !data.settings) return;
@@ -438,7 +439,7 @@ async function loadDynamicInstitutes() {
   const collegeGrid = document.getElementById('collegeGrid');
   if (!collegeGrid) return;
   try {
-    const res = await fetch(buildApiUrl('/api/institutes'));
+    const res = await fetch(buildApiUrl('/api/institutes'), { cache: 'no-store' });
     if (!res.ok) return;
     const data = await res.json();
     if (!data.success || !Array.isArray(data.institutes)) return;
@@ -501,6 +502,109 @@ async function loadDynamicInstitutes() {
   } catch (err) {
     // Graceful fallback to static HTML college cards
   }
+}
+
+/** Dynamically Hydrate Public Showcase Photos */
+async function loadPublicShowcase() {
+  const masonryContainer = document.getElementById('pictureGalleryMasonry');
+  if (!masonryContainer) return;
+  try {
+    const res = await fetch(buildApiUrl('/api/showcase'), { cache: 'no-store' });
+    const d = await res.json();
+    if (d && Array.isArray(d.items)) {
+      if (!d.items.length) {
+        masonryContainer.innerHTML = '<p class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);">No showcase photographs currently available.</p>';
+      } else {
+        masonryContainer.innerHTML = d.items.map((item) => `
+          <div class="gallery-tile ${item.tileWide ? 'tile-wide' : ''}" role="button" tabindex="0">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}" loading="lazy">
+            <div class="gallery-tile-caption">
+              <h4>${escapeHtml(item.title)}</h4>
+              <p>${escapeHtml(item.caption)}</p>
+            </div>
+          </div>
+        `).join('');
+        if (typeof bindMasonryTiles === 'function') bindMasonryTiles();
+      }
+    }
+  } catch (_) {}
+}
+
+/** Real-Time Data Synchronization WebSocket Client */
+function initRealtimeSync() {
+  if (typeof window === 'undefined' || !window.WebSocket) return;
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsUrl = `${protocol}//${window.location.host}/ws`;
+
+  let ws = null;
+  let reconnectTimer = null;
+
+  function connect() {
+    try {
+      ws = new WebSocket(wsUrl);
+
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          if (msg.type === 'DATA_SYNC') {
+            onDataSync(msg.entity, msg.action, msg.id);
+          }
+        } catch (_) {}
+      };
+
+      ws.onclose = () => {
+        if (!reconnectTimer) {
+          reconnectTimer = setTimeout(() => {
+            reconnectTimer = null;
+            connect();
+          }, 3000);
+        }
+      };
+
+      ws.onerror = () => {
+        try { ws.close(); } catch (_) {}
+      };
+    } catch (_) {
+      if (!reconnectTimer) {
+        reconnectTimer = setTimeout(() => {
+          reconnectTimer = null;
+          connect();
+        }, 5000);
+      }
+    }
+  }
+
+  function onDataSync(entity) {
+    if (entity === 'settings' && typeof loadDynamicSiteSettings === 'function') {
+      loadDynamicSiteSettings();
+    }
+    if (entity === 'institutes' && typeof loadDynamicInstitutes === 'function') {
+      loadDynamicInstitutes();
+    }
+    if (entity === 'courses' && typeof loadPublicCourses === 'function') {
+      loadPublicCourses();
+    }
+    if (entity === 'team' && typeof loadTeam === 'function') {
+      loadTeam();
+    }
+    if (entity === 'showcase' && typeof loadPublicShowcase === 'function') {
+      loadPublicShowcase();
+    }
+    if (entity === 'events' && typeof window.fetchPublicEvents === 'function') {
+      window.fetchPublicEvents();
+    }
+    if (entity === 'products' && typeof window.loadStoreProducts === 'function') {
+      window.loadStoreProducts();
+    }
+
+    // Auto-refresh active admin dashboard view if open
+    const adminPanel = document.getElementById('adminDashboard');
+    if (adminPanel && !adminPanel.classList.contains('hidden') && typeof loadAdminDashboard === 'function') {
+      loadAdminDashboard(false);
+    }
+  }
+
+  connect();
 }
 
 function initNavigation() {
@@ -4998,7 +5102,7 @@ function initPublicEventGallery() {
 
   async function fetchEvents() {
     try {
-      const res = await fetch(buildApiUrl('/api/events'));
+      const res = await fetch(buildApiUrl('/api/events'), { cache: 'no-store' });
       const data = await readJsonResponse(res);
       if (data.success && Array.isArray(data.events)) {
         allEvents = data.events;
@@ -5009,6 +5113,7 @@ function initPublicEventGallery() {
       console.warn('Could not load dynamic events from API', e);
     }
   }
+  window.fetchPublicEvents = fetchEvents;
 
   function applyFilters() {
     const q = currentSearchQuery.toLowerCase().trim();
@@ -6273,9 +6378,12 @@ async function getJson(url, options = {}) {
   const resolvedUrl = buildApiUrl(url);
   const response = await fetch(resolvedUrl, {
     credentials: 'same-origin',
+    cache: 'no-store',
     ...options,
     headers: {
       Accept: 'application/json',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
       ...(options.headers || {})
     }
   });
@@ -7274,7 +7382,7 @@ function initStoreClient() {
 
   async function loadStoreProducts() {
     try {
-      const res = await fetch(buildApiUrl('/api/store/products'));
+      const res = await fetch(buildApiUrl('/api/store/products'), { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (data.success && Array.isArray(data.products)) {
@@ -7288,7 +7396,7 @@ function initStoreClient() {
     }
 
     try {
-      const res = await fetch(buildApiUrl('/api/v1/store/products'));
+      const res = await fetch(buildApiUrl('/api/v1/store/products'), { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (data && Array.isArray(data.products)) {
@@ -7298,6 +7406,7 @@ function initStoreClient() {
       }
     } catch {}
   }
+  window.loadStoreProducts = loadStoreProducts;
 
   function getFilteredProducts() {
     let prods = [...allProducts];

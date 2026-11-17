@@ -1,7 +1,31 @@
 import { z } from 'zod';
 import crypto from 'node:crypto';
+import fs from 'node:fs';
 import path from 'path';
 import { PROJECT_ROOT } from '../utils/paths.js';
+
+// Synchronously load .env file if present in PROJECT_ROOT
+try {
+  const envFilePath = path.join(PROJECT_ROOT, '.env');
+  if (fs.existsSync(envFilePath)) {
+    const rawEnv = fs.readFileSync(envFilePath, 'utf8');
+    for (const line of rawEnv.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eqIdx = trimmed.indexOf('=');
+      if (eqIdx !== -1) {
+        const k = trimmed.substring(0, eqIdx).trim();
+        let v = trimmed.substring(eqIdx + 1).trim();
+        if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+          v = v.slice(1, -1);
+        }
+        if (process.env[k] === undefined) {
+          process.env[k] = v;
+        }
+      }
+    }
+  }
+} catch (_) {}
 
 const DEFAULT_ADMIN_PASSCODE = 'Aniket4515';
 const DEFAULT_SESSION_SECRET = 'robotree-enterprise-secret-key-salt-2026-secure';
@@ -18,7 +42,7 @@ const envSchema = z.object({
   SUPABASE_URL: z.string().optional().default(process.env.NEXT_PUBLIC_SUPABASE_URL || ''),
   SUPABASE_ANON_KEY: z.string().optional().default(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || ''),
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
-  DB_PROVIDER: z.enum(['auto', 'postgres', 'supabase', 'json']).default('auto'),
+  DB_PROVIDER: z.enum(['auto', 'postgres', 'supabase', 'json', 'mongodb']).default('auto'),
   MONGODB_URI: z.string().optional(),
   ALLOWED_ORIGINS: z.string().default('http://localhost:5000,http://127.0.0.1:5000,http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:5500,http://127.0.0.1:5500,http://0.0.0.0:5000,https://robotree.in,https://www.robotree.in,https://robotree.org,https://www.robotree.org'),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),

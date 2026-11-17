@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { AdminService } from '../services/AdminService.js';
 import { AuthService } from '../services/AuthService.js';
 import { getParam } from '../utils/params.js';
+import { ValidationError } from '../errors/AppError.js';
 
 export class AdminController {
   public static async getDashboard(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -16,9 +17,9 @@ export class AdminController {
     }
   }
 
-  public static getActivityLogs(req: Request, res: Response, next: NextFunction): void {
+  public static async getActivityLogs(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const activities = AdminService.getActivityLogs();
+      const activities = await AdminService.getActivityLogs();
       res.json({
         success: true,
         activities,
@@ -113,9 +114,9 @@ export class AdminController {
     }
   }
 
-  public static getPublicSettings(req: Request, res: Response, next: NextFunction): void {
+  public static async getPublicSettings(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const settings = AdminService.getSiteSettings();
+      const settings = await AdminService.getSiteSettings();
       res.json({
         success: true,
         settings,
@@ -125,9 +126,9 @@ export class AdminController {
     }
   }
 
-  public static getSettings(req: Request, res: Response, next: NextFunction): void {
+  public static async getSettings(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const settings = AdminService.getSiteSettings();
+      const settings = await AdminService.getSiteSettings();
       res.json({
         success: true,
         settings,
@@ -151,9 +152,9 @@ export class AdminController {
     }
   }
 
-  public static listInstitutes(req: Request, res: Response, next: NextFunction): void {
+  public static async listInstitutes(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const institutes = AdminService.listInstitutes();
+      const institutes = await AdminService.listInstitutes();
       res.json({
         success: true,
         institutes,
@@ -200,6 +201,35 @@ export class AdminController {
         message: 'Partner institution removed successfully.',
         institute,
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public static async getHistory(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const limit = Number(req.query.limit) || 50;
+      const entity = req.query.entity ? String(req.query.entity) : undefined;
+      const history = await AdminService.getHistory(limit, entity);
+      res.json({
+        success: true,
+        count: history.length,
+        history,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public static async restoreHistory(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { historyId } = req.body || {};
+      if (!historyId) {
+        throw new ValidationError('historyId is required for restore.');
+      }
+      const actor = (req as any).user?.email || 'admin@robotree.org';
+      const result = await AdminService.restoreHistory(String(historyId), actor);
+      res.json(result);
     } catch (err) {
       next(err);
     }

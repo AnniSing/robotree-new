@@ -2,6 +2,7 @@ import { repositories } from '../repositories/index.js';
 import { TeamMember } from '../types/index.js';
 import { NotFoundError } from '../errors/AppError.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 
 export class TeamService {
   public static async listTeamMembers(): Promise<TeamMember[]> {
@@ -16,6 +17,7 @@ export class TeamService {
 
   public static async createTeamMember(member: TeamMember, actor = 'System Administrator'): Promise<TeamMember> {
     const created = await repositories.team.create(member);
+    SyncService.broadcast('team', 'CREATE', String(created.id));
     await AuditService.logAction(actor, 'TEAM_MEMBER_CREATED', 'team', `Added member: ${member.name}`, {
       resourceId: String(member.id),
     });
@@ -25,6 +27,7 @@ export class TeamService {
   public static async updateTeamMember(id: number | string, updates: Partial<TeamMember>, actor = 'System Administrator'): Promise<TeamMember> {
     const updated = await repositories.team.update(id, updates);
     if (!updated) throw new NotFoundError(`Team member not found: ${id}`);
+    SyncService.broadcast('team', 'UPDATE', String(id));
     await AuditService.logAction(actor, 'TEAM_MEMBER_UPDATED', 'team', `Updated member: ${updated.name}`, {
       resourceId: String(id),
     });
@@ -34,6 +37,7 @@ export class TeamService {
   public static async deleteTeamMember(id: number | string, actor = 'System Administrator'): Promise<boolean> {
     const success = await repositories.team.delete(id);
     if (!success) throw new NotFoundError(`Team member not found: ${id}`);
+    SyncService.broadcast('team', 'DELETE', String(id));
     await AuditService.logAction(actor, 'TEAM_MEMBER_DELETED', 'team', `Deleted member: ${id}`, {
       resourceId: String(id),
     });

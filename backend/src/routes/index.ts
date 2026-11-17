@@ -45,6 +45,8 @@ export function createApiRouter(): Router {
   // Public site content & settings
   router.get('/site-settings', AdminController.getPublicSettings);
   router.get('/v1/site-settings', AdminController.getPublicSettings);
+  router.get('/settings', AdminController.getPublicSettings);
+  router.get('/v1/settings', AdminController.getPublicSettings);
   router.get('/institutes', AdminController.listInstitutes);
   router.get('/v1/institutes', AdminController.listInstitutes);
 

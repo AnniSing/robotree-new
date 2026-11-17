@@ -7,6 +7,7 @@ import { Certificate, CertificateStatus } from '../types/index.js';
 import { generateCertificateCode, generateVerificationHash } from '../security/tokens.js';
 import { NotFoundError } from '../errors/AppError.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 import { PROJECT_ROOT } from '../utils/paths.js';
 import { storageService } from './StorageService.js';
 
@@ -77,6 +78,8 @@ export class CertificateService {
       verificationHash,
       issuer: dto.issuer || 'Robotree Academic Directorate',
     });
+
+    SyncService.broadcast('certificates', 'CREATE', code);
 
     await AuditService.logAction(actor, 'CERTIFICATE_ISSUED', 'certificates', `Issued ${code} to ${dto.studentName}${enrollmentNo ? ` (Enrollment: ${enrollmentNo})` : ''}`, {
       resourceId: code,
@@ -194,6 +197,8 @@ export class CertificateService {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
 
+    SyncService.broadcast('certificates', 'UPDATE', codeOrId);
+
     await AuditService.logAction(actor, 'CERTIFICATE_REVOKED', 'certificates', `Revoked ${codeOrId}. Reason: ${reason || 'N/A'}`, {
       resourceId: codeOrId,
     });
@@ -207,6 +212,8 @@ export class CertificateService {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
 
+    SyncService.broadcast('certificates', 'UPDATE', codeOrId);
+
     await AuditService.logAction(actor, 'CERTIFICATE_REINSTATED', 'certificates', `Reinstated ${codeOrId} to active status`, {
       resourceId: codeOrId,
     });
@@ -219,6 +226,8 @@ export class CertificateService {
     if (!deleted) {
       throw new NotFoundError(`Certificate not found: ${codeOrId}`);
     }
+
+    SyncService.broadcast('certificates', 'DELETE', codeOrId);
 
     await AuditService.logAction(actor, 'CERTIFICATE_DELETED', 'certificates', `Permanently deleted ${codeOrId}`, {
       resourceId: codeOrId,

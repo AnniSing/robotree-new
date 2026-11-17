@@ -37,6 +37,8 @@ export interface JsonDatabase {
   saveSettings(settings: any): boolean;
   getInstitutes(): any[];
   saveInstitutes(institutes: any[]): boolean;
+  getHistory(): any[];
+  saveHistory(history: any[]): boolean;
 }
 
 export declare const db: JsonDatabase;

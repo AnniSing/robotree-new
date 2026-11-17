@@ -99,7 +99,7 @@ function readData(filename, defaultData = []) {
   try {
     const filePath = getSecureFilePath(filename);
     if (!fs.existsSync(filePath)) {
-      if (DATA_DIR !== SEED_DATA_DIR && !process.env.ROBOTREE_DATA_DIR) {
+      if (DATA_DIR !== SEED_DATA_DIR) {
         const seedPath = getSecureFilePath(filename, SEED_DATA_DIR);
         if (fs.existsSync(seedPath)) {
           const seedRaw = fs.readFileSync(seedPath, 'utf8');
@@ -677,20 +677,20 @@ export const db = {
   getAnalytics: () => readData('analytics-events.json', []),
   saveAnalytics: (events) => writeData('analytics-events.json', events),
 
-  getEventsGallery: () => readData('events-gallery.json', DEFAULT_EVENTS_GALLERY),
+  getEventsGallery: () => readData('events-gallery.json', []),
   saveEventsGallery: (events) => writeData('events-gallery.json', events),
-  getEvents: () => readData('events-gallery.json', DEFAULT_EVENTS_GALLERY),
+  getEvents: () => readData('events-gallery.json', []),
   saveEvents: (events) => writeData('events-gallery.json', events),
 
-  getTeamMembers: () => readData('team.json', DEFAULT_TEAM_MEMBERS),
+  getTeamMembers: () => readData('team.json', []),
   saveTeamMembers: (members) => writeData('team.json', members),
-  getTeam: () => readData('team.json', DEFAULT_TEAM_MEMBERS),
+  getTeam: () => readData('team.json', []),
   saveTeam: (members) => writeData('team.json', members),
 
-  getCourses: () => readData('courses.json', DEFAULT_COURSES),
+  getCourses: () => readData('courses.json', []),
   saveCourses: (courses) => writeData('courses.json', courses),
 
-  getProducts: () => readData('products.json', loadDefaultProducts()),
+  getProducts: () => readData('products.json', []),
   saveProducts: (products) => writeData('products.json', products),
 
   getOrders: () => readData('orders.json', []),
@@ -702,7 +702,10 @@ export const db = {
   getSettings: () => readData('settings.json', {}),
   saveSettings: (settings) => writeData('settings.json', settings),
 
-  getInstitutes: () => readData('institutes.json', loadDefaultInstitutes()),
-  saveInstitutes: (institutes) => writeData('institutes.json', institutes)
+  getInstitutes: () => readData('institutes.json', []),
+  saveInstitutes: (institutes) => writeData('institutes.json', institutes),
+
+  getHistory: () => readData('history.json', []),
+  saveHistory: (history) => writeData('history.json', history)
 };
 

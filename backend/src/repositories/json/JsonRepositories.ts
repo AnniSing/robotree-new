@@ -486,3 +486,180 @@ export class JsonProductRepository implements IProductRepository {
   }
 }
 
+// -------------------------------------------------------------
+// History Repository for JSON Persistence
+// -------------------------------------------------------------
+export class JsonHistoryRepository {
+  static async record(
+    entity: string,
+    entityId: string,
+    action: 'CREATE' | 'UPDATE' | 'DELETE',
+    previousData: any,
+    newData: any,
+    updatedBy: string = 'admin@robotree.org'
+  ): Promise<void> {
+    try {
+      const history = (db.getHistory ? db.getHistory() : []) || [];
+      const entry = {
+        id: crypto.randomUUID(),
+        entity,
+        entityId: String(entityId),
+        action,
+        previousData: previousData ? JSON.parse(JSON.stringify(previousData)) : null,
+        newData: newData ? JSON.parse(JSON.stringify(newData)) : null,
+        updatedBy,
+        timestamp: new Date().toISOString(),
+      };
+      history.unshift(entry);
+      if (history.length > 200) history.pop();
+      if (db.saveHistory) db.saveHistory(history);
+    } catch (_) {}
+  }
+
+  static async list(limit = 50): Promise<any[]> {
+    const history = (db.getHistory ? db.getHistory() : []) || [];
+    return history.slice(0, limit);
+  }
+
+  static async findById(id: string): Promise<any | null> {
+    const history = (db.getHistory ? db.getHistory() : []) || [];
+    return history.find((h: any) => h.id === id) || null;
+  }
+}
+
+// -------------------------------------------------------------
+// Showcase Repository for JSON Persistence
+// -------------------------------------------------------------
+export class JsonShowcaseRepository {
+  static async list(): Promise<any[]> {
+    return (db.getShowcase ? db.getShowcase() : []) || [];
+  }
+
+  static async findById(id: string): Promise<any | null> {
+    const items = (db.getShowcase ? db.getShowcase() : []) || [];
+    return items.find((i: any) => i.id === id) || null;
+  }
+
+  static async create(item: any): Promise<any> {
+    const items = (db.getShowcase ? db.getShowcase() : []) || [];
+    const now = new Date().toISOString();
+    const newItem = {
+      ...item,
+      id: item.id || `showcase-${Date.now()}`,
+      createdAt: now,
+      updatedAt: now,
+    };
+    items.unshift(newItem);
+    if (db.saveShowcase) db.saveShowcase(items);
+    await JsonHistoryRepository.record('showcase_gallery', newItem.id, 'CREATE', null, newItem);
+    return newItem;
+  }
+
+  static async update(id: string, updates: any): Promise<any | null> {
+    const items = (db.getShowcase ? db.getShowcase() : []) || [];
+    const idx = items.findIndex((i: any) => i.id === id);
+    if (idx === -1) return null;
+    const prev = items[idx];
+    const updated = {
+      ...prev,
+      ...updates,
+      updatedAt: new Date().toISOString(),
+    };
+    items[idx] = updated;
+    if (db.saveShowcase) db.saveShowcase(items);
+    await JsonHistoryRepository.record('showcase_gallery', id, 'UPDATE', prev, updated);
+    return updated;
+  }
+
+  static async delete(id: string): Promise<boolean> {
+    const items = (db.getShowcase ? db.getShowcase() : []) || [];
+    const idx = items.findIndex((i: any) => i.id === id);
+    if (idx === -1) return false;
+    const prev = items[idx];
+    const filtered = items.filter((i: any) => i.id !== id);
+    if (db.saveShowcase) db.saveShowcase(filtered);
+    await JsonHistoryRepository.record('showcase_gallery', id, 'DELETE', prev, null);
+    return true;
+  }
+}
+
+// -------------------------------------------------------------
+// Institute Repository for JSON Persistence
+// -------------------------------------------------------------
+export class JsonInstituteRepository {
+  static async list(): Promise<any[]> {
+    return (db.getInstitutes ? db.getInstitutes() : []) || [];
+  }
+
+  static async findById(id: string): Promise<any | null> {
+    const items = (db.getInstitutes ? db.getInstitutes() : []) || [];
+    return items.find((i: any) => i.id === id) || null;
+  }
+
+  static async create(item: any): Promise<any> {
+    const items = (db.getInstitutes ? db.getInstitutes() : []) || [];
+    const now = new Date().toISOString();
+    const newItem = {
+      ...item,
+      id: item.id || `inst-${Date.now()}`,
+      createdAt: now,
+      updatedAt: now,
+    };
+    items.unshift(newItem);
+    if (db.saveInstitutes) db.saveInstitutes(items);
+    await JsonHistoryRepository.record('institutes', newItem.id, 'CREATE', null, newItem);
+    return newItem;
+  }
+
+  static async update(id: string, updates: any): Promise<any | null> {
+    const items = (db.getInstitutes ? db.getInstitutes() : []) || [];
+    const idx = items.findIndex((i: any) => i.id === id);
+    if (idx === -1) return null;
+    const prev = items[idx];
+    const updated = {
+      ...prev,
+      ...updates,
+      updatedAt: new Date().toISOString(),
+    };
+    items[idx] = updated;
+    if (db.saveInstitutes) db.saveInstitutes(items);
+    await JsonHistoryRepository.record('institutes', id, 'UPDATE', prev, updated);
+    return updated;
+  }
+
+  static async delete(id: string): Promise<boolean> {
+    const items = (db.getInstitutes ? db.getInstitutes() : []) || [];
+    const idx = items.findIndex((i: any) => i.id === id);
+    if (idx === -1) return false;
+    const prev = items[idx];
+    const filtered = items.filter((i: any) => i.id !== id);
+    if (db.saveInstitutes) db.saveInstitutes(filtered);
+    await JsonHistoryRepository.record('institutes', id, 'DELETE', prev, null);
+    return true;
+  }
+}
+
+// -------------------------------------------------------------
+// Settings Repository for JSON Persistence
+// -------------------------------------------------------------
+export class JsonSettingsRepository {
+  static async get(): Promise<any> {
+    const raw = (db.getSettings ? db.getSettings() : {}) || {};
+    return {
+      heroStatNumber: raw.heroStatNumber || '20,000+',
+      heroStatLabel: raw.heroStatLabel || 'Students Trained',
+      governmentProtocol: raw.governmentProtocol || 'Robotree Robotics LLP • Operating in accordance with Government of India Protocols (GeM & MSME Accredited Entity)',
+      adminPasswordPermissionLocked: Boolean(raw.adminPasswordPermissionLocked),
+    };
+  }
+
+  static async update(updates: any): Promise<any> {
+    const raw = (db.getSettings ? db.getSettings() : {}) || {};
+    const prev = await this.get();
+    const merged = { ...raw, ...updates };
+    if (db.saveSettings) db.saveSettings(merged);
+    await JsonHistoryRepository.record('settings', 'site_settings', 'UPDATE', prev, merged);
+    return merged;
+  }
+}
+

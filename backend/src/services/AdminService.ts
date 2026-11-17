@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 import { db } from '../persistence/json-database.js';
 import { repositories } from '../repositories/index.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 import { NotFoundError, ValidationError, ConflictError } from '../errors/AppError.js';
 import { hashPassword } from '../security/hasher.js';
 import { Role, User, SiteSettings, AuditLog } from '../models/index.js';
@@ -21,18 +22,22 @@ export interface UpdateSettingsDto {
 
 export class AdminService {
   public static async getDashboardData(): Promise<any> {
-    const users = db.getUsers();
-    const inquiries = db.getInquiries();
+    const users = await repositories.users.list().catch(() => db.getUsers());
+    const inquiries = await repositories.inquiries.list().catch(() => db.getInquiries());
     const applications = db.getApplications();
-    const certificates = db.getCertificates();
-    const activities = db.getActivities();
+    const certificates = await repositories.certificates.list().catch(() => db.getCertificates());
+    const activities = await repositories.audit.list(200).catch(() => db.getActivities());
     const newsletters = db.getNewsletters();
     const programInterests = db.getProgramInterests();
     const feedback = db.getFeedback();
     const analytics = db.getAnalytics();
-    const eventsGallery = db.getEvents();
-    const team = db.getTeam();
-    const courses = db.getCourses();
+    const eventsGallery = await repositories.events.list().catch(() => db.getEvents());
+    const team = await repositories.team.list().catch(() => db.getTeam());
+    const courses = await repositories.courses.list().catch(() => db.getCourses());
+    const institutes = await repositories.institutes.list().catch(() => (db.getInstitutes ? db.getInstitutes() : []));
+    const showcaseGallery = await repositories.showcase.list().catch(() => (db.getShowcase ? db.getShowcase() : []));
+    const products = await repositories.products.list().catch(() => (db.getProducts ? db.getProducts() : []));
+    const orders = db.getOrders ? db.getOrders() : [];
 
     const studentAccounts = users.filter((u: any) => (u.role || '').toLowerCase() === 'student').length;
     const employeeAccounts = users.filter((u: any) =>
@@ -52,13 +57,7 @@ export class AdminService {
       return copy;
     });
 
-    const rawSettings = db.getSettings() || {};
-    const settings: SiteSettings = {
-      heroStatNumber: rawSettings.heroStatNumber || '20,000+',
-      heroStatLabel: rawSettings.heroStatLabel || 'Students Trained',
-      governmentProtocol: rawSettings.governmentProtocol || 'Robotree Robotics LLP • Operating in accordance with Government of India Protocols (GeM & MSME Accredited Entity)',
-      adminPasswordPermissionLocked: Boolean(rawSettings.adminPasswordPermissionLocked),
-    };
+    const settings = await AdminService.getSiteSettings();
 
     return {
       stats: {
@@ -75,7 +74,7 @@ export class AdminService {
         totalGalleryItems: eventsGallery.length,
         totalTeamMembers: team.length,
         totalCourses: courses.length,
-        totalInstitutes: (db.getInstitutes ? db.getInstitutes() : []).length,
+        totalInstitutes: institutes.length,
         failedLogins: failedLogins.length,
         failedLoginCount: failedLogins.length,
       },
@@ -91,13 +90,13 @@ export class AdminService {
       programInterests,
       feedback,
       eventsGallery,
-      showcaseGallery: db.getShowcase ? db.getShowcase() : [],
+      showcaseGallery,
       team,
       courses,
-      institutes: db.getInstitutes ? db.getInstitutes() : [],
+      institutes,
       settings,
-      products: db.getProducts ? db.getProducts() : [],
-      orders: db.getOrders ? db.getOrders() : [],
+      products,
+      orders,
       data: {
         users: sanitizedUsers,
         inquiries,
@@ -111,19 +110,27 @@ export class AdminService {
         eventsGallery,
         team,
         courses,
-        institutes: db.getInstitutes ? db.getInstitutes() : [],
+        institutes,
         settings,
-        products: db.getProducts ? db.getProducts() : [],
-        orders: db.getOrders ? db.getOrders() : [],
+        products,
+        orders,
       },
     };
   }
 
-  public static getActivityLogs(): AuditLog[] {
+  public static async getActivityLogs(): Promise<AuditLog[]> {
+    try {
+      const logs = await repositories.audit.list(200);
+      if (logs && logs.length > 0) return logs;
+    } catch (_) {}
     return db.getActivities() || [];
   }
 
-  public static getSiteSettings(): SiteSettings {
+  public static async getSiteSettings(): Promise<SiteSettings> {
+    try {
+      const settings = await repositories.settings.get();
+      if (settings) return settings;
+    } catch (_) {}
     const rawSettings = db.getSettings() || {};
     return {
       heroStatNumber: rawSettings.heroStatNumber || '20,000+',
@@ -134,33 +141,32 @@ export class AdminService {
   }
 
   public static async updateSiteSettings(dto: UpdateSettingsDto, actor: string = 'admin@robotree.org'): Promise<SiteSettings> {
-    const current = db.getSettings() || {};
+    const updates: Partial<SiteSettings> = {};
 
     if (dto.heroStatNumber !== undefined) {
-      current.heroStatNumber = String(dto.heroStatNumber).trim().slice(0, 50);
+      updates.heroStatNumber = String(dto.heroStatNumber).trim().slice(0, 50);
     }
     if (dto.heroStatLabel !== undefined) {
-      current.heroStatLabel = String(dto.heroStatLabel).trim().slice(0, 100);
+      updates.heroStatLabel = String(dto.heroStatLabel).trim().slice(0, 100);
     }
     if (dto.governmentProtocol !== undefined) {
-      current.governmentProtocol = String(dto.governmentProtocol).trim().slice(0, 500);
+      updates.governmentProtocol = String(dto.governmentProtocol).trim().slice(0, 500);
     }
 
-    db.saveSettings(current);
+    const updated = await repositories.settings.update(updates);
+
+    // Broadcast real-time change to all connected clients & browsers
+    SyncService.broadcast('settings', 'UPDATE', 'site_settings');
 
     await AuditService.logAction(
       actor,
       'SETTINGS_UPDATED',
       'settings',
-      `Admin updated website content: Hero Stat "${current.heroStatNumber}" (${current.heroStatLabel})`,
+      `Admin updated website content: Hero Stat "${updated.heroStatNumber}" (${updated.heroStatLabel})`,
       { resourceId: 'site-settings', result: 'SUCCESS' }
     );
 
-    return {
-      heroStatNumber: current.heroStatNumber,
-      heroStatLabel: current.heroStatLabel,
-      governmentProtocol: current.governmentProtocol,
-    };
+    return updated;
   }
 
   public static async createUser(dto: CreateUserDto, actor: string = 'admin@robotree.org'): Promise<Omit<User, 'passwordHash'>> {
@@ -187,6 +193,8 @@ export class AdminService {
       role: normalizedRole,
     });
 
+    SyncService.broadcast('users', 'CREATE', userId);
+
     await AuditService.logAction(
       actor,
       'USER_CREATED',
@@ -206,6 +214,7 @@ export class AdminService {
       throw new NotFoundError('User account not found.');
     }
     await repositories.users.delete(id);
+    SyncService.broadcast('users', 'DELETE', id);
     await AuditService.logAction(
       actor,
       'USER_DELETED',
@@ -228,6 +237,7 @@ export class AdminService {
     if (!updated) {
       throw new NotFoundError('User account not found.');
     }
+    SyncService.broadcast('users', 'UPDATE', id);
     await AuditService.logAction(
       actor,
       'USER_ROLE_UPDATED',
@@ -238,15 +248,14 @@ export class AdminService {
     return updated;
   }
 
-  public static listInstitutes(): any[] {
-    return db.getInstitutes ? db.getInstitutes() : [];
+  public static async listInstitutes(): Promise<any[]> {
+    return repositories.institutes.list();
   }
 
   public static async createInstitute(payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
     if (!payload.name) {
       throw new ValidationError('Institute name is required.');
     }
-    const institutes = AdminService.listInstitutes();
     const id = payload.id || payload.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `inst-${Date.now()}`;
     const tags = Array.isArray(payload.tags)
       ? payload.tags
@@ -265,8 +274,9 @@ export class AdminService {
       createdAt: new Date().toISOString()
     };
 
-    institutes.push(newInst);
-    db.saveInstitutes(institutes);
+    const created = await repositories.institutes.create(newInst);
+    SyncService.broadcast('institutes', 'CREATE', id);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_CREATED',
@@ -274,39 +284,38 @@ export class AdminService {
       `Admin added partner institute: ${newInst.name} (${newInst.tier})`,
       { resourceId: id }
     );
-    return newInst;
+    return created;
   }
 
   public static async updateInstitute(id: string, payload: any, actor: string = 'admin@robotree.org'): Promise<any> {
     if (!id) {
       throw new ValidationError('Institute ID is required.');
     }
-    const institutes = AdminService.listInstitutes();
-    const index = institutes.findIndex((i: any) => String(i.id) === String(id));
-    if (index === -1) {
+    const existing = await repositories.institutes.findById(id);
+    if (!existing) {
       throw new NotFoundError('Partner institute not found.');
     }
 
-    const current = institutes[index];
     const tags = payload.tags !== undefined
       ? (Array.isArray(payload.tags) ? payload.tags : (typeof payload.tags === 'string' ? payload.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : []))
-      : current.tags;
+      : existing.tags;
 
-    const updated = {
-      ...current,
-      name: payload.name !== undefined ? payload.name.trim() : current.name,
-      tier: payload.tier !== undefined ? payload.tier.trim() : current.tier,
-      category: payload.category !== undefined ? payload.category.trim() : current.category,
-      location: payload.location !== undefined ? payload.location.trim() : current.location,
-      logo: payload.logo !== undefined ? payload.logo.trim() : current.logo,
-      description: payload.description !== undefined ? payload.description.trim() : current.description,
+    const updates = {
+      ...existing,
+      name: payload.name !== undefined ? payload.name.trim() : existing.name,
+      tier: payload.tier !== undefined ? payload.tier.trim() : existing.tier,
+      category: payload.category !== undefined ? payload.category.trim() : existing.category,
+      location: payload.location !== undefined ? payload.location.trim() : existing.location,
+      logo: payload.logo !== undefined ? payload.logo.trim() : existing.logo,
+      description: payload.description !== undefined ? payload.description.trim() : existing.description,
       tags,
-      status: payload.status !== undefined ? payload.status.trim() : current.status,
+      status: payload.status !== undefined ? payload.status.trim() : existing.status,
       updatedAt: new Date().toISOString()
     };
 
-    institutes[index] = updated;
-    db.saveInstitutes(institutes);
+    const updated = await repositories.institutes.update(id, updates);
+    SyncService.broadcast('institutes', 'UPDATE', id);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_UPDATED',
@@ -321,21 +330,154 @@ export class AdminService {
     if (!id) {
       throw new ValidationError('Institute ID is required.');
     }
-    const institutes = AdminService.listInstitutes();
-    const index = institutes.findIndex((i: any) => String(i.id) === String(id));
-    if (index === -1) {
+    const existing = await repositories.institutes.findById(id);
+    if (!existing) {
       throw new NotFoundError('Partner institute not found.');
     }
 
-    const removed = institutes.splice(index, 1)[0];
-    db.saveInstitutes(institutes);
+    await repositories.institutes.delete(id);
+    SyncService.broadcast('institutes', 'DELETE', id);
+
     await AuditService.logAction(
       actor,
       'INSTITUTE_DELETED',
       'institutes',
-      `Admin removed partner institute: ${removed.name}`,
+      `Admin removed partner institute: ${existing.name}`,
       { resourceId: id }
     );
-    return removed;
+    return existing;
+  }
+
+  public static async getHistory(limit = 50, entity?: string): Promise<any[]> {
+    return repositories.history.list(limit, entity);
+  }
+
+  public static async restoreHistory(historyId: string, actor: string = 'admin@robotree.org'): Promise<any> {
+    const item = await repositories.history.findById(historyId);
+    if (!item) {
+      throw new NotFoundError(`History revision record not found: ${historyId}`);
+    }
+
+    const { entity, entityId, previousData, action } = item;
+    let restoredRecord: any = null;
+
+    const targetState = previousData;
+    if (!targetState && action !== 'DELETE') {
+      throw new ValidationError(`No previous snapshot state available for restore.`);
+    }
+
+    switch (entity) {
+      case 'courses':
+        if (targetState) {
+          const exists = await repositories.courses.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.courses.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.courses.create(targetState);
+          }
+        } else {
+          await repositories.courses.delete(entityId);
+        }
+        SyncService.broadcast('courses', 'UPDATE', entityId);
+        break;
+
+      case 'team':
+        if (targetState) {
+          const exists = await repositories.team.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.team.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.team.create(targetState);
+          }
+        } else {
+          await repositories.team.delete(entityId);
+        }
+        SyncService.broadcast('team', 'UPDATE', entityId);
+        break;
+
+      case 'events':
+      case 'events_gallery':
+        if (targetState) {
+          const exists = await repositories.events.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.events.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.events.create(targetState);
+          }
+        } else {
+          await repositories.events.delete(entityId);
+        }
+        SyncService.broadcast('events', 'UPDATE', entityId);
+        break;
+
+      case 'products':
+        if (targetState) {
+          const exists = await repositories.products.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.products.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.products.create(targetState);
+          }
+        } else {
+          await repositories.products.delete(entityId);
+        }
+        SyncService.broadcast('products', 'UPDATE', entityId);
+        break;
+
+      case 'institutes':
+        if (targetState) {
+          const exists = await repositories.institutes.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.institutes.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.institutes.create(targetState);
+          }
+        } else {
+          await repositories.institutes.delete(entityId);
+        }
+        SyncService.broadcast('institutes', 'UPDATE', entityId);
+        break;
+
+      case 'settings':
+        if (targetState) {
+          restoredRecord = await repositories.settings.update(targetState);
+        }
+        SyncService.broadcast('settings', 'UPDATE', 'site_settings');
+        break;
+
+      case 'showcase':
+      case 'showcase_gallery':
+        if (targetState) {
+          const exists = await repositories.showcase.findById(entityId);
+          if (exists) {
+            restoredRecord = await repositories.showcase.update(entityId, targetState);
+          } else {
+            restoredRecord = await repositories.showcase.create(targetState);
+          }
+        } else {
+          await repositories.showcase.delete(entityId);
+        }
+        SyncService.broadcast('showcase', 'UPDATE', entityId);
+        break;
+
+      default:
+        throw new ValidationError(`Entity ${entity} does not support automatic revision rollback.`);
+    }
+
+    await AuditService.logAction(
+      actor,
+      'DATA_REVISION_RESTORED',
+      entity,
+      `Admin restored ${entity} record ${entityId} to previous revision from ${item.timestamp}`,
+      { resourceId: entityId, result: 'SUCCESS' }
+    );
+
+    return {
+      success: true,
+      message: `Record ${entityId} in ${entity} restored successfully.`,
+      entity,
+      entityId,
+      restoredRecord,
+    };
   }
 }

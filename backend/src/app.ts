@@ -15,6 +15,8 @@ import { COURSES_CATALOG } from './services/CourseService.js';
 import { hashPassword, verifyPassword, sanitizeValue } from './security/hasher.js';
 import { Logger } from './telemetry/logger.js';
 import { PROJECT_ROOT } from './utils/paths.js';
+import { SyncService } from './services/SyncService.js';
+import { isValidMongoUri, MongoConnection } from './persistence/MongoConnection.js';
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 const STATIC_DIR = fs.existsSync(DIST_DIR) ? DIST_DIR : PROJECT_ROOT;
 const INDEX_FILE = fs.existsSync(path.join(STATIC_DIR, 'index.html'))
@@ -62,6 +64,15 @@ export function createApp(): Express {
   // 5. CSRF & Same-Origin Protection on all /api routes
   app.use('/api', sameOriginGuard);
   app.use('/api', csrfGuard);
+
+  // 5.5. Zero-Stale Cache-Control for all dynamic API routes
+  app.use('/api', (_req: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+    next();
+  });
 
   // 6. Mount Master API Router (/api/v1 and /api aliases)
   app.use('/api', createApiRouter());
@@ -209,11 +220,25 @@ export const app = createApp();
 export { COURSES_CATALOG, hashPassword, verifyPassword, sanitizeValue };
 
 export function startServer(port = env.PORT, host = env.HOST) {
+  // Attempt MongoDB Atlas connection if configured
+  if (isValidMongoUri(env.MONGODB_URI)) {
+    MongoConnection.connect().catch((err) => {
+      Logger.warn('MongoDB Atlas connection notice:', { details: { error: err.message } });
+    });
+  }
+
   const server = app.listen(port, host, () => {
     Logger.info(`Robotree Enterprise Server started on http://${host}:${port}`, {
       details: { environment: env.NODE_ENV, port, host },
     });
   });
+
+  // Attach WebSocket server for real-time frontend and admin synchronization
+  try {
+    SyncService.initialize(server);
+  } catch (err: any) {
+    Logger.warn('WebSocket SyncService notice:', { details: { error: err.message } });
+  }
 
   const gracefulShutdown = (signal: string) => {
     Logger.info(`Received ${signal}. Shutting down gracefully...`);

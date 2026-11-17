@@ -2,6 +2,7 @@ import { repositories } from '../repositories/index.js';
 import { Course } from '../types/index.js';
 import { NotFoundError } from '../errors/AppError.js';
 import { AuditService } from './AuditService.js';
+import { SyncService } from './SyncService.js';
 import crypto from 'node:crypto';
 
 // Server-side authoritative Course & Price Catalog (INR)
@@ -126,6 +127,7 @@ export class CourseService {
       course.id = course.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `course-${Date.now()}`;
     }
     const created = await repositories.courses.create(course);
+    SyncService.broadcast('courses', 'CREATE', course.id);
     await AuditService.logAction(actor, 'COURSE_CREATED', 'courses', `Created course: ${course.title}`, {
       resourceId: course.id,
     });
@@ -135,6 +137,7 @@ export class CourseService {
   public static async updateCourse(id: string, updates: Partial<Course>, actor = 'System Administrator'): Promise<Course> {
     const updated = await repositories.courses.update(id, updates);
     if (!updated) throw new NotFoundError(`Course not found: ${id}`);
+    SyncService.broadcast('courses', 'UPDATE', id);
     await AuditService.logAction(actor, 'COURSE_UPDATED', 'courses', `Updated course: ${updated.title}`, {
       resourceId: id,
     });
@@ -144,6 +147,7 @@ export class CourseService {
   public static async deleteCourse(id: string, actor = 'System Administrator'): Promise<boolean> {
     const success = await repositories.courses.delete(id);
     if (!success) throw new NotFoundError(`Course not found: ${id}`);
+    SyncService.broadcast('courses', 'DELETE', id);
     await AuditService.logAction(actor, 'COURSE_DELETED', 'courses', `Deleted course: ${id}`, {
       resourceId: id,
     });
